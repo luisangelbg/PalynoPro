@@ -8,7 +8,7 @@
   "dateCreated": "2026-09-20",
   "dateModified": "2026-11-02",
   "datePublished": "2026-11-02",
-  "identifier": "https://doi.org/10.5281/zenodo.XXXXXXX",
+  "identifier": "https://doi.org/10.5281/zenodo.23883213",
   "license": "https://spdx.org/licenses/GPL-3.0-or-later",
   "codeRepository": "https://github.com/luisangelbg/PalynoPro",
   "url": "https://luisangelbg.github.io/PalynoPro/",
@@ -53,6 +53,6 @@
   "developmentStatus": "active",
   "isAccessibleForFree": true,
   "relatedLink": [
-    "https://doi.org/10.5281/zenodo.XXXXXXX"
+    "https://doi.org/10.5281/zenodo.23883213"
   ]
 }

@@ -28,7 +28,7 @@ authors:
     orcid: "https://orcid.org/0000-0001-8057-2583"
 version: "1.0.0"
 date-released: "2026-11-02"
-doi: 10.5281/zenodo.XXXXXXX
+doi: 10.5281/zenodo.23883213
 repository-code: "https://github.com/luisangelbg/PalynoPro"
 url: "https://luisangelbg.github.io/PalynoPro/"
 license: GPL-3.0-or-later
@@ -53,7 +53,7 @@ preferred-citation:
       orcid: "https://orcid.org/0000-0001-8057-2583"
   version: "1.0.0"
   year: 2026
-  doi: 10.5281/zenodo.XXXXXXX
+  doi: 10.5281/zenodo.23883213
   publisher:
     name: "Zenodo"
-  url: "https://doi.org/10.5281/zenodo.XXXXXXX"
+  url: "https://doi.org/10.5281/zenodo.23883213"

@@ -172,7 +172,7 @@
     const today = new Date().toLocaleDateString(L() === 'en' ? 'en-US' : 'es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
     const imgs = state.images.filter(included), G = groupCodes();
     const matRows = G.map(g => { const R = imgs.filter(r => r.group === g); return [esc(g), esc(groupName(g)), R.filter(r => r.tier === 'standard').length, R.filter(r => r.tier === 'overview').length, new Set(R.filter(r => r.tier === 'standard').map(unitOf)).size]; });
-    const refs = Home.REFS.concat([`Barrera-Guzmán LÁ. 2026. ${Home.CITE_TITLE[L() === 'en' ? 1 : 0]} (${t('versión', 'version')} ${APP_VERSION}). LABG Suite.`]).sort();
+    const refs = Home.REFS.concat([`Barrera-Guzmán LÁ. 2026. ${Home.CITE_TITLE[L() === 'en' ? 1 : 0]} (${t('versión', 'version')} ${APP_VERSION}). Zenodo. https://doi.org/${Home.CITE_DOI}`]).sort();
     const title = esc(state.meta.title || t('Morfometría polínica cuantitativa', 'Quantitative pollen morphometry'));
     return `<!DOCTYPE html><html lang="${L()}"><head><meta charset="UTF-8"><title>${title}</title><style>
       @page { size: A4; margin: 16mm 15mm; }

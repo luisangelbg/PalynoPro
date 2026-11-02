@@ -100,11 +100,13 @@
     'Wilson EB. 1927. Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association 22: 209–212.',
     'Wolberg G. 1990. Digital image warping. IEEE Computer Society Press, Los Alamitos.',
   ];
+  /* cited with the concept DOI of Zenodo, which always resolves to the latest version */
+  const CITE_DOI = '10.5281/zenodo.23883213';
   const CITE_TITLE = ['PalynoPro: morfometría polínica cuantitativa a partir de micrografías electrónicas', 'PalynoPro: quantitative pollen morphometry from electron micrographs'];
   function citeText() {
     return {
-      apa: `Barrera-Guzmán, L. Á. (2026). <i>${CITE_TITLE[0]}</i> (versión ${APP_VERSION}) [Programa de cómputo]. LABG Suite.`,
-      apaEn: `Barrera-Guzmán, L. Á. (2026). <i>${CITE_TITLE[1]}</i> (version ${APP_VERSION}) [Computer software]. LABG Suite.`,
+      apa: `Barrera-Guzmán, L. Á. (2026). <i>${CITE_TITLE[0]}</i> (versión ${APP_VERSION}) [Programa de cómputo]. Zenodo. https://doi.org/${CITE_DOI}`,
+      apaEn: `Barrera-Guzmán, L. Á. (2026). <i>${CITE_TITLE[1]}</i> (version ${APP_VERSION}) [Computer software]. Zenodo. https://doi.org/${CITE_DOI}`,
     };
   }
 
@@ -240,5 +242,5 @@
   });
   document.addEventListener('langchange', () => { lab(); });
 
-  window.Home = { REFS, CITE_TITLE, citeText, METHODS };
+  window.Home = { REFS, CITE_TITLE, CITE_DOI, citeText, METHODS };
 })();

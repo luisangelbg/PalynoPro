@@ -1,6 +1,6 @@
 # PalynoPro
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23883213.svg)](https://doi.org/10.5281/zenodo.23883213)
 
 **From the electron micrograph to the pollen key** · *Español: [LEEME.md](LEEME.md)*
 
@@ -174,7 +174,7 @@ program.
 
 Barrera-Guzmán, L. Á. (2026). PalynoPro: quantitative pollen morphometry from
 electron micrographs (Version 1.0.0) [Computer software]. Zenodo.
-https://doi.org/10.5281/zenodo.XXXXXXX
+https://doi.org/10.5281/zenodo.23883213
 
 The DOI above always resolves to the latest version; each version has its own
 DOI on the Zenodo page. Cite the version you used. Code:

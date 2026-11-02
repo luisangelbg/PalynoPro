@@ -1,6 +1,6 @@
 # PalynoPro
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23883213.svg)](https://doi.org/10.5281/zenodo.23883213)
 
 **De la micrografía electrónica a la clave polínica** · *English: [README.md](README.md)*
 
@@ -161,7 +161,7 @@ programa.
 
 Barrera-Guzmán, L. Á. (2026). *PalynoPro: morfometría polínica cuantitativa a
 partir de micrografías electrónicas* (versión 1.0.0) [Programa de cómputo].
-Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+Zenodo. https://doi.org/10.5281/zenodo.23883213
 
 El DOI de arriba lleva siempre a la versión más reciente; cada versión tiene
 además el suyo en la página de Zenodo. Cita la versión que usaste. Código:
