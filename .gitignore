@@ -1,0 +1,26 @@
+# Operating system
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+.DS_Store
+
+# Editors and tooling
+.vscode/
+.idea/
+.claude/
+*.swp
+*~
+
+# Node and logs (the tools of the manual and of the validation need no packages)
+node_modules/
+*.log
+*.tmp
+*.bak
+
+# Archives
+*.zip
+
+# Working files of the manual
+manual/es/_*
+manual/en/_*

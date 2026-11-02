@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · Manual de usuario · Capítulo 4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-4" data-pestana="4" data-orden="4" style="--acento: var(--b4)">
+  <div class="cap-apertura">
+    <div class="cap-num">4</div>
+    <div class="cap-etiqueta">Capítulo cuatro · Bloque 4</div>
+    <h1 data-corto="Ornamentación">Ornamentación</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">Dos granos del mismo tamaño pueden distinguirse por su superficie: cuántas espinas asoman en el contorno y qué tan altas son, qué tan abierta es la malla del retículo y qué tan áspera se ve la superficie. Este bloque presenta esas medidas, que salen de la misma pasada del Bloque 3, y deja ajustar cómo se buscan los lúmenes.</p>
+    <div class="cap-franja"><span class="k3"></span><span class="k4"></span><span class="k4"></span><span class="k6"></span></div>
+    <ul class="cap-contenido">
+      <li><b>4.1</b>Espinas, lúmenes y textura</li>
+      <li><b>4.2</b>Lúmenes: los dos ajustes</li>
+      <li><b>4.3</b>Resultados por grupo</li>
+      <li><b>4.4</b>Revisión de cada foto y perfil radial</li>
+    </ul>
+  </div>
+
+  <!-- 4.1 -->
+  <h2 id="s4-1"><span class="num">4.1</span>Espinas, lúmenes y textura</h2>
+  <p class="lead">El Bloque 4 no tiene botón para medir: la ornamentación se mide en la misma pasada que el contorno, al pulsar <span class="ui">Medir todas las fotos de un grano</span> en el Bloque 3. Si entras aquí antes de medir, el bloque sólo muestra un recuadro que lo explica y un botón para ir a medir.</p>
+  <figure class="w50">
+    <div class="marco"><img src="../img/b4-vacio.png" alt="El recuadro Primero mide los granos con el botón Ir al Bloque 3"></div>
+    <figcaption><b>Figura 4.1.</b> El Bloque 4 con el ejemplo abierto pero sin medir: <span class="ui">Primero mide los granos</span>, «La ornamentación se mide en la misma pasada del Bloque 3.» y el botón <span class="ui">Ir al Bloque 3</span>.</figcaption>
+  </figure>
+  <p>El subtítulo del bloque es «Espinas en el contorno, lúmenes del retículo y textura de la superficie.» El desplegable <span class="ui">Cómo se mide</span> explica los tres grupos de medidas en un párrafo cada uno; aquí van con más detalle.</p>
+
+  <h3>Las espinas del contorno</h3>
+  <p>Las espinas salen del perfil radial del Bloque 3 (sección 3.1): la altura de cada dirección sobre el cuerpo es la diferencia entre el contorno y el cuerpo. Un pico de esa diferencia es una espina si sobresale más que la <span class="ui">Altura mínima de una espina (µm)</span> y es más angosto que la <span class="ui">Base máxima de una espina (µm)</span>; dos picos más cercanos que media base cuentan como uno, el más alto. Las espinas que caen en direcciones de contorno cortado, o junto a ellas, no se cuentan.</p>
+  <p>La <b>altura</b> de cada espina se mide de la punta a la <b>cuerda que une sus dos pies</b>: el pie de cada lado es el punto más bajo del contorno entre la punta y el lugar donde el contorno vuelve a tocar el cuerpo. Medirla así, y no sobre el cuerpo recortado, importa en los granos alargados: ahí el cuerpo está inclinado bajo la espina, y la cuerda sigue esa inclinación. De las espinas salen cinco medidas:</p>
+  <table class="compacta">
+    <caption><b>Tabla 4.1.</b> Las medidas de las espinas</caption>
+    <thead><tr><th style="width:2.2in">En la app</th><th>Qué es</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Espinas en el contorno</span></td><td>Cuántas espinas asoman en la silueta</td></tr>
+      <tr><td><span class="ui">Altura media de espina (µm)</span></td><td>La altura promedio de sus puntas, cada una sobre la cuerda entre sus dos pies</td></tr>
+      <tr><td><span class="ui">Espaciado entre espinas (µm)</span></td><td>El perímetro libre del cuerpo (sin la parte cortada) entre el número de espinas</td></tr>
+      <tr><td><span class="ui">Densidad de espinas (/100 µm)</span></td><td>Espinas por cada 100 µm de perímetro libre del cuerpo; no depende del tamaño del grano, a diferencia del número</td></tr>
+      <tr><td><span class="ui">Área de espinas / área del cuerpo</span></td><td>Cuánto añaden las espinas al área de la silueta, como fracción del área del cuerpo: resume a la vez su número, su altura y su anchura</td></tr>
+    </tbody>
+  </table>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>Son las espinas del contorno, no todas</div>
+    <p>Las espinas que apuntan hacia el detector se ven como puntos sobre la cara del grano y no forman parte de la silueta: no se cuentan. El número es, por eso, comparable entre grupos fotografiados del mismo modo, pero no es el total de espinas del grano. Para comparar granos de tamaños distintos, la densidad es mejor que el número.</p>
+  </div>
+
+  <h3>Los lúmenes del retículo</h3>
+  <p>En un grano reticulado, los <b>lúmenes</b> —las celdas del retículo— se ven más oscuros que los <b>muros</b> que los rodean. La app busca los lúmenes en la parte interior del cuerpo, lejos de su borde (deja fuera el 18 % exterior del radio, donde la superficie se ve de canto), con un umbral local en la línea de Niblack (1986): un píxel es lumen si es más oscuro que la media de su vecindario por más de cierto número de desviaciones estándar de ese vecindario. Cada grupo de píxeles oscuros que no toca el borde de esa zona, de entre 0.05 y 12 µm², es un lumen; las manchas oscuras más grandes, como las aberturas, quedan fuera por su tamaño. De ellos salen tres medidas:</p>
+  <ul>
+    <li><span class="ui">Diámetro de lumen (mediana) (µm)</span>: la mediana de los diámetros equivalentes de los lúmenes de la foto. Se usa la mediana porque unos pocos lúmenes fusionados o partidos no la mueven.</li>
+    <li><span class="ui">Densidad de lúmenes (/100 µm²)</span>: los lúmenes por cada 100 µm² de superficie, contados sólo en la zona que queda a más de tres diámetros medianos del borde, para que las celdas cortadas por el borde no la bajen.</li>
+    <li><span class="ui">Variación del lumen (CV)</span>: el coeficiente de variación de los diámetros: bajo en un retículo regular, alto en uno de mallas desiguales.</li>
+  </ul>
+
+  <h3>La textura de la superficie</h3>
+  <p>La textura se mide en la misma zona interior con la matriz de coocurrencia de grises (Haralick et al. 1973): cuántas veces un nivel de gris aparece junto a otro a una distancia dada. La app reduce los grises a 32 niveles entre los percentiles 1 y 99 de la zona, cuenta los pares a 0.2 y 0.4 µm en cuatro direcciones (0°, 45°, 90° y 135°), sólo cuando los dos píxeles están sobre la superficie, y promedia las ocho matrices.</p>
+  <table class="compacta">
+    <caption><b>Tabla 4.2.</b> Las medidas de textura</caption>
+    <thead><tr><th style="width:2.2in">En la app</th><th>Sube cuando…</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Textura: contraste</span></td><td>los píxeles vecinos difieren mucho en gris: una superficie áspera o de mallas marcadas</td></tr>
+      <tr><td><span class="ui">Textura: homogeneidad</span></td><td>los vecinos se parecen: una superficie lisa o de dibujo grande</td></tr>
+      <tr><td><span class="ui">Textura: entropía</span></td><td>la combinación de grises es variada y poco predecible</td></tr>
+      <tr><td><span class="ui">Textura: correlación</span></td><td>el gris de un píxel predice el de su vecino: zonas claras y oscuras amplias, como celdas grandes</td></tr>
+    </tbody>
+  </table>
+  <p>La app calcula también la <span class="ui">Textura: energía</span>, que sube en las superficies uniformes; no aparece en las tablas de este bloque, pero sí entre las variables del Bloque 6 y en el CSV de todas las fotos.</p>
+
+  <!-- 4.2 -->
+  <h2 id="s4-2"><span class="num">4.2</span>Lúmenes: los dos ajustes</h2>
+  <p>La tarjeta <span class="ui">Lúmenes</span> tiene los dos parámetros del umbral local. Los de las espinas están en el Bloque 3, porque también deciden dónde está el cuerpo.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b4-lumenes.png" alt="El título del Bloque 4, el desplegable Cómo se mide abierto y la tarjeta Lúmenes con sus dos campos, el botón y la nota de validación"></div>
+    <figcaption><b>Figura 4.2.</b> El Bloque 4 con <span class="ui">Cómo se mide</span> abierto y la tarjeta <span class="ui">Lúmenes</span> con sus valores por omisión: 1.5 µm y 0.15 desviaciones estándar. Debajo del botón, la nota de cómo se validó.</figcaption>
+  </figure>
+  <table class="compacta">
+    <caption><b>Tabla 4.3.</b> Los ajustes de la tarjeta <span class="ui">Lúmenes</span></caption>
+    <thead><tr><th style="width:2.3in">Campo</th><th class="num" style="width:0.6in">Omisión</th><th>Qué decide</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Radio del vecindario (µm)</span></td><td class="num">1.5</td><td>El tamaño del cuadro con que se compara cada píxel; nunca menos de 2 píxeles. Debe ser algo mayor que medio lumen: así el vecindario abarca muro y lumen a la vez.</td></tr>
+      <tr><td><span class="ui">Más oscuro que el vecindario por (desv. est.)</span></td><td class="num">0.15</td><td>Cuánto más oscuro que la media del vecindario debe ser un píxel para ser lumen. Más alto, lúmenes más chicos y menos; más bajo, se cuela el ruido.</td></tr>
+    </tbody>
+  </table>
+  <p>Los valores se aplican con <span class="ui">Volver a medir con estos valores</span>, que lleva al Bloque 3 y vuelve a medir todas las fotos (con el ejemplo, unos 20 a 30 s). Como cualquier medición nueva, borra la comparación del Bloque 6.</p>
+  <p>La nota al pie de la tarjeta dice cómo se validó: «Se validó con retículos simulados: el diámetro mediano de lumen resultó proporcional a la malla dibujada en todo el intervalo de 1.8 a 4 µm, con variación entre réplicas menor a 3 %.» «Proporcional» no es «igual»: lo explica la sección 4.3.</p>
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Ejemplo · un vecindario más grande</div>
+    <p>Con el ejemplo, cambiar el <span class="ui">Radio del vecindario (µm)</span> de 1.5 a 2.5 y volver a medir apenas mueve los lúmenes: el mosaico <span class="ui">Lumen (mediana)</span> sigue en 1.53 µm y la densidad pasa de 25.5 a 25.2 por 100 µm²; por grupo, el diámetro mediano pasa de 1.272 a 1.275 µm en A, de 1.429 a 1.434 en B y de 1.876 a 1.890 en C. El umbral es robusto mientras el vecindario abarque una celda y su muro; si tus lúmenes son mucho más grandes que los del ejemplo, sube el radio en proporción.</p>
+  </div>
+
+  <!-- 4.3 -->
+  <h2 id="s4-3"><span class="num">4.3</span>Resultados por grupo</h2>
+  <p>La tarjeta <span class="ui">Resultados</span> empieza con cuatro mosaicos, todos promedios de los granos con contorno completo, de todos los grupos juntos: <span class="ui">Espinas en el contorno</span> (<span class="ui">por grano (media)</span>), <span class="ui">Altura de espina</span>, <span class="ui">Densidad de espinas</span> (<span class="ui">por 100 µm de contorno</span>) y <span class="ui">Lumen (mediana)</span>, con la densidad de lúmenes debajo.</p>
+  <figure>
+    <div class="marco"><img src="../img/b4-resultados.png" alt="Los cuatro mosaicos de Resultados del Bloque 4: 26.5 espinas, 2.05 µm de altura, 13.28 espinas por 100 µm y lumen de 1.53 µm"></div>
+    <figcaption><b>Figura 4.3.</b> Los mosaicos del ejemplo: 26.5 espinas en el contorno por grano, de 2.05 µm de alto en promedio, 13.28 espinas por 100 µm de contorno, y lúmenes de 1.53 µm de diámetro mediano, 25.5 por 100 µm².</figcaption>
+  </figure>
+  <p>Sigue la tabla <span class="ui">Por grupo</span>, como la del Bloque 3: un grupo por columna, con su número de granos debajo del nombre, y una medida por renglón, con la media ± la desviación estándar entre granos. Las doce medidas van en tres secciones: <span class="ui">Espinas</span> (las cinco de la tabla 4.1), <span class="ui">Lúmenes</span> (las tres de los lúmenes) y <span class="ui">Textura</span> (cuatro de las cinco de textura). Su botón <span class="ui">CSV</span> descarga <code>palynopro_ornamentacion_por_grupo.csv</code>, con un renglón por grupo.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b4-grupos.png" alt="La tabla Por grupo del Bloque 4 con los tres morfotipos en columnas y doce medidas en tres secciones: Espinas, Lúmenes y Textura"></div>
+    <figcaption><b>Figura 4.4.</b> La tabla <span class="ui">Por grupo</span> del ejemplo: media ± DE entre los 8 granos de cada morfotipo simulado. B tiene más espinas, más altas y más densas; C, menos espinas y más cortas, lúmenes más grandes y menos densos, y una superficie menos contrastada.</figcaption>
+  </figure>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Ejemplo · lo dibujado contra lo medido</div>
+    <p><b>Número de espinas.</b> Se dibujan 24, 32 y 22 espinas en el contorno de A, B y C (sección I.7), y la app cuenta 25.1, 32.1 y 22.3 en promedio. <b>Altura.</b> Se dibujan 2.0, 2.8 y 1.7 µm y la app mide 1.848, 2.756 y 1.540 µm: siempre algo menos, de 0.04 a 0.16 µm, del orden de un píxel del análisis (0.1 µm); en proporción, la diferencia es mayor en C, el de espinas más cortas. <b>Lumen.</b> La malla dibujada es de 2.2, 2.6 y 3.4 µm y el lumen mediano mide 1.272, 1.429 y 1.876 µm: el orden es el mismo y la razón lumen/malla ronda 0.55 en los tres. <b>Textura.</b> C, el de malla más abierta, tiene menos contraste y más correlación: sus zonas claras y oscuras son más amplias.</p>
+  </div>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve · dos sesgos que conviene conocer</div>
+    <p><b>La altura sale un poco baja.</b> La punta de una espina es más fina que un píxel y no alcanza a pasar el umbral: el pico del perfil se queda por debajo de la punta verdadera, y se pierde cerca de un píxel de altura. En la validación con 60 granos simulados, con espinas de 1.2 a 3.2 µm, la altura medida quedó por debajo de la dibujada con una mediana de 3.9 % (entre 2.9 y 5.7 %); la pérdida pesa más, en proporción, cuando la espina mide pocos píxeles de alto o cuando las espinas se tocan en la base. Compara alturas entre grupos fotografiados igual, y si das la altura en µm, di en los métodos que está subestimada en cerca de un píxel (el informe del Bloque 7 lo dice). <b>El lumen es proporcional a la malla, no igual.</b> La malla va de centro a centro de muro; el lumen es sólo la parte oscura de cada celda, sin los muros ni la penumbra de su orilla. En la validación, la razón fue de 0.558 con una variación entre granos de 1.8 %: constante, así que el lumen ordena y compara bien los retículos.</p>
+  </div>
+
+  <h3>Las cuatro figuras</h3>
+  <p>Tres gráficas de caja, con los granos como puntos —<span class="ui">Densidad de espinas por grupo</span>, <span class="ui">Diámetro de lumen por grupo</span> y <span class="ui">Altura de espina por grupo</span>— y un diagrama de dispersión, <span class="ui">Textura: contraste contra homogeneidad</span>, con una elipse que encierra al 95 % de cada grupo.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b4-figuras.png" alt="Las gráficas de caja de la densidad de espinas y del diámetro de lumen de los tres morfotipos"></div>
+    <figcaption><b>Figura 4.5.</b> Las dos primeras figuras de <span class="ui">Resultados</span>. B tiene las espinas más densas, aunque su caja se traslapa con la de A; C tiene los lúmenes más grandes, sin traslape con A ni con B.</figcaption>
+  </figure>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b4-figuras2.png" alt="La gráfica de caja de la altura de espina por grupo y el diagrama de contraste contra homogeneidad con elipses"></div>
+    <figcaption><b>Figura 4.6.</b> Las otras dos. B tiene las espinas más altas, y las de C, cortas y parejas, forman una caja casi plana. En la textura, C queda aparte, con menos contraste y más homogeneidad, mientras A y B se confunden; los granos caen casi sobre una línea, porque el contraste y la homogeneidad miden casi lo mismo desde dos lados.</figcaption>
+  </figure>
+
+  <!-- 4.4 -->
+  <h2 id="s4-4"><span class="num">4.4</span>Revisión de cada foto y perfil radial</h2>
+  <p>Como en el Bloque 3, la tarjeta <span class="ui">Revisión de cada foto</span> dibuja sobre la imagen lo que se midió, con <span class="ui">← Anterior</span>, el selector y <span class="ui">Siguiente →</span> para recorrer las fotos. Tiene tres capas: <span class="ui">Lúmenes</span> (en verde, cada lumen medido), <span class="ui">Espinas</span> (las puntas, en rojo) y <span class="ui">Cuerpo</span> (en celeste, discontinuo). A la derecha van la foto, sus doce medidas de ornamentación y los <span class="ui">Lúmenes medidos</span>. Aquí no hay botón para excluir: las fotos se excluyen en el Bloque 3.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b4-revision.png" alt="La revisión de la foto 01_C del ejemplo con los lúmenes en verde, las espinas en rojo y el cuerpo, y sus medidas de ornamentación"></div>
+    <figcaption><b>Figura 4.7.</b> <span class="ruta">Bloque 4<span class="sep">›</span>Revisión de cada foto</span> con <code>01_C.png</code>, un grano del morfotipo C, de malla abierta: el verde cubre las celdas del interior y deja fuera la orilla del cuerpo, donde la superficie se ve de canto. A la derecha, sus medidas: 23 espinas en el contorno, de 1.524 µm de alto en promedio; 343 lúmenes medidos, con un diámetro mediano de 1.833 µm y 15.3 lúmenes por 100 µm².</figcaption>
+  </figure>
+  <p>Lo que hay que mirar en la capa <span class="ui">Lúmenes</span>: que el verde caiga en las celdas y no en los muros; que no se junten dos celdas en una mancha grande; y que no queden celdas claras sin marcar. Que falten lúmenes en la orilla del grano es lo esperado: esa zona no se analiza.</p>
+
+  <h3>El perfil radial</h3>
+  <p>Bajo el visor, <span class="ui">Perfil radial de la foto elegida</span> muestra el contorno como lo lee la app: la <span class="ui">Dirección desde el centro (°)</span>, de 0 a 360, en el eje horizontal, y el <span class="ui">Radio (µm)</span> en el vertical. La línea fina es el <span class="ui">Contorno</span>, con las espinas como picos; la gruesa discontinua, el <span class="ui">Cuerpo</span> que quedó al recortarlos; los círculos, las <span class="ui">Espinas</span> contadas. Es la manera más directa de ver por qué un pico se contó o no.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b4-perfil.png" alt="El perfil radial de la foto 01_C: el contorno con sus picos, el cuerpo y las espinas marcadas"></div>
+    <figcaption><b>Figura 4.8.</b> El perfil radial de <code>01_C.png</code>. El cuerpo sube y baja dos veces en la vuelta, entre unos 30.6 y 33.7 µm de radio: es la huella de un grano alargado (sus dos extremos y sus dos costados). Las 23 espinas son los picos angostos, de 1 a 2 µm sobre el cuerpo; la línea pasa por las 720 direcciones, así que cada círculo cae justo en la punta de su pico. La altura de cada espina se mide de esa punta a la cuerda entre sus dos pies (sección 4.1).</figcaption>
+  </figure>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Regla de decisión · leer la ornamentación</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:42%"><b>Si</b> los grupos difieren de tamaño…</td><td><b>entonces</b> compara la <span class="ui">Densidad de espinas</span> o el espaciado, no el número: un grano más grande tiene más espinas en el contorno aunque su ornamentación sea la misma.</td></tr>
+      <tr><td><b>Si</b> en el perfil un pico claro no lleva círculo…</td><td>es más bajo que la <span class="ui">Altura mínima de una espina (µm)</span> o más ancho que la base: ajusta esos campos en el Bloque 3.</td></tr>
+      <tr><td><b>Si</b> en el perfil se cuentan como espinas pequeñas ondas del borde…</td><td>sube la altura mínima, o revisa si la foto tiene ruido fuerte o está ampliada.</td></tr>
+      <tr><td><b>Si</b> la capa <span class="ui">Lúmenes</span> marca los muros o junta celdas…</td><td>cambia el <span class="ui">Más oscuro que el vecindario por (desv. est.)</span> o el radio, y vuelve a medir.</td></tr>
+      <tr><td><b>Si</b> quieres dar una altura de espina en µm…</td><td>recuerda que la app la subestima en cerca de un píxel (3 a 6 % en espinas de muchos píxeles, más en las cortas); para comparar grupos sirve tal cual.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">Con superficies que no son reticuladas (psiladas, verrugosas), los lúmenes encontrados son motas del ruido: no uses esas variables en el Bloque 6.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>Cuando algo sale mal</div>
+    <p><b>El bloque sólo dice «Primero mide los granos».</b> Mide en el Bloque 3; si ya mediste y cambiaste algo en el Bloque 2, las medidas se borraron. <b>Ningún lumen, o la densidad en blanco.</b> La foto tiene poca resolución para el retículo (marca <span class="ui">ampliada</span>), la superficie no es reticulada o el grano es tan chico que no queda zona interior. <b>Muchas espinas de más.</b> El contorno es rugoso por el ruido: sube la <span class="ui">Altura mínima de una espina (µm)</span>. <b>Las alturas cambian al cambiar el píxel del análisis.</b> Es lo esperado: con un píxel más grueso la punta se pierde más; usa el mismo píxel en todo el estudio.</p>
+  </div>
+</section>
+
+</body>
+</html>

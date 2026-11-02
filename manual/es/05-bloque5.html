@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · Manual de usuario · Capítulo 5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-5" data-pestana="5" data-orden="5" style="--acento: var(--b5)">
+  <div class="cap-apertura">
+    <div class="cap-num">5</div>
+    <div class="cap-etiqueta">Capítulo cinco · Bloque 5</div>
+    <h1 data-corto="Fertilidad">Fertilidad</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">Un grano bien formado es turgente y casi convexo; uno vacío o abortado se pliega. En las fotos panorámicas, con muchos granos a la vez, este bloque separa cada grano, mide qué tan convexo es su cuerpo y estima, por grupo, la proporción de granos colapsados con su intervalo de confianza, y si esa proporción difiere entre grupos.</p>
+    <div class="cap-franja"><span class="k2"></span><span class="k5"></span><span class="k5"></span><span class="k7"></span></div>
+    <ul class="cap-contenido">
+      <li><b>5.1</b>Cómo se estima</li>
+      <li><b>5.2</b>Contar</li>
+      <li><b>5.3</b>Resultados: proporción, intervalo y χ²</li>
+      <li><b>5.4</b>Revisión de cada panorámica</li>
+    </ul>
+  </div>
+
+  <!-- 5.1 -->
+  <h2 id="s5-1"><span class="num">5.1</span>Cómo se estima</h2>
+  <p class="lead">El bloque trabaja sólo con las fotos que el Bloque 2 tiene como <span class="ui">Panorámica</span>: tomas a pocos aumentos con muchos granos. Su subtítulo lo resume: «Granos turgentes y colapsados en las panorámicas, por grupo.» El desplegable <span class="ui">Cómo se estima</span> explica el método; estos son sus pasos.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b5-contar.png" alt="El título del Bloque 5, el desplegable Cómo se estima abierto y la tarjeta Contar con sus cinco campos y el botón"></div>
+    <figcaption><b>Figura 5.1.</b> El Bloque 5 con <span class="ui">Cómo se estima</span> abierto y la tarjeta <span class="ui">Contar</span> con sus valores por omisión. Al lado del botón, <span class="ui">3 panorámica(s)</span>: las del ejemplo, una por morfotipo.</figcaption>
+  </figure>
+  <ol class="pasos">
+    <li><b>La foto entera.</b> Cada panorámica se analiza a su propio píxel (en el ejemplo, 150× y 1280 px dan 0.6667 µm/px), sin el rótulo; si mide más de 1600 px de ancho, se reduce a ese ancho.</li>
+    <li><b>Todos los granos.</b> El umbral de Otsu separa los granos del fondo, como en el Bloque 3, y cada región cuyo diámetro cae entre el <span class="ui">Diámetro mínimo de un grano (µm)</span> y el <span class="ui">Diámetro máximo de un grano (µm)</span> es un candidato.</li>
+    <li><b>Los del borde, fuera.</b> Un grano que toca el borde de la foto tiene la silueta incompleta y su forma no se puede juzgar: se marca y no se cuenta.</li>
+    <li><b>El cuerpo de cada grano.</b> De cada candidato se lee su propio perfil radial (en 360 direcciones) y se le quitan las espinas con la misma <span class="ui">Base máxima de una espina (µm)</span> del Bloque 3. Las espinas bajan la convexidad de un grano sano; sin ellas, sólo la pierde un grano plegado.</li>
+    <li><b>El grano típico.</b> Es la mediana del diámetro del cuerpo de los granos que no tocan el borde de esa panorámica. Si en ella hay menos de tres, se usa la mediana del cuerpo medido en el Bloque 3.</li>
+    <li><b>Fragmentos y agregados, fuera.</b> Una región más chica que el típico por el factor de <span class="ui">Fragmento: más chico que el grano típico (×)</span> es un fragmento o un residuo del montaje; una más grande por el factor de <span class="ui">Agregado: más grande que el grano típico (×)</span>, varios granos que se tocan. Ninguna de las dos se clasifica.</li>
+    <li><b>Turgente o colapsado.</b> Los demás granos se clasifican por la <b>solidez</b> de su cuerpo: si llega a la <span class="ui">Solidez mínima del cuerpo de un grano turgente</span>, el grano es turgente; si no, colapsado o deforme.</li>
+  </ol>
+  <div class="formula">solidez = área del cuerpo / área de su envolvente convexa</div>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve · la solidez</div>
+    <p>La envolvente convexa es la figura que formaría una liga estirada alrededor del cuerpo (la app la calcula con el algoritmo de Andrew 1979). En un cuerpo convexo, como un círculo o una elipse, la liga toca todo el borde y la solidez vale 1. Un grano que se vacía se hunde por un lado: la liga salta el hundimiento y el área que queda entre los dos baja la solidez. Por eso la solidez distingue un grano plegado aunque mida lo mismo que uno sano, y no castiga a un grano sólo por ser alargado. Los granos turgentes del ejemplo tienen solidez de 0.99 o más.</p>
+  </div>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>La forma no es la viabilidad</div>
+    <p>La solidez es una <b>aproximación morfológica</b>. Un grano turgente puede no ser viable, y la preparación para el microscopio electrónico (el secado, el vacío) puede colapsar granos que sí lo eran. Para afirmar viabilidad hace falta una prueba de tinción o de germinación. El bloque sirve para comparar grupos tratados del mismo modo y, con pocas panorámicas, tómalo como un estudio piloto. La app lo recuerda en los resultados.</p>
+  </div>
+
+  <!-- 5.2 -->
+  <h2 id="s5-2"><span class="num">5.2</span>Contar</h2>
+  <p>La tarjeta <span class="ui">Contar</span> tiene cinco campos y el botón <span class="ui">Contar en todas las panorámicas</span>. A su lado, un renglón dice cuántas panorámicas hay; si no hay ninguna, dice «No hay panorámicas: márcalas como “Panorámica” en el Bloque 2.» y el botón queda apagado.</p>
+  <table class="compacta">
+    <caption><b>Tabla 5.1.</b> Los ajustes de la tarjeta <span class="ui">Contar</span></caption>
+    <thead><tr><th style="width:2.3in">Campo</th><th class="num" style="width:0.6in">Omisión</th><th>Qué decide</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Solidez mínima del cuerpo de un grano turgente</span></td><td class="num">0.95</td><td>El corte entre turgente y colapsado. Es conservador: reconoce la mayoría de los granos plegados sin tomar por colapsado a uno sano.</td></tr>
+      <tr><td><span class="ui">Diámetro mínimo de un grano (µm)</span></td><td class="num">15</td><td>Las regiones más chicas se ignoran: polvo, ruido.</td></tr>
+      <tr><td><span class="ui">Agregado: más grande que el grano típico (×)</span></td><td class="num">1.3</td><td>Desde cuántas veces el diámetro típico una región se toma como agregado.</td></tr>
+      <tr><td><span class="ui">Fragmento: más chico que el grano típico (×)</span></td><td class="num">0.6</td><td>Por debajo de cuántas veces el diámetro típico una región se toma como fragmento.</td></tr>
+      <tr><td><span class="ui">Diámetro máximo de un grano (µm)</span></td><td class="num">200</td><td>Las regiones más grandes se ignoran: manchas del soporte, cúmulos.</td></tr>
+    </tbody>
+  </table>
+  <p>Ajusta el mínimo y el máximo al polen que estudias: deben dejar dentro a todos los granos y fuera la basura del montaje. Al pulsar el botón, la ventana de espera dice qué panorámica se cuenta; con las tres del ejemplo, toma unos segundos. Si una panorámica no se puede leer, un aviso ámbar la nombra.</p>
+
+  <!-- 5.3 -->
+  <h2 id="s5-3"><span class="num">5.3</span>Resultados: proporción, intervalo y χ²</h2>
+  <p>La tarjeta <span class="ui">Resultados</span> empieza con cuatro mosaicos:</p>
+  <ul>
+    <li><span class="ui">Panorámicas</span>: cuántas se contaron.</li>
+    <li><span class="ui">Granos contados</span>: los turgentes más los colapsados; debajo, cuántos quedaron <span class="ui">fuera (borde, agregados, fragmentos)</span>.</li>
+    <li><span class="ui">Colapsados</span>: el porcentaje de todos los grupos juntos y, debajo, la cuenta.</li>
+    <li><span class="ui">Prueba χ²</span>: el estadístico, sus grados de libertad (<span class="ui">gl</span>) y su valor <i>p</i>.</li>
+  </ul>
+  <figure>
+    <div class="marco"><img src="../img/b5-resultados.png" alt="Los cuatro mosaicos, los tres veredictos y la tabla por grupo de la fertilidad del ejemplo"></div>
+    <figcaption><b>Figura 5.2.</b> La fertilidad del ejemplo: 3 panorámicas, 39 granos contados y 3 fuera; 5 colapsados de 39 (12.8 %), todos en el morfotipo B; χ² = 11.47 con 2 gl y <i>p</i> = 0.003. Debajo, los tres veredictos y la tabla por grupo.</figcaption>
+  </figure>
+
+  <h3>Los veredictos</h3>
+  <p>Debajo de los mosaicos van hasta tres avisos. El primero da la conclusión de la prueba: «La proporción de granos colapsados difiere entre grupos (χ²).» si <i>p</i> &lt; 0.05, o «No se detectó diferencia entre grupos en la proporción de granos colapsados (χ²).» si no. El segundo aparece cuando alguna frecuencia esperada es menor que 5 —con el ejemplo, «3 celda(s) con frecuencia esperada menor que 5: la prueba χ² es aproximada; cuenta más panorámicas.»—. El tercero está siempre: «Recuerda: la solidez es una aproximación morfológica a la fertilidad, no una prueba de viabilidad.»</p>
+
+  <h3>La tabla por grupo</h3>
+  <p>Un renglón por grupo con <span class="ui">Panorámicas</span>, <span class="ui">Granos</span> (los clasificados), <span class="ui">Colapsados</span>, el <span class="ui">%</span>, el <span class="ui">IC 95 % (Wilson)</span> y el <span class="ui">Diámetro (µm)</span> de los granos clasificados, media ± desviación estándar. El botón <span class="ui">CSV</span> descarga <code>palynopro_fertilidad.csv</code>, con la proporción y los límites del intervalo como fracciones. Con el ejemplo, la tabla es la de la figura 5.2: B tiene 5 colapsados de 13 (38.5 %, con un intervalo de 17.7 a 64.5 %), y A y C, 0 de 13 (de 0.0 a 22.8 %).</p>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve · el intervalo de Wilson y la prueba χ²</div>
+    <p><b>Wilson (1927).</b> Con 13 granos, una proporción de 0 de 13 no quiere decir que el grupo no tenga granos colapsados: sólo que no se vio ninguno. El intervalo de Wilson da el recorrido de proporciones compatibles con lo contado —de 0 a 22.8 % para 0 de 13— y, a diferencia del intervalo «de libro» (la proporción ± 1.96 errores estándar), no se sale de 0 a 100 % ni se encoge a cero cuando no hay colapsados. <b>χ² de homogeneidad.</b> La tabla de grupos × (turgentes, colapsados) se compara con la que se esperaría si todos los grupos tuvieran la misma proporción; los grados de libertad son los grupos menos uno. La aproximación χ² pide frecuencias esperadas de al menos 5: con 5 colapsados entre 39 granos, cada grupo de 13 «esperaría» menos de 2, de ahí el aviso.</p>
+  </div>
+  <p>El diámetro de esta tabla no sustituye al del Bloque 3: se mide a pocos aumentos (0.67 µm/px en el ejemplo) e incluye a los granos colapsados, que miden menos; por eso la desviación de B es mayor. Además, en el ejemplo los granos de las panorámicas se dibujan casi redondos, sin la elongación de cada morfotipo, y el de C sale más grande que en las fotos de un grano. Úsalo sólo para comprobar que se contó polen del tamaño esperado.</p>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Ejemplo · qué tanto depende del umbral</div>
+    <p>El ejemplo dibuja cada grano de las panorámicas colapsado con cierta probabilidad —15, 35 y 10 % en A, B y C (sección I.7)—, de modo que la cuenta de cada panorámica no es exactamente ese porcentaje: en las del ejemplo quedaron dibujados 1, 7 y 1 granos colapsados de 14, contando los que tocan el borde. Con el umbral de 0.95, la app reconoce 5 en B —de los otros dos, uno toca el borde y otro llega a 0.962 (figura 5.4)— y ninguno en A ni en C, donde el grano menos sólido llega a 0.958 y 0.968. Así cambian los resultados al mover la <span class="ui">Solidez mínima del cuerpo de un grano turgente</span>:</p>
+    <table class="compacta">
+      <thead><tr><th>Solidez mínima</th><th class="num">A</th><th class="num">B</th><th class="num">C</th><th class="num">Colapsados</th><th class="num">χ² (gl 2)</th><th class="num"><i>p</i></th></tr></thead>
+      <tbody>
+        <tr><td>0.93</td><td class="num">0</td><td class="num">3</td><td class="num">0</td><td class="num">7.7 %</td><td class="num">6.50</td><td class="num">0.039</td></tr>
+        <tr><td>0.95 (omisión)</td><td class="num">0</td><td class="num">5</td><td class="num">0</td><td class="num">12.8 %</td><td class="num">11.47</td><td class="num">0.003</td></tr>
+        <tr><td>0.96</td><td class="num">1</td><td class="num">5</td><td class="num">0</td><td class="num">15.4 %</td><td class="num">8.27</td><td class="num">0.016</td></tr>
+        <tr><td>0.97</td><td class="num">1</td><td class="num">6</td><td class="num">1</td><td class="num">20.5 %</td><td class="num">7.86</td><td class="num">0.020</td></tr>
+      </tbody>
+    </table>
+    <p>La conclusión —B tiene más granos colapsados que A y C— se sostiene en los cuatro casos; los porcentajes, no. Por eso conviene informar el umbral junto con el resultado (el informe del Bloque 7 lo hace) y mirar el histograma: si hay un hueco claro entre los granos sanos y los plegados, el umbral puede ir en él.</p>
+  </div>
+
+  <h3>Las dos figuras</h3>
+  <p><span class="ui">Granos colapsados por grupo</span> da el porcentaje de colapsados de cada grupo en barras, con el intervalo de Wilson como bigote. <span class="ui">Solidez del cuerpo de los granos</span> es un histograma de la solidez de todos los granos clasificados, entre 0.75 y 1, con una línea vertical en el <span class="ui">umbral</span>: los granos a su izquierda son los colapsados.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b5-figuras.png" alt="Las barras del porcentaje de colapsados por grupo con su intervalo y el histograma de la solidez con la línea del umbral"></div>
+    <figcaption><b>Figura 5.3.</b> Las figuras del ejemplo. A la izquierda, sólo B tiene colapsados; aun así, los intervalos de A y C (hasta 22.8 %) se traslapan con el de B (desde 17.7 %): con 13 granos por grupo, la precisión es poca aunque la prueba χ² salga significativa. A la derecha, cinco granos quedan a la izquierda del umbral de 0.95, entre 0.92 y 0.95, y los demás quedan a su derecha, la mayoría cerca de 1: el último intervalo, de 0.99 a 1, reúne 28 de los 39 granos. No hay un hueco claro alrededor del umbral: justo a su derecha quedan granos de 0.958 y 0.962, por eso la cuenta cambia al moverlo.</figcaption>
+  </figure>
+
+  <!-- 5.4 -->
+  <h2 id="s5-4"><span class="num">5.4</span>Revisión de cada panorámica</h2>
+  <p>La tarjeta <span class="ui">Revisión de cada panorámica</span> dibuja un círculo alrededor de cada región encontrada, con el color de su clase y su solidez escrita con tres decimales, encima del grano o, si el grano está junto al borde de arriba, debajo; siempre dentro de la foto. Las panorámicas se eligen en el selector. La leyenda de colores va debajo de la imagen:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:2.2in">Color y rótulo</th><th>Qué significa</th></tr></thead>
+    <tbody>
+      <tr><td>verde · <span class="ui">turgente</span></td><td>Solidez del cuerpo igual o mayor que el umbral</td></tr>
+      <tr><td>rojo · <span class="ui">colapsado o deforme</span></td><td>Solidez menor que el umbral</td></tr>
+      <tr><td>violeta · <span class="ui">agregado (no cuenta)</span></td><td>Más grande que el grano típico por el factor de agregado</td></tr>
+      <tr><td>amarillo · <span class="ui">fragmento (no cuenta)</span></td><td>Más chico que el grano típico por el factor de fragmento</td></tr>
+      <tr><td>gris · <span class="ui">toca el borde (no cuenta)</span></td><td>Silueta incompleta</td></tr>
+    </tbody>
+  </table>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b5-revision.png" alt="La panorámica 90_B del ejemplo con cada grano rodeado por un círculo verde, rojo o gris y su solidez, y la cuenta a la derecha"></div>
+    <figcaption><b>Figura 5.4.</b> La panorámica <code>90_B.png</code> del morfotipo B: 13 granos completos, 8 turgentes (verde) y 5 colapsados (rojo), con solidez de 0.92 a 0.95; el de la orilla izquierda (gris, 0.94) también está plegado, pero toca el borde y no cuenta. El grano típico mide 62.4 µm. Fíjate en el grano verde marcado 0.96, abajo a la izquierda: tiene una muesca y está plegado, pero su solidez pasa el umbral de 0.95. Es el que se suma a B al subirlo a 0.97 (sección 5.3).</figcaption>
+  </figure>
+  <p>A la derecha van la <span class="ui">Panorámica</span>, el <span class="ui">Grupo</span>, los <span class="ui">Granos completos</span> (los clasificados), cuántos son <span class="ui">Turgentes</span> y cuántos <span class="ui">Colapsados</span>, cuántos quedaron <span class="ui">En el borde</span>, cuántos <span class="ui">Agregados</span> y <span class="ui">Fragmentos</span>, y el <span class="ui">Grano típico</span> en µm con que se juzgaron. En la panorámica del morfotipo A, por ejemplo: 13 granos completos, los 13 turgentes, 1 en el borde y un grano típico de 60.8 µm.</p>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Regla de decisión · leer la fertilidad</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:42%"><b>Si</b> <i>p</i> &lt; 0.05 y no hay aviso de frecuencias pequeñas…</td><td><b>entonces</b> la proporción de granos colapsados difiere entre grupos; mira en la tabla y en las barras cuál se aparta.</td></tr>
+      <tr><td><b>Si</b> <i>p</i> &lt; 0.05 pero aparece el aviso de frecuencias esperadas menores que 5…</td><td>la diferencia es probable pero la prueba es aproximada: cuenta más panorámicas antes de afirmarla.</td></tr>
+      <tr><td><b>Si</b> los intervalos de Wilson son anchos (más de 30 puntos)…</td><td>hay pocos granos por grupo; el porcentaje es poco preciso aunque la prueba salga significativa.</td></tr>
+      <tr><td><b>Si</b> en la revisión hay granos plegados en verde…</td><td>sube un poco la solidez mínima; si hay granos sanos en rojo, bájala. Busca el hueco del histograma.</td></tr>
+      <tr><td><b>Si</b> dos granos pegados salen en verde o rojo, o uno sano en violeta o amarillo…</td><td>ajusta los factores de agregado y fragmento.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">Informa siempre el umbral de solidez y el número de granos por grupo, y llama al resultado «granos colapsados», no «polen inviable».</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>Cuando algo sale mal</div>
+    <p><b>El botón está apagado.</b> No hay panorámicas: márcalas en la columna <span class="ui">Tipo</span> de la tabla de imágenes del Bloque 2. <b>Muchos granos fuera.</b> Las panorámicas están tan llenas que los granos se tocan (agregados) o llegan al borde: toma campos menos poblados. <b>Los fragmentos son granos chicos de verdad.</b> Si tu muestra mezcla granos de tamaños muy distintos, el grano típico no representa a todos: baja el factor de fragmento o separa las panorámicas por grupo. <b>Todos los granos salen colapsados.</b> El umbral de Otsu tomó también parte del fondo o los granos están desenfocados: revisa la foto en el visor del Bloque 2.</p>
+  </div>
+</section>
+
+</body>
+</html>

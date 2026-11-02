@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · User’s Manual · Chapter 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+<style>
+</style>
+</head>
+<body>
+
+<section class="capitulo" id="cap-2" data-pestana="2" data-orden="2" style="--acento: var(--b2)">
+  <div class="cap-apertura">
+    <div class="cap-num">2</div>
+    <div class="cap-etiqueta">Chapter two · Block 2</div>
+    <h1 data-corto="Images and calibration">Images and calibration</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">Everything the app measures later depends on two things decided here: how many micrometers a pixel measures in each picture, and to which group and which grain each picture belongs. The block reads the folder with whatever comes with it, calibrates each image, checks it against its own scale bar, recognizes which pictures show one grain and which are overviews, and lets you correct whatever is needed before measuring.</p>
+    <div class="cap-franja"><span class="k2"></span><span class="k2"></span><span class="k3"></span><span class="k5"></span></div>
+    <ul class="cap-contenido">
+      <li><b>2.1</b>Opening a folder or the example</li>
+      <li><b>2.2</b>The summary and its notices</li>
+      <li><b>2.3</b>Calibration and reading of names</li>
+      <li><b>2.4</b>Groups</li>
+      <li><b>2.5</b>The table of images</li>
+      <li><b>2.6</b>The viewer and the bar measured by hand</li>
+    </ul>
+  </div>
+
+  <!-- 2.1 -->
+  <h2 id="s2-1"><span class="num">2.1</span>Opening a folder or the example</h2>
+  <p class="lead">The block presents itself with its subtitle, <span class="ui">Open a folder, check the groups and the calibration of every picture.</span>, a drop-down that explains it in two paragraphs, and a single card: the area where the images are dropped.</p>
+
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b2-vacio.png" alt="Block 2 without images: the title, the What this block does drop-down and the area to drop a folder, with its four buttons">
+      <span class="marca" style="left:0.9%;top:22.1%">1</span>
+      <span class="marca" style="left:26.2%;top:83.3%">2</span>
+      <span class="marca" style="left:39.4%;top:83.3%">3</span>
+      <span class="marca" style="left:50.4%;top:83.3%">4</span>
+      <span class="marca" style="left:65.6%;top:83.3%">5</span>
+    </div>
+    <figcaption><b>Figure 2.1.</b> Block 2 when it is opened, before any images are read.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>What this block does.</b> Sums up the formats it reads, the index, the key of groups (with examples such as <code>A = Morphotype A</code>) and the check against the bar.</li>
+    <li><span class="n">2</span><b>Choose a folder.</b> Opens the system dialog to choose a whole folder, with its subfolders.</li>
+    <li><span class="n">3</span><b>Choose files.</b> To choose individual files: images, their <code>.txt</code>, a <code>.csv</code> index or a key.</li>
+    <li><span class="n">4</span><b>Simulated example.</b> Draws the example of the introduction (I.7). If images of your own are open, it asks before replacing them.</li>
+    <li><span class="n">5</span><b>Clear.</b> Removes all the images and results, after you confirm “Remove every image and result?”.</li>
+  </ul>
+  <p>You can also drag the folder, or a handful of files, from your system’s file explorer onto the dotted area of <span class="ui">Drop a folder or your images here</span>. Nothing is uploaded anywhere: the files are read on your computer, and each image is read in full only once—to learn its size, look for its scale bar and make a thumbnail—and again only when it is measured.</p>
+
+  <h3>What the app recognizes in the folder</h3>
+  <p>There is no need to sort anything: the app classifies each file by its extension and its name.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.45in">File</th><th>How it recognizes it and what it takes from it</th></tr></thead>
+    <tbody>
+      <tr><td>Images</td><td>TIFF (8- or 16-bit; uncompressed or with LZW, PackBits or Deflate; grayscale, palette or color), PNG, JPEG, BMP, WebP and GIF. Everything is converted to grayscale: one gray level per pixel. TIFF is read by a reader of the program’s own, because the browser cannot display it.</td></tr>
+      <tr><td>The microscope’s <code>.txt</code></td><td>A <code>.txt</code> with the same name as an image (<code>05_B.txt</code> next to <code>05_B.tif</code>). From it, or from the text some instruments store inside the TIFF itself, the magnification, the pixel size if it is written, the voltage, the working distance and the date are read.</td></tr>
+      <tr><td>The index</td><td>A <code>.csv</code> (or a <code>.txt</code> that does not belong to any image) with a header and one row per image. The only required column is the file column. Only the first index found is used.</td></tr>
+      <tr><td>The key of groups</td><td>A text file, other than the index, with lines <code>code = name</code> or <code>code: name</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>The index</h4>
+  <p>Columns are recognized by their name, in English or in Spanish, regardless of capitals and accents, and the separator can be a comma, a semicolon or a tab. Each row is joined to its image by the file name, with or without the extension.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.6in">Column</th><th style="width:1.9in">Also accepted</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><code>file</code></td><td><code>archivo</code>, <code>image</code>, <code>foto</code>, <code>id</code>…</td><td>The name of the image (required)</td></tr>
+      <tr><td><code>group</code></td><td><code>grupo</code>, <code>morfotipo</code>, <code>species</code>, <code>taxon</code>, <code>code</code>…</td><td>The group; it prevails over what is read from the file name</td></tr>
+      <tr><td><code>name</code></td><td><code>nombre</code>, <code>group_name</code>…</td><td>The long name of the group of that row</td></tr>
+      <tr><td><code>grain</code></td><td><code>grano</code>, <code>unit</code>, <code>specimen</code>…</td><td>The grain; two pictures with the same group and grain are the same grain</td></tr>
+      <tr><td><code>magnification</code></td><td><code>magnificacion</code>, <code>mag</code>, <code>aumentos</code>…</td><td>The magnification, if the microscope’s <code>.txt</code> did not give it</td></tr>
+      <tr><td><code>um_per_px</code></td><td><code>um_por_px</code>, <code>pixel_size_um</code>…</td><td>The pixel size, if you already know it</td></tr>
+      <tr><td><code>exclude</code></td><td><code>excluir</code>, <code>excluded</code>, <code>descartar</code></td><td>Excludes the picture if it says <code>1</code>, <code>si</code>, <code>yes</code>, <code>true</code> or <code>x</code></td></tr>
+      <tr><td><code>note</code></td><td><code>nota</code>, <code>notes</code>, <code>comentario</code>…</td><td>A comment, which the viewer shows</td></tr>
+      <tr><td><code>tier</code></td><td><code>nivel</code>, <code>tipo</code>, <code>kind</code></td><td>The kind of picture: whatever contains “pano” or “over” is an overview; “det,” a detail; anything else, one grain</td></tr>
+    </tbody>
+  </table>
+
+  <h4>The key of groups</h4>
+  <p>It gives each group code a readable name, which then appears in tables, figures and the report. For example, a file <code>key.txt</code> with these two lines:</p>
+  <div class="formula"><code>A = Morphotype A</code> &nbsp;&nbsp;·&nbsp;&nbsp; <code>G1: Morphotype one</code></div>
+  <p>The code is a single word of letters and digits, like those read from file names: <code>A</code>, <code>G1</code>, <code>P12</code> or <code>7</code> will do, and so will one of up to eight characters with a hyphen or an underscore in the middle (<code>north-2</code>). What comes after the <code>=</code> or the colon is the name. If you prefer not to make a separate file, type the names in the <span class="ui">Groups</span> card (2.4) or in the <code>name</code> column of the index.</p>
+
+  <h3>The reading message</h3>
+  <p>When it finishes, a message below the buttons says what was read: how many images, how many microscope files, the name of the index and how many group names the key brought; and, if some image could not be read, its name and the reason. With the example, the message warns that it is <b>simulated</b>: “three morphotypes drawn by the app with known parameters (they are not photographs of real plants). Some grains were photographed twice, as in a real study.” The five cards that follow appear below it.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Images can be added</div>
+    <p>If images are already open and you choose another folder, the new ones are added to those already there; those with a name that is already present are not repeated. If you opened a project earlier, opening its folder joins each picture to its saved row again: the message says so (“…, 33 of the project opened again,” for example) and the results of the project are kept. If instead the folder brings images that were not there and there were already results, the app asks first: “There are <i>N</i> image(s) that were not in the set. Adding them clears the results already computed (outline, ornamentation, fertility and statistics), which will have to be computed again. Continue?”. If you go on, the reading message confirms it with “The set changed: the previous results were cleared.”. To start from scratch, <span class="ui">Clear</span>.</p>
+  </div>
+
+  <!-- 2.2 -->
+  <h2 id="s2-2"><span class="num">2.2</span>The summary and its notices</h2>
+  <p><span class="ui">Summary</span> is the card worth looking at first: six tiles and, below them, the notices of whatever the app found. Figure I.5 of the introduction shows it with the example just opened.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.45in">Tile</th><th style="width:1.05in" class="num">Example</th><th>What it counts</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Images</span></td><td class="num">33</td><td>All the open images; below, how many are excluded (0)</td></tr>
+      <tr><td><span class="ui">Groups</span></td><td class="num">3</td><td>The distinct group codes, with the first six below (A · B · C)</td></tr>
+      <tr><td><span class="ui">Grains</span></td><td class="num">24</td><td>The distinct grains (the combinations of group and grain) <span class="ui">in the one-grain pictures</span> that are not excluded: repeated pictures of a grain count once, and overviews do not count</td></tr>
+      <tr><td><span class="ui">Calibrated</span></td><td class="num">33 / 33</td><td>Those that have a pixel size; the green border says they all do</td></tr>
+      <tr><td><span class="ui">Bar checked</span></td><td class="num">33</td><td>The bars that give a round length; below, how many are doubtful (<span class="ui">none doubtful</span>)</td></tr>
+      <tr><td><span class="ui">Overviews</span></td><td class="num">3</td><td>The pictures of the overview kind; below, the detail ones (0)</td></tr>
+    </tbody>
+  </table>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>30 pictures, 24 grains</div>
+    <p>The example has 30 one-grain pictures, but 24 grains: eight per morphotype, of which grains 3 and 6 were photographed twice. The <span class="ui">Grains</span> tile counts grains, not pictures, and it is the same number that Block 3 will measure. If you see more grains here than you photographed, some repeated picture did not end up with the same group and grain as its twin (2.5).</p>
+  </div>
+
+  <h3>The notices</h3>
+  <p>Below the tiles the app writes one notice for each thing it found. With the example only the green one appears: “The 33 bars found give round lengths: the calibration is consistent.”</p>
+  <table class="compacta">
+    <thead><tr><th style="width:2.4in">Notice (abridged)</th><th>What it means and what to do</th></tr></thead>
+    <tbody>
+      <tr><td>… image(s) have no magnification nor pixel size</td><td>Neither the <code>.txt</code>, nor the TIFF, nor the index gave anything to calibrate them with. Type their magnification in the table (2.5) or measure their bar by hand (2.6). Meanwhile they stay out of the measurements.</td></tr>
+      <tr><td>… bar(s) do not give a round length with the calibration</td><td>Check those pictures with the <span class="ui">Doubtful bar</span> filter. The most common cause is a mistyped magnification; the other, an instrument with a different reference width (2.3).</td></tr>
+      <tr><td>The … bars found give round lengths</td><td>Everything is in order (green).</td></tr>
+      <tr><td>In … image(s), the pixel size of the index or the file did not match the scale bar while the magnification did: the magnification was used</td><td>A pixel size copied wrongly into an index, or written wrongly by the instrument. The app replaced it with the one from the magnification, and the viewer says what the original was. Correct that index.</td></tr>
+      <tr><td>… picture(s) without a bar</td><td>They are calibrated by their magnification, without a check (blue, for information).</td></tr>
+      <tr><td>No group was recognized in the names</td><td>Adjust the pattern of the name (2.3) or load an index with a <code>group</code> column.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Worked example · a mistyped magnification</div>
+    <p>In the table of images, change the magnification of <code>02_A.png</code> from 1000 to 1200, as if it had been mistyped. The app recomputes the pixel of that picture: 128,000 µm ÷ (1200 × 1280 px) = 0.08333 µm. Its bar measures 100 px, which would now give 8.333 µm: that is not a round length—the nearest one, 10 µm, is almost 17% away—so the picture is flagged. The tile changes to <span class="ui">32</span> with <span class="ui">1 with a doubtful bar</span>, with an amber border, and the notice appears (Figure 2.2). At 1200× the grain of that picture would have measured a sixth less than it does.</p>
+  </div>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b2-dudosa.png" alt="The Summary card with 32 bars checked, one doubtful, and the notice of a bar that does not give a round length"></div>
+    <figcaption><b>Figure 2.2.</b> <span class="ui">Summary</span> after typing 1200 instead of 1000 as the magnification of <code>02_A.png</code>.</figcaption>
+  </figure>
+  <p>A doubtful bar does not take the picture out of the analysis: the app goes on measuring it with the calibration it has, because it cannot know which of the two—the magnification or the bar—is wrong. That is for you to decide. When you type 1000 again, the notice disappears.</p>
+
+  <!-- 2.3 -->
+  <h2 id="s2-3"><span class="num">2.3</span>Calibration and reading of names</h2>
+  <p>Three settings that apply to all the images, and that are not applied until you press <span class="ui">Apply</span>.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b2-calibracion.png" alt="The Calibration and reading of names card with the reference width of 128 mm, the automatic analysis pixel of 0.1 micrometers and the pattern of the name"></div>
+    <figcaption><b>Figure 2.3.</b> <span class="ui">Calibration and reading of names</span> with the example and the default values. The line below shows how the first three names are read.</figcaption>
+  </figure>
+
+  <h3>Width of the reference frame (mm)</h3>
+  <p>The magnification an electron microscope writes refers to a reference frame of fixed width: the photographed field measures that width divided by the magnification. The pixel size is that field divided by the width in pixels of the image as it was saved:</p>
+  <div class="formula">µm per pixel = <i>reference width</i> (mm) × 1000 ÷ (<i>magnification</i> × <i>image width</i> in px)</div>
+  <p>The default value, <b>128 mm</b>, is that of many instruments (those that leave text files with <code>$CM_MAG</code> lines). In the example: 128 × 1000 ÷ (1000 × 1280) = <b>0.1 µm per pixel</b> in the one-grain pictures, and 128 × 1000 ÷ (150 × 1280) = <b>0.66667 µm</b> in the overviews. If your instrument uses a different frame, the doubtful-bar notice will come up in almost all the pictures at once and in the same proportion: that is the sign that this number must be changed. An empty or non-positive value goes back to 128.</p>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · where the size of each pixel comes from</div>
+    <p>The app takes the pixel size from the strongest source each picture has, in this order: the one you measured <b>by hand</b> on the bar (2.6); the one in the <b>index</b> (<code>um_per_px</code>); the one the <b>instrument</b> wrote in its <code>.txt</code> or in the TIFF; the one that comes from the <b>magnification</b> and the reference width; and, if there is nothing, the picture stays <b>not calibrated</b>. The <span class="ui">Source</span> column of the table says which one was used. There is a single exception: if the size from the index or the instrument contradicts the bar and the one from the magnification agrees with it, the magnification wins, and the summary gives notice of it.</p>
+  </div>
+
+  <h4>The check against the scale bar</h4>
+  <p>When it reads each image, the app looks for its bar in the bottom fifth: a strip of almost white pixels, at least 2% and at most 45% of the width of the picture, that repeats with the same start and the same length (±2 px) over at least three consecutive rows, and that is almost completely filled. If there are several, it takes the longest. Its length in pixels times the pixel size must give a <b>round length</b>: 1, 2 or 5 times a power of ten (1, 2, 5, 10, 20, 50, 100 µm…), with a tolerance of 4%.</p>
+  <table class="compacta">
+    <caption><b>The scale bar in the example</b></caption>
+    <thead><tr><th>Pictures</th><th class="num">Magnification</th><th class="num">µm per pixel</th><th class="num">Bar</th><th class="num">Length</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>30 one-grain</td><td class="num">1000×</td><td class="num">0.1</td><td class="num">100 px</td><td class="num">10 µm</td><td>round: 10 µm</td></tr>
+      <tr><td>3 overviews</td><td class="num">150×</td><td class="num">0.66667</td><td class="num">152 px</td><td class="num">101.333 µm</td><td>round: 100 µm (1.3% difference)</td></tr>
+      <tr><td><code>02_A.png</code> at 1200× (example in 2.2)</td><td class="num">1200×</td><td class="num">0.08333</td><td class="num">100 px</td><td class="num">8.333 µm</td><td>expected 10 µm</td></tr>
+    </tbody>
+  </table>
+  <p>The bar also tells where the microscope’s <b>caption</b> begins—the strip at the bottom with the bar, the voltage and the other data—: the app cuts the picture a few rows above the bar, so that neither the bar nor the letters are taken for part of the grain. If there is no bar, it cuts at a dark strip at the foot, if there is one. The viewer (2.6) draws that cut.</p>
+
+  <h3>Pixel of the analysis (µm)</h3>
+  <p>Before measuring, all the one-grain pictures are brought to the same pixel size by area resampling (Wolberg, 1990). That way texture, lumina and spines are measured with the same fineness in pictures taken at different resolutions. Empty—the normal case—means <b>automatic</b>: the 90th percentile of the pixel size of the included one-grain pictures, rounded to two significant figures, so that almost none of them has to be enlarged. The help line below says what it came to: <span class="ui">empty = automatic: 0.1 µm</span> in the example, where all one-grain pictures have the same pixel. Pictures with less resolution than the analysis pixel are enlarged, and Block 3 flags them. Overviews are not brought to this pixel: Block 5 counts them at their own pixel (reduced, if they are more than 1600 px wide).</p>
+  <p>Type a value only if you want to fix it—for example, to compare two studies at the same pixel. A pixel finer than that of your pictures adds no detail: it only enlarges.</p>
+
+  <h3>Pattern of the name (group and grain)</h3>
+  <p>If there is no index, the group and the grain of each picture are read from its name (without the extension) with a <b>regular expression</b> that has two named parts, <code>(?&lt;grain&gt;…)</code> for the grain and <code>(?&lt;group&gt;…)</code> for the group. The one the app comes with is:</p>
+  <div class="formula"><code>^(?&lt;grain&gt;\d+)[A-Za-z]*_(?&lt;group&gt;[A-Za-z]+\d*)</code></div>
+  <p>It reads like this: at the start, one or more digits (the grain); then optional letters (the one that tells a second picture of the same grain apart); an underscore; and letters followed by optional digits (the group). With it, <code>01_A</code> is grain 01 of group A, and <code>03a_A</code> is another picture of the same grain 03. The line <span class="ui">This is how the first names are read</span> checks it live on the first three images while you type: in the example, “01_A → group A, grain 01 · 02_A → group A, grain 02 · 03_A → group A, grain 03”.</p>
+  <table class="compacta">
+    <caption><b>Patterns for other ways of naming the pictures</b></caption>
+    <thead><tr><th style="width:1.6in">Your files are called</th><th>Pattern</th></tr></thead>
+    <tbody>
+      <tr><td><code>A_01.tif</code>, <code>A_01b.tif</code></td><td><code>^(?&lt;group&gt;[A-Za-z]+\d*)_(?&lt;grain&gt;\d+)</code></td></tr>
+      <tr><td><code>P3-g12-1.tif</code></td><td><code>^(?&lt;group&gt;P\d+)-g(?&lt;grain&gt;\d+)</code></td></tr>
+      <tr><td><code>north_07.png</code></td><td><code>^(?&lt;group&gt;[a-z]+)_(?&lt;grain&gt;\d+)</code></td></tr>
+    </tbody>
+  </table>
+  <p>When you press <span class="ui">Apply</span>, the app checks that the pattern is a valid expression (if not, it says so and changes nothing); if the pattern changed, it reads the group and the grain of the pictures again with it; it recomputes the calibration of all of them with the reference width, classifies the kinds of picture again and confirms with “Calibration applied”. Everything that had been measured in Blocks 3 to 6 is cleared, because it depended on the previous settings.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>The index and the table prevail over the pattern</div>
+    <p>The pattern only guesses. A group or a grain that came from the index, or that you typed in the table of images, is respected even if you change the pattern, and the app says so: “The new pattern did not change the group or grain of <i>N</i> image(s): they came from the index or were typed in the table, and those prevail. To change them, edit them in the table.”. The same goes for the pixel size: if, on recomputing, the one from the index or the instrument still contradicts the bar, the app keeps using the one from the magnification, as when the folder was opened.</p>
+  </div>
+
+  <!-- 2.4 -->
+  <h2 id="s2-4"><span class="num">2.4</span>Groups</h2>
+  <p>One row per group, with its code and its color—the same it will have in every figure—, a <span class="ui">Name</span> field and two counts without the excluded pictures: <span class="ui">Images</span> (all) and <span class="ui">Grains</span> (in the one-grain pictures).</p>
+  <figure class="w60">
+    <div class="marco"><img src="../img/en/b2-grupos.png" alt="The Groups card with the three simulated morphotypes, 11 images and 8 grains each"></div>
+    <figcaption><b>Figure 2.4.</b> <span class="ui">Groups</span> with the example: each morphotype has 11 images (10 one-grain pictures and its overview) and 8 grains: the two repeated pictures count once and the overview does not count, as in the <span class="ui">Grains</span> tile of 2.2.</figcaption>
+  </figure>
+  <p>The name is used in the tables, the figures and the report instead of the code; if you leave it empty, the code is used. It comes from the key of groups, from the <code>name</code> column of the index or, in the example, from the app itself (“Morphotype A (simulated)”). Changing it clears no result: it only changes how things are labeled.</p>
+  <p>The code, on the other hand, is changed in the table of images, picture by picture (2.5). A group exists as long as some picture has it.</p>
+
+  <!-- 2.5 -->
+  <h2 id="s2-5"><span class="num">2.5</span>The table of images</h2>
+  <p>One row per image, with what the app read and computed from it, and the fields you can correct. At the top, seven filters choose which rows are shown: <span class="ui">All</span>, <span class="ui">One grain</span>, <span class="ui">Overviews</span>, <span class="ui">Detail</span>, <span class="ui">Doubtful bar</span>, <span class="ui">Not calibrated</span> and <span class="ui">Excluded</span>.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b2-tabla.png" alt="The Images card with the filters and the first seven rows of the example"></div>
+    <figcaption><b>Figure 2.5.</b> <span class="ui">Images</span> with the <span class="ui">All</span> filter: the first pictures of morphotype A, all at 1000× and 1280 px wide, with 0.1 µm per pixel taken from the magnification and the bar checked at 10 µm. The highlighted row is the one the viewer shows.</figcaption>
+  </figure>
+  <table class="compacta">
+    <thead><tr><th style="width:1.15in">Column</th><th>What it shows</th></tr></thead>
+    <tbody>
+      <tr><td>(thumbnail)</td><td>A click opens it in the viewer (2.6)</td></tr>
+      <tr><td><span class="ui">File</span></td><td>The name of the file</td></tr>
+      <tr><td><span class="ui">Group</span> · <span class="ui">Grain</span></td><td>Editable: correct here what the pattern or the index read wrongly. Two pictures with the same group and grain are averaged as a single grain</td></tr>
+      <tr><td><span class="ui">Magnif.</span></td><td>Editable: the magnification. When it is changed, the pixel is recomputed and the bar is checked</td></tr>
+      <tr><td><span class="ui">Width (px)</span></td><td>The width of the saved image, the one that goes into the formula</td></tr>
+      <tr><td><span class="ui">µm/px</span></td><td>The pixel size, with five significant figures</td></tr>
+      <tr><td><span class="ui">Source</span></td><td>Where the pixel came from: <span class="ui">by hand</span>, <span class="ui">index</span>, <span class="ui">instrument</span>, <span class="ui">magnification</span> or <span class="ui">not calibrated</span></td></tr>
+      <tr><td><span class="ui">Bar</span></td><td><span class="ui">✓</span> and the length if it is round (green); <span class="ui">!</span> and the length if it is doubtful (amber); <span class="ui">no bar</span>; or <span class="ui">not calibrated</span>. Hovering the pointer shows its length in pixels</td></tr>
+      <tr><td><span class="ui">Kind</span></td><td><span class="ui">One grain</span>, <span class="ui">Overview</span> or <span class="ui">Detail</span>, with a menu to change it</td></tr>
+      <tr><td><span class="ui">Exclude</span></td><td>Leaves the picture out of everything without deleting it; the row is shown dimmed</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The three kinds of picture</h3>
+  <p>The app proposes the kind of each picture by comparing its magnification with the median of all of them: if it is 0.6 times the median or less, it is an <b>overview</b> (many grains, for Block 5); if it is 1.8 times or more, it is a <b>detail</b> (a close-up of the surface); anything else is <b>one grain</b> (for Blocks 3 and 4). In the example the median is 1000×, and the three pictures at 150× are overviews. Block 3 measures only the one-grain pictures and Block 5 counts only the overviews; detail pictures are kept and can be seen in the viewer, but they are not measured. If the proposal is not right, change the kind with the menu: your choice is respected even if you press <span class="ui">Apply</span> afterward.</p>
+
+  <h3>Correcting and excluding</h3>
+  <p>Any change in the group, the grain, the magnification, the kind or the exclusion of a picture clears whatever had been measured in Blocks 3 to 6, because it no longer applies; their check mark on the bar goes out until you measure again. That is why it is worth leaving this block in order before moving on to the next. Exclude a picture when it should not count—out of focus, with the grain cut by the edge, with two grains on top of each other—; a picture that is not calibrated stays out by itself until it has a pixel size.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b2-dudosa-tabla.png" alt="The table with the Doubtful bar filter: only picture 02_A, with magnification 1200 and a bar of 8.333 micrometers"></div>
+    <figcaption><b>Figure 2.6.</b> The <span class="ui">Doubtful bar</span> filter with the wrong magnification of the example in 2.2: only <code>02_A.png</code> remains, with 1200×, 0.08333 µm per pixel and the bar marked <span class="ui">! 8.333 µm</span>.</figcaption>
+  </figure>
+
+  <h3>Download the index (CSV)</h3>
+  <p>Saves the whole table as <code>palynopro_index.csv</code>, with the columns <code>archivo</code>, <code>grupo</code>, <code>nombre</code>, <code>grano</code>, <code>magnificacion</code>, <code>ancho_px</code>, <code>um_por_px</code>, <code>fuente</code>, <code>barra_px</code>, <code>barra_um</code>, <code>nivel</code>, <code>excluir</code> and <code>nota</code> (the column names are always these, in either interface language). It is a good record of how each picture was calibrated, for the supplementary material of a paper, and also an index that the app reads again: correct it in a spreadsheet, put it in the folder of the pictures and open the folder again. The <code>fuente</code> (source) and <code>nivel</code> (kind) columns are written with the words of the interface (with the interface in English, <code>magnification</code>, <code>one grain</code>, <code>overview</code>, <code>detail</code>), and when the index is read again the app understands the kind in either language.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>When the downloaded index is read again</div>
+    <p>The downloaded index comes with <code>um_por_px</code> filled in, so when it is read again the source of every picture becomes <span class="ui">index</span>. If you later correct a magnification, first delete that value in the spreadsheet; otherwise the index will keep prevailing.</p>
+  </div>
+
+  <!-- 2.6 -->
+  <h2 id="s2-6"><span class="num">2.6</span>The viewer and the bar measured by hand</h2>
+  <p>The viewer shows the chosen picture, in grayscale and at most 1200 px wide, with two marks on top, and on its right the data the app knows about it. When the block is opened it shows the first image.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b2-visor.png" alt="The viewer with picture 01_A of the example: the grain, the detected bar in yellow, the start of the caption as a dashed red line, the buttons and the data of the picture">
+      <span class="marca" style="left:2.6%;top:85.6%">1</span>
+      <span class="marca" style="left:14.1%;top:85.6%">2</span>
+      <span class="marca" style="left:19%;top:85.6%">3</span>
+      <span class="marca" style="left:27.6%;top:85.6%">4</span>
+      <span class="marca" style="left:2.4%;top:91.3%">5</span>
+      <span class="marca" style="left:60.8%;top:14.6%">6</span>
+      <span class="marca" style="left:60.8%;top:65.5%">7</span>
+    </div>
+    <figcaption><b>Figure 2.7.</b> <span class="ui">Viewer</span> with <code>01_A.png</code>, the first simulated grain of morphotype A.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>← Previous.</b> The previous picture among those the table filter lets through; from the first it jumps to the last.</li>
+    <li><span class="n">2</span><b>Position.</b> The place of the picture among the visible rows (1 / 33).</li>
+    <li><span class="n">3</span><b>Next →.</b> The next picture; from the last it goes back to the first.</li>
+    <li><span class="n">4</span><b>Measure the bar by hand.</b> Calibrates the picture with two clicks on its bar (below).</li>
+    <li><span class="n">5</span><b>The legend.</b> <span class="ui">detected bar</span>: the yellow rectangle; <span class="ui">start of the caption (what lies below is not analyzed)</span>: the dashed red line.</li>
+    <li><span class="n">6</span><b>The data of the picture.</b> <span class="ui">File</span>, <span class="ui">Group · grain</span> (with the name of the group), <span class="ui">Size</span>, <span class="ui">Magnification</span>, <span class="ui">Pixel size</span> (with its source) and <span class="ui">Field</span>.</li>
+    <li><span class="n">7</span><b>Scale bar.</b> Its length in pixels, what it measures and the verdict: <span class="ui">round</span> or <span class="ui">expected</span>.</li>
+  </ul>
+  <p>For <code>01_A.png</code> the data are: 1280 × 960 px, 1000×, 0.1 µm (magnification), a field of 128 × 96 µm and a bar of “100 px = 10 µm (round: 10 µm)”. If the microscope file has them, the <span class="ui">Voltage</span>, the <span class="ui">Working distance</span> and the <span class="ui">Date</span> are added, as well as the <span class="ui">Note</span> from the index. When the app replaced the pixel size from an index or from the instrument (2.2), it says here what it was and why it was not used.</p>
+  <p>Look at the two marks on any picture that seems odd to you. The yellow rectangle must surround the scale bar, not some other white thing in the caption; the red line must lie above the whole caption and below the grain. Whatever lies below the line is never analyzed.</p>
+  <figure class="w60">
+    <div class="marco"><img src="../img/en/b2-visor-pano.png" alt="The viewer with the overview of morphotype B: fourteen grains, some of them collapsed, at a magnification of 150"></div>
+    <figcaption><b>Figure 2.8.</b> The overview of morphotype B (<code>90_B.png</code>) at 150×: 0.66667 µm per pixel, a field of 853.3333 × 640 µm and a bar of “152 px = 101.333 µm (round: 100 µm)”. The folded grains are the collapsed ones that Block 5 will count.</figcaption>
+  </figure>
+
+  <h3>Measuring the bar by hand</h3>
+  <p>For a picture without a magnification, with a bar the app does not find, or with a bar you know is correct even though the calibration says otherwise:</p>
+  <ol class="pasos">
+    <li><b>Choose the picture</b> in the table and press <span class="ui">Measure the bar by hand</span>. The app asks: “Click on both ends of the scale bar.”</li>
+    <li><b>Click on one end and then on the other.</b> Each click leaves a blue dot.</li>
+    <li><b>Type the length of the bar</b> in micrometers when the app asks for it; the question says how many pixels you marked.</li>
+  </ol>
+  <p>The pixel size becomes length ÷ pixels, with the source <span class="ui">by hand</span>, which prevails over all the others; the app confirms with “Calibrated by hand:” and the value, and clears whatever had been measured afterward. Make the clicks carefully and on the largest picture you can: an error of two pixels on a 100 px bar changes every size in that picture by 2%.</p>
+  <p>A picture that came from a project but whose folder has not been opened again cannot be seen: the viewer says “The image is not open in this session: open its folder again.”</p>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Decision rule · before leaving Block 2</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:44%"><b>If</b> <span class="ui">Calibrated</span> does not say all of them…</td><td>type the magnification of the missing ones or measure their bar by hand (<span class="ui">Not calibrated</span> filter).</td></tr>
+      <tr><td><b>If</b> one or a few bars are doubtful…</td><td>check their magnification: it is almost always a mistyped digit.</td></tr>
+      <tr><td><b>If</b> almost all the bars are doubtful, in the same proportion…</td><td>your instrument uses a different reference width: change it and press <span class="ui">Apply</span>.</td></tr>
+      <tr><td><b>If</b> the app warns that it replaced the pixel size from an index…</td><td>correct the index; the value it had is in the viewer.</td></tr>
+      <tr><td><b>If</b> the groups or the grains were not read correctly…</td><td>adjust the pattern, load an index or correct them in the table.</td></tr>
+      <tr><td><b>If</b> a picture is an overview or a detail and was left as “One grain”…</td><td>change its kind: Block 3 would measure it as if it were a grain.</td></tr>
+      <tr><td><b>If</b> everything is green…</td><td>go on to Block 3.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">These are guides for interpretation, not laws: what you know about the plant, the preparation and how it was photographed always comes first.</p>
+  </div>
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>When something goes wrong</div>
+    <p><b>An image could not be read.</b> The message says which one and why: “TIFF compression <i>N</i> not supported”, “TIFF without size”, “not a TIFF” or “the browser could not read this image (damaged file or unsupported format)”. The most common case is a TIFF with an unusual compression. Open it in an image program and save it as uncompressed TIFF or as PNG. <b>Two different grains ended up as one.</b> They have the same group and the same grain number: correct the grain in the table. <b>The same grain ended up as two.</b> The pattern did not recognize the letter of the repeated picture (<code>03a</code>): correct the grain. <b>The yellow bar surrounds something else.</b> Something in the caption is longer and whiter than the bar: measure the bar by hand. <b>The key of groups did not set the names.</b> Its codes are not the same as those of the pictures (capitals and lowercase count) or they carry spaces: correct them, or type the names in <span class="ui">Groups</span>. <b>The results of the other blocks were cleared.</b> That is expected when the calibration, a group, a grain, a kind or an exclusion is changed: measure again.</p>
+  </div>
+</section>
+
+</body>
+</html>

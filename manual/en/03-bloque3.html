@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · User’s Manual · Chapter 3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-3" data-pestana="3" data-orden="3" style="--acento: var(--b3)">
+  <div class="cap-apertura">
+    <div class="cap-num">3</div>
+    <div class="cap-etiqueta">Chapter three · Block 3</div>
+    <h1 data-corto="Outline and size">Outline and size</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">The size of a pollen grain is the size of its body, without the ornamentation. This block separates every grain from the background, reads its outline in 720 directions, strips off the spines and measures what is left: the diameter, the Feret diameters, the elongation and the circularity. A single pass measures every one-grain picture; the ornamentation of Block 4 comes out of it as well.</p>
+    <div class="cap-franja"><span class="k2"></span><span class="k3"></span><span class="k3"></span><span class="k4"></span></div>
+    <ul class="cap-contenido">
+      <li><b>3.1</b>How the body is measured</li>
+      <li><b>3.2</b>Measure</li>
+      <li><b>3.3</b>Results by group</li>
+      <li><b>3.4</b>Check of every picture</li>
+    </ul>
+  </div>
+
+  <!-- 3.1 -->
+  <h2 id="s3-1"><span class="num">3.1</span>How the body is measured</h2>
+  <p class="lead">Below the title of the block, <span class="ui">Outline and size</span>, and its subtitle, “The body of every grain without its spines: diameters, elongation and circularity.”, the drop-down <span class="ui">How it is measured</span> sums up the method in two paragraphs. This section explains it step by step, in the order in which the app works through each picture.</p>
+
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b3-medir.png" alt="The title of Block 3, the drop-down How it is measured open and the Measure card with its three fields and the message of 30 of 30 pictures measured"></div>
+    <figcaption><b>Figure 3.1.</b> Block 3 with the simulated example already measured: the drop-down <span class="ui">How it is measured</span> open and the <span class="ui">Measure</span> card with its default values (3 µm, 0.3 µm and 2%). The line next to the button tells how many pictures will be measured and at what pixel; the green message, how many were measured and how long it took.</figcaption>
+  </figure>
+
+  <ol class="pasos">
+    <li><b>The common pixel.</b> All the one-grain pictures are brought to the same pixel size before measuring, so that a 2 µm spine spans the same number of pixels in all of them. That pixel is the one you typed in <span class="ruta">Block 2<span class="sep">›</span>Calibration and reading of names<span class="sep">›</span>Pixel of the analysis (µm)</span> or, if you left it empty, the 90th percentile of the native pixel of the one-grain pictures, rounded to two significant digits: that way hardly any picture has to be enlarged. Resampling is by area (Wolberg 1990). The microscope’s caption is cut off first: whatever lies below the red line of the Block 2 viewer is not analyzed. In the example, the 30 pictures are at 1000× and 1280 px, and the common pixel is 0.1 µm.</li>
+    <li><b>Grain and background.</b> In a scanning electron micrograph the grain is light on a dark background. Otsu’s (1979) threshold picks the gray level that best separates the two; pixels lighter than it are grain. Holes (dark areas surrounded by grain, such as the lumina) are filled, stray specks are removed and gaps of one or two pixels are closed.</li>
+    <li><b>The central grain.</b> If several regions remain in the picture, the app takes the largest one whose center falls in the central 70% of the frame and that is at least 30% of the largest; if none qualifies, simply the largest. That way a neighboring grain peeking in at the edge is not mistaken for the one in the picture.</li>
+    <li><b>The outline in 720 directions.</b> From the center of the grain, at every half degree, the app looks for the farthest edge pixel. The result is the <b>radial profile</b>: the radius of the grain in 720 directions, with the spines as narrow peaks. Chapter 4 shows it as a plot (Figure 4.8).</li>
+    <li><b>The body.</b> A morphological opening (Serra 1982) is applied to that profile: every peak narrower than the <span class="ui">Largest base of a spine (µm)</span> is cut off, and what remains, smoothed, is the outline of the <b>body</b>. An undulation wider than that base is not a spine: it is the shape of the grain, and it stays in the body.</li>
+    <li><b>The measures.</b> The area and perimeter of the body polygon are computed, and from them the measures of Table 3.1. The Feret diameters are obtained with rotating calipers on the polygon (Shamos 1978).</li>
+    <li><b>The cut outline.</b> Directions in which the outline reaches the edge of the picture or the caption are <b>cut</b>: there it is unknown where the grain ends. If they exceed the <span class="ui">Acceptable cut outline (%)</span>, the picture is flagged and left out of the size comparisons. Spines in cut directions are not counted either.</li>
+  </ol>
+
+  <table class="compacta">
+    <caption><b>Table 3.1.</b> The six size and shape measures of Block 3, with their names in the app</caption>
+    <thead><tr><th style="width:2.15in">In the app</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Body diameter (µm)</span></td><td>The equivalent diameter: that of a circle with the same area as the body, √(4<i>A</i>/π)</td></tr>
+      <tr><td><span class="ui">Body major diameter (Feret) (µm)</span></td><td>The largest width of the body: what a caliper set along the longest direction would read</td></tr>
+      <tr><td><span class="ui">Body minor diameter (Feret) (µm)</span></td><td>The smallest width, along the shortest direction</td></tr>
+      <tr><td><span class="ui">Body elongation (major/minor)</span></td><td>The major Feret over the minor: 1 for a circle, more the more elongated the grain</td></tr>
+      <tr><td><span class="ui">Body circularity</span></td><td>4π<i>A</i>/<i>P</i>²: 1 for a perfect circle, less the more irregular or angular the outline</td></tr>
+      <tr><td><span class="ui">Diameter with spines (µm)</span></td><td>The equivalent diameter of the outline with the spines; its difference from the body diameter gives an idea of the weight of the ornamentation</td></tr>
+    </tbody>
+  </table>
+
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · why the body and not the outline</div>
+    <p>In palynological terminology (Punt et al. 2007; Halbritter et al. 2018) the size of an echinate grain is given without the spines, because the ornamentation varies with the preparation and the view, and its height is described separately. Opening the radial profile does with numbers what the eye does when it traces the outline “along the base” of the spines: the result does not depend on how many spines fall on the silhouette or how tall they are. The circularity of the body therefore stays very close to 1 in spherical grains (0.992 to 0.999 in the example); on the outline with spines it would be much lower and would measure the ornamentation, not the shape.</p>
+  </div>
+
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>Feret is not the same as P and E</div>
+    <p>The Feret diameters are those of the silhouette you see. They match the polar axis (P) and the equatorial diameter (E) only if the grain is in equatorial view; in polar or oblique view they measure something else. The app does not guess the view: if you need P and E, photograph oriented views and put them in different groups.</p>
+  </div>
+
+  <!-- 3.2 -->
+  <h2 id="s3-2"><span class="num">3.2</span>Measure</h2>
+  <p>The <span class="ui">Measure</span> card has three fields and a button. The default values suit most echinate grains of 20 to 100 µm photographed at 1000× or more; change them only if the check in Section 3.4 shows you that something is not being recognized well.</p>
+  <table class="compacta">
+    <caption><b>Table 3.2.</b> The settings of the <span class="ui">Measure</span> card</caption>
+    <thead><tr><th style="width:2.1in">Field</th><th class="num" style="width:0.6in">Default</th><th>What it decides</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Largest base of a spine (µm)</span></td><td class="num">3</td><td>The widest a spine can be at its base. Profile peaks narrower than this are cut off the body and may be counted as spines; wider ones are part of the shape of the body. Raise it if your spines are broad and conical; lower it if the outline of the body is wavy and the app cuts off the waves.</td></tr>
+      <tr><td><span class="ui">Least height of a spine (µm)</span></td><td class="num">0.3</td><td>The least a peak must stand out from the body to be a spine; never less than 1.5 pixels of the analysis. Below it lie the noise of the edge and the roughness of the tectum.</td></tr>
+      <tr><td><span class="ui">Acceptable cut outline (%)</span></td><td class="num">2</td><td>The part of the outline that may be cut by the edge or the caption without the picture leaving the size comparisons.</td></tr>
+    </tbody>
+  </table>
+  <p>Next to the button <span class="ui">Measure every one-grain picture</span> a line tells how many pictures will be measured and at what pixel: with the example, <span class="ui">30 one-grain picture(s), at a pixel of 0.1 µm</span>. Only the included pictures that Block 2 has as <span class="ui">One grain</span> enter; the overviews go to Block 5. If there are no images yet, the line says “First open your images in Block 2.” and the button is disabled.</p>
+  <p>When you press the button the waiting window appears, telling which picture is being measured and how many are left. At the end, a green message gives the total and the time—“30 of 30 pictures measured in 26.0 s.” in Figure 3.1; the time varies from one computer to another—and the block bar puts the check mark on Blocks 3 and 4. If no grain is found in a picture, the message turns amber and names the pictures after <span class="ui">No recognizable grain:</span>.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Measuring again erases what came before</div>
+    <p>Each pass starts from scratch: it erases the measures of every picture and the comparison of Block 6, which will have to be computed again. The same happens when you change the calibration, a group or an exclusion in Block 2, and when you press <span class="ui">Measure again with these values</span> in Block 4.</p>
+  </div>
+
+  <!-- 3.3 -->
+  <h2 id="s3-3"><span class="num">3.3</span>Results by group</h2>
+  <p>The <span class="ui">Results</span> card appears as soon as there are measured pictures. At the top, four tiles:</p>
+  <ul>
+    <li><span class="ui">Pictures measured</span>: the one-grain pictures that were measured, including those with a cut outline.</li>
+    <li><span class="ui">Grains</span>, <span class="ui">with a complete outline</span>: the distinct grains that enter the comparisons. Two pictures of the same grain count once.</li>
+    <li><span class="ui">Cut outline</span>, <span class="ui">left out of comparisons</span>: the pictures that exceed the acceptable percentage. The tile has an amber border if there are any and a green one if not.</li>
+    <li><span class="ui">Body (mean)</span>: the mean body diameter of all grains, all groups together, and below it the mean of its two Feret diameters.</li>
+  </ul>
+
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b3-resultados.png" alt="The four Results tiles (30 pictures, 24 grains, 0 cut, body of 63.2 µm) and the By group table with the three morphotypes as columns and the six measures as rows"></div>
+    <figcaption><b>Figure 3.2.</b> The results of the example: 30 pictures measured, which are 24 grains with a complete outline; no picture cut; the body measures 63.2 µm on average, with Feret diameters of 65.5 × 61.0 µm. Below, the <span class="ui">By group</span> table, with one morphotype per column (8 grains each) and one measure per row.</figcaption>
+  </figure>
+
+  <p>If any picture had to be enlarged to reach the common pixel (its native pixel was larger), an amber notice says so: “… had less resolution than the pixel of the analysis and were enlarged: their fine measures (spines, lumina) are less reliable.” If any has a cut outline, another notice asks you to check them below. With the example neither appears.</p>
+
+  <h3>The table by group</h3>
+  <p>The <span class="ui">By group</span> table puts one group in each column, with its number of grains below the name (<span class="ui">n = 8</span> in the example), and one measure in each row, under the heading <span class="ui">Measure</span>: the mean ± standard deviation of the six measures of Table 3.1. That way it fits on the screen even with many groups. Its caption says so: “Mean ± standard deviation among grains (the pictures of a grain are averaged).” The pictures of each grain are averaged first, and then the mean and the deviation are computed among grains: the standard deviation is the variation among grains, not among pictures. The <span class="ui">CSV</span> button downloads the table as <code>palynopro_size_by_group.csv</code>, with one row per group and a mean column and a deviation column for each measure.</p>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Worked example · drawn against measured</div>
+    <p>The example is drawn with known parameters (Section I.7), so the table can be read against them. Morphotype B has the largest body, 67.93 µm; A and C measure almost the same (60.95 and 60.85 µm) and do not separate by diameter. They do separate by shape: C is drawn with a minor/major ratio of 0.90, that is, an elongation of about 1.11, and the app measures 1.123; A (0.97) and B (0.95) come out at 1.039 and 1.064. The circularity of all three exceeds 0.99 because all three bodies are smooth: elongation and circularity measure different things.</p>
+  </div>
+
+  <h3>The two figures</h3>
+  <p><span class="ui">Body diameter by group</span> is a box plot with the grains as points on top: the box runs from the first to the third quartile, the line is the median and the whiskers reach the most extreme data within 1.5 times the interquartile range. <span class="ui">Feret diameters of the body</span> places each grain with its major Feret on the horizontal axis and its minor Feret on the vertical one, with an ellipse enclosing 95% of each group. A round grain falls near the diagonal; an elongated one, below it.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b3-figuras.png" alt="The box plot of the body diameter of the three morphotypes and the scatter plot of major against minor Feret with ellipses"></div>
+    <figcaption><b>Figure 3.3.</b> The two figures of <span class="ui">Results</span>. On the left, B lies above A and C, which overlap. On the right, the ellipse of C (green triangles) lies below the others: for the same major Feret, its grains are narrower. Each figure has its SVG and PNG buttons, the <span class="ui">✎</span> editor and the figure studio (Chapter 7).</figcaption>
+  </figure>
+
+  <!-- 3.4 -->
+  <h2 id="s3-4"><span class="num">3.4</span>Check of every picture</h2>
+  <p>No number is worth more than the outline it comes from. The <span class="ui">Check of every picture</span> card draws over each image what the app measured, so you can verify, picture by picture, that the grain, the body and the spines are the ones you would have traced.</p>
+
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b3-revision.png" alt="The check of picture 03_C of the example with the mask, the outline, the body, the spines and the two Feret diameters, and its measures on the right">
+      <span class="marca" style="left:3.6%;top:5.4%">1</span>
+      <span class="marca" style="left:36.2%;top:66.8%">2</span>
+      <span class="marca" style="left:11.9%;top:77.9%">3</span>
+      <span class="marca" style="left:75.9%;top:4.4%">4</span>
+      <span class="marca" style="left:81.5%;top:95.8%">5</span>
+    </div>
+    <figcaption><b>Figure 3.4.</b> Picture <code>03_C.png</code>, a grain of morphotype C, with every layer on, including <span class="ui">Feret</span>. Its body measures 61.71 µm, with Feret diameters of 65.38 × 58.06 µm and an elongation of 1.126; no part of the outline is cut. The numbers match the list below.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>The picture,</b> at the pixel of the analysis, without its caption, with the layers on top.</li>
+    <li><span class="n">2</span><b>← Previous, the selector and Next →.</b> They step through the measured pictures; after the last one you go back to the first. In the selector, pictures with a cut outline carry ⚠, and excluded ones stay in the list with “— excluded” after the name.</li>
+    <li><span class="n">3</span><b>The layers,</b> each with its check box and its color.</li>
+    <li><span class="n">4</span><b>The data of the picture:</b> name, group and grain, the six measures, the cut outline, the threshold and the flags.</li>
+    <li><span class="n">5</span><b>Exclude this picture.</b> It takes the picture out of the study; on an excluded picture, the same button reads <span class="ui">Include again</span> (see below).</li>
+  </ul>
+
+  <h3>The layers</h3>
+  <table class="compacta">
+    <thead><tr><th style="width:1.9in">Layer</th><th>What it draws</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Grain (mask)</span></td><td>Tints blue the pixels the threshold took as grain. If the blue patch spills beyond the grain or has pieces missing, the threshold did not separate grain and background well.</td></tr>
+      <tr><td><span class="ui">Outline with spines</span></td><td>The radial profile, in orange: the silhouette with its spines.</td></tr>
+      <tr><td><span class="ui">Body</span></td><td>The outline of the body, in light blue and dashed: it should run along the base of the spines.</td></tr>
+      <tr><td><span class="ui">Spines</span></td><td>A red dot at the tip of each counted spine.</td></tr>
+      <tr><td><span class="ui">Feret</span></td><td>Off on opening. The two Feret diameters, in yellow, with their length in µm written next to one end, always inside the picture.</td></tr>
+    </tbody>
+  </table>
+  <p>Directions with a cut outline are always marked with small white squares on the edge, whatever layer is on. The data on the right end with the <span class="ui">Cut outline</span> as a percentage, the <span class="ui">Threshold (gray)</span> chosen by Otsu (between 89 and 91 in the pictures of the example; 90.0 in Figure 3.4) and the <span class="ui">Flags</span>: a check mark if the picture is fine, <span class="ui">cut outline</span> or <span class="ui">enlarged</span> if not.</p>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Worked example · two pictures, one grain</div>
+    <p>Grain 3 of morphotype C was photographed twice, <code>03_C.png</code> and <code>03a_C.png</code>, with different noise and a different rotation. Its body measures 61.71 µm in both pictures (61.708 and 61.715 in the table of every picture), and both count 26 spines. In the table by group they count as a single grain, with the average of the two: that is why morphotype C has 10 pictures and <span class="ui">n</span> = 8.</p>
+  </div>
+
+  <h3>Excluding a picture</h3>
+  <p><span class="ui">Exclude this picture</span> takes the picture out of the study: its measure is erased, it disappears from the table and the figures, and the comparison of Block 6 is erased so that you compute it again. Use it with a picture that is truly useless—a broken grain, two grains stuck together, a blurred picture—not with one that gives a number you do not like. With the example, excluding <code>03_C.png</code> brings the <span class="ui">Pictures measured</span> tile down to 29, but <span class="ui">Grains</span> stays at 24, because grain 3 of C keeps its other picture.</p>
+  <p>The excluded picture does not vanish from the viewer: it stays in the selector as “03_C.png — excluded”, and you can view it with its layers to decide; in the data on the right, instead of the measures, it reads <span class="ui">Status</span>: “Excluded: it does not enter the analysis.”. The button changes to <span class="ui">Include again</span>, which measures it again on the spot, with the same settings as the others, and reports “Picture included and measured”; the others need not be measured again. There is one exception: the common pixel (Section 3.1) depends on the included pictures, and if excluding or including one shifts it, the notice says “The common pixel of the analysis changed: measure every picture again.”; then press <span class="ui">Measure every one-grain picture</span> again. You can also exclude or include pictures in Block 2, with the <span class="ui">Exclude</span> column of the table of images.</p>
+
+  <h3>The table of every picture</h3>
+  <p>Below the viewer, the drop-down <span class="ui">Table of every picture</span> has one row per picture with <span class="ui">Picture</span>, <span class="ui">Group</span>, <span class="ui">Grain</span>, the six measures, <span class="ui">Cut (%)</span> and <span class="ui">Flags</span>. The rows of pictures left out of the comparisons are highlighted; a click on a row brings that picture into the viewer. Its <span class="ui">CSV</span> button downloads <code>palynopro_measurements_by_picture.csv</code>, with the 19 variables of the app (the ornamentation ones too) and a <code>usable</code> column that is 1 or 0.</p>
+  <p>If you opened a saved project without opening the folder of images again, the measures are still there but the viewer says “Open the folder again to see the picture.”: the project stores references, not the pictures (Section I.5).</p>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Decision rule · is the picture well measured?</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:42%"><b>If</b> the blue mask covers the grain and nothing else, and the light-blue body runs along the base of the spines…</td><td><b>then</b> the picture is well measured; move on to the next one.</td></tr>
+      <tr><td><b>If</b> the body “eats” broad undulations of the outline, or leaves spines inside…</td><td>adjust the <span class="ui">Largest base of a spine (µm)</span> (smaller in the first case, larger in the second) and measure again.</td></tr>
+      <tr><td><b>If</b> the picture carries the <span class="ui">cut outline</span> flag…</td><td>the grain touches the edge or the caption: it does not enter the comparisons. If the cut is small and you are sure of the shape, you can raise the acceptable percentage; if not, photograph the grain again, centered.</td></tr>
+      <tr><td><b>If</b> the picture carries the <span class="ui">enlarged</span> flag…</td><td>the body size is still reliable, but the spines and lumina less so; prefer pictures at higher magnification or a coarser pixel of the analysis.</td></tr>
+      <tr><td><b>If</b> the mask takes in a neighboring grain, dust or a stain on the background…</td><td>exclude the picture, or crop it outside the app and open it again.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">The check is the only guarantee that a number comes from a well-read grain. With dozens of pictures, step through them all with <span class="ui">Next →</span>: it takes a few minutes.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>When something goes wrong</div>
+    <p><b>The button is disabled.</b> There are no included one-grain pictures: open your images in Block 2 and check that they are not all marked as <span class="ui">Overview</span> or <span class="ui">Detail</span>. <b>“No recognizable grain”.</b> The picture is almost uniform, very dark, or the grain is darker than the background; look at it in the Block 2 viewer. <b>Sizes come out doubled or halved.</b> The calibration is wrong: check the magnification and the <span class="ui">Width of the reference frame (mm)</span> in Block 2, and that the scale bar is not flagged as doubtful. <b>Two pictures of the same grain count as two grains.</b> The name does not let the grain be read: correct the <span class="ui">Pattern of the name (group and grain)</span> or put the <code>grain</code> column in the index. <b>Grains are missing from the table.</b> Their pictures have a cut outline or are excluded: look for them in the selector, with ⚠ or with “— excluded”.</p>
+  </div>
+</section>
+
+</body>
+</html>

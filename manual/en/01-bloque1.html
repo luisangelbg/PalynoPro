@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · User’s Manual · Chapter 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+<style>
+</style>
+</head>
+<body>
+
+<section class="capitulo" id="cap-1" data-pestana="1" data-orden="1" style="--acento: var(--b1)">
+  <div class="cap-apertura">
+    <div class="cap-num">1</div>
+    <div class="cap-etiqueta">Chapter one · Block 1</div>
+    <h1 data-corto="Home">Home: the theory, the lab and the methods</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">The first block asks for no images: it teaches. It describes in seven steps how a study is carried out, lets you draw a simulated grain and see live how well the app measures it, explains in plain words the ideas behind each measurement, and puts in view the methods, their sources, the limits of the program and the way to cite it. It is also the way in: from here you open your images, the simulated example or a saved project.</p>
+    <div class="cap-franja"><span class="k1"></span><span class="k1"></span><span class="k2"></span><span class="k3"></span></div>
+    <ul class="cap-contenido">
+      <li><b>1.1</b>The home page</li>
+      <li><b>1.2</b>How it works: the seven steps</li>
+      <li><b>1.3</b>Try it: this is how it measures a grain</li>
+      <li><b>1.4</b>The blocks</li>
+      <li><b>1.5</b>Pollen under the electron microscope</li>
+      <li><b>1.6</b>The methods and where they come from</li>
+      <li><b>1.7</b>What this program does not do</li>
+      <li><b>1.8</b>References and how to cite</li>
+    </ul>
+  </div>
+
+  <!-- 1.1 -->
+  <h2 id="s1-1"><span class="num">1.1</span>The home page</h2>
+  <p class="lead">It is the first thing you see when you open the app, and also what appears every time you click the name <b>PalynoPro</b> on the top bar or the <span class="ui">Home</span> block on the bar on the left.</p>
+  <p>At the top come the label <span class="ui">Quantitative palynology</span> and the app’s tagline, <span class="ui">From the electron micrograph to the pollen key</span>, the same as on the cover of this manual. Below, a paragraph sums up everything the program does, and on the right a simulated echinate, reticulate grain shows what the app draws on each picture: the outline of the body (dashed line), the tips of some spines (circles) and the diameter it measures (the dimension line at the bottom).</p>
+
+  <figure class="w60">
+    <div class="marco"><img src="../img/en/b1-portada.png" alt="The app’s home page: the label, the tagline, the introductory paragraph, the four buttons, the four badges and a simulated grain with its outline, its spines and its diameter">
+      <span class="marca" style="left:4.4%;top:18.2%">1</span>
+      <span class="marca" style="left:4.7%;top:68.8%">2</span>
+      <span class="marca" style="left:4.7%;top:74.6%">3</span>
+      <span class="marca" style="left:4.7%;top:80.5%">4</span>
+      <span class="marca" style="left:28.1%;top:80.5%">5</span>
+      <span class="marca" style="left:4.4%;top:90.2%">6</span>
+      <span class="marca" style="left:52.1%;top:42.3%">7</span>
+    </div>
+    <figcaption><b>Figure 1.1.</b> The Block 1 home page. The numbers correspond to the list below.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>The tagline.</b> With the label <span class="ui">Quantitative palynology</span> above it and the introductory paragraph below.</li>
+    <li><span class="n">2</span><b>Open my images →.</b> Leads to Block 2, where the folder is chosen. It does not open any file dialog yet.</li>
+    <li><span class="n">3</span><b>Try the simulated example.</b> Opens Block 2 and draws the example there (I.7): 33 images of three simulated morphotypes.</li>
+    <li><span class="n">4</span><b>See how it measures.</b> Scrolls down, on this same page, to the lab of Section 1.3.</li>
+    <li><span class="n">5</span><b>Open a project.</b> Asks for a <code>.json</code> saved earlier by the app (the same as <code>Ctrl + O</code>) and, once it is open, leads to Block 2. If the project already had measured grains, the notice reminds you that the results of Block 6 are not saved and are repeated, identical, with <span class="ui">Compare the groups</span> (Chapter 7).</li>
+    <li><span class="n">6</span><b>The four badges.</b> <span class="ui">Runs entirely in your browser</span>, <span class="ui">Your images never leave your computer</span>, <span class="ui">Engines checked independently</span> and <span class="ui">Spanish and English</span>.</li>
+    <li><span class="n">7</span><b>The grain on the home page.</b> A drawing made by the app, not a photograph; what it carries on top is the same as you will see in the check of each picture in Block 3.</li>
+  </ul>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>The example replaces whatever is open</div>
+    <p>If you already have images of your own open and press <span class="ui">Try the simulated example</span>, the app asks before replacing them. Whatever has not been saved in a project is lost: save first with <code>Ctrl + S</code> if you need to.</p>
+  </div>
+  <p>As you scroll down the home page, the sections that follow in this chapter appear in this order. The <span class="ui">In this block</span> list on the right names them all, and one click takes you to each.</p>
+
+  <!-- 1.2 -->
+  <h2 id="s1-2"><span class="num">1.2</span>How it works: the seven steps</h2>
+  <p><span class="ui">How it works</span> sets out in a strip the seven steps of a palynological study, in the order in which they are done, each with its label and what it produces (Figure I.6 of the introduction shows it in full):</p>
+  <table class="compacta">
+    <thead><tr><th style="width:0.55in" class="c">Step</th><th style="width:1.7in">In the app</th><th>What it produces</th><th style="width:0.7in" class="c">Block</th></tr></thead>
+    <tbody>
+      <tr><td class="c">1</td><td><span class="ui">Open the images</span></td><td>a folder with its metadata</td><td class="c"><span class="chip k2">2</span></td></tr>
+      <tr><td class="c">2</td><td><span class="ui">Calibrate and check</span></td><td>µm per pixel and scale bar</td><td class="c"><span class="chip k2">2</span></td></tr>
+      <tr><td class="c">3</td><td><span class="ui">Outline and size</span></td><td>body without spines, Feret</td><td class="c"><span class="chip k3">3</span></td></tr>
+      <tr><td class="c">4</td><td><span class="ui">Ornamentation</span></td><td>spines, lumina, texture</td><td class="c"><span class="chip k4">4</span></td></tr>
+      <tr><td class="c">5</td><td><span class="ui">Fertility</span></td><td>turgid and collapsed grains</td><td class="c"><span class="chip k5">5</span></td></tr>
+      <tr><td class="c">6</td><td><span class="ui">Compare groups</span></td><td>PCA, PERMANOVA, key</td><td class="c"><span class="chip k6">6</span></td></tr>
+      <tr><td class="c">7</td><td><span class="ui">Report</span></td><td>methods, tables and figures</td><td class="c"><span class="chip k7">7</span></td></tr>
+    </tbody>
+  </table>
+  <p>The first two steps take place in the same block, and Steps 3 and 4 come out of a single measuring pass (the one launched in Block 3). Step 5 is optional: it only makes sense if you photographed overviews, at low magnification, with many grains in each picture.</p>
+
+  <!-- 1.3 -->
+  <h2 id="s1-3"><span class="num">1.3</span>Try it: this is how it measures a grain</h2>
+  <p class="lead">Before trusting a program that measures, it is worth watching it measure something whose answer is known. The lab draws a <b>simulated</b> grain with the values you choose and measures it at once with the same engines the app uses on your pictures.</p>
+  <p>Five sliders set the grain that is drawn; each time you move one, the grain is drawn again and measured again:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.8in">Slider</th><th class="c" style="width:1.1in">Range</th><th class="c" style="width:1in">Default</th><th>What it changes in the drawing</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Body diameter</span></td><td class="c">30 to 100 µm</td><td class="c">66 µm</td><td>The size of the body, without the spines</td></tr>
+      <tr><td><span class="ui">Elongation</span></td><td class="c">1 to 1.4</td><td class="c">1.06</td><td>The ratio between the major and the minor axis; 1 is a circle</td></tr>
+      <tr><td><span class="ui">Spines on the outline</span></td><td class="c">8 to 50</td><td class="c">26</td><td>How many spines stick out of the silhouette</td></tr>
+      <tr><td><span class="ui">Spine height</span></td><td class="c">0.6 to 4 µm</td><td class="c">2.2 µm</td><td>How far each spine protrudes above the body</td></tr>
+      <tr><td><span class="ui">Reticulum mesh</span></td><td class="c">1.6 to 4.4 µm</td><td class="c">2.6 µm</td><td>The size of the cells of the net of walls on the surface</td></tr>
+    </tbody>
+  </table>
+
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b1-lab.png" alt="The lab with the default values: the five sliders, six tiles of drawn against measured, the simulated grain with its outline and its spines, and its radial profile"></div>
+    <figcaption><b>Figure 1.2.</b> The lab with the default values. Each tile compares what was measured (the large number) with what was drawn (below). On the left, the grain with the outline (orange), the body (dashed light blue) and the tips of the spines (red); on the right, its radial profile.</figcaption>
+  </figure>
+
+  <h3>The six tiles</h3>
+  <p>Each tile shows at the top what the app measured and below what was drawn. With the default values the app gives:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.7in">Tile</th><th class="num">Measured</th><th class="num">Drawn</th><th>How to read it</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Body diameter</span></td><td class="num">66.1 µm</td><td class="num">66.0 µm</td><td>The diameter of the circle with the same area as the body</td></tr>
+      <tr><td><span class="ui">Feret</span></td><td class="num">68.0 × 64.1</td><td class="num">68.0 × 64.1</td><td>The largest and the smallest diameter of the body, in µm</td></tr>
+      <tr><td><span class="ui">Spines on the outline</span></td><td class="num">26</td><td class="num">26</td><td>Spines found on the silhouette</td></tr>
+      <tr><td><span class="ui">Spine height</span></td><td class="num">2.08 µm</td><td class="num">2.20 µm</td><td>The mean of the heights, from the tip of each spine to the chord joining its two feet</td></tr>
+      <tr><td><span class="ui">Lumen (median)</span></td><td class="num">1.49 µm</td><td class="num">mesh 2.6 µm</td><td>The median diameter of the dark cells</td></tr>
+      <tr><td><span class="ui">Scale bar</span></td><td class="num">10.01 µm</td><td>round: correct</td><td>The bar of the caption, measured with the calibration</td></tr>
+    </tbody>
+  </table>
+  <p>The body of the default grain is not a circle: with an elongation of 1.06, its drawn major diameter is 68.0 µm and its minor diameter 64.1 µm, and its <b>body diameter</b>—that of the circle of equal area, the geometric mean of the two axes—is 66.0 µm. That is what the app calls <span class="ui">Body diameter</span> in every block: a single number that sums up the size even if the grain is somewhat elongated.</p>
+  <p>Below the two figures, a status line says it in words. With the default values: “The measured body differs from the drawn one by <b>0.08%</b> and <b>26</b> of the 26 drawn spines were found,” and it goes on with a note on the height of the spines: “about one pixel of height is lost (here 0.161 µm), some 3 to 6% on spines many pixels high and more if the spine is short or the spines touch at the base. It is reported in the methods.” (below).</p>
+
+  <h3>The two figures</h3>
+  <p><span class="ui">The simulated grain and what was measured</span> is the simulated micrograph, in grayscale, with its scale bar and its caption at the bottom as a microscope would put them, and on top what the app found. <span class="ui">Radial profile: outline, body and spines</span> is the same information unrolled: on the horizontal axis, the direction from the center of the grain (from 0 to 360°); on the vertical one, the radius in micrometers. The orange line is the outline with spines, each peak is a spine (red dot) and the dashed blue line is the body that remains when the peaks are cut. The two broad waves of the body are the elongation: in an elongated grain the radius grows and shrinks twice per turn.</p>
+
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · how the body is separated from the spines</div>
+    <p>The outline is read as the distance from the center to the edge in 720 directions, one every half degree. A spine is a narrow peak in that profile; the body, by contrast, changes slowly. The app applies to the profile a <b>grayscale opening</b> (Serra, 1982) with an element as wide as the base of a spine: every peak narrower than that base disappears, and what remains is the body. The cut peaks that protrude at least 0.3 µm are the spines, and the height of each one is measured from its tip to the chord joining its two feet, so that it does not depend on the curvature of the body along that stretch. In the lab the base adjusts itself to the size of the drawn grain; with your pictures it is set by the <span class="ui">Largest base of a spine (µm)</span> control of Block 3.</p>
+  </div>
+
+  <h3>A small, elongated and very spiny grain</h3>
+  <p>Move the sliders to see where the measurement is put to the test. Figure 1.3 shows a grain of 40 µm, with an elongation of 1.30, 40 spines of 3.5 µm and a mesh of 4.0 µm.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b1-lab-alargado.png" alt="The lab with a 40-micrometer, elongated grain with 40 spines: the tiles, the grain and its radial profile"></div>
+    <figcaption><b>Figure 1.3.</b> A grain of 40 µm, elongation 1.30, 40 spines of 3.5 µm and a mesh of 4.0 µm. The body comes out at 40.3 µm (0.66% difference), Feret 45.6 × 35.7 against 45.6 × 35.1, all 40 spines, a height of 3.28 µm against 3.52 µm drawn and a median lumen of 2.30 µm.</figcaption>
+  </figure>
+  <p>There are three things to learn from the two figures, and all three come back with your pictures:</p>
+  <ol class="pasos">
+    <li><b>Size and number of spines come out almost exact.</b> In both grains the body differs by less than 1% from what was drawn, and all the spines are found.</li>
+    <li><b>Spine height comes out somewhat lower than the drawn one.</b> The finest tip of the cone does not manage to fill a pixel, so the edge of the image ends a little before the spine does. The app measures each spine from its tip to the chord joining its two feet, and what is lost is about one pixel of height: with the default values, the measured height is 5.7% lower (2.08 against 2.20 µm, with pixels of 0.161 µm). In the grain of Figure 1.3 the loss is 6.8% (3.28 against 3.52 µm): its 40 spines almost touch at the base, which is precisely the case in which the status line warns that the difference grows. The program’s validation tests give a median of 3.9% below, between 2.9 and 5.7% in nine grains out of ten. The bias is similar in all grains measured with the same pixel, so it does not get in the way of comparing groups, but do not take the height as absolute.</li>
+    <li><b>The lumen is not the mesh.</b> The mesh is the distance from one wall to the next; the lumen is only the dark part of each cell, without the wall. That is why the median lumen comes out at about half the mesh (1.49 µm with a mesh of 2.6 µm; 2.30 µm with a mesh of 4.0 µm). What matters is that it grows with it: it serves to compare reticula, not to report the mesh.</li>
+  </ol>
+  <p class="small">The grain of the lab is always drawn with the same seed, in an 800 × 600 px image, and with the magnification that makes the grain fill somewhat more than half of the field. That is why the same values always give the same numbers, and the scale bar comes out round (10.01 µm in Figure 1.2, 9.98 µm in Figure 1.3).</p>
+
+  <!-- 1.4 -->
+  <h2 id="s1-4"><span class="num">1.4</span>The blocks</h2>
+  <p><span class="ui">The blocks</span> shows one card for each of Blocks 2 to 7, with its number, a small drawing, its label, its name and what it does. A click on the card opens the block, just like its button on the bar on the left. Blocks that need images or earlier results say so when they are opened and lead to the missing block.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:0.55in" class="c">Block</th><th style="width:1.2in">Label</th><th>What it does, according to its card</th></tr></thead>
+    <tbody>
+      <tr><td class="c"><span class="chip k2">2</span></td><td><span class="ui">Data</span></td><td>Reads TIFF, PNG or JPEG, the text files of the microscope and an optional index; calibrates each picture and checks it against its scale bar</td></tr>
+      <tr><td class="c"><span class="chip k3">3</span></td><td><span class="ui">Morphometry</span></td><td>The outline of each grain, the body without spines, its Feret diameters, elongation and circularity, with a visual check of every measurement</td></tr>
+      <tr><td class="c"><span class="chip k4">4</span></td><td><span class="ui">Ornamentation</span></td><td>Spines on the outline (number, height, spacing and density), lumina of the reticulum and texture of the surface</td></tr>
+      <tr><td class="c"><span class="chip k5">5</span></td><td><span class="ui">Viability</span></td><td>In the overviews, each grain with its silhouette and its solidity; the proportion of collapsed grains by group, with its interval</td></tr>
+      <tr><td class="c"><span class="chip k6">6</span></td><td><span class="ui">Comparison</span></td><td>Table by group with Tukey letters, principal components, PERMANOVA, discriminant analysis and random forest validated by grain</td></tr>
+      <tr><td class="c"><span class="chip k7">7</span></td><td><span class="ui">Publication</span></td><td>The methods written out with their references, a report to print or save as PDF, and every table and figure</td></tr>
+    </tbody>
+  </table>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b1-bloques.png" alt="The six cards of Blocks 2 to 7 with their number, drawing, label, name and description"></div>
+    <figcaption><b>Figure 1.4.</b> <span class="ui">The blocks</span>: Data, Morphometry, Ornamentation, Viability, Comparison and Publication. The drawing on each card sums up what the block does: the scale bar and the caption of Block 2, the dimension line of the body of Block 3, the profile with its peaks of Block 4…</figcaption>
+  </figure>
+
+  <!-- 1.5 -->
+  <h2 id="s1-5"><span class="num">1.5</span>Pollen under the electron microscope</h2>
+  <p><span class="ui">Pollen under the electron microscope, in plain words</span> gathers, in six collapsible topics, the ideas behind the measurements. Each topic shows on the right the block where it is used; the first one comes open and the others open with a click on their title.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:2.2in">Topic</th><th style="width:0.85in">Used in</th><th>The idea, in one line</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">How a grain looks under the electron microscope</span></td><td>Blocks 2–4</td><td>The secondary-electron image shows the surface: the edge and the spines shine against the dark background, and that is why the grain is separated from the background with a gray threshold. The wall is not seen in thickness, and only the half of the grain facing the detector is seen.</td></tr>
+      <tr><td><span class="ui">Calibration: how many micrometers a pixel measures</span></td><td>Block 2</td><td>The field measures the reference width divided by the magnification, and the pixel, that field divided by the width in pixels of the saved image; the scale bar checks it (Chapter 2).</td></tr>
+      <tr><td><span class="ui">Body and ornamentation</span></td><td>Blocks 3–4</td><td>Size is reported for the body; the radial profile in 720 directions without the narrow peaks is the body, and the peaks are the spines (echinae). Feret is equivalent to the polar and equatorial axes only in equatorial view.</td></tr>
+      <tr><td><span class="ui">The reticulum: muri and lumina</span></td><td>Block 4</td><td>The bright walls enclose dark lumina; a lumen is a pixel darker than its neighborhood. Texture sums up the contrast and the regularity of the surface.</td></tr>
+      <tr><td><span class="ui">The grain is the unit, not the picture</span></td><td>Block 6</td><td>The pictures of the same grain are averaged, and validation leaves out the whole grain.</td></tr>
+      <tr><td><span class="ui">Fertility from the shape</span></td><td>Block 5</td><td>An empty grain folds and loses solidity (area divided by the area of the convex hull); it is a morphological approximation, not a viability test.</td></tr>
+    </tbody>
+  </table>
+  <figure class="w60">
+    <div class="marco"><img src="../img/en/b1-teoria.png" alt="The six topics of the theory, with the calibration topic open"></div>
+    <figcaption><b>Figure 1.5.</b> The six topics, with <span class="ui">Calibration: how many micrometers a pixel measures</span> open.</figcaption>
+  </figure>
+  <p>The introduction (I.3) turns these ideas into six rules, and each chapter applies them where they belong. If you are going to read only one topic before opening your pictures, read the one on calibration: it is the mistake that most often shrinks or enlarges grains without anybody noticing.</p>
+
+  <!-- 1.6 -->
+  <h2 id="s1-6"><span class="num">1.6</span>The methods and where they come from</h2>
+  <p>Fourteen cards name the methods the program uses, each with its family and the work that defines it. All are written from scratch for the app; the citation says where the idea comes from, not where the code comes from.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.05in">Family</th><th>Method and source</th><th style="width:0.7in" class="c">Block</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Calibration</span></td><td>Pixel size from magnification and width; scale bar checked</td><td class="c"><span class="chip k2">2</span></td></tr>
+      <tr><td><span class="ui">Image</span></td><td>Otsu threshold (1979), to separate the grain from the background</td><td class="c"><span class="chip k3">3</span> <span class="chip k5">5</span></td></tr>
+      <tr><td><span class="ui">Image</span></td><td>Area resampling to a common pixel (Wolberg, 1990)</td><td class="c"><span class="chip k2">2</span> <span class="chip k3">3</span></td></tr>
+      <tr><td><span class="ui">Shape</span></td><td>Grayscale opening of the radial profile (Serra, 1982): the body without the spines</td><td class="c"><span class="chip k3">3</span></td></tr>
+      <tr><td><span class="ui">Shape</span></td><td>Feret widths by rotating calipers (Shamos, 1978)</td><td class="c"><span class="chip k3">3</span></td></tr>
+      <tr><td><span class="ui">Shape</span></td><td>Convex hull (Andrew, 1979), for solidity</td><td class="c"><span class="chip k5">5</span></td></tr>
+      <tr><td><span class="ui">Surface</span></td><td>Lumina by local threshold (Niblack, 1986)</td><td class="c"><span class="chip k4">4</span></td></tr>
+      <tr><td><span class="ui">Surface</span></td><td>Gray-level co-occurrence matrix (Haralick et al., 1973)</td><td class="c"><span class="chip k4">4</span></td></tr>
+      <tr><td><span class="ui">Statistics</span></td><td>ANOVA, Tukey (1949), Kruskal and Wallis (1952), Holm (1979)</td><td class="c"><span class="chip k6">6</span></td></tr>
+      <tr><td><span class="ui">Multivariate</span></td><td>Principal components (Pearson, 1901; Hotelling, 1933)</td><td class="c"><span class="chip k6">6</span></td></tr>
+      <tr><td><span class="ui">Multivariate</span></td><td>PERMANOVA (Anderson, 2001)</td><td class="c"><span class="chip k6">6</span></td></tr>
+      <tr><td><span class="ui">Classification</span></td><td>Linear discriminant analysis (Fisher, 1936)</td><td class="c"><span class="chip k6">6</span></td></tr>
+      <tr><td><span class="ui">Classification</span></td><td>Random forest (Breiman, 2001)</td><td class="c"><span class="chip k6">6</span></td></tr>
+      <tr><td><span class="ui">Viability</span></td><td>Proportion with the Wilson interval (1927)</td><td class="c"><span class="chip k5">5</span></td></tr>
+    </tbody>
+  </table>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b1-metodos.png" alt="The fourteen method cards with their family and author"></div>
+    <figcaption><b>Figure 1.6.</b> <span class="ui">The methods and where they come from</span>: fourteen methods in eight families.</figcaption>
+  </figure>
+  <p>Each chapter explains the method where it is used, and the report of Block 7 writes out those that took part in your analysis, with their parameters and their citations.</p>
+
+  <!-- 1.7 -->
+  <h2 id="s1-7"><span class="num">1.7</span>What this program does not do</h2>
+  <p>Six cards say where the tool ends. The introduction (I.10) already gathers them in a table; here is what each limit means when planning a study.</p>
+  <ul>
+    <li><b><span class="ui">It does not rebuild the grain in 3D</span>.</b> Everything comes from the silhouette and from the face that looks toward the detector. The spines of Block 4 are those on the outline: a grain with 26 spines on the silhouette has many more on its surface. For comparing groups that is enough, as long as all are measured the same way.</li>
+    <li><b><span class="ui">It does not guess the view of the grain</span>.</b> The major and minor Feret diameters are the polar (P) and equatorial (E) axes only if the grain is in equatorial view. If your description needs P/E, photograph oriented views and treat them as different groups, or record the view in the <code>note</code> column of the index.</li>
+    <li><b><span class="ui">It does not read the number on the bar</span>.</b> The app finds the bar and measures it, but it does not read the “10 µm” written next to it: it checks that its length gives a round length (Chapter 2). If the bar of a picture is not round by design, measure it by hand in the viewer of Block 2.</li>
+    <li><b><span class="ui">It does not replace a viability test</span>.</b> The proportion of collapsed grains in Block 5 compares groups by their shape; to claim that the pollen is viable you need a stain or a germination test.</li>
+    <li><b><span class="ui">It does not measure the thickness of the wall</span>.</b> The exine, tectum and nexine are measured in sections or with transmission microscopy, not in an image of the surface.</li>
+    <li><b><span class="ui">It does not upload your images</span>.</b> Everything is computed on your computer; the project stores references to the files, not the files (I.5).</li>
+  </ul>
+
+  <!-- 1.8 -->
+  <h2 id="s1-8"><span class="num">1.8</span>References and how to cite</h2>
+  <p><span class="ui">References</span> lists, in alphabetical order, the 22 works cited by the methods and the texts of the app: those of the methods in Section 1.6 and, in addition, Borgefors (1986), for the distance transform with which Block 4 counts the density of lumina away from the edge of the grain; Cohen (1960), for the κ coefficient with which Block 6 sums up the accuracy of the classifiers; Erdtman (1952), Halbritter et al. (2018) and Punt et al. (2007), for the palynological terminology; and McArdle and Anderson (2001), for PERMANOVA. Appendix F gives them in full, grouped by topic.</p>
+  <p>At the end of the home page, <span class="ui">How to cite</span> gives the citation of the program ready to paste, and the <span class="ui">Copy the citation</span> button copies it to the clipboard (the app confirms with “Citation copied”). In the Spanish interface the citation is in Spanish. Below it, at the foot of the home page, the <span class="ui">User’s manual</span> link opens this manual (in the Spanish interface, <span class="ui">Manual de usuario (en español)</span> opens the Spanish edition).</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b1-cita.png" alt="The How to cite section with the citation of the program and the Copy the citation button"></div>
+    <figcaption><b>Figure 1.7.</b> <span class="ui">How to cite</span>: the citation of version 1.0.0.</figcaption>
+  </figure>
+  <div class="cita">Barrera-Guzmán, L. Á. (2026). <i>PalynoPro: quantitative pollen morphometry from electron micrographs</i> (version 1.0.0) [Computer software]. LABG Suite.</div>
+  <p>The citation does not yet carry a digital object identifier (DOI): one will be added when the program is published. Cite the version you worked with—the one given by the citation in your copy—because results may change between versions. Along with the program, cite the methods you used: the methods text of Block 7 already includes their references.</p>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Decision rule · before leaving Block 1</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:44%"><b>If</b> this is the first time you use the app…</td><td>open <span class="ui">Try the simulated example</span> and work through the blocks with this manual: all its numbers come from that example.</td></tr>
+      <tr><td><b>If</b> your pollen has very fine or very tall spines…</td><td>reproduce it in the lab with similar values and see how far the measured height is from the drawn one.</td></tr>
+      <tr><td><b>If</b> you are going to report spine height…</td><td>give it as a comparative measurement: it comes out about one pixel below the real one (6 to 7% in the grains of this chapter); the methods of Block 7 already say so.</td></tr>
+      <tr><td><b>If</b> you are going to report the reticulum…</td><td>report the diameter of the lumen as a lumen, not as a mesh.</td></tr>
+      <tr><td><b>If</b> you already have a saved project…</td><td><span class="ui">Open a project</span> and then, in Block 2, open the folder of its pictures again: if they are the same, the results are kept.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">These are guides for interpretation, not laws: what you know about the plant, the preparation and how it was photographed always comes first.</p>
+  </div>
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>When something goes wrong</div>
+    <p><b>The lab does not change when a slider is moved.</b> The grain is drawn and measured again a moment after you release it; if you move several at once, the app finishes the measurement in progress and makes one more with the final values. <b>“Open a project” says the file is not a PalynoPro project.</b> The <code>.json</code> belongs to another application of the suite or was edited by hand. <b>The project opened but the pictures are not shown.</b> That is expected: the project does not store the images; open their folder in Block 2 (Chapter 2).</p>
+  </div>
+</section>
+
+</body>
+</html>

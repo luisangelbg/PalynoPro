@@ -1,0 +1,32 @@
+{
+  "title": "PalynoPro: quantitative pollen morphometry from electron micrographs",
+  "description": "<p>PalynoPro is a self-contained web application for the quantitative morphometry of pollen grains in scanning electron micrographs, entirely in the browser, with no installation, no third-party libraries and no server-side computation; the images never leave the computer. It reads whole folders of instrument TIFF (uncompressed, LZW, PackBits or Deflate), PNG or JPEG images and takes the group and the grain from the file name or from a CSV index; it computes the pixel size from the magnification and checks it against the printed scale bar, which it finds by itself. Each grain is segmented by Otsu's threshold and its outline is read as a radial profile in 720 directions; a grey-scale opening of that profile removes the spines, so that the corpus is measured on its own (equivalent diameter, greatest and least Feret widths, elongation and circularity) while the spines are counted and measured (number, height over the chord of their feet, spacing and density). The lumina of the reticulum are detected by a local threshold in the interior of the grain, and the surface texture is described by the grey-level co-occurrence matrix. On overview images, grains are classified as turgid or collapsed by the solidity of the corpus, with aggregates, fragments and grains on the edge left out, and the groups are compared by Wilson intervals and a chi-square test.</p><p>Groups (morphotypes, varieties, populations) are compared with the grain, not the photograph, as the unit: repeated photographs of a grain are averaged first. Each variable gets a one-way analysis of variance with Tukey letters and a Kruskal&ndash;Wallis test with Holm's adjustment; the standardised variables go to principal components, global and pairwise PERMANOVA, and two classifiers, linear discriminant analysis and random forest, whose accuracy is estimated by leaving out one whole grain at a time, with confusion matrices and Cohen's &kappa;. The last block writes a report with the material, the methods with the parameters used and their sources, tables, every figure, a gallery with one measured grain per group, limitations and references, in Spanish or English, ready to print or save as PDF; the project is saved as JSON and every table as CSV. Every figure can be exported as SVG or PNG. The interface is in Spanish and English, with light and dark themes, full keyboard use and screen reader support. A simulated example with three morphotypes, drawn by code with a fixed seed, lets every block be tried without images of one's own; it is suited to echinate and reticulate pollen in general.</p><p>The statistical engines run both in the browser and in node, so 30 simulated data sets were compared against independent implementations in R 4.4.2 (MASS and vegan): 6,705 comparisons in 18 families, none out of tolerance. The image engine was checked against 60 single-grain images and 12 overviews of known truth: the scale bar was recognised in all 60, the corpus diameter has a median error of 0.20 % (95th percentile 0.37 %), the number of spines was exact in all 60, and 141 of 141 grains were found in the overviews. 155 unit tests run in the browser. The archive includes the validation scripts and reports, and user manuals in Spanish and English (HTML and PDF).</p>",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Barrera-Guzmán, Luis Ángel",
+      "orcid": "0000-0001-8057-2583"
+    }
+  ],
+  "license": "gpl-3.0-or-later",
+  "access_right": "open",
+  "language": "eng",
+  "keywords": [
+    "palynology",
+    "pollen morphology",
+    "pollen morphometry",
+    "scanning electron microscopy",
+    "image analysis",
+    "image segmentation",
+    "echinate pollen",
+    "exine ornamentation",
+    "spine morphometry",
+    "reticulum",
+    "texture analysis",
+    "pollen fertility",
+    "PERMANOVA",
+    "discriminant analysis",
+    "random forest"
+  ]
+}

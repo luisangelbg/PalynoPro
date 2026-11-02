@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · Manual de usuario · Capítulo 3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-3" data-pestana="3" data-orden="3" style="--acento: var(--b3)">
+  <div class="cap-apertura">
+    <div class="cap-num">3</div>
+    <div class="cap-etiqueta">Capítulo tres · Bloque 3</div>
+    <h1 data-corto="Contorno y tamaño">Contorno y tamaño</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">El tamaño de un grano de polen es el de su cuerpo, sin la ornamentación. Este bloque separa cada grano del fondo, lee su contorno en 720 direcciones, le quita las espinas y mide lo que queda: el diámetro, los diámetros de Feret, la elongación y la circularidad. Una sola pasada mide todas las fotos de un grano; de ella sale también la ornamentación del Bloque 4.</p>
+    <div class="cap-franja"><span class="k2"></span><span class="k3"></span><span class="k3"></span><span class="k4"></span></div>
+    <ul class="cap-contenido">
+      <li><b>3.1</b>Cómo se mide el cuerpo</li>
+      <li><b>3.2</b>Medir</li>
+      <li><b>3.3</b>Resultados por grupo</li>
+      <li><b>3.4</b>Revisión de cada foto</li>
+    </ul>
+  </div>
+
+  <!-- 3.1 -->
+  <h2 id="s3-1"><span class="num">3.1</span>Cómo se mide el cuerpo</h2>
+  <p class="lead">Bajo el título del bloque, <span class="ui">Contorno y tamaño</span>, y su subtítulo, «El cuerpo de cada grano sin sus espinas: diámetros, elongación y circularidad.», el desplegable <span class="ui">Cómo se mide</span> resume el método en dos párrafos. Esta sección lo explica paso a paso, en el orden en que la app lo hace con cada foto.</p>
+
+  <figure class="w80">
+    <div class="marco"><img src="../img/b3-medir.png" alt="El título del Bloque 3, el desplegable Cómo se mide abierto y la tarjeta Medir con sus tres campos y el mensaje de 30 de 30 fotos medidas"></div>
+    <figcaption><b>Figura 3.1.</b> El Bloque 3 con el ejemplo simulado ya medido: el desplegable <span class="ui">Cómo se mide</span> abierto y la tarjeta <span class="ui">Medir</span> con sus valores por omisión (3 µm, 0.3 µm y 2 %). El renglón de al lado del botón dice cuántas fotos se medirán y a qué píxel; el mensaje verde, cuántas se midieron y en cuánto tiempo.</figcaption>
+  </figure>
+
+  <ol class="pasos">
+    <li><b>El píxel común.</b> Todas las fotos de un grano se llevan a un mismo tamaño de píxel antes de medir, para que una espina de 2 µm ocupe los mismos píxeles en todas. Ese píxel es el que escribiste en <span class="ruta">Bloque 2<span class="sep">›</span>Calibración y lectura de nombres<span class="sep">›</span>Píxel del análisis (µm)</span>, o, si lo dejaste vacío, el percentil 90 del píxel nativo de las fotos de un grano, redondeado a dos cifras: así casi ninguna foto tiene que ampliarse. El remuestreo es por áreas (Wolberg 1990). Antes se corta el rótulo del microscopio: lo que queda debajo de la línea roja del visor del Bloque 2 no se analiza. En el ejemplo, las 30 fotos están a 1000× y 1280 px, y el píxel común es de 0.1 µm.</li>
+    <li><b>El grano y el fondo.</b> En una micrografía electrónica de barrido el grano es claro sobre un fondo oscuro. El umbral de Otsu (1979) elige el nivel de gris que mejor separa los dos; los píxeles más claros que él son grano. Se rellenan los huecos (las partes oscuras rodeadas de grano, como los lúmenes), se quitan las motas sueltas y se cierran los cortes de uno o dos píxeles.</li>
+    <li><b>El grano del centro.</b> Si en la foto quedan varias regiones, se toma la más grande cuyo centro cae en el 70 % central del cuadro y que mide al menos un 30 % de la mayor; si ninguna cumple, la más grande. Así un grano vecino que asoma por la orilla no se toma por el de la foto.</li>
+    <li><b>El contorno en 720 direcciones.</b> Desde el centro del grano, en cada medio grado, se busca el píxel de borde más lejano. El resultado es el <b>perfil radial</b>: el radio del grano en 720 direcciones, con las espinas como picos angostos. El capítulo 4 lo muestra como gráfica (figura 4.8).</li>
+    <li><b>El cuerpo.</b> Sobre ese perfil se hace una apertura morfológica (Serra 1982): se recortan todos los picos más angostos que la <span class="ui">Base máxima de una espina (µm)</span>, y lo que queda, suavizado, es el contorno del <b>cuerpo</b>. Una ondulación más ancha que esa base no es una espina: es la forma del grano, y se queda en el cuerpo.</li>
+    <li><b>Las medidas.</b> Con el polígono del cuerpo se calculan su área y su perímetro, y de ellos las medidas de la tabla 3.1. Los diámetros de Feret se obtienen con calibradores rotantes sobre el polígono (Shamos 1978).</li>
+    <li><b>El contorno cortado.</b> Las direcciones en que el contorno llega al borde de la foto o al rótulo están <b>cortadas</b>: ahí no se sabe dónde termina el grano. Si pasan del <span class="ui">Contorno cortado aceptable (%)</span>, la foto se marca y no entra en las comparaciones de tamaño. Las espinas de las direcciones cortadas tampoco se cuentan.</li>
+  </ol>
+
+  <table class="compacta">
+    <caption><b>Tabla 3.1.</b> Las seis medidas de tamaño y forma del Bloque 3, con sus nombres en la app</caption>
+    <thead><tr><th style="width:2.15in">En la app</th><th>Qué es</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Diámetro del cuerpo (µm)</span></td><td>El diámetro equivalente: el de un círculo con la misma área que el cuerpo, √(4<i>A</i>/π)</td></tr>
+      <tr><td><span class="ui">Diámetro mayor del cuerpo (Feret) (µm)</span></td><td>La anchura más grande del cuerpo: la que mediría un calibrador puesto en la dirección más larga</td></tr>
+      <tr><td><span class="ui">Diámetro menor del cuerpo (Feret) (µm)</span></td><td>La anchura más chica, en la dirección más corta</td></tr>
+      <tr><td><span class="ui">Elongación del cuerpo (mayor/menor)</span></td><td>El Feret mayor entre el menor: 1 en un círculo, más cuanto más alargado</td></tr>
+      <tr><td><span class="ui">Circularidad del cuerpo</span></td><td>4π<i>A</i>/<i>P</i>²: 1 en un círculo perfecto, menos cuanto más irregular o anguloso es el contorno</td></tr>
+      <tr><td><span class="ui">Diámetro con espinas (µm)</span></td><td>El diámetro equivalente del contorno con las espinas; la diferencia con el del cuerpo da una idea del peso de la ornamentación</td></tr>
+    </tbody>
+  </table>
+
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve · por qué el cuerpo y no el contorno</div>
+    <p>En la terminología palinológica (Punt et al. 2007; Halbritter et al. 2018) el tamaño de un grano equinado se da sin las espinas, porque la ornamentación varía con la preparación y con la vista, y su altura se describe aparte. La apertura del perfil radial hace con números lo que hace el ojo al trazar el contorno «por la base» de las espinas: el resultado no depende de cuántas espinas caen en la silueta ni de qué tan altas son. La circularidad del cuerpo queda por eso muy cerca de 1 en los granos esféricos (0.992 a 0.999 en el ejemplo); en el contorno con espinas sería mucho menor y mediría la ornamentación, no la forma.</p>
+  </div>
+
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>Feret no es lo mismo que P y E</div>
+    <p>Los diámetros de Feret son los de la silueta que se ve. Equivalen al eje polar (P) y al diámetro ecuatorial (E) sólo si el grano está en vista ecuatorial; en vista polar u oblicua miden otra cosa. La app no adivina la vista: si necesitas P y E, fotografía vistas orientadas y ponlas en grupos distintos.</p>
+  </div>
+
+  <!-- 3.2 -->
+  <h2 id="s3-2"><span class="num">3.2</span>Medir</h2>
+  <p>La tarjeta <span class="ui">Medir</span> tiene tres campos y un botón. Los valores por omisión sirven para la mayoría de los granos equinados de 20 a 100 µm fotografiados a 1000× o más; cámbialos sólo si la revisión de la sección 3.4 te muestra que algo no se reconoce bien.</p>
+  <table class="compacta">
+    <caption><b>Tabla 3.2.</b> Los ajustes de la tarjeta <span class="ui">Medir</span></caption>
+    <thead><tr><th style="width:2.1in">Campo</th><th class="num" style="width:0.6in">Omisión</th><th>Qué decide</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Base máxima de una espina (µm)</span></td><td class="num">3</td><td>Lo más ancha que puede ser una espina en su base. Los picos del perfil más angostos que esto se recortan del cuerpo y pueden contarse como espinas; los más anchos son parte de la forma del cuerpo. Súbelo si tus espinas son anchas y cónicas; bájalo si el contorno del cuerpo es ondulado y la app te recorta las ondas.</td></tr>
+      <tr><td><span class="ui">Altura mínima de una espina (µm)</span></td><td class="num">0.3</td><td>Lo menos que debe sobresalir un pico del cuerpo para ser espina; nunca menos de 1.5 píxeles del análisis. Por debajo queda el ruido del borde y la rugosidad del téctum.</td></tr>
+      <tr><td><span class="ui">Contorno cortado aceptable (%)</span></td><td class="num">2</td><td>La parte del contorno que puede quedar cortada por el borde o el rótulo sin que la foto salga de las comparaciones de tamaño.</td></tr>
+    </tbody>
+  </table>
+  <p>Al lado del botón <span class="ui">Medir todas las fotos de un grano</span> un renglón dice cuántas fotos se van a medir y a qué píxel: con el ejemplo, <span class="ui">30 foto(s) de un grano, al píxel de 0.1 µm</span>. Sólo entran las fotos incluidas que el Bloque 2 tiene como <span class="ui">Un grano</span>; las panorámicas van al Bloque 5. Si todavía no hay imágenes, el renglón dice «Abre primero tus imágenes en el Bloque 2.» y el botón queda apagado.</p>
+  <p>Al pulsar el botón aparece la ventana de espera, que dice qué foto se está midiendo y cuántas faltan. Al terminar, un mensaje verde da el total y el tiempo —«30 de 30 fotos medidas en 20.0 s.» en la figura 3.1; el tiempo cambia de una computadora a otra— y la barra de bloques pone la palomita en los bloques 3 y 4. Si en alguna foto no se encuentra un grano, el mensaje sale en ámbar y nombra las fotos después de <span class="ui">Sin grano reconocible:</span>.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Medir otra vez borra lo anterior</div>
+    <p>Cada pasada empieza de cero: borra las medidas de todas las fotos y la comparación del Bloque 6, que habrá que volver a calcular. Pasa lo mismo cuando cambias la calibración, un grupo o una exclusión en el Bloque 2, y cuando pulsas <span class="ui">Volver a medir con estos valores</span> en el Bloque 4.</p>
+  </div>
+
+  <!-- 3.3 -->
+  <h2 id="s3-3"><span class="num">3.3</span>Resultados por grupo</h2>
+  <p>La tarjeta <span class="ui">Resultados</span> aparece en cuanto hay fotos medidas. Arriba, cuatro mosaicos:</p>
+  <ul>
+    <li><span class="ui">Fotos medidas</span>: las fotos de un grano que se midieron, incluidas las de contorno cortado.</li>
+    <li><span class="ui">Granos</span>, <span class="ui">con contorno completo</span>: los granos distintos que entran en las comparaciones. Dos fotos del mismo grano cuentan una vez.</li>
+    <li><span class="ui">Contorno cortado</span>, <span class="ui">fuera de las comparaciones</span>: las fotos que pasan del porcentaje aceptable. El mosaico lleva borde ámbar si hay alguna y verde si no.</li>
+    <li><span class="ui">Cuerpo (media)</span>: la media del diámetro del cuerpo de todos los granos, de todos los grupos juntos, y debajo la media de sus dos diámetros de Feret.</li>
+  </ul>
+
+  <figure class="w80">
+    <div class="marco"><img src="../img/b3-resultados.png" alt="Los cuatro mosaicos de Resultados (30 fotos, 24 granos, 0 cortados, cuerpo de 63.2 µm) y la tabla Por grupo con los tres morfotipos en columnas y las seis medidas en renglones"></div>
+    <figcaption><b>Figura 3.2.</b> Los resultados del ejemplo: 30 fotos medidas, que son 24 granos con contorno completo; ninguna foto cortada; el cuerpo mide en promedio 63.2 µm, con Feret de 65.5 × 61.0 µm. Debajo, la tabla <span class="ui">Por grupo</span>, con un morfotipo por columna (8 granos cada uno) y una medida por renglón.</figcaption>
+  </figure>
+
+  <p>Si alguna foto tuvo que ampliarse para llegar al píxel común (su píxel nativo era más grande), un aviso ámbar lo dice: «… tenían menos resolución que el píxel del análisis y se ampliaron: sus medidas finas (espinas, lúmenes) son menos fiables.» Si alguna tiene el contorno cortado, otro aviso pide revisarlas abajo. Con el ejemplo no aparece ninguno de los dos.</p>
+
+  <h3>La tabla por grupo</h3>
+  <p>La tabla <span class="ui">Por grupo</span> pone un grupo en cada columna, con su número de granos debajo del nombre (<span class="ui">n = 8</span> en el ejemplo), y una medida en cada renglón, bajo el encabezado <span class="ui">Medida</span>: la media ± la desviación estándar de las seis medidas de la tabla 3.1. Así cabe en la pantalla aunque haya muchos grupos. Su leyenda lo dice: «Media ± desviación estándar entre granos (las fotos de un grano se promedian).» Primero se promedian las fotos de cada grano y después se calcula la media y la desviación entre granos: la desviación estándar es la variación entre granos, no entre fotos. El botón <span class="ui">CSV</span> descarga la tabla como <code>palynopro_tamano_por_grupo.csv</code>, con un renglón por grupo y una columna de media y otra de desviación para cada medida.</p>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Ejemplo · lo dibujado contra lo medido</div>
+    <p>El ejemplo se dibuja con parámetros conocidos (sección I.7), así que la tabla se puede leer contra ellos. El morfotipo B tiene el cuerpo más grande, 67.93 µm; A y C miden casi lo mismo (60.95 y 60.85 µm) y no se separan por el diámetro. Sí se separan por la forma: C se dibuja con una razón menor/mayor de 0.90, es decir, una elongación de alrededor de 1.11, y la app mide 1.123; A (0.97) y B (0.95) quedan en 1.039 y 1.064. La circularidad de los tres pasa de 0.99 porque los tres cuerpos son lisos: la elongación y la circularidad miden cosas distintas.</p>
+  </div>
+
+  <h3>Las dos figuras</h3>
+  <p><span class="ui">Diámetro del cuerpo por grupo</span> es una gráfica de caja con los granos encima como puntos: la caja va del primer al tercer cuartil, la línea es la mediana y los bigotes llegan a los datos más extremos dentro de 1.5 veces el recorrido intercuartílico. <span class="ui">Diámetros de Feret del cuerpo</span> pone cada grano con su Feret mayor en el eje horizontal y el menor en el vertical, con una elipse que encierra al 95 % de cada grupo. Un grano redondo cae cerca de la diagonal; uno alargado, por debajo de ella.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b3-figuras.png" alt="La gráfica de caja del diámetro del cuerpo de los tres morfotipos y el diagrama de dispersión de Feret mayor contra menor con elipses"></div>
+    <figcaption><b>Figura 3.3.</b> Las dos figuras de <span class="ui">Resultados</span>. A la izquierda, B queda por encima de A y C, que se traslapan. A la derecha, la elipse de C (triángulos verdes) queda por debajo de las otras: a igual Feret mayor, sus granos son más angostos. Cada figura tiene sus botones SVG y PNG, el editor <span class="ui">✎</span> y el estudio de figuras (capítulo 7).</figcaption>
+  </figure>
+
+  <!-- 3.4 -->
+  <h2 id="s3-4"><span class="num">3.4</span>Revisión de cada foto</h2>
+  <p>Ninguna cifra vale más que el contorno del que sale. La tarjeta <span class="ui">Revisión de cada foto</span> dibuja sobre cada imagen lo que la app midió, para que compruebes, foto por foto, que el grano, el cuerpo y las espinas son los que tú habrías trazado.</p>
+
+  <figure class="w70">
+    <div class="marco"><img src="../img/b3-revision.png" alt="La revisión de la foto 03_C del ejemplo con la máscara, el contorno, el cuerpo, las espinas y los dos diámetros de Feret, y sus medidas a la derecha">
+      <span class="marca" style="left:3.6%;top:5.4%">1</span>
+      <span class="marca" style="left:39.3%;top:66.8%">2</span>
+      <span class="marca" style="left:24%;top:77.9%">3</span>
+      <span class="marca" style="left:73.7%;top:4.4%">4</span>
+      <span class="marca" style="left:79.1%;top:95.8%">5</span>
+    </div>
+    <figcaption><b>Figura 3.4.</b> La foto <code>03_C.png</code>, un grano del morfotipo C, con todas las capas encendidas, también <span class="ui">Feret</span>. Su cuerpo mide 61.71 µm, con Feret de 65.38 × 58.06 µm y elongación de 1.126; ninguna parte del contorno está cortada. Los números corresponden a la lista de abajo.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>La foto,</b> al píxel del análisis, sin su rótulo, con las capas encima.</li>
+    <li><span class="n">2</span><b>← Anterior, el selector y Siguiente →.</b> Recorren las fotos medidas; al llegar a la última se vuelve a la primera. En el selector, las fotos de contorno cortado llevan ⚠, y las excluidas siguen en la lista con «— excluida» detrás del nombre.</li>
+    <li><span class="n">3</span><b>Las capas,</b> cada una con su casilla y su color.</li>
+    <li><span class="n">4</span><b>Los datos de la foto:</b> nombre, grupo y grano, las seis medidas, el contorno cortado, el umbral y las marcas.</li>
+    <li><span class="n">5</span><b>Excluir esta foto.</b> La saca del estudio; en una foto excluida, el mismo botón dice <span class="ui">Volver a incluir</span> (ver abajo).</li>
+  </ul>
+
+  <h3>Las capas</h3>
+  <table class="compacta">
+    <thead><tr><th style="width:1.9in">Capa</th><th>Qué dibuja</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Grano (máscara)</span></td><td>Tiñe de azul los píxeles que el umbral tomó como grano. Si la mancha azul se sale del grano o le faltan pedazos, el umbral no separó bien el grano del fondo.</td></tr>
+      <tr><td><span class="ui">Contorno con espinas</span></td><td>El perfil radial, en naranja: la silueta con sus espinas.</td></tr>
+      <tr><td><span class="ui">Cuerpo</span></td><td>El contorno del cuerpo, en celeste y discontinuo: debe pasar por la base de las espinas.</td></tr>
+      <tr><td><span class="ui">Espinas</span></td><td>Un punto rojo en la punta de cada espina contada.</td></tr>
+      <tr><td><span class="ui">Feret</span></td><td>Apagada al abrir. Los dos diámetros de Feret, en amarillo, con su longitud en µm escrita junto a un extremo, siempre dentro de la foto.</td></tr>
+    </tbody>
+  </table>
+  <p>Las direcciones de contorno cortado se señalan siempre con cuadritos blancos sobre el borde, sea cual sea la capa encendida. Los datos de la derecha terminan con el <span class="ui">Contorno cortado</span> en porcentaje, el <span class="ui">Umbral (gris)</span> que eligió Otsu (entre 89 y 91 en las fotos del ejemplo; 90.0 en la figura 3.4) y las <span class="ui">Marcas</span>: una palomita si la foto está bien, <span class="ui">contorno cortado</span> o <span class="ui">ampliada</span> si no.</p>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Ejemplo · dos fotos, un grano</div>
+    <p>El grano 3 del morfotipo C se fotografió dos veces, <code>03_C.png</code> y <code>03a_C.png</code>, con otro ruido y otro giro. Su cuerpo mide 61.71 µm en las dos fotos (61.708 y 61.715 en la tabla de todas las fotos), y las dos cuentan 26 espinas. En la tabla por grupo cuentan como un solo grano, con el promedio de las dos: por eso el morfotipo C tiene 10 fotos y <span class="ui">n</span> = 8.</p>
+  </div>
+
+  <h3>Excluir una foto</h3>
+  <p><span class="ui">Excluir esta foto</span> saca la foto del estudio: se borra su medida, desaparece de la tabla y de las figuras, y la comparación del Bloque 6 se borra para que vuelvas a calcularla. Úsalo con una foto que de verdad no sirve —un grano roto, dos granos pegados, una foto movida—, no con la que da un número que no te gusta. Con el ejemplo, al excluir <code>03_C.png</code> el mosaico <span class="ui">Fotos medidas</span> baja a 29, pero <span class="ui">Granos</span> sigue en 24, porque el grano 3 de C conserva su otra foto.</p>
+  <p>La foto excluida no desaparece del visor: sigue en el selector como «03_C.png — excluida», y puedes verla con sus capas para decidir; en los datos de la derecha, en lugar de las medidas, se lee <span class="ui">Estado</span>: «Excluida: no entra en el análisis.». El botón cambia a <span class="ui">Volver a incluir</span>, que la vuelve a medir en el acto, con los mismos ajustes que las demás, y avisa «Foto incluida y medida»; no hace falta medir las demás. Hay una excepción: el píxel común (sección 3.1) depende de las fotos incluidas, y si excluir o incluir una lo mueve, el aviso dice «El píxel común del análisis cambió: vuelve a medir todas las fotos.»; entonces pulsa otra vez <span class="ui">Medir todas las fotos de un grano</span>. También puedes excluir o incluir fotos en el Bloque 2, con la columna <span class="ui">Excluir</span> de la tabla de imágenes.</p>
+
+  <h3>La tabla de todas las fotos</h3>
+  <p>Bajo el visor, el desplegable <span class="ui">Tabla de todas las fotos</span> tiene un renglón por foto con <span class="ui">Foto</span>, <span class="ui">Grupo</span>, <span class="ui">Grano</span>, las seis medidas, <span class="ui">Cortado (%)</span> y <span class="ui">Marcas</span>. Los renglones de las fotos que quedan fuera de las comparaciones se marcan; un clic en un renglón lleva esa foto al visor. Su botón <span class="ui">CSV</span> descarga <code>palynopro_medidas_por_foto.csv</code>, con las 19 variables de la app (también las de ornamentación) y una columna <code>usable</code> que vale 1 o 0.</p>
+  <p>Si abriste un proyecto guardado sin volver a abrir la carpeta de imágenes, las medidas siguen ahí pero el visor dice «Abre otra vez la carpeta para ver la foto.»: el proyecto guarda referencias, no las fotos (sección I.5).</p>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Regla de decisión · ¿está bien medida la foto?</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:42%"><b>Si</b> la máscara azul cubre el grano y nada más, y el cuerpo celeste pasa por la base de las espinas…</td><td><b>entonces</b> la foto está bien medida; sigue con la siguiente.</td></tr>
+      <tr><td><b>Si</b> el cuerpo «se come» ondulaciones anchas del contorno, o deja espinas dentro…</td><td>ajusta la <span class="ui">Base máxima de una espina (µm)</span> (más chica en el primer caso, más grande en el segundo) y mide otra vez.</td></tr>
+      <tr><td><b>Si</b> la foto lleva la marca <span class="ui">contorno cortado</span>…</td><td>el grano toca el borde o el rótulo: no entra en las comparaciones. Si el corte es pequeño y estás seguro de la forma, puedes subir el porcentaje aceptable; si no, fotografía el grano otra vez centrado.</td></tr>
+      <tr><td><b>Si</b> la foto lleva la marca <span class="ui">ampliada</span>…</td><td>el tamaño del cuerpo sigue siendo fiable, pero las espinas y los lúmenes no tanto; prefiere fotos a más aumentos o un píxel del análisis más grueso.</td></tr>
+      <tr><td><b>Si</b> la máscara toma un grano vecino, polvo o una mancha del fondo…</td><td>excluye la foto, o recórtala fuera de la app y ábrela de nuevo.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">La revisión es la única garantía de que un número sale de un grano bien leído. Con decenas de fotos, recórrelas todas con <span class="ui">Siguiente →</span>: toma pocos minutos.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>Cuando algo sale mal</div>
+    <p><b>El botón está apagado.</b> No hay fotos de un grano incluidas: abre tus imágenes en el Bloque 2 y revisa que no estén todas marcadas como <span class="ui">Panorámica</span> o <span class="ui">Detalle</span>. <b>«Sin grano reconocible».</b> La foto es casi uniforme, está muy oscura o el grano es más oscuro que el fondo; mírala en el visor del Bloque 2. <b>Los tamaños salen al doble o a la mitad.</b> La calibración está mal: revisa la magnificación y el <span class="ui">Ancho del cuadro de referencia (mm)</span> en el Bloque 2, y que la barra de escala no salga como dudosa. <b>Dos fotos del mismo grano cuentan como dos granos.</b> El nombre no deja leer el grano: corrige el <span class="ui">Patrón del nombre (grupo y grano)</span> o pon la columna <code>grano</code> en el índice. <b>Faltan granos en la tabla.</b> Sus fotos tienen el contorno cortado o están excluidas: búscalas en el selector, con ⚠ o con «— excluida».</p>
+  </div>
+</section>
+
+</body>
+</html>

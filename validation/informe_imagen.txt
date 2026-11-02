@@ -1,0 +1,29 @@
+PalynoPro 1.0.0 — motor de imagen contra granos simulados de verdad conocida — 2026-11-02
+
+Fotos de un grano (60): calibradas por la magnificación y comprobadas con la barra de escala
+  barra de escala redonda y coincidente: 60 de 60
+  error del diámetro del cuerpo                n =  60   mediana    0.20   P5    0.09   P95    0.37 %
+  error del Feret mayor                        n =  60   mediana    0.06   P5   -0.02   P95    0.14 %
+  error del Feret menor                        n =  60   mediana    0.14   P5    0.01   P95    0.30 %
+  número de espinas exacto: 60 de 60; diferencia máxima 0
+  sesgo de la altura de espina                 n =  60   mediana   -3.89   P5   -5.74   P95   -2.88 %
+  lumen medido / malla dibujada: media 0.558, variación entre granos 1.8 % (la razón es constante: el lumen es proporcional a la malla)
+
+Panorámicas (12):
+  panorámica  1: 10 de 10 granos encontrados
+  panorámica  2: 11 de 11 granos encontrados
+  panorámica  3: 12 de 12 granos encontrados
+  panorámica  4: 13 de 13 granos encontrados
+  panorámica  5: 14 de 14 granos encontrados
+  panorámica  6: 10 de 10 granos encontrados
+  panorámica  7: 11 de 11 granos encontrados
+  panorámica  8: 12 de 12 granos encontrados
+  panorámica  9: 13 de 13 granos encontrados
+  panorámica 10: 14 de 14 granos encontrados
+  panorámica 11: 10 de 10 granos encontrados
+  panorámica 12: 11 de 11 granos encontrados
+  granos encontrados: 141 de 141
+  colapsados reconocidos: 15 de 20 (fuera del borde); turgentes tomados por colapsados: 0
+
+La altura de espina sale algo menor que la dibujada porque la punta ocupa menos de un píxel;
+el diámetro del lumen es proporcional a la malla, no igual: el lumen es la parte oscura de cada celda.

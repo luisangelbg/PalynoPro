@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · User’s Manual · Chapter 6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-6" data-pestana="6" data-orden="6" style="--acento: var(--b6)">
+  <div class="cap-apertura">
+    <div class="cap-num">6</div>
+    <div class="cap-etiqueta">Chapter six · Block 6</div>
+    <h1 data-corto="Multivariate statistics">Multivariate statistics</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">The question behind almost every pollen study: can the groups be told apart by their pollen? The block answers it at three scales—variable by variable, with all the variables at once, and grain by grain, like a key—and always with the grain as the unit, so that a grain photographed twice neither counts double nor helps itself to be classified.</p>
+    <div class="cap-franja"><span class="k3"></span><span class="k4"></span><span class="k6"></span><span class="k6"></span></div>
+    <ul class="cap-contenido">
+      <li><b>6.1</b>What is computed: the grain as the unit</li>
+      <li><b>6.2</b>Variables and settings</li>
+      <li><b>6.3</b>In short</li>
+      <li><b>6.4</b>By variable</li>
+      <li><b>6.5</b>Principal components</li>
+      <li><b>6.6</b>PERMANOVA</li>
+      <li><b>6.7</b>Pollen key: classifying a grain</li>
+    </ul>
+  </div>
+
+  <p>Block 6 works with what Block 3 measured—the outline, the size and, in the same pass, the ornamentation of Block 4; it does not read the images again. Under the title, the app says what it does: “Can the groups be told apart by their pollen? With the grain as the unit.” It has a drop-down, <span class="ui">What is computed</span>, the <span class="ui">Variables</span> card with the button that runs the analysis and, once computed, five result cards: <span class="ui">In short</span>, <span class="ui">By variable</span>, <span class="ui">Principal components</span>, <span class="ui">PERMANOVA</span> and <span class="ui">Pollen key: classifying a grain</span>. Every figure in this chapter comes from the simulated example measured with the default values and compared with the default settings.</p>
+
+  <!-- 6.1 -->
+  <h2 id="s6-1"><span class="num">6.1</span>What is computed: the grain as the unit</h2>
+  <p class="lead">Before any test, the app merges the pictures of each grain into a single row: the average of its measurements. Everything else—the tests, the components, the PERMANOVA and the classifiers—is done with those grains, not with the pictures.</p>
+  <p>The <span class="ui">What is computed</span> drop-down sums it up in one paragraph. Step by step, this is what the app does when you press <span class="ui">Compare the groups</span>:</p>
+  <ol class="pasos">
+    <li><b>It takes the usable measured pictures.</b> The included and calibrated one-grain pictures that have a result in Block 3, without those with a cut outline (those above the <span class="ui">Acceptable cut outline (%)</span>, Chapter 3).</li>
+    <li><b>It averages by grain.</b> Pictures with the same group and the same grain number are a single unit (in the example, <code>03_A.png</code> and <code>03a_A.png</code> are grain A·03). If a grain lacks any of the chosen variables, it is left out, and the app says so next to the button (Section 6.2).</li>
+    <li><b>It drops the groups with fewer than three grains</b> and stops if fewer than two groups remain.</li>
+    <li><b>It tests each variable</b>: one-way analysis of variance, the Kruskal–Wallis test and Tukey letters, with the p-values adjusted by Holm over all the chosen variables.</li>
+    <li><b>It standardizes the variables</b> (mean 0, standard deviation 1) so that a measurement in micrometers does not weigh more than a proportion, and computes the principal components and the global and pairwise PERMANOVA.</li>
+    <li><b>It fits and validates two classifiers</b>, linear discriminant analysis and random forest, leaving out one whole grain at a time.</li>
+  </ol>
+  <p>While it computes, the “Comparing the groups” wait window says which step it is on: <i>Tests by variable</i>, <i>Principal components</i>, <i>PERMANOVA</i>, <i>Discriminant analysis</i>, <i>Random forest (validation by grain)</i> and <i>Importance of the variables</i>. With the example it takes a few seconds.</p>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · why the grain and not the picture</div>
+    <p>Two pictures of the same grain are not two independent observations: they look alike because they are the same grain. If they counted separately, the tests would believe they had more data than there are and would give p-values that are too small (what statistics calls pseudoreplication). And in the validation of a classifier, a picture would be classified with the help of its twin, which sits in the training set, and the accuracy would come out inflated. Averaging by grain and leaving out the whole grain avoids both traps. In the example, six grains (grains 3 and 6 of each morphotype) have two pictures: 30 pictures are 24 grains.</p>
+  </div>
+
+  <!-- 6.2 -->
+  <h2 id="s6-2"><span class="num">6.2</span>Variables and settings</h2>
+  <p class="lead">The <span class="ui">Variables</span> card decides which measurements enter the multivariate analysis and sets the three numbers that govern the random parts. Below it is the <span class="ui">Compare the groups</span> button.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b6-variables.png" alt="The Variables card with 19 checkboxes, eleven checked, the fields Trees of the forest 500, Permutations 999 and Random seed 1, and the Compare the groups button with the note 24 grains from 3 groups"></div>
+    <figcaption><b>Figure 6.1.</b> The <span class="ui">Variables</span> card with the measured example: the 19 measurements of a grain, 11 checked by default, and the three settings. To the right of the button, “24 grains from 3 groups”.</figcaption>
+  </figure>
+
+  <h3>Enter the analysis</h3>
+  <p>The <span class="ui">Enter the analysis</span> box has one checkbox for each measurement produced by Block 3 or 4. When the app opens, eleven are checked, chosen so that the analysis does not repeat information:</p>
+  <table class="compacta">
+    <caption><b>Table 6.1.</b> The 19 variables and those that enter by default</caption>
+    <thead><tr><th>Checked by default (11)</th><th>Unchecked (8)</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Body diameter</span> · <span class="ui">Body major diameter (Feret)</span> · <span class="ui">Body minor diameter (Feret)</span> · <span class="ui">Body circularity</span></td><td><span class="ui">Body elongation (major/minor)</span> · <span class="ui">Diameter with spines</span></td></tr>
+      <tr><td><span class="ui">Spine area / body area</span> · <span class="ui">Mean spine height</span> · <span class="ui">Spine density</span></td><td><span class="ui">Spines on the outline</span> · <span class="ui">Spacing between spines</span></td></tr>
+      <tr><td><span class="ui">Lumen diameter (median)</span> · <span class="ui">Lumen density</span></td><td><span class="ui">Lumen variation (CV)</span></td></tr>
+      <tr><td><span class="ui">Texture: contrast</span> · <span class="ui">Texture: homogeneity</span></td><td><span class="ui">Texture: entropy</span> · <span class="ui">Texture: correlation</span> · <span class="ui">Texture: energy</span></td></tr>
+    </tbody>
+  </table>
+  <p>Those left out are, almost all, combinations of others: elongation is the ratio of the two Feret diameters; the diameter with spines is, roughly, the body plus two spine heights; the number of spines and their spacing follow from the density and the perimeter; texture entropy and energy almost always go hand in hand with homogeneity. You can check or uncheck any you like—the app asks for <b>at least two</b>—and the choice is saved in the project. If you measure again in Block 3, the choice is kept, but the result is cleared and you have to compare again.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Many variables and few grains</div>
+    <p>Linear discriminant analysis estimates a covariance matrix with as many rows as there are variables. With few grains per group and many checked variables the matrix becomes nearly singular, and the app stabilizes it with a small correction (a ridge of 0.001) so it can go on; the accuracy then depends more on the chance of sampling. As a guide, try to have more grains in the smallest group than checked variables. The example has 8 grains per group and 11 variables, right at the limit: that is why the leave-one-grain-out validation matters so much.</p>
+  </div>
+
+  <h3>The three settings</h3>
+  <table class="compacta">
+    <thead><tr><th style="width:1.5in">Field</th><th style="width:0.8in" class="num">Default</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Trees of the forest</span></td><td class="num">500</td><td>Trees of the whole random forest, from which the importance of the variables and the out-of-bag error come. Fewer than 50 is raised to 50. In the leave-one-grain-out validation, each model uses at most 300 trees, so that the computation does not drag on: it is one forest per grain. The app says so in the tiles of Section 6.7 and in the methods of the report.</td></tr>
+      <tr><td><span class="ui">Permutations</span></td><td class="num">999</td><td>Permutations of the PERMANOVA, global and pairwise. Fewer than 99 is raised to 99. With 999, the smallest possible p-value is 1 / (999 + 1) = 0.001.</td></tr>
+      <tr><td><span class="ui">Random seed</span></td><td class="num">1</td><td>The starting point of the random number generator for the permutations and the forest. The same seed always gives the same result; an empty field or a zero goes back to 1.</td></tr>
+    </tbody>
+  </table>
+  <p>To the right of the button, the app says how many grains and groups it will work with (“24 grains from 3 groups” in the example); if there are no measurements yet, it says “First measure the grains in Block 3.” and the button is disabled. If, on comparing, some grain was left out because it lacked a chosen variable (for example, with no lumina measured), the line adds: “… · 2 without a value in some chosen variable: left out”. This does not happen with the example.</p>
+
+  <!-- 6.3 -->
+  <h2 id="s6-3"><span class="num">6.3</span>In short</h2>
+  <p class="lead">Six tiles and a few verdicts that answer, at a glance, whether the groups differ and whether a single grain is enough to recognize its group.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b6-resumen.png" alt="The In short card with six tiles: Grains 24, PERMANOVA R² 0.711, Variables that differ 11 of 11, Classification LDA 100.0%, Classification forest 100.0% and By chance 33.3%, and three verdicts"></div>
+    <figcaption><b>Figure 6.2.</b> <span class="ui">In short</span> with the example: the three morphotypes differ as a whole (R² = 0.711, p = 0.001) and in all 11 variables, and both classifiers assign the 24 grains correctly.</figcaption>
+  </figure>
+  <table class="compacta">
+    <caption><b>Table 6.2.</b> The <span class="ui">In short</span> tiles, with the values of the example</caption>
+    <thead><tr><th style="width:1.55in">Tile</th><th style="width:1.3in">Example</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Grains</span></td><td>24 · 3 groups</td><td>The grains (not the pictures) that entered the analysis, and the groups.</td></tr>
+      <tr><td><span class="ui">PERMANOVA</span></td><td>R² = 0.711 · F = 25.83 · p = 0.001</td><td>The global test of Section 6.6. The tile carries a green stripe if p &lt; 0.05.</td></tr>
+      <tr><td><span class="ui">Variables that differ</span></td><td>11 / 11</td><td>How many variables have a significant analysis of variance after Holm’s adjustment (α = 0.05).</td></tr>
+      <tr><td><span class="ui">Classification (LDA)</span></td><td>100.0% · κ = 1.00</td><td>The accuracy of linear discriminant analysis leaving out one grain, with Cohen’s κ.</td></tr>
+      <tr><td><span class="ui">Classification (forest)</span></td><td>100.0% · κ = 1.00</td><td>The same with the random forest.</td></tr>
+      <tr><td><span class="ui">By chance</span></td><td>33.3%</td><td>The accuracy of someone who assigned every grain to the largest group: the yardstick for the two above. With three groups of 8 grains, 8 / 24.</td></tr>
+    </tbody>
+  </table>
+  <h3>The verdicts</h3>
+  <p>Below the tiles, the app writes out in words what they mean. The rules are fixed:</p>
+  <ul>
+    <li><b>PERMANOVA.</b> If p &lt; 0.05: “The groups differ as a whole (PERMANOVA p = 0.001); group explains 71.1% of the variation among grains.” (the percentage is R² × 100). If not: “PERMANOVA did not detect a difference between groups as a whole.”</li>
+    <li><b>Classification</b>, with the better of the two classifiers. At 80% or more, the green check mark: “A new grain would be assigned to its correct group 100.0% of the time: pollen works as a key for these groups.” Below 80% but at least twice the chance level, a warning: classification clearly beats chance, “but is not enough to identify a single grain with confidence: the groups overlap”, and it suggests checking the confusion matrix. Below that, a note: classification barely beats chance.</li>
+    <li><b>Groups left out.</b> If any had fewer than three grains, “Groups with fewer than three grains, left out:” and their codes.</li>
+    <li><b>Averaged pictures.</b> “6 grain(s) had more than one picture: they were averaged.” in the example.</li>
+  </ul>
+
+  <!-- 6.4 -->
+  <h2 id="s6-4"><span class="num">6.4</span>By variable</h2>
+  <p class="lead">A table with one row per variable: the mean and standard deviation of each group with its Tukey letter, and the three tests. Below it, the figure of the variable that best separates the groups.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b6-porvariable.png" alt="The By variable table with the 11 variables, the mean and standard deviation of A, B and C with their letters, F, the ANOVA p, the Kruskal p and eta squared, and the box plot of lumen diameter by group"></div>
+    <figcaption><b>Figure 6.3.</b> <span class="ui">By variable</span> with the example. The variable with the largest F is <span class="ui">Lumen diameter (median)</span> (F = 58.32), and its three groups have different letters: c, b and a.</figcaption>
+  </figure>
+  <p>The note on the card sums it up: “Mean ± standard deviation by group; groups sharing no letter differ (Tukey, α = 0.05). p-values adjusted by Holm over all variables.” The columns are:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.35in">Column</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Variable</span></td><td>The name of the measurement, with its unit.</td></tr>
+      <tr><td>One per group (<span class="ui">A</span>, <span class="ui">B</span>, <span class="ui">C</span>)</td><td>Mean ± standard deviation among the grains of the group and, in bold, its letter. Letter <i>a</i> goes to the group with the highest mean; two groups that share a letter do not differ according to Tukey’s test (with the Tukey–Kramer correction if the groups have different numbers of grains).</td></tr>
+      <tr><td><span class="ui">F</span></td><td>The statistic of the one-way analysis of variance: how much more the means vary between groups than the grains within each group.</td></tr>
+      <tr><td><span class="ui">p (ANOVA)</span></td><td>The p-value of the analysis of variance, <b>already adjusted by Holm</b> over all the variables; “&lt; 0.001” if it is smaller.</td></tr>
+      <tr><td><span class="ui">p (Kruskal)</span></td><td>That of the Kruskal–Wallis test, which compares ranks instead of means and does not assume normality; also adjusted by Holm.</td></tr>
+      <tr><td><span class="ui">η²</span></td><td>The proportion of the variation of the variable explained by group (the between-group sum of squares divided by the total): an effect size that does not depend on the number of grains.</td></tr>
+    </tbody>
+  </table>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · Holm and Tukey do different things</div>
+    <p>With 11 variables and α = 0.05, if the groups did not differ at all you would expect one of them to come out significant just by chance. Holm’s adjustment (1979) corrects the p-values <i>across variables</i>: it sorts the p-values from smallest to largest and multiplies the first by 11, the second by 10, and so on, without letting them decrease. Tukey’s letters (1949) correct <i>within a variable</i>, across the pairs of groups. A variable can have a significant F and still two groups with the same letter: the groups differ as a whole, but not that pair.</p>
+  </div>
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Worked example · what sets each morphotype apart</div>
+    <p>All 11 variables have p (ANOVA) &lt; 0.001. Reading the letters shows what separates whom. Morphotype B is the largest: <span class="ui">Body diameter</span> 67.93 ± 2.56 µm, letter <i>a</i>, against 60.95 ± 4.03 (A) and 60.85 ± 2.33 µm (C), which share <i>b</i>; it also has the tallest spines (2.756 ± 0.451 µm, <i>a</i>, against 1.848 for A and 1.540 µm for C, which share <i>b</i>) and the densest (15.06 ± 1.25 per 100 µm). Morphotype C stands apart by its reticulum: larger lumina (1.876 ± 0.131 µm, <i>a</i>), fewer lumina per area (15.4 ± 2.0 per 100 µm², <i>c</i>), a more homogeneous, lower-contrast texture, and a slightly less circular body (0.992 ± 0.002, <i>b</i>). A and B differ only in size, spines and reticulum, not in texture: they share the letter in contrast and in homogeneity. Compare it with what was drawn (Section I.7): B is drawn with the larger body and the taller spines, and C with the more open mesh.</p>
+  </div>
+  <p>The <span class="ui">CSV</span> button downloads the table as <code>palynopro_by_variable.csv</code>, with the numbers unrounded: one row per variable, with its internal key in <code>variable</code> (such as <code>corp_d</code>) and its name with the unit in <code>nombre</code> (“Body diameter (µm)”), and, for each group, the columns <code>A_media</code>, <code>A_de</code> and <code>A_letra</code> (mean, standard deviation and letter); then <code>F</code>, <code>p_anova_holm</code>, <code>H</code>, <code>p_kruskal_holm</code> and <code>eta2</code>.</p>
+  <h3>The variable that best separates the groups</h3>
+  <p>The box plot on the card shows the variable with the largest F, with each grain as a point, the box from the first to the third quartile with the median, the whiskers, and the Tukey letter above each group. It changes by itself if you change the chosen variables: it is always the one with the largest F among those that entered.</p>
+
+  <!-- 6.5 -->
+  <h2 id="s6-5"><span class="num">6.5</span>Principal components</h2>
+  <p class="lead">A two-dimensional map of the grains that summarizes all the variables at once, with arrows that show where each one grows. It is for seeing the structure—which groups separate, which overlap, which variables go together—not for testing anything.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b6-pca.png" alt="The Principal components card with the biplot of the 24 grains and 11 variables, the chart of variance explained by component and the table of correlations of each variable with PC1, PC2 and PC3"></div>
+    <figcaption><b>Figure 6.4.</b> <span class="ui">Principal components</span> with the example. PC1 explains 58.8% of the variation and PC2 23.4%. Morphotype C (triangles) lies on the left, on the side of the large lumina and homogeneous texture; B (squares), at the upper right, on the side of size and spines; A (circles), at the lower right.</figcaption>
+  </figure>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · principal component analysis</div>
+    <p>With the variables standardized, principal component analysis (Pearson 1901; Hotelling 1933) looks for new axes, combinations of the original variables, that are uncorrelated with each other: the first (PC1) captures the largest possible variation, the second (PC2) the largest of what remains, and so on. The app computes them from the eigenvalues and eigenvectors of the correlation matrix, by Jacobi rotations. There are as many components as variables (11 in the example), and their eigenvalues add up to 11: a component with an eigenvalue greater than 1 summarizes more than a single variable.</p>
+  </div>
+  <h3>Biplot: grains and variables</h3>
+  <p>Each point is a grain, with the shape and color of its group, and each group has its 95% ellipse. The arrows are the variables: the tip sits at the correlation of the variable with PC1 (horizontal) and with PC2 (vertical), so they point where the variable grows and their length tells how well the plane represents it. Two arrows close together are variables that go hand in hand; opposite ones, that one rises when the other falls. The axes carry the percentage of variance of each component: “PC1 (58.8%)” and “PC2 (23.4%)”.</p>
+  <p>Each arrow carries the name of its variable, in the language of the interface (without the unit). In the example, the arrows of the reticulum and the texture are spread along PC1: <span class="ui">Texture: contrast</span> and <span class="ui">Lumen density</span> to the right and slightly down, <span class="ui">Lumen diameter (median)</span> and <span class="ui">Texture: homogeneity</span> to the left, right where the grains of morphotype C are. Those of size (<span class="ui">Body major diameter (Feret)</span>, <span class="ui">Body diameter</span>, <span class="ui">Body minor diameter (Feret)</span>) and <span class="ui">Mean spine height</span> rise toward the right, toward the grains of B. Those of A lie at the lower right: they are the smallest and those with the densest lumina.</p>
+  <h3>Variance explained</h3>
+  <p>One bar per component with the percentage of the total variation it explains. It is the scree plot: when the bars stop dropping sharply, the components that follow are noise. In the example, PC1 explains 58.8%, PC2 23.4% and PC3 11.8% (eigenvalues 6.47, 2.57 and 1.29): the first three, the only ones with an eigenvalue greater than 1, add up to almost 94%, and from PC6 on the bars can hardly be seen.</p>
+  <h3>The table of correlations</h3>
+  <p>Under the figures, “Correlation of each variable with the components.”: one row per variable with its correlation (r) with PC1, PC2 and PC3. An |r| close to 1 says that the component is, to a large extent, that variable. In the example, PC1 is mostly texture and reticulum (contrast 0.925, homogeneity −0.917, lumen diameter −0.858, lumen density 0.813); PC2, size (major Feret 0.863, body diameter 0.739); and PC3, the spines (spine density 0.668, spine area 0.590).</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Components know nothing of groups</div>
+    <p>Principal component analysis does not use the group of each grain: it looks for variation, wherever it comes from. If the groups separate in the biplot, it is because the largest variation among grains is precisely the one between groups. If they do not separate, they may differ in a direction that explains little variance: the PERMANOVA and the discriminant analysis, which do use the group, will tell.</p>
+  </div>
+
+  <!-- 6.6 -->
+  <h2 id="s6-6"><span class="num">6.6</span>PERMANOVA</h2>
+  <p class="lead">The test of whether the groups differ in the whole set of their measurements, without assuming that the variables follow a normal distribution: the global answer and, with more than two groups, pair by pair.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b6-permanova.png" alt="The PERMANOVA card: Global pseudo-F 25.832, df 2 and 21, R² 0.711, p 0.001 with 999 permutations, and the pairwise table A–B, A–C and B–C"></div>
+    <figcaption><b>Figure 6.5.</b> The PERMANOVA of the example. All three pairs differ (Holm p = 0.003); the most similar pair is A–B (F = 12.46, R² = 0.471) and the most different, B–C (F = 47.11, R² = 0.771).</figcaption>
+  </figure>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · PERMANOVA</div>
+    <p>PERMANOVA (Anderson 2001; McArdle and Anderson 2001) is an analysis of variance done with distances. The app computes the Euclidean distance between each pair of grains on the standardized variables, splits the sum of squared distances into a between-group part and a within-group part, and forms a pseudo-F as in an analysis of variance. To know whether that pseudo-F is large, it shuffles the groups among the grains as many times as <span class="ui">Permutations</span> says and counts in how many the shuffled pseudo-F equals or exceeds the observed one: p = (those times + 1) / (permutations + 1). R² is the part of the variation among grains that group explains.</p>
+  </div>
+  <p>The <b>Global</b> line gives the pseudo-F, its degrees of freedom (number of groups − 1 and number of grains − number of groups), R², the p-value, the number of permutations and the distance used. In the example: “pseudo-F = 25.832, df 2, 21; R² = 0.711; p = 0.001 (999 permutations, Euclidean distance on standardized variables)”. The p of 0.001 is the smallest that can be obtained with 999 permutations: no shuffle matched the observed value. To claim a smaller p you have to increase the permutations.</p>
+  <p>The <b>pairwise</b> table repeats the test for each pair of groups—<span class="ui">Pair</span>, <span class="ui">F</span>, <span class="ui">R²</span>, <span class="ui">p</span>—and adds <span class="ui">p (Holm)</span>, adjusted for the number of pairs. Pairs with a Holm p below 0.05 carry a green stripe on the left. With only two groups there is no pairwise table: the global test already is the comparison.</p>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>A difference in location or in dispersion</div>
+    <p>A PERMANOVA can come out significant because the groups sit in different places of the variable space or because one is much more dispersed than another. Look at the biplot and the ellipses: if one group has a much larger ellipse than the others and the centers nearly coincide, the difference is one of dispersion, not of average form. In the example the centers are clearly apart.</p>
+  </div>
+
+  <!-- 6.7 -->
+  <h2 id="s6-7"><span class="num">6.7</span>Pollen key: classifying a grain</h2>
+  <p class="lead">The last card answers the practical question: if you were given a single grain, could you tell which group it belongs to from its measurements alone? To find out, it fits two classifiers and measures their accuracy with grains they did not see.</p>
+  <h3>The tiles</h3>
+  <ul>
+    <li><span class="ui">Linear discriminant</span>: 100.0% accuracy, “leave-one-grain-out validation”.</li>
+    <li><span class="ui">Random forest</span>: 100.0%, with the same validation: “leave-one-grain-out validation, 300 trees in each model”.</li>
+    <li><span class="ui">Out-of-bag error</span>: 4.2%, of the “whole forest, 500 trees”. Each tree is fitted with a sample of the grains drawn with replacement; those that did not enter that sample (“out of the bag”) serve to measure its error. It is a second estimate of the accuracy of the forest, with no separate validation. In the example, 4.2% is one grain out of 24; that it does not fully match the validation is normal with so few grains.</li>
+  </ul>
+  <figure class="w60">
+    <div class="marco"><img src="../img/en/b6-clave.png" alt="The Pollen key card with three accuracy tiles, the LD1 by LD2 discriminant space with the three groups apart, the importance of the variables in the random forest as mean decrease in Gini, and the two confusion matrices"></div>
+    <figcaption><b>Figure 6.6.</b> The pollen key of the example. Both classifiers get all 24 grains right in the validation; the out-of-bag error of the whole forest is 4.2%. In the discriminant space, the three groups do not overlap.</figcaption>
+  </figure>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · two classifiers and an honest validation</div>
+    <p><b>Linear discriminant analysis</b> (Fisher 1936) looks for the combinations of variables that best separate the groups, assuming that all of them share the same covariance matrix, and assigns a grain to the group with the highest posterior probability, with prior probabilities equal to the frequency of each group. The <b>random forest</b> (Breiman 2001) brings together hundreds of decision trees, each fitted with a sample of the grains drawn with replacement and, at each split, with √<i>p</i> variables chosen at random (3 of 11 in the example); each tree votes and the most voted group wins. The discriminant works best when the groups are similar elliptical clouds; the forest assumes no shape at all, but needs more grains. <b>Leave-one-grain-out validation</b> takes out one grain—with all its pictures—, fits the model with the rest (standardizing without it as well), classifies it, and repeats with every grain. What you get is the accuracy to expect for a new grain; Cohen’s κ (1960) discounts the agreement you would get by chance: 1 is perfect agreement and 0, that of chance.</p>
+  </div>
+  <h3>Discriminant space (LD1 × LD2)</h3>
+  <p>The grains on the first two discriminant axes, with the 95% ellipse of each group. Each axis carries the percentage of the separation between groups that it captures: “LD1 (78.4%)” and “LD2 (21.6%)” in the example. Unlike the biplot, these axes are chosen to separate the groups, so the figure shows the best separation possible with linear combinations; with three groups there are two axes. The grains are drawn with the model fitted to all the grains; the accuracy in the tiles, in contrast, comes from the validation. With two groups there is a single axis, and instead of the figure the app says “With two groups there is a single discriminant axis.”</p>
+  <h3>Importance of the variables (random forest)</h3>
+  <p>One bar per variable with the mean decrease in Gini impurity: how much, on average, each variable helps make the splits of the trees of the whole forest purer. The bars are horizontal, with the name of each variable on the left, from the most important at the top to the least important at the bottom. In the example the most important is <span class="ui">Mean spine height</span> (0.110), followed by <span class="ui">Lumen diameter (median)</span> (0.081), <span class="ui">Lumen density</span> (0.077) and <span class="ui">Spine area / body area</span> (0.075); the least, <span class="ui">Spine density</span> (0.020). Importance tells what the forest uses, not which variable differs most: two highly correlated variables share the importance between them.</p>
+  <h3>The confusion matrices</h3>
+  <p>One per classifier, <span class="ui">Linear discriminant</span> and <span class="ui">Random forest</span>, with the caption “Rows: true group · columns: assigned group”. The diagonal holds the correct assignments, shaded with the primary color; off it, the errors, in the accent color. The last column, <span class="ui">Correct</span>, is the percentage of grains of each group assigned correctly. In the example, both matrices have 8, 8 and 8 on the diagonal and zeros off it (Correct 100% in each group). When a classifier makes mistakes with your data, look at which groups the errors fall between and compare it with the pairwise PERMANOVA: you would expect the most similar pairs to be confused (in the example, A–B).</p>
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Worked example · does pollen work as a key for the three morphotypes?</div>
+    <p>With the 11 default variables, the PERMANOVA says that the morphotypes differ as a whole (R² = 0.711, p = 0.001) and pairwise; the discriminant and the forest correctly classify 100% of the grains they did not see (κ = 1.00 in both), against 33.3% by chance, and the out-of-bag error of the forest is 4.2%. The app concludes that “pollen works as a key for these groups”. For a manuscript you would write: “The three morphotypes differed in their pollen morphology (PERMANOVA: pseudo-F = 25.83, R² = 0.71, p = 0.001); in leave-one-grain-out cross-validation, every grain was assigned to its morphotype, both by linear discriminant analysis and by random forest (κ = 1.00).” Remember that these are simulated data: the example was drawn so that the groups could be told apart.</p>
+  </div>
+
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>The grain is the unit, but not the plant</div>
+    <p>The app treats each grain as independent. If your grains come from few plants, the grains of one plant resemble each other more than those of another, and the tests overstate the evidence in the same way repeated pictures would. If you can, photograph grains from several plants per group and check, with the per-picture measurement table of Block 3, that the variation among plants does not dominate. The app does not model that second level.</p>
+  </div>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Decision rule</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:44%"><b>If</b> the PERMANOVA gives p &lt; 0.05 and classification is 80% or more…</td><td>the groups can be told apart by their pollen and a single grain is enough to recognize them: pollen is a good key for them.</td></tr>
+      <tr><td><b>If</b> the PERMANOVA gives p &lt; 0.05 but classification falls below 80%…</td><td>the groups differ on average, but they overlap: pollen serves to characterize them, not to identify a single grain. Check in the confusion matrix which pairs are confused.</td></tr>
+      <tr><td><b>If</b> the PERMANOVA is not significant…</td><td>with these variables and these grains there is no evidence of a difference. Before concluding that they do not differ, check how many grains each group has.</td></tr>
+      <tr><td><b>If</b> the PERMANOVA gives p = 0.001 with 999 permutations…</td><td>report “p ≤ 0.001”; for a finer value, increase the permutations.</td></tr>
+      <tr><td><b>If</b> a variable has a significant F and two groups share a letter…</td><td>that variable separates some groups, not that pair.</td></tr>
+      <tr><td><b>If</b> the discriminant and the forest give very different accuracies…</td><td>with few grains, trust more the one with the higher κ and the out-of-bag error; with groups of very irregular shape, the forest.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">These are guides for interpretation, not laws: the sampling design—how many plants, how many flowers, how many grains per plant—weighs more than any p-value.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>When something goes wrong</div>
+    <p><b>The <span class="ui">Compare the groups</span> button is disabled</b> and says “First measure the grains in Block 3.”: there are no measurements; go to Block 3 and press <span class="ui">Measure every one-grain picture</span>. <b>“Choose at least two variables.”</b> Check two or more boxes. <b>“At least two groups with three grains or more are needed.”</b> After averaging by grain and removing the pictures with a cut outline, fewer than two groups with three grains remain; check in Block 2 that the group and the grain were read correctly (a wrong name pattern can put all the grains in one group or give all of them the same grain number). <b>A group does not appear.</b> It had fewer than three grains, and the app says so in a verdict. <b>“… without a value in some chosen variable: left out”.</b> Those grains lack some of the checked variables (for example, a grain with no lumina measured); uncheck that variable or check the picture in Block 4. <b>The results disappeared.</b> You measured again or changed the calibration, a group or an exclusion: the block is cleared so as not to show stale results; compare again. <b>On opening a project there are no results.</b> The project saves the measurements and the settings, not the comparison, and the app reminds you of this when opening it: press <span class="ui">Compare the groups</span> again and it will come out the same, because the seed is saved too.</p>
+  </div>
+</section>
+
+</body>
+</html>

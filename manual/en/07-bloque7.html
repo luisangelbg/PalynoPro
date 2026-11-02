@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · User’s Manual · Chapter 7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-7" data-pestana="7" data-orden="7" style="--acento: var(--b7)">
+  <div class="cap-apertura">
+    <div class="cap-num">7</div>
+    <div class="cap-etiqueta">Chapter seven · Block 7</div>
+    <h1 data-corto="Report">Report</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">The end of the journey: what goes into the thesis, the paper or the lab notebook. The block assembles into a single document the material, the methods written out with the parameters you used and their citations, the tables, every figure, one measured grain per group, the limitations and the references. This chapter also explains the figures—their downloads, the studio and the ✎ editor—and how to save the project to pick it up again.</p>
+    <div class="cap-franja"><span class="k3"></span><span class="k5"></span><span class="k6"></span><span class="k7"></span></div>
+    <ul class="cap-contenido">
+      <li><b>7.1</b>Details of the report</li>
+      <li><b>7.2</b>Make, print and download</li>
+      <li><b>7.3</b>What the report contains</li>
+      <li><b>7.4</b>The figures, the studio and the editor</li>
+      <li><b>7.5</b>Saving and resuming the project</li>
+    </ul>
+  </div>
+
+  <p>Block 7 has two cards: <span class="ui">Details of the report</span>, with the fields and the buttons, and <span class="ui">Preview</span>, which appears when you make the report. Under the title, the app sums it up: “Methods, results, figures and gallery in one document to print or save as PDF.” Nothing is computed here for the first time: the report takes what Blocks 2 to 6 already computed, with the settings you left in each one. The screenshots in this chapter were taken with the simulated example measured, counted and compared, with the title “Pollen morphometry of the simulated example”.</p>
+
+  <!-- 7.1 -->
+  <h2 id="s7-1"><span class="num">7.1</span>Details of the report</h2>
+  <p class="lead">Four text fields for the cover of the report, the language it is written in, and a list that says which parts of the study are already computed.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b7-datos.png" alt="The Details of the report card with the title and material of the example filled in, author and institution empty, the language That of the screen, the four green check marks and the five buttons"></div>
+    <figcaption><b>Figure 7.1.</b> <span class="ui">Details of the report</span> after making the report of the example: the four parts of the study computed and the five buttons enabled.</figcaption>
+  </figure>
+  <table class="compacta">
+    <thead><tr><th style="width:1.5in">Field</th><th>What it holds</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Title</span></td><td>The title of the report. Empty, it shows “Pollen morphometry of …” as a hint, and the report comes out as “Quantitative pollen morphometry”. It also names the files you download.</td></tr>
+      <tr><td><span class="ui">Species or material</span></td><td>What was studied; on the cover of the report it appears as “Material”.</td></tr>
+      <tr><td><span class="ui">Author</span></td><td>Who did the study.</td></tr>
+      <tr><td><span class="ui">Institution</span></td><td>The laboratory or the institution.</td></tr>
+      <tr><td><span class="ui">Language of the report</span></td><td><span class="ui">That of the screen</span> (on opening), <span class="ui">Español</span> or <span class="ui">English</span>. It changes the language of the report and of the copied methods, not that of the interface.</td></tr>
+    </tbody>
+  </table>
+  <p>The four texts and the language of the report are saved in the project and return to their fields when you open it; texts you leave empty do not appear on the cover. Without a project, every time you open the app the language starts at <span class="ui">That of the screen</span>.</p>
+  <p>Below, four badges say what is there: <span class="ui">Calibrated images</span> (Block 2), <span class="ui">Outline and size</span> (Block 3), <span class="ui">Fertility</span> (Block 5) and <span class="ui">Multivariate statistics</span> (Block 6). Each carries a green check mark if its part is computed, or a dot if not. If anything is missing, the app adds: “What is missing appears in the report as "not computed"; you can make it anyway.” This is normal when the study has no overviews: the report comes out without fertility.</p>
+
+  <!-- 7.2 -->
+  <h2 id="s7-2"><span class="num">7.2</span>Make, print and download</h2>
+  <p class="lead">Five buttons: one assembles the report, three take it out of the app, and the last one saves the project.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.75in">Button</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Make the report</span></td><td>Assembles the document with whatever there is at that moment (the “Putting the report together” wait goes through <i>Gallery</i> and <i>Figures</i>) and shows it in the <span class="ui">Preview</span>. With no images open it warns “First open your images.” When it is made, the block is marked as done in the block bar.</td></tr>
+      <tr><td><span class="ui">Print / save as PDF</span></td><td>Opens the browser’s print dialog with the report alone, without the interface. For a PDF, choose <b>Save as PDF</b> as the destination: the text stays vector and can be searched and copied. The page is A4, with margins of 16 mm at top and bottom and 15 mm at the sides.</td></tr>
+      <tr><td><span class="ui">Download (HTML)</span></td><td>Saves the report as a page that opens offline in any browser, with the figures and the gallery pictures inside. It is named after the title, without accents and with underscores: <code>Pollen_morphometry_of_the_simulated_example.html</code> in the example, or <code>palynopro_report.html</code> without a title.</td></tr>
+      <tr><td><span class="ui">Copy the methods</span></td><td>Puts the text of the methods (Section 7.3) on the clipboard, unformatted and with a blank line between paragraphs, ready to paste into a manuscript; the app confirms “Methods copied”.</td></tr>
+      <tr><td><span class="ui">Save the project</span></td><td>The same as <code>Ctrl + S</code> (Section 7.5). It is the only button that works before the report is made.</td></tr>
+    </tbody>
+  </table>
+  <p>The three output buttons are disabled until you make the report. Under the buttons, a note recalls two things: “Figures come out with the colors of the light theme, whatever that of the screen. In the print dialog choose "Save as PDF" to get the file; the text stays vector.”</p>
+  <figure class="w60">
+    <div class="marco"><img src="../img/en/b7-portada.png" alt="The preview of the report: the cover with the title Pollen morphometry of the simulated example, the material, the date November 2, 2026, the simulated-data note, the figures 33 images, 3 groups, 24 grains measured and 100% classification, and the beginning of the material and the methods"></div>
+    <figcaption><b>Figure 7.2.</b> The beginning of the report of the example in the <span class="ui">Preview</span>. Since the data are from the example, the cover says so: “example simulated by the app (not photographs of real plants)”.</figcaption>
+  </figure>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>The report does not remake itself</div>
+    <p>The preview is a snapshot of the study at the moment you pressed <span class="ui">Make the report</span>. If you then change a title, a group, a variable of Block 6 or measure again, the report you see—and the one you print or download—is still the old one. Press <span class="ui">Make the report</span> again before printing.</p>
+  </div>
+
+  <!-- 7.3 -->
+  <h2 id="s7-3"><span class="num">7.3</span>What the report contains</h2>
+  <p class="lead">A cover and nine numbered sections, always in the same order. Whatever is not computed appears as “Not computed.”; nothing is made up.</p>
+  <h3>The cover</h3>
+  <p>At the top, the heading “Pollen morphometry report” and the title. Below, the material, the author and the institution if you wrote them, the date of the day (such as “November 2, 2026”) and, if the study is the example, the simulated-data note. Four figures close the cover: the images analyzed, the groups, the grains measured and, if there are statistics, the accuracy of the classification by grain (the better of the two classifiers, without decimals). In the example: 33 images, 3 groups, 24 grains measured and 100%.</p>
+  <table class="compacta">
+    <caption><b>Table 7.1.</b> The sections of the report</caption>
+    <thead><tr><th style="width:1.75in">Section</th><th>What it contains</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Material</b></td><td>One row per group: <i>Code</i>, <i>Group</i> (the name in the <span class="ui">Groups</span> card of Block 2), <i>One-grain pictures</i>, <i>Overviews</i> and <i>Grains</i>. In the example, each morphotype has 10 one-grain pictures (8 grains, two of them photographed twice) and 1 overview.</td></tr>
+      <tr><td><b>2. Methods</b></td><td>The paragraphs written out with the parameters used (below).</td></tr>
+      <tr><td><b>3. Size and ornamentation by group</b></td><td>Mean ± standard deviation among grains of ten fixed variables: body diameter, major and minor Feret, elongation, circularity, spines on the outline, mean spine height, spine density, lumen diameter and lumen density, with the number of grains in each group.</td></tr>
+      <tr><td><b>4. Comparison between groups</b></td><td>The table of Block 6 with the variables chosen there (mean ± standard deviation with its Tukey letter, F and the Holm-adjusted p) and a paragraph with the PERMANOVA and the two classifiers, with κ and the chance accuracy.</td></tr>
+      <tr><td><b>5. Fertility</b></td><td>By group: overviews, grains counted, collapsed grains, percentage and 95% Wilson interval, and the χ² test.</td></tr>
+      <tr><td><b>6. Figures</b></td><td>All the figures of Blocks 3 to 6, numbered, in two columns (the wide ones span both), as vectors and with the colors of the light theme. With the example there are 14.</td></tr>
+      <tr><td><b>7. Measured grains, one per group</b></td><td>A picture of each group with the outline with spines, the body and the spine tips drawn over it, its name and its body diameter.</td></tr>
+      <tr><td><b>8. Limitations</b></td><td>Five fixed caveats about what the method cannot tell.</td></tr>
+      <tr><td><b>9. References</b></td><td>The 22 works of the methods and the citation of the program, in alphabetical order.</td></tr>
+    </tbody>
+  </table>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b7-seccion.png" alt="Sections 4 and 5 of the report of the example: the table comparing the groups with the Tukey letters, the paragraph with the PERMANOVA and the classification, and the fertility table with the chi-square test"></div>
+    <figcaption><b>Figure 7.3.</b> Sections 4 and 5 of the report of the example. In fertility, morphotype B has 5 collapsed grains out of 13 (38.5%, 95% CI 17.7 to 64.5%), and the groups differ (χ² = 11.47, df = 2, p = 0.003).</figcaption>
+  </figure>
+
+  <h3>The methods</h3>
+  <p>Section 2 is the most useful part of the report: a draft of the methods that writes down <i>what was really done</i>, with the numbers you used and each method cited to its source. It has up to six paragraphs:</p>
+  <ul>
+    <li><b>Images and calibration.</b> How many micrographs (one-grain and overviews) and groups; the pixel-size rule with the width of the reference frame; in how many images with a bar its length gave a round value with an error below 4%; the cropping of the caption and the area-averaging resampling to the common pixel (Wolberg 1990). In the example: “… in 33 of the 33 images with a bar … to a common pixel of 0.1 µm”.</li>
+    <li><b>Outline and size.</b> Otsu’s threshold (1979), the 720 directions, the opening of the profile (Serra 1982) with the largest base of a spine, the Feret diameters by rotating calipers (Shamos 1978) on the convex hull (Andrew 1979), the cut-outline limit and the grains that resulted from averaging the pictures (24).</li>
+    <li><b>Ornamentation.</b> The least height of a spine, the lumina by local threshold (Niblack 1986) with the radius and the standard deviations you set, and the texture by gray-level co-occurrence (Haralick et al. 1973).</li>
+    <li><b>Fertility</b>, only if you counted overviews: the minimum and maximum diameters, the solidity threshold, the Wilson interval (1927) and the χ² test.</li>
+    <li><b>Statistics</b>, only if you compared the groups: analysis of variance, Kruskal and Wallis (1952), Holm (1979) over the number of variables, Tukey (1949), principal components (Pearson 1901; Hotelling 1933), PERMANOVA (Anderson 2001) with its permutations, linear discriminant analysis (Fisher 1936), random forest (Breiman 2001) with its trees—“500 trees, 300 in each model of the validation” with the default values—, the leave-one-grain-out validation and Cohen’s κ (1960). If some grain was left out for lacking a value in any of the variables, the paragraph says so at the end (“… grains without a value in some of the variables were left out.”).</li>
+    <li>A closing sentence with the version of the program: “All computations were done with PalynoPro 1.0.0 (Barrera-Guzmán 2026)…”.</li>
+  </ul>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>It is a draft: complete it</div>
+    <p>The app writes <i>how</i> things were measured, not what it cannot know: the origin of the material, how many plants and flowers were sampled, how the grains were prepared (acetolysis, dehydration, sputter coating), and the microscope, voltage and detector. Add that, remove what you will not report and adapt the wording to the journal. Report also the spine-height limitation of Section 8 (below): it is part of the method.</p>
+  </div>
+
+  <h3>The gallery and the limitations</h3>
+  <p>The gallery takes, from each group, the first one-grain picture that is included, measured, free of warnings (cut outline or enlarged) and open in the session, and draws it with the outline with spines, the body and the spine tips, as in the review of Block 3. In the example they are <code>01_A.png</code> (body 59.6 µm), <code>01_B.png</code> (72.0 µm) and <code>01_C.png</code> (64.2 µm). If you opened a project without opening the folder of the pictures again, it says instead “The images are not open in this session.”</p>
+  <p>The limitations are fixed, because they belong to the method, not to your data: the body and the spines are measured on the two-dimensional silhouette; the Feret diameters amount to the polar and equatorial axes only in equatorial view; spine height, measured from the tip to the chord joining its two feet, comes out about one pixel short, because the finest tip of the cone does not fill a pixel (with simulated grains at 0.1 µm per pixel, by 3 to 6%, median 4%; more for short spines or spines touching at the base); fertility by solidity is a morphological proxy, not a viability test; and images enlarged to the common pixel give less reliable fine measurements.</p>
+  <figure class="w50">
+    <div class="marco"><img src="../img/en/b7-galeria.png" alt="Section 7 of the report with three measured simulated grains, one per morphotype"></div>
+    <figcaption><b>Figure 7.4.</b> The gallery of the report of the example: one grain per morphotype, with what the app measured drawn over it.</figcaption>
+  </figure>
+
+  <!-- 7.4 -->
+  <h2 id="s7-4"><span class="num">7.4</span>The figures, the studio and the editor</h2>
+  <p class="lead">Every figure of Blocks 3 to 6 has the same four tools in its header: two quick downloads and two ways of editing it.</p>
+  <p>The <span class="ui">SVG</span> and <span class="ui">PNG</span> buttons save files named after the title of the figure, without accents and with underscores (<code>Biplot_grains_and_variables.svg</code>), and they come out with the colors of the light theme even if you work in the dark one: the colors, the lines and the lettering are written inside the file, which does not depend on the app to be displayed. Whatever you changed with the ✎ editor goes inside too, because the editor writes onto the figure itself.</p>
+  <figure class="w50">
+    <div class="marco"><img src="../img/en/b7-figura.png" alt="The biplot of Block 6 with its header: the title, the SVG and PNG buttons, the editor pencil and the figure studio button">
+      <span class="marca" style="left:60.9%;top:2.4%">1</span>
+      <span class="marca" style="left:73.7%;top:2.4%">2</span>
+      <span class="marca" style="left:83.9%;top:3.2%">3</span>
+      <span class="marca" style="left:91.3%;top:3%">4</span>
+    </div>
+    <figcaption><b>Figure 7.5.</b> A figure of the app (the biplot of Block 6) with its tools.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>SVG.</b> Downloads the figure as a vector: it can be enlarged without losing sharpness and edited in any drawing program.</li>
+    <li><span class="n">2</span><b>PNG.</b> Downloads the figure as an image, at three times its size on screen.</li>
+    <li><span class="n">3</span><b>✎ editor.</b> Opens the fine-editing panel of that figure.</li>
+    <li><span class="n">4</span><b>Figure studio.</b> Opens the figure full screen to adjust and export it.</li>
+  </ul>
+
+  <h3>The figure studio</h3>
+  <p>The button with the ruler and pencil opens the <b>figure studio</b>, the same in every application of the suite. You can also reach it from the search (<code>Ctrl + K</code>): the figures appear among the results and open directly in the studio, or from the <span class="ui">In this block</span> index, with the button next to the sections that have figures.</p>
+  <figure>
+    <div class="marco"><img src="../img/en/b7-estudio.png" alt="The figure studio full screen with the biplot in the center, the toolbar at the top and the controls on the right"></div>
+    <figcaption><b>Figure 7.6.</b> The biplot in the figure studio. The figure is shown at its export size, with the dotted guide of the one-and-a-half-column width (114 mm); below it, its final size: 85 × 65.5 mm at 600 dpi, 2008 × 1547 pixels. On the right, the inspector, with the fine editing of the ✎ editor docked.</figcaption>
+  </figure>
+  <p>The top bar undoes and redoes, compares before and after with a curtain, zooms the figure in and out (<span class="ui">Fit</span> makes it the size of the screen, with the zoom percentage), shows it at actual size, applies one-click <span class="ui">Presets</span> (and saves your own), copies the image to the clipboard and, with <span class="ui">Export</span>, downloads it at the width of one column, one and a half columns, two columns or a free width, in millimeters or inches, at 300, 600 or 1200 dpi, as PNG, SVG, vector PDF or TIFF, with a white or transparent background. The buttons on the right change the place of the inspector (right, left or floating) and show the shortcuts; <span class="ui">Close studio</span> returns to the app with the figure where it was.</p>
+  <p>The inspector brings together, in collapsible sections, <span class="ui">Figure settings</span> (the figures of PalynoPro have no options of their own, and the studio says so), <span class="ui">Fine editing of this figure (the app’s ✎)</span>, which is the editor below docked, and the studio’s own tools: scientific palettes with color-blindness simulation (<span class="ui">Palette and color</span>), text size and line width tuned to the output size, and the legend (inside the plot in eight places, outside, below or hidden; it can also be dragged). <span class="ui">Search a control…</span> finds any setting by its name. Double-clicking a text in the figure lets you change it right there. The studio remembers its settings in this browser.</p>
+
+  <h3>The ✎ editor</h3>
+  <p>The ✎ button opens, without leaving the page, a floating panel that works on that figure, titled “Edit this figure” with the name of the figure. It has six tabs:</p>
+      <ul>
+        <li><span class="ui">General</span>: title, subtitle and footnote inside the figure, with their size and alignment; the <span class="ui">Font family</span>, the <span class="ui">Size of every text</span>, the <span class="ui">Color of every text</span>, the <span class="ui">Line weight</span>, the <span class="ui">Point size</span>, the <span class="ui">Background</span> and a <span class="ui">Border around the whole figure</span>.</li>
+        <li><span class="ui">Axes &amp; grid</span>: the axis titles, their numbers, and the color and width of the axes and the grid.</li>
+        <li><span class="ui">Series</span>: each color of the figure with the name of its group: color, width, dash, opacity or hiding it.</li>
+        <li><span class="ui">Legend</span>: showing or hiding it, its place and its form.</li>
+        <li><span class="ui">Texts</span>: each text one by one (wording, size, bold, italic, color or hiding it); this is where you shorten, for example, a long variable name in the biplot.</li>
+        <li><span class="ui">Annotations</span>: notes, arrows, reference lines, shaded bands and the panel letter.</li>
+      </ul>
+  <figure class="w50">
+    <div class="marco"><img src="../img/en/b7-editor.png" alt="The figure editor panel on its General tab: title, subtitle and footnote, font and stroke, background and border"></div>
+    <figcaption><b>Figure 7.7.</b> The ✎ editor of the biplot on the <span class="ui">General</span> tab.</figcaption>
+  </figure>
+  <p>At the foot of the panel, <span class="ui">Undo everything on this figure</span>, <span class="ui">Copy the style to every figure</span> and <span class="ui">Export</span>. The edits are saved figure by figure <b>in this browser</b>, not in the project, and are applied again every time the figure is redrawn—on recomputing, on changing the language or the theme—: texts are recognized by their original wording and colors by their original value. If you open the project on another computer, the figures come out without your edits.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>The fonts are those of the computer</div>
+    <p>The figures use the fonts installed on your computer; the app downloads none. An SVG you send to someone else may be displayed with a similar but different font on their computer. For it to look the same everywhere, export it as vector PDF or PNG from the studio.</p>
+  </div>
+
+  <!-- 7.5 -->
+  <h2 id="s7-5"><span class="num">7.5</span>Saving and resuming the project</h2>
+  <p class="lead">The project is a small <code>.json</code> file with everything needed to see the results again and repeat the analysis, except the pictures.</p>
+  <p>It is saved with <code>Ctrl + S</code> from any block or with <span class="ui">Save the project</span> in Block 7. The file is named after the title of the report followed by <code>.palynopro.json</code> (<code>project.palynopro.json</code> if there is no title); the app confirms “Project saved:” with the name and reminds you that it does not carry the results of Block 6 or the ✎ edits. It is opened with <code>Ctrl + O</code> or with <span class="ui">Open a project</span> on the home page; the app confirms “Project opened:”, reminds you that “Compare the groups” has to be repeated, and takes you to Block 2.</p>
+  <table class="compacta">
+    <caption><b>Table 7.2.</b> What the project saves</caption>
+    <thead><tr><th style="width:50%">Saved</th><th>Not saved</th></tr></thead>
+    <tbody>
+      <tr><td>The details of the report (title, material, author, institution) and its language</td><td>The pictures: only their name and a thumbnail</td></tr>
+      <tr><td>All the settings of Blocks 2 to 6, with the chosen variables and the seed (those of Block 6 show in their fields on opening)</td><td>The comparison of Block 6: it is repeated identically with <span class="ui">Compare the groups</span></td></tr>
+      <tr><td>The list of images with their group and grain (and whether they came from the index or were typed in the table), their magnification, their calibration (with the replacement of a contradicted pixel size), their bar, their kind, their notes and their exclusions; the names of the groups</td><td>The report: it is made again</td></tr>
+      <tr><td>The measurements of each picture (Blocks 3 and 4) and the count of the overviews (Block 5)</td><td>The edits of the ✎ editor (they stay in the browser)</td></tr>
+    </tbody>
+  </table>
+  <p>On opening a project, the tables and the figures of Blocks 2 to 5 come back. To see the pictures again, review them on the image or have the gallery of the report, open the same folder in Block 2: the app joins each picture to its row by its name and keeps its groups, calibration, exclusions and results (“… of the project opened again”). Only if the folder brings images that were not in the set does it ask first, because adding them clears the results and you have to measure, count and compare again (Appendix D). Without opening the folder you can consult the tables and the figures; the viewers will say “Open the folder again to see the picture.” With the simulated example, which the app draws, the pictures come back by themselves.</p>
+  <div class="caja aviso">
+    <div class="caja-t"><span class="ico">!</span>Save before closing</div>
+    <p>The app saves nothing on its own: every time it opens it starts empty. If you try to close the tab with images open, the browser asks you to confirm. Save the project at the end of each session and, together with it, the folder of the pictures as it was: if you rename a picture, the project no longer finds it.</p>
+  </div>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Before handing in</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:44%"><b>If</b> you changed something after making the report…</td><td>press <span class="ui">Make the report</span> again before printing or downloading.</td></tr>
+      <tr><td><b>If</b> you use the written-out methods…</td><td>complete the material, the sampling, the preparation and the equipment, which the app does not know.</td></tr>
+      <tr><td><b>If</b> the journal asks for a figure width and resolution…</td><td>export from the studio at that width (one column, one and a half, two) and at 300 or 600 dpi, or as vector PDF.</td></tr>
+      <tr><td><b>If</b> the report goes in another language…</td><td>choose <span class="ui">English</span> or <span class="ui">Español</span> in <span class="ui">Language of the report</span> and make it again; for the figures to change language too, change that of the interface (<span class="ui">ES</span> · <span class="ui">EN</span>).</td></tr>
+      <tr><td><b>Always</b>…</td><td>save the project together with the folder of the pictures: it is the record of how each number was obtained.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">These are guides for handing in, not laws: the instructions of the journal or of your graduate program come first.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>When something goes wrong</div>
+    <p><b>“First open your images.”</b> There are no images: open a folder or the example in Block 2. <b>A section says “Not computed.”</b> Its block is missing: measure (Block 3), count (Block 5) or compare (Block 6), and make the report again. <b>Section 6 says “There are no figures yet.”</b> No block has drawn a figure yet. <b>The gallery says “The images are not open in this session.”</b> You opened a project: open the folder of the pictures again in Block 2. <b>The grain of a group is missing from the gallery.</b> All its pictures have some warning (cut outline or enlarged) or are excluded. <b>The methods are not copied.</b> The browser did not allow the use of the clipboard (it happens in some browsers when the app is opened with a double click); download the report as HTML and copy from there. <b>The figures of the report come out in Spanish</b> even though the report is in English. The figures are taken as they are on screen: change the language of the interface and make the report again. <b>“Could not open the project: The file is not a PalynoPro project.”</b> The JSON belongs to another app or is not a project.</p>
+  </div>
+</section>
+
+</body>
+</html>

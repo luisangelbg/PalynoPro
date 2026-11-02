@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · Manual de usuario · Capítulo 7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-7" data-pestana="7" data-orden="7" style="--acento: var(--b7)">
+  <div class="cap-apertura">
+    <div class="cap-num">7</div>
+    <div class="cap-etiqueta">Capítulo siete · Bloque 7</div>
+    <h1 data-corto="Informe">Informe</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">El final del recorrido: lo que se lleva a la tesis, al artículo o al cuaderno de laboratorio. El bloque arma en un solo documento el material, los métodos redactados con los parámetros que usaste y sus citas, los cuadros, todas las figuras, un grano medido de cada grupo, las limitaciones y las referencias. Este capítulo explica también las figuras —sus descargas, el estudio y el editor ✎— y cómo guardar el proyecto para retomarlo.</p>
+    <div class="cap-franja"><span class="k3"></span><span class="k5"></span><span class="k6"></span><span class="k7"></span></div>
+    <ul class="cap-contenido">
+      <li><b>7.1</b>Datos del informe</li>
+      <li><b>7.2</b>Generar, imprimir y descargar</li>
+      <li><b>7.3</b>Lo que lleva el informe</li>
+      <li><b>7.4</b>Las figuras, el estudio y el editor</li>
+      <li><b>7.5</b>Guardar y retomar el proyecto</li>
+    </ul>
+  </div>
+
+  <p>El Bloque 7 tiene dos tarjetas: <span class="ui">Datos del informe</span>, con los campos y los botones, y <span class="ui">Vista previa</span>, que aparece cuando generas el informe. Bajo el título, la app lo resume: «Métodos, resultados, figuras y galería en un documento para imprimir o guardar en PDF.». Nada se calcula aquí por primera vez: el informe toma lo que ya calcularon los bloques 2 a 6, con los ajustes que dejaste en cada uno. Las capturas de este capítulo se hicieron con el ejemplo simulado medido, contado y comparado, con el título «Morfometría polínica del ejemplo simulado».</p>
+
+  <!-- 7.1 -->
+  <h2 id="s7-1"><span class="num">7.1</span>Datos del informe</h2>
+  <p class="lead">Cuatro campos de texto para la portada del informe, el idioma en que se escribe y una lista que dice qué partes del estudio ya están calculadas.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b7-datos.png" alt="La tarjeta Datos del informe con el título y el material del ejemplo escritos, el autor y la institución vacíos, el idioma El de la pantalla, las cuatro palomitas verdes y los cinco botones"></div>
+    <figcaption><b>Figura 7.1.</b> <span class="ui">Datos del informe</span> después de generar el informe del ejemplo: las cuatro partes del estudio calculadas y los cinco botones activos.</figcaption>
+  </figure>
+  <table class="compacta">
+    <thead><tr><th style="width:1.5in">Campo</th><th>Qué lleva</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Título</span></td><td>El título del informe. Vacío, muestra como guía «Morfometría polínica de …», y el informe sale con «Morfometría polínica cuantitativa». También da nombre a los archivos que descargas.</td></tr>
+      <tr><td><span class="ui">Especie o material</span></td><td>Lo que se estudió; en la portada del informe aparece como «Material».</td></tr>
+      <tr><td><span class="ui">Autor(a)</span></td><td>Quien hizo el estudio.</td></tr>
+      <tr><td><span class="ui">Institución</span></td><td>El laboratorio o la institución.</td></tr>
+      <tr><td><span class="ui">Idioma del informe</span></td><td><span class="ui">El de la pantalla</span> (al abrir), <span class="ui">Español</span> o <span class="ui">English</span>. Cambia el idioma del informe y de los métodos que se copian, no el de la interfaz.</td></tr>
+    </tbody>
+  </table>
+  <p>Los cuatro textos y el idioma del informe se guardan en el proyecto y vuelven a sus campos al abrirlo; los textos que dejes vacíos no aparecen en la portada. Sin proyecto, cada vez que abres la app el idioma empieza en <span class="ui">El de la pantalla</span>.</p>
+  <p>Debajo, cuatro insignias dicen qué hay: <span class="ui">Imágenes calibradas</span> (Bloque 2), <span class="ui">Contorno y tamaño</span> (Bloque 3), <span class="ui">Fertilidad</span> (Bloque 5) y <span class="ui">Estadística multivariada</span> (Bloque 6). Cada una lleva una palomita verde si su parte está calculada, o un punto si no. Si falta alguna, la app añade: «Lo que falta aparece en el informe como «sin calcular»; puedes generarlo igual.». Es lo normal cuando el estudio no tiene panorámicas: el informe sale sin fertilidad.</p>
+
+  <!-- 7.2 -->
+  <h2 id="s7-2"><span class="num">7.2</span>Generar, imprimir y descargar</h2>
+  <p class="lead">Cinco botones: uno arma el informe, tres lo sacan de la app y el último guarda el proyecto.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.75in">Botón</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Generar el informe</span></td><td>Arma el documento con lo que haya en ese momento (la espera «Armando el informe» pasa por <i>Galería</i> y <i>Figuras</i>) y lo muestra en la <span class="ui">Vista previa</span>. Sin imágenes abiertas avisa «Primero abre tus imágenes.». Al generarlo, el bloque se marca como hecho en la barra de bloques.</td></tr>
+      <tr><td><span class="ui">Imprimir / guardar como PDF</span></td><td>Abre el diálogo de impresión del navegador con el informe solo, sin la interfaz. Para un PDF, elige <b>Guardar como PDF</b> como destino: el texto queda vectorial y se puede buscar y copiar. La hoja es A4, con márgenes de 16 mm arriba y abajo y 15 mm a los lados.</td></tr>
+      <tr><td><span class="ui">Descargar (HTML)</span></td><td>Guarda el informe como una página que se abre sin conexión en cualquier navegador, con las figuras y las fotos de la galería dentro. Se llama como el título, sin acentos y con guiones bajos: <code>Morfometria_polinica_del_ejemplo_simulado.html</code> en el ejemplo, o <code>palynopro_informe.html</code> sin título.</td></tr>
+      <tr><td><span class="ui">Copiar los métodos</span></td><td>Deja en el portapapeles el texto de los métodos (sección 7.3), sin formato y con un renglón en blanco entre párrafos, listo para pegarse en un manuscrito; la app confirma «Métodos copiados».</td></tr>
+      <tr><td><span class="ui">Guardar el proyecto</span></td><td>Lo mismo que <code>Ctrl + S</code> (sección 7.5). Es el único botón que funciona antes de generar el informe.</td></tr>
+    </tbody>
+  </table>
+  <p>Los tres botones de salida están apagados hasta que generas el informe. Bajo los botones, una nota recuerda dos cosas: «Las figuras salen con los colores del tema claro, sea cual sea el de la pantalla. En el diálogo de impresión elige «Guardar como PDF» para obtener el archivo; el texto queda vectorial.».</p>
+  <figure class="w60">
+    <div class="marco"><img src="../img/b7-portada.png" alt="La vista previa del informe: la portada con el título Morfometría polínica del ejemplo simulado, el material, la fecha, la nota de datos simulados, las cifras 33 imágenes, 3 grupos, 24 granos medidos y 100 % de clasificación, y el comienzo del material y los métodos"></div>
+    <figcaption><b>Figura 7.2.</b> El comienzo del informe del ejemplo en la <span class="ui">Vista previa</span>. Como los datos son del ejemplo, la portada lo dice: «ejemplo simulado por la app (no son fotos de plantas reales)».</figcaption>
+  </figure>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>El informe no se rehace solo</div>
+    <p>La vista previa es una fotografía del estudio en el momento en que pulsaste <span class="ui">Generar el informe</span>. Si después cambias un título, un grupo, una variable del Bloque 6 o vuelves a medir, el informe que ves —y el que imprimes o descargas— sigue siendo el anterior. Vuelve a pulsar <span class="ui">Generar el informe</span> antes de imprimir.</p>
+  </div>
+
+  <!-- 7.3 -->
+  <h2 id="s7-3"><span class="num">7.3</span>Lo que lleva el informe</h2>
+  <p class="lead">Una portada y nueve secciones numeradas, siempre en el mismo orden. Lo que no está calculado aparece como «Sin calcular.»; nada se inventa.</p>
+  <h3>La portada</h3>
+  <p>Arriba, el rótulo «Informe de morfometría polínica» y el título. Debajo, el material, el autor y la institución si los escribiste, la fecha del día y, si el estudio es el ejemplo, la nota de datos simulados. Cierran la portada cuatro cifras: las imágenes analizadas, los grupos, los granos medidos y, si hay estadística, el acierto de la clasificación por grano (el mejor de los dos clasificadores, sin decimales). En el ejemplo: 33 imágenes, 3 grupos, 24 granos medidos y 100 %.</p>
+  <table class="compacta">
+    <caption><b>Tabla 7.1.</b> Las secciones del informe</caption>
+    <thead><tr><th style="width:1.75in">Sección</th><th>Qué lleva</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Material</b></td><td>Una fila por grupo: <i>Código</i>, <i>Grupo</i> (el nombre de la tarjeta <span class="ui">Grupos</span> del Bloque 2), <i>Fotos de un grano</i>, <i>Panorámicas</i> y <i>Granos</i>. En el ejemplo, cada morfotipo tiene 10 fotos de un grano (8 granos, dos de ellos fotografiados dos veces) y 1 panorámica.</td></tr>
+      <tr><td><b>2. Métodos</b></td><td>Los párrafos redactados con los parámetros usados (abajo).</td></tr>
+      <tr><td><b>3. Tamaño y ornamentación por grupo</b></td><td>Media ± desviación estándar entre granos de diez variables fijas: diámetro del cuerpo, Feret mayor y menor, elongación, circularidad, espinas en el contorno, altura media de espina, densidad de espinas, diámetro de lumen y densidad de lúmenes, con el número de granos de cada grupo.</td></tr>
+      <tr><td><b>4. Comparación entre grupos</b></td><td>La tabla del Bloque 6 con las variables elegidas allí (media ± desviación con su letra de Tukey, F y p ajustada por Holm) y un párrafo con la PERMANOVA y los dos clasificadores, con κ y el acierto al azar.</td></tr>
+      <tr><td><b>5. Fertilidad</b></td><td>Por grupo: panorámicas, granos contados, colapsados, porcentaje e intervalo de Wilson del 95 %, y la prueba χ².</td></tr>
+      <tr><td><b>6. Figuras</b></td><td>Todas las figuras de los bloques 3 a 6, numeradas, en dos columnas (las anchas ocupan las dos), en vector y con los colores del tema claro. Con el ejemplo son 14.</td></tr>
+      <tr><td><b>7. Granos medidos, uno por grupo</b></td><td>Una foto de cada grupo con el contorno con espinas, el cuerpo y las puntas de espina dibujados encima, su nombre y su diámetro del cuerpo.</td></tr>
+      <tr><td><b>8. Limitaciones</b></td><td>Cinco advertencias fijas sobre lo que el método no puede decir.</td></tr>
+      <tr><td><b>9. Referencias</b></td><td>Las 22 obras de los métodos y la cita del programa, en orden alfabético.</td></tr>
+    </tbody>
+  </table>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b7-seccion.png" alt="Las secciones 4 y 5 del informe del ejemplo: la tabla de comparación entre grupos con las letras de Tukey, el párrafo de la PERMANOVA y la clasificación, y la tabla de fertilidad con la prueba chi cuadrada"></div>
+    <figcaption><b>Figura 7.3.</b> Las secciones 4 y 5 del informe del ejemplo. En la fertilidad, el morfotipo B tiene 5 granos colapsados de 13 (38.5 %, IC 95 % de 17.7 a 64.5 %), y los grupos difieren (χ² = 11.47, gl = 2, p = 0.003).</figcaption>
+  </figure>
+
+  <h3>Los métodos</h3>
+  <p>La sección 2 es lo más útil del informe: un borrador de métodos que escribe <i>lo que de verdad se hizo</i>, con los números que usaste y cada método citado a su fuente. Tiene hasta seis párrafos:</p>
+  <ul>
+    <li><b>Imágenes y calibración.</b> Cuántas micrografías (de un grano y panorámicas) y grupos; la regla del tamaño del píxel con el ancho del cuadro de referencia; en cuántas imágenes con barra su longitud dio un valor redondo con un error menor a 4 %; el recorte del rótulo y el remuestreo por áreas al píxel común (Wolberg 1990). En el ejemplo: «… en 33 de las 33 imágenes con barra … a un píxel común de 0.1 µm».</li>
+    <li><b>Contorno y tamaño.</b> El umbral de Otsu (1979), las 720 direcciones, la apertura del perfil (Serra 1982) con la base máxima de una espina, los Feret por calibradores rotantes (Shamos 1978) sobre la envolvente convexa (Andrew 1979), el límite de contorno cortado y los granos que resultaron de promediar las fotos (24).</li>
+    <li><b>Ornamentación.</b> La altura mínima de una espina, los lúmenes por umbral local (Niblack 1986) con el radio y las desviaciones que fijaste, y la textura por coocurrencia de grises (Haralick et al. 1973).</li>
+    <li><b>Fertilidad</b>, sólo si contaste panorámicas: los diámetros mínimo y máximo, el umbral de solidez, el intervalo de Wilson (1927) y la prueba χ².</li>
+    <li><b>Estadística</b>, sólo si comparaste los grupos: análisis de varianza, Kruskal y Wallis (1952), Holm (1979) sobre el número de variables, Tukey (1949), componentes principales (Pearson 1901; Hotelling 1933), PERMANOVA (Anderson 2001) con sus permutaciones, discriminante lineal (Fisher 1936), bosque aleatorio (Breiman 2001) con sus árboles —«500 árboles, 300 en cada modelo de la validación» con los valores por omisión—, la validación dejando fuera un grano y la κ de Cohen (1960). Si algún grano quedó fuera por no tener valor en alguna de las variables, el párrafo lo dice al final («Se dejaron fuera … granos sin valor en alguna de las variables.»).</li>
+    <li>Una frase final con la versión del programa: «Todos los cálculos se hicieron con PalynoPro 1.0.0 (Barrera-Guzmán 2026)…».</li>
+  </ul>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>Es un borrador: complétalo</div>
+    <p>La app escribe <i>cómo</i> se midió, no lo que no sabe: de dónde vino el material, cuántas plantas y flores se muestrearon, cómo se prepararon los granos (acetólisis, deshidratación, metalizado), qué microscopio, a qué voltaje y con qué detector. Añade eso, quita lo que no vayas a informar y ajusta la redacción a la revista. Informa también la limitación de la altura de espina que trae la sección 8 (abajo): es parte del método.</p>
+  </div>
+
+  <h3>La galería y las limitaciones</h3>
+  <p>La galería toma, de cada grupo, la primera foto de un grano incluida, medida, sin avisos (ni contorno cortado ni ampliada) y abierta en la sesión, y la dibuja con el contorno con espinas, el cuerpo y las puntas de espina, como en la revisión del Bloque 3. En el ejemplo son <code>01_A.png</code> (cuerpo 59.6 µm), <code>01_B.png</code> (72.0 µm) y <code>01_C.png</code> (64.2 µm). Si abriste un proyecto y no volviste a abrir la carpeta de las fotos, en su lugar dice «Las imágenes no están abiertas en esta sesión.».</p>
+  <p>Las limitaciones son fijas, porque son del método y no de tus datos: el cuerpo y las espinas se miden sobre la silueta en dos dimensiones; los Feret equivalen a los ejes polar y ecuatorial sólo en vista ecuatorial; la altura de espina, medida de la punta a la cuerda que une sus dos pies, sale menor en cerca de un píxel, porque la punta más fina del cono no llena un píxel (con granos simulados a 0.1 µm por píxel, de 3 a 6 %, mediana 4 %, y más en espinas cortas o que se tocan en la base); la fertilidad por solidez es una aproximación morfológica, no una prueba de viabilidad; y las imágenes ampliadas al píxel común dan medidas finas menos fiables.</p>
+  <figure class="w60">
+    <div class="marco"><img src="../img/b7-galeria.png" alt="La sección 7 del informe con tres granos simulados medidos, uno por morfotipo,"></div>
+    <figcaption><b>Figura 7.4.</b> La galería del informe del ejemplo: un grano por morfotipo, con lo que midió la app dibujado encima.</figcaption>
+  </figure>
+
+  <!-- 7.4 -->
+  <h2 id="s7-4"><span class="num">7.4</span>Las figuras, el estudio y el editor</h2>
+  <p class="lead">Cada figura de los bloques 3 a 6 tiene en su cabecera las mismas cuatro herramientas: dos descargas rápidas y dos maneras de editarla.</p>
+  <p>Los botones <span class="ui">SVG</span> y <span class="ui">PNG</span> guardan archivos que se llaman como el título de la figura, sin acentos y con guiones bajos (<code>Biplot_granos_y_variables.svg</code>), y salen con los colores del tema claro aunque trabajes en el oscuro: los colores, las líneas y las letras se escriben dentro del archivo, que no depende de la app para verse. Lo que hayas cambiado con el editor ✎ también va dentro, porque el editor escribe sobre la figura misma.</p>
+  <figure class="w50">
+    <div class="marco"><img src="../img/b7-figura.png" alt="El biplot del Bloque 6 con su cabecera: el título, los botones SVG y PNG, el lápiz del editor y el botón del estudio de figuras">
+      <span class="marca" style="left:60.9%;top:2.4%">1</span>
+      <span class="marca" style="left:73.7%;top:2.4%">2</span>
+      <span class="marca" style="left:83.9%;top:3.2%">3</span>
+      <span class="marca" style="left:91.3%;top:3%">4</span>
+    </div>
+    <figcaption><b>Figura 7.5.</b> Una figura de la app (el biplot del Bloque 6) con sus herramientas.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>SVG.</b> Descarga la figura como vector: se agranda sin perder nitidez y se edita en cualquier programa de dibujo.</li>
+    <li><span class="n">2</span><b>PNG.</b> Descarga la figura como imagen, al triple de su tamaño en pantalla.</li>
+    <li><span class="n">3</span><b>Editor ✎.</b> Abre el panel de edición fina de esa figura.</li>
+    <li><span class="n">4</span><b>Estudio de figuras.</b> Abre la figura a pantalla completa para ajustarla y exportarla.</li>
+  </ul>
+
+  <h3>El estudio de figuras</h3>
+  <p>El botón de la regla y el lápiz abre el <b>estudio de figuras</b>, el mismo en todas las aplicaciones de la suite. También se llega a él desde la búsqueda (<code>Ctrl + K</code>): las figuras aparecen entre los resultados y se abren directamente en el estudio, o desde el índice <span class="ui">En este bloque</span>, con el botón que acompaña a las secciones que tienen figuras.</p>
+  <figure>
+    <div class="marco"><img src="../img/b7-estudio.png" alt="El estudio de figuras a pantalla completa con el biplot en el centro, la barra de herramientas arriba y los controles a la derecha"></div>
+    <figcaption><b>Figura 7.6.</b> El biplot en el estudio de figuras. La figura se ve a su tamaño de exportación, con la guía punteada del ancho de columna y media (114 mm); debajo, su tamaño final: 85 × 65.5 mm a 600 ppp, 2008 × 1547 píxeles. A la derecha, el inspector, con la edición fina del editor ✎ acoplada.</figcaption>
+  </figure>
+  <p>La barra de arriba deshace y rehace, compara el antes y el ahora con una cortina, acerca y aleja la figura (<span class="ui">Ajustar</span> la deja del tamaño de la pantalla, con el porcentaje de acercamiento), la muestra a tamaño real, aplica <span class="ui">Preajustes</span> de un clic (y guarda los tuyos), copia la imagen al portapapeles y, con <span class="ui">Exportar</span>, la descarga al ancho de una columna, de columna y media, de dos columnas o a uno libre, en milímetros o pulgadas, a 300, 600 o 1200 ppp, en PNG, SVG, PDF vectorial o TIFF, con fondo blanco o transparente. Los botones de la derecha cambian el lugar del inspector (a la derecha, a la izquierda o flotante) y muestran los atajos; <span class="ui">Cerrar estudio</span> regresa a la app con la figura donde estaba.</p>
+  <p>El inspector reúne, en secciones plegables, <span class="ui">Ajustes de la figura</span> (las figuras de PalynoPro no traen opciones propias, y el estudio lo dice), <span class="ui">Edición fina de esta figura (✎ de la app)</span>, que es el editor de abajo acoplado, y las herramientas propias del estudio: paletas científicas con simulación de daltonismo, el tamaño del texto y el grosor de las líneas pensados para el tamaño de salida y la leyenda (dentro de la gráfica en ocho lugares, fuera, debajo u oculta; también se arrastra). <span class="ui">Buscar un control…</span> encuentra cualquier ajuste por su nombre. Un doble clic sobre un texto de la figura lo deja cambiar ahí mismo. El estudio recuerda sus ajustes en este navegador.</p>
+
+  <h3>El editor ✎</h3>
+  <p>El botón ✎ abre, sin salir de la página, un panel flotante que trabaja sobre esa figura, con el título «Editar esta figura» y el nombre de la figura. Tiene seis pestañas:</p>
+      <ul>
+        <li><span class="ui">General</span>: título, subtítulo y nota al pie dentro de la figura, con su tamaño y alineación; la <span class="ui">Familia tipográfica</span>, el <span class="ui">Tamaño de todos los textos</span>, el <span class="ui">Color de todos los textos</span>, el <span class="ui">Grosor de las líneas</span>, el <span class="ui">Tamaño de los puntos</span>, el <span class="ui">Fondo</span> y un <span class="ui">Marco alrededor de toda la figura</span>.</li>
+        <li><span class="ui">Ejes y rejilla</span>: los títulos de los ejes, sus números, el color y el grosor de los ejes y de la rejilla.</li>
+        <li><span class="ui">Series</span>: cada color de la figura con el nombre de su grupo: color, grosor, trazo, opacidad u ocultarla.</li>
+        <li><span class="ui">Leyenda</span>: mostrarla u ocultarla, su lugar y su forma.</li>
+        <li><span class="ui">Textos</span>: cada texto uno por uno (redacción, tamaño, negrita, cursiva, color u ocultarlo); aquí se acorta, por ejemplo, un nombre de variable largo del biplot.</li>
+        <li><span class="ui">Anotaciones</span>: notas, flechas, líneas de referencia, bandas sombreadas y la letra del panel.</li>
+      </ul>
+  <figure class="w50">
+    <div class="marco"><img src="../img/b7-editor.png" alt="El panel del editor de la figura en su pestaña General: título, subtítulo y nota al pie, tipografía y trazo, fondo y marco"></div>
+    <figcaption><b>Figura 7.7.</b> El editor ✎ del biplot en la pestaña <span class="ui">General</span>.</figcaption>
+  </figure>
+  <p>Al pie del panel, <span class="ui">Deshacer todo en esta figura</span>, <span class="ui">Copiar el estilo a todas las figuras</span> y <span class="ui">Exportar</span>. Las ediciones se guardan figura por figura <b>en este navegador</b>, no en el proyecto, y se vuelven a poner cada vez que la figura se redibuja —al recalcular, al cambiar el idioma o el tema—: los textos se reconocen por su redacción original y los colores por su valor original. Si abres el proyecto en otra computadora, las figuras salen sin tus ediciones.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Las letras son las del equipo</div>
+    <p>Las figuras usan las letras instaladas en tu computadora; la app no descarga ninguna. Un SVG que mandes a otra persona puede verse con otra letra parecida en su equipo. Para que se vea igual en todas partes, exporta en PDF vectorial o en PNG desde el estudio.</p>
+  </div>
+
+  <!-- 7.5 -->
+  <h2 id="s7-5"><span class="num">7.5</span>Guardar y retomar el proyecto</h2>
+  <p class="lead">El proyecto es un archivo <code>.json</code> pequeño con todo lo necesario para volver a ver los resultados y repetir el análisis, excepto las fotos.</p>
+  <p>Se guarda con <code>Ctrl + S</code> desde cualquier bloque o con <span class="ui">Guardar el proyecto</span> del Bloque 7. El archivo se llama como el título del informe seguido de <code>.palynopro.json</code> (<code>proyecto.palynopro.json</code> si no hay título); la app confirma «Proyecto guardado:» con el nombre y recuerda que no lleva los resultados del Bloque 6 ni las ediciones ✎. Se abre con <code>Ctrl + O</code> o con <span class="ui">Abrir un proyecto</span> de la portada; la app confirma «Proyecto abierto:», recuerda que hay que repetir «Comparar los grupos» y te lleva al Bloque 2.</p>
+  <table class="compacta">
+    <caption><b>Tabla 7.2.</b> Lo que guarda el proyecto</caption>
+    <thead><tr><th style="width:50%">Se guarda</th><th>No se guarda</th></tr></thead>
+    <tbody>
+      <tr><td>Los datos del informe (título, material, autor, institución) y su idioma</td><td>Las fotos: sólo su nombre y una miniatura</td></tr>
+      <tr><td>Todos los ajustes de los bloques 2 a 6, con las variables elegidas y la semilla (los del Bloque 6 se ven en sus campos al abrir)</td><td>La comparación del Bloque 6: se repite igual con <span class="ui">Comparar los grupos</span></td></tr>
+      <tr><td>La lista de imágenes con su grupo y su grano (y si venían del índice o se escribieron en la tabla), su magnificación, su calibración (con la sustitución de un píxel contradicho), su barra, su tipo, sus notas y sus exclusiones; los nombres de los grupos</td><td>El informe: se vuelve a generar</td></tr>
+      <tr><td>Las mediciones de cada foto (Bloques 3 y 4) y el conteo de las panorámicas (Bloque 5)</td><td>Las ediciones del editor ✎ (quedan en el navegador)</td></tr>
+    </tbody>
+  </table>
+  <p>Al abrir un proyecto vuelven las tablas y las figuras de los bloques 2 a 5. Para ver otra vez las fotos, revisarlas sobre la imagen o tener la galería del informe, abre en el Bloque 2 la misma carpeta: la app une cada foto a su renglón por su nombre y conserva sus grupos, su calibración, sus exclusiones y sus resultados («… del proyecto vueltas a abrir»). Sólo si la carpeta trae imágenes que no estaban en el conjunto, pregunta antes, porque añadirlas borra los resultados y hay que volver a medir, contar y comparar (apéndice D). Sin abrir la carpeta puedes consultar las tablas y las figuras; los visores dirán «Abre otra vez la carpeta para ver la foto.». Con el ejemplo simulado, que la app dibuja, las fotos vuelven solas.</p>
+  <div class="caja aviso">
+    <div class="caja-t"><span class="ico">!</span>Guarda antes de cerrar</div>
+    <p>La app no guarda nada por su cuenta: cada vez que se abre empieza vacía. Si intentas cerrar la pestaña con imágenes abiertas, el navegador te pide confirmar. Guarda el proyecto al terminar cada sesión y, junto con él, la carpeta de las fotos tal como estaba: si cambias el nombre de una foto, el proyecto ya no la encuentra.</p>
+  </div>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Antes de entregar</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:44%"><b>Si</b> cambiaste algo después de generar el informe…</td><td>vuelve a pulsar <span class="ui">Generar el informe</span> antes de imprimir o descargar.</td></tr>
+      <tr><td><b>Si</b> usas los métodos redactados…</td><td>completa el material, el muestreo, la preparación y el equipo, que la app no conoce.</td></tr>
+      <tr><td><b>Si</b> la revista pide un ancho y una resolución de figura…</td><td>exporta desde el estudio a ese ancho (una columna, columna y media, dos) y a 300 o 600 ppp, o en PDF vectorial.</td></tr>
+      <tr><td><b>Si</b> el informe va en otro idioma…</td><td>elige <span class="ui">English</span> o <span class="ui">Español</span> en <span class="ui">Idioma del informe</span> y genéralo otra vez; para que las figuras también cambien de idioma, cambia el de la interfaz (<span class="ui">ES</span> · <span class="ui">EN</span>).</td></tr>
+      <tr><td><b>Siempre</b>…</td><td>guarda el proyecto junto con la carpeta de las fotos: es la prueba de cómo se obtuvo cada número.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">Son guías para entregar, no leyes: las instrucciones de la revista o de tu programa de posgrado mandan.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>Cuando algo sale mal</div>
+    <p><b>«Primero abre tus imágenes.»</b> No hay imágenes: abre una carpeta o el ejemplo en el Bloque 2. <b>Una sección dice «Sin calcular.».</b> Falta su bloque: mide (Bloque 3), cuenta (Bloque 5) o compara (Bloque 6), y genera otra vez. <b>La sección 6 dice «Aún no hay figuras.».</b> Ningún bloque ha dibujado todavía una figura. <b>La galería dice «Las imágenes no están abiertas en esta sesión.».</b> Abriste un proyecto: abre otra vez la carpeta de las fotos en el Bloque 2. <b>Falta el grano de un grupo en la galería.</b> Todas sus fotos tienen algún aviso (contorno cortado o ampliada) o están excluidas. <b>No se copian los métodos.</b> El navegador no dejó usar el portapapeles (pasa en algunos navegadores al abrir la app con doble clic); descarga el informe en HTML y copia de ahí. <b>Las figuras del informe salen en inglés</b> aunque el informe esté en español. Las figuras se toman tal como están en pantalla: cambia el idioma de la interfaz y genera otra vez. <b>«No se pudo abrir el proyecto: El archivo no es un proyecto de PalynoPro.»</b> El JSON es de otra app o no es un proyecto.</p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · Manual de usuario · Introducción</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+<style>
+</style>
+</head>
+<body>
+
+<!-- ====================================================================== CRÉDITOS -->
+<section class="preliminares creditos" id="creditos">
+  <div class="cred-titulo">PalynoPro</div>
+  <div class="cred-sub">Manual de usuario · De la micrografía electrónica a la clave polínica</div>
+
+  <dl>
+    <dt>Autor</dt><dd><b>Luis Ángel Barrera-Guzmán</b><br><span class="small">ORCID 0000-0001-8057-2583</span></dd>
+    <dt>Programa</dt><dd>PalynoPro, versión 1.0.0 (octubre de 2026)</dd>
+    <dt>Manual</dt><dd>Primera edición en español, 2026. Describe la versión 1.0 del programa.</dd>
+    <dt>Licencia del programa</dt><dd>Licencia Pública General de GNU, versión 3 o posterior (GPL-3.0-or-later).</dd>
+    <dt>Derechos del manual</dt><dd>© 2026 Luis Ángel Barrera-Guzmán. Todos los derechos reservados.</dd>
+    <dt>Idioma de la interfaz</dt><dd>Español o inglés, con el selector <span class="ui">ES</span> · <span class="ui">EN</span> de la barra superior. En este manual los nombres de botones, campos y menús se escriben como aparecen en pantalla en español, por ejemplo <span class="ui">Medir todas las fotos de un grano</span>.</dd>
+  </dl>
+
+  <h4>Cómo citar el programa</h4>
+  <div class="cita">Barrera-Guzmán, L. Á. (2026). <i>PalynoPro: morfometría polínica cuantitativa a partir de micrografías electrónicas</i> (versión 1.0.0) [Programa de cómputo]. LABG Suite.</div>
+  <h4>Cómo citar este manual</h4>
+  <div class="cita">Barrera-Guzmán, L. Á. (2026). <i>PalynoPro. Manual de usuario</i> (1.ª ed.). Distribuido con PalynoPro, versión 1.0.0.</div>
+  <p class="small">La cita del programa es la que da la propia app, lista para copiarse, en la sección <span class="ui">Cómo citar</span> de su portada. Todavía no tiene identificador digital (DOI): se añadirá a estas dos citas cuando el programa se publique.</p>
+
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Privacidad</div>
+    <p>PalynoPro funciona por completo dentro de tu navegador. Las micrografías, sus archivos de texto y los índices que abres se leen en tu computadora y <b>nunca se envían a ningún servidor</b>: puedes trabajar con las imágenes de una tesis en curso o con datos sin publicar sin que nada de eso salga de tu equipo. El programa no usa cuentas, no carga nada de internet y no necesita conexión para calcular.</p>
+  </div>
+
+  <p class="small" style="margin-top:0.35in;color:var(--gris)">Las ilustraciones, los diagramas y las capturas de pantalla de este manual son originales: se generaron con el propio programa o con código escrito para el manual. Todas las imágenes de granos y todas las cifras salen del <b>ejemplo simulado</b> de la app: tres morfotipos que el programa dibuja con parámetros conocidos. No son fotografías ni mediciones de ninguna planta.</p>
+</section>
+
+<!-- ====================================================================== ÍNDICE -->
+<!-- Índice general: un renglón por capítulo (su h1) y, debajo, sus secciones (los h2).
+     Los títulos y los id (cap-N, sN-M, ap-x) son la propuesta para los capítulos; quien escriba un capítulo
+     ajusta aquí sus renglones si cambia un título o el número de secciones. Los números de página los pone
+     paginar.js al unir el manual. -->
+<section class="preliminares indice" id="indice" data-nueva-hoja>
+  <h1>Índice</h1>
+  <div class="indice-sub">Contenido general del manual</div>
+
+  <ol class="toc">
+    <li><div class="toc-cap"><span class="chip k0">P</span><a href="#como-leer">Cómo leer este manual</a><a class="pag" href="#como-leer"></a></div></li>
+    <li>
+      <div class="toc-cap"><span class="chip k0">In</span><a href="#cap-intro">Introducción a PalynoPro</a><a class="pag" href="#cap-intro"></a></div>
+      <ul>
+        <li><span class="n">I.1</span><a href="#si-1"><span class="t">¿Qué es PalynoPro?</span></a></li>
+        <li><span class="n">I.2</span><a href="#si-2"><span class="t">Preguntas que responde</span></a></li>
+        <li><span class="n">I.3</span><a href="#si-3"><span class="t">Seis ideas que sostienen el manual</span></a></li>
+        <li><span class="n">I.4</span><a href="#si-4"><span class="t">Datos que acepta y qué entrega</span></a></li>
+        <li><span class="n">I.5</span><a href="#si-5"><span class="t">Qué necesitas y cómo abrirlo</span></a></li>
+        <li><span class="n">I.6</span><a href="#si-6"><span class="t">Recorrido por la interfaz</span></a></li>
+        <li><span class="n">I.7</span><a href="#si-7"><span class="t">El ejemplo simulado</span></a></li>
+        <li><span class="n">I.8</span><a href="#si-8"><span class="t">Cómo se recorre un estudio</span></a></li>
+        <li><span class="n">I.9</span><a href="#si-9"><span class="t">Cómo se comprobó</span></a></li>
+        <li><span class="n">I.10</span><a href="#si-10"><span class="t">Lo que el programa no hace</span></a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="toc-cap"><span class="chip k1">1</span><a href="#cap-1">Inicio: la teoría, el laboratorio y los métodos</a><a class="pag" href="#cap-1"></a></div>
+      <ul>
+        <li><span class="n">1.1</span><a href="#s1-1"><span class="t">La portada</span></a></li>
+        <li><span class="n">1.2</span><a href="#s1-2"><span class="t">Cómo funciona: los siete pasos</span></a></li>
+        <li><span class="n">1.3</span><a href="#s1-3"><span class="t">Pruébalo: así mide un grano</span></a></li>
+        <li><span class="n">1.4</span><a href="#s1-4"><span class="t">Los bloques</span></a></li>
+        <li><span class="n">1.5</span><a href="#s1-5"><span class="t">El polen bajo el microscopio electrónico</span></a></li>
+        <li><span class="n">1.6</span><a href="#s1-6"><span class="t">Los métodos y de dónde vienen</span></a></li>
+        <li><span class="n">1.7</span><a href="#s1-7"><span class="t">Lo que este programa no hace</span></a></li>
+        <li><span class="n">1.8</span><a href="#s1-8"><span class="t">Referencias y cómo citar</span></a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="toc-cap"><span class="chip k2">2</span><a href="#cap-2">Imágenes y calibración</a><a class="pag" href="#cap-2"></a></div>
+      <ul>
+        <li><span class="n">2.1</span><a href="#s2-1"><span class="t">Abrir una carpeta o el ejemplo</span></a></li>
+        <li><span class="n">2.2</span><a href="#s2-2"><span class="t">El resumen y sus avisos</span></a></li>
+        <li><span class="n">2.3</span><a href="#s2-3"><span class="t">Calibración y lectura de nombres</span></a></li>
+        <li><span class="n">2.4</span><a href="#s2-4"><span class="t">Grupos</span></a></li>
+        <li><span class="n">2.5</span><a href="#s2-5"><span class="t">La tabla de imágenes</span></a></li>
+        <li><span class="n">2.6</span><a href="#s2-6"><span class="t">El visor y la barra medida a mano</span></a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="toc-cap"><span class="chip k3">3</span><a href="#cap-3">Contorno y tamaño</a><a class="pag" href="#cap-3"></a></div>
+      <ul>
+        <li><span class="n">3.1</span><a href="#s3-1"><span class="t">Cómo se mide el cuerpo</span></a></li>
+        <li><span class="n">3.2</span><a href="#s3-2"><span class="t">Medir</span></a></li>
+        <li><span class="n">3.3</span><a href="#s3-3"><span class="t">Resultados por grupo</span></a></li>
+        <li><span class="n">3.4</span><a href="#s3-4"><span class="t">Revisión de cada foto</span></a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="toc-cap"><span class="chip k4">4</span><a href="#cap-4">Ornamentación</a><a class="pag" href="#cap-4"></a></div>
+      <ul>
+        <li><span class="n">4.1</span><a href="#s4-1"><span class="t">Espinas, lúmenes y textura</span></a></li>
+        <li><span class="n">4.2</span><a href="#s4-2"><span class="t">Lúmenes: los dos ajustes</span></a></li>
+        <li><span class="n">4.3</span><a href="#s4-3"><span class="t">Resultados por grupo</span></a></li>
+        <li><span class="n">4.4</span><a href="#s4-4"><span class="t">Revisión de cada foto y perfil radial</span></a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="toc-cap"><span class="chip k5">5</span><a href="#cap-5">Fertilidad</a><a class="pag" href="#cap-5"></a></div>
+      <ul>
+        <li><span class="n">5.1</span><a href="#s5-1"><span class="t">Cómo se estima</span></a></li>
+        <li><span class="n">5.2</span><a href="#s5-2"><span class="t">Contar</span></a></li>
+        <li><span class="n">5.3</span><a href="#s5-3"><span class="t">Resultados: proporción, intervalo y χ²</span></a></li>
+        <li><span class="n">5.4</span><a href="#s5-4"><span class="t">Revisión de cada panorámica</span></a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="toc-cap"><span class="chip k6">6</span><a href="#cap-6">Estadística multivariada</a><a class="pag" href="#cap-6"></a></div>
+      <ul>
+        <li><span class="n">6.1</span><a href="#s6-1"><span class="t">Qué se calcula: el grano como unidad</span></a></li>
+        <li><span class="n">6.2</span><a href="#s6-2"><span class="t">Variables y ajustes</span></a></li>
+        <li><span class="n">6.3</span><a href="#s6-3"><span class="t">En resumen</span></a></li>
+        <li><span class="n">6.4</span><a href="#s6-4"><span class="t">Por variable</span></a></li>
+        <li><span class="n">6.5</span><a href="#s6-5"><span class="t">Componentes principales</span></a></li>
+        <li><span class="n">6.6</span><a href="#s6-6"><span class="t">PERMANOVA</span></a></li>
+        <li><span class="n">6.7</span><a href="#s6-7"><span class="t">Clave polínica: clasificar un grano</span></a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="toc-cap"><span class="chip k7">7</span><a href="#cap-7">Informe</a><a class="pag" href="#cap-7"></a></div>
+      <ul>
+        <li><span class="n">7.1</span><a href="#s7-1"><span class="t">Datos del informe</span></a></li>
+        <li><span class="n">7.2</span><a href="#s7-2"><span class="t">Generar, imprimir y descargar</span></a></li>
+        <li><span class="n">7.3</span><a href="#s7-3"><span class="t">Lo que lleva el informe</span></a></li>
+        <li><span class="n">7.4</span><a href="#s7-4"><span class="t">Las figuras, el estudio y el editor</span></a></li>
+        <li><span class="n">7.5</span><a href="#s7-5"><span class="t">Guardar y retomar el proyecto</span></a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="toc-cap"><span class="chip kx">A</span><a href="#apendices">Apéndices</a><a class="pag" href="#apendices"></a></div>
+      <ul>
+        <li><span class="n">A</span><a href="#ap-a"><span class="t">Los archivos que la app lee y escribe</span></a></li>
+        <li><span class="n">B</span><a href="#ap-b"><span class="t">Las reglas, reunidas</span></a></li>
+        <li><span class="n">C</span><a href="#ap-c"><span class="t">Glosario</span></a></li>
+        <li><span class="n">D</span><a href="#ap-d"><span class="t">Cuando algo no sale</span></a></li>
+        <li><span class="n">E</span><a href="#ap-e"><span class="t">La herramienta: licencia y cómo citarla</span></a></li>
+        <li><span class="n">F</span><a href="#ap-f"><span class="t">Referencias</span></a></li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<!-- ====================================================================== CÓMO LEER ESTE MANUAL -->
+<section class="preliminares" id="como-leer" data-nueva-hoja style="--acento: var(--b0)">
+  <h2 style="margin-top:0.2in">Cómo leer este manual</h2>
+  <p class="lead">El manual sigue el mismo orden que la app: siete bloques numerados que se recorren de arriba abajo en la barra de la izquierda. Cada capítulo explica un bloque y lleva su mismo número —el capítulo 5 es el Bloque 5, y sus secciones y figuras se numeran 5.1, 5.2…—. La introducción no lleva número: sus secciones son I.1, I.2…</p>
+  <p>Cada capítulo empieza con lo que el bloque resuelve en un estudio palinológico, sigue con lo que hay en pantalla en el orden en que aparece y cierra con las reglas para leer el resultado y los errores más comunes. No hace falta leerlo de corrido: si sólo necesitas el tamaño de los granos, bastan los capítulos 2 y 3; si ya mediste y quieres saber si tus grupos se distinguen, el 6. El apéndice B reúne las reglas de todos los bloques.</p>
+
+  <h3>Un color para cada bloque</h3>
+  <p>El color del bloque aparece en la apertura de su capítulo, en el número de cada sección, en la pestaña del borde de la hoja y en el índice, y es el mismo de la franja de la portada.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:0.55in">Bloque</th><th style="width:1.75in">Nombre en la app</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip k1">1</span></td><td><span class="ui">Inicio</span></td><td>Cómo se mide un grano en lenguaje llano, un laboratorio que dibuja un grano simulado y lo mide en vivo, los métodos con su fuente, las referencias y cómo citar</td></tr>
+      <tr><td><span class="chip k2">2</span></td><td><span class="ui">Imágenes y calibración</span></td><td>Abre una carpeta, revisa los grupos y comprueba la calibración de cada foto contra su barra de escala</td></tr>
+      <tr><td><span class="chip k3">3</span></td><td><span class="ui">Contorno y tamaño</span></td><td>El cuerpo de cada grano sin sus espinas: diámetros, elongación y circularidad</td></tr>
+      <tr><td><span class="chip k4">4</span></td><td><span class="ui">Ornamentación</span></td><td>Espinas en el contorno, lúmenes del retículo y textura de la superficie</td></tr>
+      <tr><td><span class="chip k5">5</span></td><td><span class="ui">Fertilidad</span></td><td>Granos turgentes y colapsados en las panorámicas, por grupo</td></tr>
+      <tr><td><span class="chip k6">6</span></td><td><span class="ui">Estadística multivariada</span></td><td>¿Se distinguen los grupos por su polen? Con el grano como unidad</td></tr>
+      <tr><td><span class="chip k7">7</span></td><td><span class="ui">Informe</span></td><td>Métodos, resultados, figuras y galería en un documento para imprimir o guardar en PDF</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Tipos de recuadros</h3>
+  <div class="dos">
+    <div class="caja nota" style="margin:0"><div class="caja-t"><span class="ico">i</span>Nota</div><p>Aclaraciones y consejos prácticos que ahorran tiempo.</p></div>
+    <div class="caja importante" style="margin:0"><div class="caja-t"><span class="ico">!</span>Importante</div><p>Lo que puede cambiar tus conclusiones si se pasa por alto.</p></div>
+    <div class="caja teoria" style="margin:0"><div class="caja-t"><span class="ico">θ</span>Teoría en breve</div><p>La idea detrás de un cálculo, sin fórmulas innecesarias.</p></div>
+    <div class="caja ejemplo" style="margin:0"><div class="caja-t"><span class="ico">▸</span>Ejemplo resuelto</div><p>Un caso con el ejemplo simulado del programa, con los números que da la app.</p></div>
+  </div>
+  <div class="caja regla" style="margin-top:0.18in">
+    <div class="caja-t"><span class="ico">✓</span>Regla de decisión</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:40%"><b>Si</b> el resultado cae en este caso…</td><td><b>entonces</b> esta es la lectura recomendada.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">Son guías para interpretar, no leyes: lo que sabes de la planta, de la preparación y de cómo se fotografió siempre manda.</p>
+  </div>
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>Cuando algo sale mal</div>
+    <p>Lo que suele fallar al usar el bloque —una magnificación mal escrita, un grano que toca el borde de la foto, dos fotos del mismo grano tomadas por dos granos— y cómo se arregla.</p>
+  </div>
+  <div class="caja dato">
+    <div class="dato-cifra">720</div>
+    <div class="dato-txt"><div class="caja-t">Dato clave</div>Una cifra o un hecho que conviene recordar; por ejemplo, las direcciones en que la app lee el contorno de cada grano.</div>
+  </div>
+
+  <h3>Convenciones de escritura</h3>
+  <table class="compacta">
+    <thead><tr><th style="width:38%">Así se escribe</th><th>Significa</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Comparar los grupos</span></td><td>Un botón, campo o menú de la app, con su texto tal como aparece en pantalla en español.</td></tr>
+      <tr><td><span class="ruta">Bloque 2<span class="sep">›</span>Calibración y lectura de nombres</span></td><td>Una ruta: abre lo primero y dentro busca lo segundo.</td></tr>
+      <tr><td><code>Ctrl + S</code>, <code>indice.csv</code></td><td>Una tecla, un nombre de archivo o un valor que se escribe tal cual.</td></tr>
+      <tr><td>cuerpo, espina, lumen</td><td>El grano sin su ornamentación; cada pico del contorno que la app reconoce como espina (equina); cada celda oscura del retículo. El apéndice C los define todos.</td></tr>
+      <tr><td>Feret</td><td>El diámetro mayor y el menor del cuerpo: lo que mediría un calibrador puesto en la dirección más larga y en la más corta.</td></tr>
+      <tr><td>63.2 µm · 0.1 µm/px</td><td>Los números se escriben con punto decimal, como los escribe la app, y con la unidad separada por un espacio.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ====================================================================== INTRODUCCIÓN -->
+<section class="capitulo" id="cap-intro" data-pestana="In" data-orden="0" style="--acento: var(--b0)">
+  <div class="cap-apertura">
+    <div class="cap-num">I</div>
+    <div class="cap-etiqueta">Introducción</div>
+    <h1 data-corto="Introducción">Introducción a PalynoPro</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">Un estudio de polen con microscopía electrónica de barrido junta decenas o cientos de fotografías. Medirlas a mano, una por una, es lento y deja mucho al ojo de quien mide. PalynoPro las lee todas, comprueba la escala de cada una, mide el grano con el mismo criterio en todas y compara los grupos con el grano, no la foto, como unidad.</p>
+    <div class="cap-franja"><span class="k1"></span><span class="k2"></span><span class="k3"></span><span class="k4"></span><span class="k5"></span><span class="k6"></span><span class="k7"></span></div>
+    <ul class="cap-contenido">
+      <li><b>I.1</b>¿Qué es PalynoPro?</li>
+      <li><b>I.2</b>Preguntas que responde</li>
+      <li><b>I.3</b>Seis ideas que sostienen el manual</li>
+      <li><b>I.4</b>Datos que acepta y qué entrega</li>
+      <li><b>I.5</b>Qué necesitas y cómo abrirlo</li>
+      <li><b>I.6</b>Recorrido por la interfaz</li>
+      <li><b>I.7</b>El ejemplo simulado</li>
+      <li><b>I.8</b>Cómo se recorre un estudio</li>
+      <li><b>I.9</b>Cómo se comprobó</li>
+      <li><b>I.10</b>Lo que el programa no hace</li>
+    </ul>
+  </div>
+
+  <!-- I.1 -->
+  <h2 id="si-1"><span class="num">I.1</span>¿Qué es PalynoPro?</h2>
+  <p class="lead">Es un programa de morfometría polínica cuantitativa que corre en el navegador, sin instalar nada. Toma una carpeta de micrografías electrónicas de barrido y devuelve, para cada grano, su tamaño, su forma y su ornamentación medidos con el mismo criterio, y para cada grupo, si su polen se distingue del de los demás.</p>
+  <p>Está pensado para comparar grupos —morfotipos, variedades, poblaciones, especies cercanas— por su polen, y para la docencia de la palinología. Calibra cada imagen con la magnificación del microscopio y la comprueba contra la barra de escala impresa en la propia foto; separa el grano del fondo y lee su contorno en 720 direcciones; quita las espinas para medir el <b>cuerpo</b>; cuenta y mide las espinas del contorno; encuentra los lúmenes del retículo y mide la textura de la superficie; estima la proporción de granos colapsados en las fotos panorámicas; y compara los grupos con pruebas por variable, componentes principales, PERMANOVA, análisis discriminante y bosque aleatorio. Al final redacta un informe con los métodos, los cuadros y las figuras.</p>
+  <p>Todo se calcula con motores escritos desde cero para este programa, sin bibliotecas de otros, y cada método cita el trabajo que lo define: en la portada de la app, en las notas de cada bloque y en los métodos del informe.</p>
+
+  <figure>
+    <div class="marco"><img src="../img/i-inicio.png" alt="La portada de la app: el lema, los cuatro botones para empezar y un grano de polen equinado y reticulado medido"></div>
+    <figcaption><b>Figura I.1.</b> La portada de PalynoPro al abrirla. A la izquierda, la barra de los siete bloques; al centro, el lema, los botones para empezar y un grano simulado con el contorno, las puntas de las espinas y el diámetro que mide la app; a la derecha, la lista de las secciones del bloque abierto.</figcaption>
+  </figure>
+
+  <!-- I.2 -->
+  <h2 id="si-2"><span class="num">I.2</span>Preguntas que responde</h2>
+  <p>Una buena manera de saber si el programa te sirve es ver qué preguntas contesta, y en qué bloque.</p>
+  <table class="compacta">
+    <thead><tr><th>Pregunta</th><th style="width:0.75in" class="c">Bloque</th></tr></thead>
+    <tbody>
+      <tr><td>¿Cuántos micrómetros mide un píxel en cada foto, y es coherente con su barra de escala?</td><td class="c"><span class="chip k2">2</span></td></tr>
+      <tr><td>¿Qué fotos son de un solo grano, cuáles son panorámicas y cuáles repiten un grano ya fotografiado?</td><td class="c"><span class="chip k2">2</span></td></tr>
+      <tr><td>¿Cuánto mide el cuerpo de cada grano sin sus espinas? ¿Qué tan alargado y qué tan circular es?</td><td class="c"><span class="chip k3">3</span></td></tr>
+      <tr><td>¿Cuántas espinas tiene en el contorno, qué tan altas y qué tan separadas?</td><td class="c"><span class="chip k4">4</span></td></tr>
+      <tr><td>¿Qué tamaño tienen los lúmenes del retículo, y qué tan áspera o regular es la superficie?</td><td class="c"><span class="chip k4">4</span></td></tr>
+      <tr><td>¿Qué proporción de granos está colapsada en cada grupo, y difiere entre grupos?</td><td class="c"><span class="chip k5">5</span></td></tr>
+      <tr><td>¿En qué variables difieren los grupos, y cuáles se parecen entre sí?</td><td class="c"><span class="chip k6">6</span></td></tr>
+      <tr><td>¿Se distinguen los grupos por el conjunto de sus medidas? ¿Con qué acierto se clasificaría un grano nuevo?</td><td class="c"><span class="chip k6">6</span></td></tr>
+      <tr><td>¿Cómo publico los métodos, los cuadros y las figuras con los parámetros que usé?</td><td class="c"><span class="chip k7">7</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- I.3 -->
+  <h2 id="si-3"><span class="num">I.3</span>Seis ideas que sostienen el manual</h2>
+  <p>Todo lo que sigue descansa en seis ideas. Si te quedas con ellas, buena parte de los errores que se cometen al medir polen en fotografías ya no son posibles.</p>
+  <ol class="pasos">
+    <li><b>El tamaño del píxel depende del ancho con que se guardó la foto.</b> La magnificación se refiere a un cuadro de referencia: el campo mide ese ancho entre la magnificación, y el píxel, ese campo entre los píxeles de ancho de la imagen. A la misma magnificación, una foto de 1280 px tiene píxeles del doble que una de 2560 px. Por eso el Bloque 2 calcula el píxel de cada foto y lo comprueba contra su barra de escala.</li>
+    <li><b>Una barra de escala sirve para comprobar, no sólo para adornar.</b> Su largo en píxeles por el tamaño del píxel debe dar una longitud redonda: 10, 20 o 50 µm. Si no la da, algo está mal —una magnificación mal escrita, otro ancho de referencia— y la foto se marca.</li>
+    <li><b>El tamaño es el del cuerpo, sin la ornamentación.</b> Las espinas cambian el contorno pero no el grano. La app lee el contorno como la distancia del centro al borde en 720 direcciones, recorta los picos más angostos que la base de una espina y mide lo que queda.</li>
+    <li><b>Lo que se ve es una proyección.</b> Una micrografía muestra la silueta y la cara del grano que mira al detector. Los diámetros de Feret equivalen a los ejes polar y ecuatorial sólo en vista ecuatorial, y las espinas que se cuentan son las del contorno, no todas las de la superficie.</li>
+    <li><b>El grano es la unidad, no la foto.</b> Un mismo grano suele fotografiarse más de una vez. Si cada foto contara como un grano, las pruebas creerían tener más datos de los que hay y la validación clasificaría una foto con ayuda de su gemela. La app promedia las fotos de cada grano y valida dejando fuera el grano completo.</li>
+    <li><b>La forma no es la viabilidad.</b> Un grano colapsado pierde solidez, y eso permite comparar grupos en las panorámicas. Pero es una aproximación morfológica: para afirmar que el polen es viable hace falta una tinción o una prueba de germinación.</li>
+  </ol>
+
+  <!-- I.4 -->
+  <h2 id="si-4"><span class="num">I.4</span>Datos que acepta y qué entrega</h2>
+  <p>El punto de partida es una carpeta de micrografías, con o sin los archivos que las acompañan. Los demás bloques trabajan sobre lo que ya se leyó: no piden tablas aparte.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.6in">Entra</th><th>Formato y dónde</th></tr></thead>
+    <tbody>
+      <tr><td>Micrografías</td><td>TIFF del microscopio (de 8 o 16 bits, con o sin compresión), PNG o JPEG; una carpeta entera o archivos sueltos (Bloque 2)</td></tr>
+      <tr><td>Archivos del microscopio</td><td>El <code>.txt</code> que muchos equipos dejan junto a cada imagen, con el mismo nombre: de ahí se leen la magnificación, el voltaje, la distancia de trabajo y la fecha (Bloque 2)</td></tr>
+      <tr><td>Índice</td><td>Un <code>.csv</code> opcional con una fila por imagen y columnas como <code>archivo</code>, <code>grupo</code>, <code>grano</code>, <code>magnificacion</code> y <code>excluir</code>; sin índice, el grupo y el grano se leen del nombre del archivo (Bloque 2)</td></tr>
+      <tr><td>Clave de grupos</td><td>Un archivo de texto con líneas <code>código = nombre</code> para poner nombre a cada grupo (Bloque 2)</td></tr>
+      <tr><td>Proyectos</td><td>Un <code>.json</code> guardado antes por la propia app (<code>Ctrl + S</code> para guardar, <code>Ctrl + O</code> para abrir)</td></tr>
+    </tbody>
+  </table>
+  <table class="compacta">
+    <thead><tr><th style="width:1.6in">Sale</th><th>Formato</th></tr></thead>
+    <tbody>
+      <tr><td>Figuras</td><td>Diámetros por grupo, espinas, lúmenes, textura, perfil radial, fertilidad, biplot, varianza explicada, espacio discriminante e importancia de las variables, en SVG o PNG; también por el estudio de figuras de la suite</td></tr>
+      <tr><td>Tablas</td><td>El índice de las imágenes y las tablas por grupo, por foto y por variable en CSV, listas para una hoja de cálculo</td></tr>
+      <tr><td>Informe</td><td>Material, métodos con los parámetros usados y sus citas, cuadros, figuras, un grano medido por grupo, limitaciones y referencias, en español o en inglés: para imprimir, guardar como PDF o descargar en HTML</td></tr>
+      <tr><td>Métodos</td><td>El texto de los métodos, listo para pegarse en un manuscrito</td></tr>
+    </tbody>
+  </table>
+
+  <!-- I.5 -->
+  <h2 id="si-5"><span class="num">I.5</span>Qué necesitas y cómo abrirlo</h2>
+  <p>Sólo un navegador moderno, en una versión de los últimos años. No hace falta instalar nada ni tener internet; el programa entero cabe en una carpeta.</p>
+  <ol class="pasos">
+    <li><b>Doble clic en <code>index.html</code>.</b> Es lo más sencillo y funciona igual que todo lo demás: los cálculos y el ejemplo están dentro del programa.</li>
+    <li><b>O doble clic en <code>Open PalynoPro.bat</code>.</b> Abre un servidor local mínimo en el puerto 9940 y la app en <code>http://localhost:9940</code>. Sólo hace falta para abrirla desde otro equipo o una tableta de la misma red; el archivo <code>server.ps1</code> explica cómo.</li>
+  </ol>
+  <p>Las preferencias —el idioma y el tema claro u oscuro— se guardan en el propio navegador y se recuerdan la siguiente vez. Los datos no: cada vez que abres la app empieza vacía. Para retomar un estudio está el proyecto <code>.json</code>, que guarda los ajustes, la lista de imágenes con sus grupos, su calibración y sus exclusiones, y los resultados de los bloques 3 a 5 (los del Bloque 6 no se guardan: al abrir el proyecto se repiten, iguales, con un clic). Si intentas cerrar la pestaña con datos sin guardar, la app te lo advierte.</p>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>El proyecto no copia tus fotos</div>
+    <p>A diferencia de otras aplicaciones de la suite, el proyecto de PalynoPro guarda una <b>referencia</b> a cada imagen, no la imagen. Al abrir un proyecto vuelven las tablas y las figuras, pero para ver otra vez las fotos o medirlas de nuevo hay que abrir la misma carpeta en el Bloque 2. Las micrografías pesan mucho, y así el proyecto se queda pequeño y tus imágenes no se duplican.</p>
+  </div>
+
+  <!-- I.6 -->
+  <h2 id="si-6"><span class="num">I.6</span>Recorrido por la interfaz</h2>
+  <p>Todas las aplicaciones de la suite comparten la misma barra, la misma navegación y las mismas herramientas de figuras, así que lo que aprendas aquí te sirve en las demás.</p>
+
+  <figure class="w70">
+    <div class="marco"><img src="../img/i-interfaz.png" alt="La pantalla del Bloque 3 con el ejemplo simulado medido y sus partes numeradas">
+      <span class="marca" style="left:26.2%;top:3.1%">1</span>
+      <span class="marca" style="left:77.7%;top:3.1%">2</span>
+      <span class="marca" style="left:86.8%;top:5.3%">3</span>
+      <span class="marca" style="left:97.4%;top:5.3%">4</span>
+      <span class="marca" style="left:13%;top:45.3%">5</span>
+      <span class="marca" style="left:18.6%;top:8.4%">6</span>
+      <span class="marca" style="left:56.6%;top:8.4%">7</span>
+      <span class="marca" style="left:74.2%;top:8.4%">8</span>
+      <span class="marca" style="left:82.3%;top:8.4%">9</span>
+      <span class="marca" style="left:18.3%;top:16.7%">10</span>
+      <span class="marca" style="left:18.3%;top:24.2%">11</span>
+      <span class="marca" style="left:18.3%;top:38.7%">12</span>
+      <span class="marca" style="left:17%;top:88.7%">13</span>
+    </div>
+    <figcaption><b>Figura I.2.</b> La pantalla del Bloque 3 con el ejemplo simulado ya medido. Los números corresponden a la lista de abajo.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>Nombre de la app y su lema.</b> El nombre lleva a la portada (Bloque 1).</li>
+    <li><span class="n">2</span><b>LABG Suite.</b> Vuelve al portal con las demás aplicaciones.</li>
+    <li><span class="n">3</span><b>ES · EN.</b> Cambia el idioma de toda la interfaz, también el de las figuras.</li>
+    <li><span class="n">4</span><b>Tema y atajos.</b> El sol cambia entre el tema claro y el oscuro; el signo de interrogación abre la lista de atajos de teclado (tecla <code>?</code>).</li>
+    <li><span class="n">5</span><b>La barra de los siete bloques.</b> El número se vuelve una palomita cuando el bloque ya tiene un resultado, y arriba se cuenta cuántos van (3/7 en la figura).</li>
+    <li><span class="n">6</span><b>La ruta.</b> La app, el bloque y la sección en la que estás.</li>
+    <li><span class="n">7</span><b>Documento · Enfocado.</b> Todas las secciones del bloque una tras otra, o una sola a la vez; el botón de al lado contrae o expande todas las secciones.</li>
+    <li><span class="n">8</span><b>Buscar</b> (<code>Ctrl + K</code>). Un bloque, una sección, un control o una figura, por su nombre.</li>
+    <li><span class="n">9</span><b>En este bloque.</b> Las secciones del bloque abierto; la actual va resaltada.</li>
+    <li><span class="n">10</span><b>El título del bloque,</b> con su número y lo que hace en una línea.</li>
+    <li><span class="n">11</span><b>Cómo se mide.</b> Un desplegable que explica, en lenguaje llano, lo que calcula el bloque.</li>
+    <li><span class="n">12</span><b>Una tarjeta.</b> Cada sección es una tarjeta con sus controles arriba y sus resultados abajo.</li>
+    <li><span class="n">13</span><b>Buscar, Modo enfocado y Ayuda,</b> también al pie de la barra de bloques.</li>
+  </ul>
+
+  <h3>Navegar sin perderse</h3>
+  <p>Al pie de cada bloque dos botones llevan al anterior y al siguiente. Cuando cambias un control y los resultados se recalculan más abajo, aparece un botón flotante que te regresa al control que tocaste, y otro para volver arriba. Los cálculos largos —medir todas las fotos, contar en las panorámicas, comparar los grupos— muestran una ventana de espera con su avance. Casi todo se puede hacer también desde el teclado:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.55in">Tecla</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td><code>Alt + ←</code> · <code>Alt + →</code></td><td>El bloque anterior o el siguiente; en el modo enfocado, la sección anterior o la siguiente</td></tr>
+      <tr><td><code>Ctrl + K</code></td><td>Buscar un bloque, una sección, un control o una figura</td></tr>
+      <tr><td><code>Ctrl + S</code> · <code>Ctrl + O</code></td><td>Guardar el proyecto en un <code>.json</code> · abrir uno guardado</td></tr>
+      <tr><td><code>?</code></td><td>Ver la lista de atajos</td></tr>
+    </tbody>
+  </table>
+
+  <figure class="w60">
+    <div class="marco"><img src="../img/i-buscar.png" alt="La ventana de búsqueda con Feret escrito: tres controles y una figura"></div>
+    <figcaption><b>Figura I.3.</b> La búsqueda (<code>Ctrl + K</code>) con «Feret» escrito, después de medir el ejemplo: encuentra la capa <span class="ui">Feret</span> del Bloque 3, las dos variables de Feret del Bloque 6 y la figura <span class="ui">Diámetros de Feret del cuerpo</span>, que se abre en el estudio de figuras. <code>Enter</code> lleva al resultado elegido.</figcaption>
+  </figure>
+
+  <h3>La revisión sobre la imagen</h3>
+  <p>Los bloques 3, 4 y 5 terminan con una tarjeta de revisión: la foto con lo que la app midió dibujado encima, para que veas en cada grano si el contorno, el cuerpo y las espinas son los que tú habrías marcado. Cada capa se enciende o se apaga con su casilla, y una foto mal medida se excluye con un botón.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/i-revision.png" alt="La revisión de la foto 01_A del ejemplo simulado: el grano con su máscara, su contorno, su cuerpo y sus espinas, y sus medidas al lado"></div>
+    <figcaption><b>Figura I.4.</b> <span class="ruta">Bloque 3<span class="sep">›</span>Revisión de cada foto</span> con la foto <code>01_A.png</code> del ejemplo simulado: la máscara del grano (azul), el contorno con espinas (naranja), el cuerpo sin espinas (celeste) y las puntas de las espinas (rojo). A la derecha, sus medidas: el cuerpo mide 59.56 µm, con Feret de 59.86 × 59.23 µm.</figcaption>
+  </figure>
+
+  <h3>Las figuras</h3>
+  <p>Todas las figuras de la app se pueden abrir en el <b>estudio de figuras</b>, una ventana común a la suite donde se cambian los textos, el tamaño de la letra, la leyenda y los colores sin tocar los datos, y se exporta a los anchos y resoluciones de las revistas. Junto a cada figura, el botón <span class="ui">✎</span> abre el editor de la figura. Los botones SVG y PNG de cada figura, y el informe, escriben siempre los colores del tema claro, aunque estés trabajando en el oscuro. El capítulo 7 lo explica a fondo.</p>
+
+  <!-- I.7 -->
+  <h2 id="si-7"><span class="num">I.7</span>El ejemplo simulado</h2>
+  <p>Para aprender sin imágenes propias, la app trae un ejemplo <b>simulado</b>: tres morfotipos de polen equinado y reticulado que el propio programa dibuja, cada vez que se abre, a partir de parámetros conocidos. No son fotografías de ninguna planta. Se abre con <span class="ui">Probar con el ejemplo simulado</span> en la portada o con <span class="ui">Ejemplo simulado</span> en el Bloque 2, y la app avisa que es simulado.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/i-ejemplo.png" alt="El aviso del ejemplo simulado y la tarjeta Resumen del Bloque 2: 33 imágenes, 3 grupos, 24 granos, 33 calibradas, 33 barras comprobadas y 3 panorámicas"></div>
+    <figcaption><b>Figura I.5.</b> El ejemplo recién abierto en el Bloque 2: 33 imágenes de tres grupos (A, B y C), con 24 granos en las fotos de un grano, todas calibradas, y las 33 barras de escala dan longitudes redondas.</figcaption>
+  </figure>
+  <p>Cada morfotipo tiene ocho granos. Cada grano se dibuja en una foto de 1280 × 960 px a 1000 aumentos (0.1 µm por píxel), con su ruido, su barra de escala y su rótulo, como lo haría un microscopio; los granos 3 y 6 de cada morfotipo se fotografían dos veces, como pasa en un estudio real. Además, cada morfotipo tiene una panorámica a 150 aumentos con catorce granos, algunos de ellos colapsados. En total: 30 fotos de un grano, que son 24 granos, y 3 panorámicas.</p>
+  <table class="compacta">
+    <caption><b>Los tres morfotipos simulados</b>, con los valores con que se dibujan (cada grano varía alrededor de ellos)</caption>
+    <thead><tr><th>Morfotipo</th><th class="num">Cuerpo (semieje, µm)</th><th class="num">Menor / mayor</th><th class="num">Espinas en el contorno</th><th class="num">Altura de espina (µm)</th><th class="num">Malla del retículo (µm)</th><th class="num">Colapsados en la panorámica</th></tr></thead>
+    <tbody>
+      <tr><td>A (simulado)</td><td class="num">31</td><td class="num">0.97</td><td class="num">24</td><td class="num">2.0</td><td class="num">2.2</td><td class="num">15 %</td></tr>
+      <tr><td>B (simulado)</td><td class="num">35</td><td class="num">0.95</td><td class="num">32</td><td class="num">2.8</td><td class="num">2.6</td><td class="num">35 %</td></tr>
+      <tr><td>C (simulado)</td><td class="num">33</td><td class="num">0.90</td><td class="num">22</td><td class="num">1.7</td><td class="num">3.4</td><td class="num">10 %</td></tr>
+    </tbody>
+  </table>
+  <p>Como se sabe con qué se dibujó cada grano, el ejemplo sirve también para ver qué tan bien mide la app. El morfotipo B, por ejemplo, se dibuja con un cuerpo de unos 68 µm de diámetro y la app mide 67.93 µm de media en sus ocho granos. Los nombres de las fotos siguen la forma <code>01_A.png</code>: el número del grano y, tras el guion bajo, el grupo; las fotos repetidas llevan una letra (<code>03a_A.png</code>) y las panorámicas el número 90 (<code>90_A.png</code>).</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Todo el manual sale de este ejemplo</div>
+    <p>Todas las capturas y todas las cifras de este manual salen del ejemplo simulado, con los valores por omisión de cada control salvo que el texto diga qué se cambió. Se dice «el morfotipo B del ejemplo», nunca como si fuera una planta real.</p>
+  </div>
+
+  <!-- I.8 -->
+  <h2 id="si-8"><span class="num">I.8</span>Cómo se recorre un estudio</h2>
+  <p>Los bloques están en el orden de un estudio palinológico real. No hace falta pasar por todos: si no tienes panorámicas, el Bloque 5 se salta. La sección <span class="ui">Cómo funciona</span> de la portada lo resume en siete pasos.</p>
+  <figure>
+    <div class="marco"><img src="../img/i-flujo.png" alt="Los siete pasos de Cómo funciona: abrir las imágenes, calibrar y comprobar, contorno y tamaño, ornamentación, fertilidad, comparar grupos e informe"></div>
+    <figcaption><b>Figura I.6.</b> <span class="ui">Cómo funciona</span>: los siete pasos de un estudio, de la carpeta de fotos al informe.</figcaption>
+  </figure>
+  <ol class="pasos">
+    <li><b>Abrir y calibrar</b> (Bloque 2). Abre la carpeta, revisa que el grupo y el grano de cada foto se leyeron bien, que todas están calibradas y que ninguna barra es dudosa; marca qué fotos son panorámicas y excluye las que no sirvan.</li>
+    <li><b>Medir</b> (Bloques 3 y 4). Un solo botón mide todas las fotos de un grano: el contorno, el cuerpo, las espinas, los lúmenes y la textura salen de la misma pasada. Revisa cada foto sobre la imagen.</li>
+    <li><b>Contar</b> (Bloque 5). En las panorámicas, la proporción de granos turgentes y colapsados de cada grupo.</li>
+    <li><b>Comparar</b> (Bloque 6). Las pruebas por variable, los componentes principales, la PERMANOVA y los dos clasificadores, con el grano como unidad.</li>
+    <li><b>Publicar</b> (Bloque 7). El informe con los métodos, los cuadros, las figuras y un grano medido por grupo.</li>
+  </ol>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Los datos se comparten entre bloques</div>
+    <p>Lo que se lee y se calibra en el Bloque 2 lo usan todos los demás; la medición del Bloque 3 alimenta el 4, el 6 y el 7. Si cambias la calibración, un grupo o una exclusión, los resultados que dependen de ello se borran y el bloque te pide volver a medir; su palomita en la barra se apaga mientras no tenga resultado.</p>
+  </div>
+
+  <!-- I.9 -->
+  <h2 id="si-9"><span class="num">I.9</span>Cómo se comprobó</h2>
+  <p>Un programa de medición vale lo que valen sus números. Los motores de PalynoPro se comprobaron de dos maneras independientes, y ninguna de las dos usa las fotos de nadie: granos dibujados por el propio programa, cuya verdad se conoce, y cálculos estadísticos repetidos aparte.</p>
+  <ul>
+    <li><b>Imagen.</b> Sesenta fotos de un grano —redondos y alargados, de 14 a 40 espinas, con espinas de 1.2 a 3.2 µm y mallas de 1.8 a 3.4 µm, en dos anchos de imagen y con cualquier giro— y doce panorámicas con granos colapsados se midieron igual que en la app. Las 60 barras de escala dieron longitudes redondas; el diámetro del cuerpo se desvió 0.20 % en la mediana; el número de espinas salió exacto en las 60 fotos; se encontraron los 141 granos de las panorámicas y ningún grano turgente se tomó por colapsado.</li>
+    <li><b>Estadística.</b> Treinta conjuntos de datos simulados se calcularon con la app y, aparte, con un entorno estadístico libre independiente, número por número.</li>
+  </ul>
+  <div class="caja dato">
+    <div class="dato-cifra">6&nbsp;705</div>
+    <div class="dato-txt"><div class="caja-t">Comparaciones sin desacuerdos</div>Análisis de varianza, Kruskal–Wallis, Tukey, Holm, componentes principales, discriminante lineal con su validación, PERMANOVA, χ² e intervalos de Wilson: 18 familias de resultados, todas dentro de su tolerancia. Además, 155 pruebas automáticas corren en el navegador y vigilan la lectura de imágenes, la calibración, los motores y el ejemplo.</div>
+  </div>
+  <p>Las pruebas también dicen dónde la app se queda corta, y quedó escrito. La altura de las espinas sale algo menor que la dibujada —cerca de un píxel, un 4 % en la mediana—, porque la punta más fina del cono no alcanza a llenar un píxel; el diámetro del lumen es proporcional a la malla del retículo, pero no igual, porque el lumen es sólo la parte oscura de cada celda; y el umbral de solidez por omisión es conservador: reconoce la mayoría de los granos colapsados sin confundir los sanos. Los capítulos lo dicen donde importa.</p>
+
+  <!-- I.10 -->
+  <h2 id="si-10"><span class="num">I.10</span>Lo que el programa no hace</h2>
+  <p>Saber dónde termina una herramienta es tan útil como saber qué hace. La portada de la app lo dice en <span class="ui">Lo que este programa no hace</span>:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.9in">No hace</th><th>Por qué, y qué hacer</th></tr></thead>
+    <tbody>
+      <tr><td><b>Reconstruir el grano en 3D</b></td><td>Mide la silueta y la cara visible; las espinas que cuenta son las del contorno, no todas las de la superficie.</td></tr>
+      <tr><td><b>Adivinar la vista del grano</b></td><td>Polar, ecuatorial u oblicua: los diámetros de Feret equivalen a los ejes P y E sólo en vista ecuatorial. Si necesitas P y E, fotografía vistas orientadas y agrúpalas.</td></tr>
+      <tr><td><b>Leer el número de la barra</b></td><td>Calcula el tamaño del píxel y comprueba que la barra dé una longitud redonda; no reconoce el texto escrito en el rótulo.</td></tr>
+      <tr><td><b>Sustituir una prueba de viabilidad</b></td><td>La fertilidad por solidez es una aproximación morfológica; para afirmar viabilidad hace falta tinción o germinación.</td></tr>
+      <tr><td><b>Medir el grosor de la pared</b></td><td>La exina, el téctum y la nexina se miden en cortes o con microscopía de transmisión.</td></tr>
+      <tr><td><b>Subir tus imágenes</b></td><td>Todo se calcula en tu computadora; la app sólo guarda referencias a los archivos que abres.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</body>
+</html>

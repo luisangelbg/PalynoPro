@@ -1,0 +1,58 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "PalynoPro",
+  "alternateName": "PalynoPro: quantitative pollen morphometry from electron micrographs",
+  "description": "A self-contained, browser-based platform for the quantitative morphometry of pollen grains in scanning electron micrographs: calibration from the magnification checked against the scale bar, segmentation, corpus size and shape without the spines, spines, lumina and texture, fertility from overview images, and comparison of groups with the grain as the unit (ANOVA, Kruskal-Wallis, PCA, PERMANOVA, discriminant analysis, random forest), with a printable report. No installation and no third-party libraries; Spanish and English interface; no images leave the computer. The statistical engines were checked against independent implementations in R: 6,705 comparisons in 18 families, none out of tolerance; the image engine against simulated grains of known truth; 155 unit tests run in the browser.",
+  "version": "1.0.0",
+  "dateCreated": "2026-09-20",
+  "dateModified": "2026-11-02",
+  "datePublished": "2026-11-02",
+  "identifier": "https://doi.org/10.5281/zenodo.XXXXXXX",
+  "license": "https://spdx.org/licenses/GPL-3.0-or-later",
+  "codeRepository": "https://github.com/luisangelbg/PalynoPro",
+  "url": "https://luisangelbg.github.io/PalynoPro/",
+  "issueTracker": "https://github.com/luisangelbg/PalynoPro/issues",
+  "programmingLanguage": [
+    "JavaScript",
+    "HTML",
+    "CSS"
+  ],
+  "runtimePlatform": "Any modern web browser",
+  "operatingSystem": "Any",
+  "applicationCategory": "Palynology",
+  "inLanguage": [
+    "es",
+    "en"
+  ],
+  "keywords": [
+    "palynology",
+    "pollen morphology",
+    "pollen morphometry",
+    "scanning electron microscopy",
+    "image analysis",
+    "echinate pollen",
+    "exine ornamentation",
+    "pollen fertility",
+    "PERMANOVA",
+    "discriminant analysis",
+    "random forest"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Luis Ángel",
+      "familyName": "Barrera-Guzmán",
+      "@id": "https://orcid.org/0000-0001-8057-2583"
+    }
+  ],
+  "softwareRequirements": [
+    "A modern web browser; no installation"
+  ],
+  "readme": "README.md",
+  "developmentStatus": "active",
+  "isAccessibleForFree": true,
+  "relatedLink": [
+    "https://doi.org/10.5281/zenodo.XXXXXXX"
+  ]
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+  PalynoPro — quantitative pollen morphometry from electron micrographs.
+  Copyright (C) 2026  Luis Ángel Barrera-Guzmán
+
+  This program is free software: you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free Software
+  Foundation, either version 3 of the License, or (at your option) any later
+  version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License along with
+  this program, in the file LICENSE.  If not, see <https://www.gnu.org/licenses/>.
+
+  This notice covers the whole program: index.html, css/ and the files in js/.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-es="PalynoPro · morfometría polínica cuantitativa" data-en="PalynoPro · quantitative pollen morphometry">PalynoPro · morfometría polínica cuantitativa</title>
+<meta name="description" content="Quantitative pollen morphometry from electron micrographs in the browser: calibration checked against the scale bar, outline and size of the body without spines, spines, lumina of the reticulum, texture, fertility from overviews, and multivariate comparison of groups. Nothing to install; your images never leave your computer.">
+<meta name="labg-repo" content="PalynoPro">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23b5601d'%3E%3Cpath d='M16 1l2 5h-4zM16 31l-2-5h4zM1 16l5-2v4zM31 16l-5 2v-4zM5.4 5.4l4.8 2.4-2.4 2.4zM26.6 26.6l-4.8-2.4 2.4-2.4zM26.6 5.4l-2.4 4.8-2.4-2.4zM5.4 26.6l2.4-4.8 2.4 2.4z'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='10.5' fill='%232f5f7a'/%3E%3Ccircle cx='12.8' cy='12.4' r='2.6' fill='%23fff' opacity='.4'/%3E%3C/svg%3E">
+<script>try { var t = localStorage.getItem('palynopro.theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
+<link rel="stylesheet" href="css/labg-base.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/i18n.js"></script>
+</head>
+<body class="on-home">
+
+<a class="skip-link" href="#main"><span data-l="es">Saltar al contenido</span><span data-l="en">Skip to content</span></a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-row">
+      <button type="button" class="brand" id="brand"><span id="brandLogo" aria-hidden="true"></span><span>Palyno<span class="brand-pro">Pro</span></span>
+        <span class="brand-sub">· <span data-l="es">morfometría polínica cuantitativa</span><span data-l="en">quantitative pollen morphometry</span></span></button>
+      <div class="top-tools">
+        <a class="suite-link" href="https://luisangelbg.github.io/" data-es-title="Volver al portal de la LABG Suite" data-en-title="Back to the LABG Suite portal" title="Volver al portal de la LABG Suite" aria-label="Volver al portal de la LABG Suite">
+          <span id="suiteIso"></span>
+          <span class="suite-text">LABG Suite</span>
+        </a>
+        <div class="seg lang-seg" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" title="Español">ES</button><button type="button" data-lang="en" title="English">EN</button>
+        </div>
+        <button type="button" class="icon-btn theme-btn" id="themeBtn" title="Cambiar entre tema claro y oscuro" aria-label="Cambiar entre tema claro y oscuro">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="helpBtn" data-es-title="Atajos de teclado (?)" data-en-title="Keyboard shortcuts (?)" title="Atajos de teclado (?)" aria-label="Atajos de teclado (?)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.6"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="stepper" id="stepper" aria-label="Bloques" data-es-label="Bloques" data-en-label="Blocks"></nav>
+  </div>
+</header>
+<input type="file" id="projectFile" accept=".json,application/json" hidden data-es-title="Abrir un proyecto" data-en-title="Open a project" aria-label="Abrir un proyecto">
+
+<main id="main" tabindex="-1">
+
+<!-- ==================== BLOCK 1 · HOME ==================== -->
+<section class="step-panel active" id="panel-1">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow"><span data-l="es">Palinología cuantitativa</span><span data-l="en">Quantitative palynology</span></div>
+        <h1><span data-l="es">De la <span class="accent">micrografía electrónica</span> a la <span class="leaf">clave polínica</span></span><span data-l="en">From the <span class="accent">electron micrograph</span> to the <span class="leaf">pollen key</span></span></h1>
+        <p class="lead"><span data-l="es">Abre una carpeta de fotos de microscopía electrónica de barrido y PalynoPro calibra cada imagen
+          (y la <b>comprueba contra su barra de escala</b>), traza el contorno de cada grano, mide el <b>cuerpo sin espinas</b>, cuenta y mide
+          las <b>espinas</b>, encuentra los <b>lúmenes del retículo</b>, estima la <b>fertilidad</b> en las panorámicas y compara los grupos
+          con estadística multivariada validada <b>por grano</b>. Todo ocurre dentro de tu navegador: sin instalar nada y sin que tus
+          imágenes salgan de tu computadora.</span><span data-l="en">Open a folder of scanning electron micrographs and PalynoPro calibrates every image (and <b>checks it
+          against its scale bar</b>), traces the outline of each grain, measures the <b>body without spines</b>, counts and measures the
+          <b>spines</b>, finds the <b>lumina of the reticulum</b>, estimates <b>fertility</b> in the overviews and compares the groups with
+          multivariate statistics validated <b>by grain</b>. Everything happens inside your browser: nothing to install, and your images never
+          leave your computer.</span></p>
+        <div class="hero-cta">
+          <button type="button" class="btn btn-primary btn-lg" id="startBtn"><span data-l="es">Abrir mis imágenes →</span><span data-l="en">Open my images →</span></button>
+          <button type="button" class="btn btn-secondary btn-lg" id="exampleBtn"><span data-l="es">Probar con el ejemplo simulado</span><span data-l="en">Try the simulated example</span></button>
+          <button type="button" class="btn btn-ghost btn-lg" id="labBtn"><span data-l="es">Ver cómo mide</span><span data-l="en">See how it measures</span></button>
+          <button type="button" class="btn btn-ghost btn-lg" id="openProjBtn"><span data-l="es">Abrir un proyecto</span><span data-l="en">Open a project</span></button>
+        </div>
+        <div class="badge-row">
+          <span class="badge ok"><span data-l="es">Funciona completo en tu navegador</span><span data-l="en">Runs entirely in your browser</span></span>
+          <span class="badge ok"><span data-l="es">Tus imágenes no salen de tu computadora</span><span data-l="en">Your images never leave your computer</span></span>
+          <span class="badge ok"><span data-l="es">Motores comprobados de forma independiente</span><span data-l="en">Engines checked independently</span></span>
+          <span class="badge ok"><span data-l="es">Español e inglés</span><span data-l="en">Spanish and English</span></span>
+        </div>
+      </div>
+      <div class="hero-art" id="heroArt" role="img" data-es-title="Un grano de polen equinado y reticulado como lo muestra un microscopio electrónico, con el contorno del cuerpo, las puntas de las espinas y el diámetro que mide la app" data-en-title="An echinate, reticulate pollen grain as an electron microscope shows it, with the outline of the body, the tips of the spines and the diameter the app measures" aria-label="Un grano de polen equinado y reticulado como lo muestra un microscopio electrónico"></div>
+    </div>
+  </div>
+
+  <div class="messages" id="homeMessages"></div>
+
+  <h2 class="section-title"><span data-l="es">Cómo funciona</span><span data-l="en">How it works</span></h2>
+  <p class="section-sub"><span data-l="es">Cada bloque es un paso de un estudio palinológico, en el orden en que se hace. Ninguno pide fórmulas: explica la idea, revisa tus imágenes y dice qué conviene hacer después.</span><span data-l="en">Each block is a step of a palynological study, in the order it is done. None asks for formulas: it explains the idea, checks your images and says what to do next.</span></p>
+  <div class="workflow" id="workflow"></div>
+
+  <h2 class="section-title" id="lab"><span data-l="es">Pruébalo: así mide un grano</span><span data-l="en">Try it: this is how it measures a grain</span></h2>
+  <p class="section-sub"><span data-l="es">Un grano <b>simulado</b> dibujado con los valores que elijas y medido, al instante, con los mismos motores que la app usa con tus fotos. Compara lo que se dibujó con lo que se midió.</span><span data-l="en">A <b>simulated</b> grain drawn with the values you choose and measured, at once, with the same engines the app uses on your pictures. Compare what was drawn with what was measured.</span></p>
+  <div class="playground">
+    <div class="pg-controls">
+      <label class="range-label" for="labD"><span data-l="es">Diámetro del cuerpo</span><span data-l="en">Body diameter</span>
+        <input type="range" id="labD" min="30" max="100" step="1" value="66"><output id="labDOut" for="labD">66 µm</output></label>
+      <label class="range-label" for="labE"><span data-l="es">Elongación</span><span data-l="en">Elongation</span>
+        <input type="range" id="labE" min="1" max="1.4" step="0.02" value="1.06"><output id="labEOut" for="labE">1.06</output></label>
+      <label class="range-label" for="labN"><span data-l="es">Espinas en el contorno</span><span data-l="en">Spines on the outline</span>
+        <input type="range" id="labN" min="8" max="50" step="1" value="26"><output id="labNOut" for="labN">26</output></label>
+      <label class="range-label" for="labH"><span data-l="es">Altura de espina</span><span data-l="en">Spine height</span>
+        <input type="range" id="labH" min="0.6" max="4" step="0.1" value="2.2"><output id="labHOut" for="labH">2.2 µm</output></label>
+      <label class="range-label" for="labM"><span data-l="es">Malla del retículo</span><span data-l="en">Reticulum mesh</span>
+        <input type="range" id="labM" min="1.6" max="4.4" step="0.1" value="2.6"><output id="labMOut" for="labM">2.6 µm</output></label>
+    </div>
+    <div class="idx-grid" id="labTiles"></div>
+    <div class="lab-grid">
+      <div class="pg-pane"><div class="pg-title" id="labTitle1"></div><div class="pg-fig"><canvas id="labCanvas" width="640" height="480" style="width:100%;height:auto;display:block;border-radius:8px;background:#000"></canvas></div></div>
+      <div class="pg-pane"><div class="pg-title" id="labTitle2"></div><div class="pg-fig" id="labProfile"></div></div>
+    </div>
+    <div class="pg-status" id="labStatus" aria-live="polite"></div>
+  </div>
+
+  <h2 class="section-title"><span data-l="es">Los bloques</span><span data-l="en">The blocks</span></h2>
+  <p class="section-sub"><span data-l="es">Todos se abren con su botón en la barra de bloques, a la izquierda, o desde aquí. Los que necesitan imágenes te lo dicen.</span><span data-l="en">Each opens with its button in the block bar on the left or from here. Those that need images tell you so.</span></p>
+  <div class="feature-grid" id="blockGrid" data-lnav-skip></div>
+
+  <h2 class="section-title" id="theory"><span data-l="es">El polen bajo el microscopio electrónico, en lenguaje llano</span><span data-l="en">Pollen under the electron microscope, in plain words</span></h2>
+  <p class="section-sub"><span data-l="es">Las ideas que sostienen las medidas. Cada una dice en qué bloque se usa.</span><span data-l="en">The ideas behind the measures. Each one says in which block it is used.</span></p>
+  <div class="card theory-card" id="theoryHost"></div>
+
+  <h2 class="section-title"><span data-l="es">Los métodos y de dónde vienen</span><span data-l="en">The methods and where they come from</span></h2>
+  <div class="method-gallery" id="methodGallery"></div>
+
+  <h2 class="section-title"><span data-l="es">Lo que este programa no hace</span><span data-l="en">What this program does not do</span></h2>
+  <div class="notdo" id="notDo"></div>
+
+  <h2 class="section-title" id="refs"><span data-l="es">Referencias</span><span data-l="en">References</span></h2>
+  <ol class="ref-list" id="refList"></ol>
+
+  <h2 class="section-title" id="cite"><span data-l="es">Cómo citar</span><span data-l="en">How to cite</span></h2>
+  <div class="cite-box">
+    <p><span data-l="es">Si este programa te sirvió para un trabajo publicado, cítalo así:</span><span data-l="en">If this program helped with a published work, cite it as:</span></p>
+    <div class="cite-ref" id="citeApa"></div>
+    <button type="button" class="btn btn-secondary btn-sm" id="copyApa"><span data-l="es">Copiar la cita</span><span data-l="en">Copy the citation</span></button>
+  </div>
+
+  <p class="footer-note"><a href="manual/es/manual-completo.html" target="_blank" rel="noopener" data-l="es">Manual de usuario (en español)</a><a href="manual/en/manual-completo.html" target="_blank" rel="noopener" data-l="en">User’s manual</a><br><span data-l="es">PalynoPro · © 2026 Luis Ángel Barrera-Guzmán · Software libre bajo la licencia GPL-3.0 o posterior · Parte de la LABG Suite</span><span data-l="en">PalynoPro · © 2026 Luis Ángel Barrera-Guzmán · Free software under the GPL-3.0-or-later license · Part of the LABG Suite</span></p>
+</section>
+
+<section class="step-panel" id="panel-2"></section>
+<section class="step-panel" id="panel-3"></section>
+<section class="step-panel" id="panel-4"></section>
+<section class="step-panel" id="panel-5"></section>
+<section class="step-panel" id="panel-6"></section>
+<section class="step-panel" id="panel-7"></section>
+
+</main>
+
+<script src="js/labg-core.js"></script>
+<script src="js/labg-figure-studio.js" defer></script>
+<script src="js/labg-navigator.js" defer></script>
+<script src="js/core.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/imgio.js"></script>
+<script src="js/calib.js"></script>
+<script src="js/imgproc.js"></script>
+<script src="js/multi.js"></script>
+<script src="js/synth.js"></script>
+<script src="js/figures.js"></script>
+<script src="js/labg-figedit.js" data-key="palynopro:figedit"></script>
+<script src="js/art.js"></script>
+<script src="js/images.js"></script>
+<script src="js/home.js"></script>
+<script src="js/block2.js"></script>
+<script src="js/block3.js"></script>
+<script src="js/block4.js"></script>
+<script src="js/block5.js"></script>
+<script src="js/block6.js"></script>
+<script src="js/block7.js"></script>
+</body>
+</html>

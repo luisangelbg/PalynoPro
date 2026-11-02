@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · User’s Manual · Chapter 4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-4" data-pestana="4" data-orden="4" style="--acento: var(--b4)">
+  <div class="cap-apertura">
+    <div class="cap-num">4</div>
+    <div class="cap-etiqueta">Chapter four · Block 4</div>
+    <h1 data-corto="Ornamentation">Ornamentation</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">Two grains of the same size can be told apart by their surface: how many spines show on the outline and how tall they are, how open the mesh of the reticulum is and how rough the surface looks. This block presents those measures, which come out of the same pass as Block 3, and lets you adjust how the lumina are found.</p>
+    <div class="cap-franja"><span class="k3"></span><span class="k4"></span><span class="k4"></span><span class="k6"></span></div>
+    <ul class="cap-contenido">
+      <li><b>4.1</b>Spines, lumina and texture</li>
+      <li><b>4.2</b>Lumina: the two settings</li>
+      <li><b>4.3</b>Results by group</li>
+      <li><b>4.4</b>Check of every picture and radial profile</li>
+    </ul>
+  </div>
+
+  <!-- 4.1 -->
+  <h2 id="s4-1"><span class="num">4.1</span>Spines, lumina and texture</h2>
+  <p class="lead">Block 4 has no button to measure: the ornamentation is measured in the same pass as the outline, when you press <span class="ui">Measure every one-grain picture</span> in Block 3. If you come here before measuring, the block shows only a box that explains this and a button to go and measure.</p>
+  <figure class="w50">
+    <div class="marco"><img src="../img/en/b4-vacio.png" alt="The box First measure the grains with the button Go to Block 3"></div>
+    <figcaption><b>Figure 4.1.</b> Block 4 with the example open but not measured: <span class="ui">First measure the grains</span>, “Ornamentation is measured in the same pass of Block 3.” and the button <span class="ui">Go to Block 3</span>.</figcaption>
+  </figure>
+  <p>The subtitle of the block is “Spines on the outline, lumina of the reticulum and texture of the surface.” The drop-down <span class="ui">How it is measured</span> explains the three groups of measures in one paragraph each; here they are in more detail.</p>
+
+  <h3>The spines of the outline</h3>
+  <p>The spines come from the radial profile of Block 3 (Section 3.1): the height of each direction above the body is the difference between the outline and the body. A peak of that difference is a spine if it stands out more than the <span class="ui">Least height of a spine (µm)</span> and is narrower than the <span class="ui">Largest base of a spine (µm)</span>; two peaks closer than half a base count as one, the taller. Spines that fall in directions with a cut outline, or next to them, are not counted.</p>
+  <p>The <b>height</b> of each spine is measured from the tip to the <b>chord joining its two feet</b>: the foot on each side is the lowest point of the outline between the tip and the place where the outline meets the body again. Measuring it this way, and not over the trimmed body, matters in elongated grains: there the body slopes under the spine, and the chord follows that slope. Five measures come from the spines:</p>
+  <table class="compacta">
+    <caption><b>Table 4.1.</b> The spine measures</caption>
+    <thead><tr><th style="width:2.2in">In the app</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Spines on the outline</span></td><td>How many spines show on the silhouette</td></tr>
+      <tr><td><span class="ui">Mean spine height (µm)</span></td><td>The mean height of their tips, each over the chord between its two feet</td></tr>
+      <tr><td><span class="ui">Spacing between spines (µm)</span></td><td>The free perimeter of the body (without the cut part) divided by the number of spines</td></tr>
+      <tr><td><span class="ui">Spine density (/100 µm)</span></td><td>Spines per 100 µm of free perimeter of the body; unlike the number, it does not depend on the size of the grain</td></tr>
+      <tr><td><span class="ui">Spine area / body area</span></td><td>How much the spines add to the area of the silhouette, as a fraction of the body area: it sums up their number, height and width at once</td></tr>
+    </tbody>
+  </table>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>These are the spines of the outline, not all of them</div>
+    <p>Spines pointing toward the detector look like dots on the face of the grain and are not part of the silhouette: they are not counted. The number is therefore comparable between groups photographed in the same way, but it is not the total number of spines on the grain. To compare grains of different sizes, density is better than number.</p>
+  </div>
+
+  <h3>The lumina of the reticulum</h3>
+  <p>In a reticulate grain, the <b>lumina</b>—the cells of the reticulum—look darker than the <b>muri</b> that surround them. The app looks for lumina in the inner part of the body, away from its edge (it leaves out the outer 18% of the radius, where the surface is seen edge-on), with a local threshold along the lines of Niblack (1986): a pixel is lumen if it is darker than the mean of its neighborhood by more than a certain number of standard deviations of that neighborhood. Each cluster of dark pixels that does not touch the border of that zone, between 0.05 and 12 µm², is a lumen; larger dark patches, such as the apertures, are left out by their size. Three measures come from them:</p>
+  <ul>
+    <li><span class="ui">Lumen diameter (median) (µm)</span>: the median of the equivalent diameters of the lumina in the picture. The median is used because a few merged or split lumina do not move it.</li>
+    <li><span class="ui">Lumen density (/100 µm²)</span>: lumina per 100 µm² of surface, counted only in the zone lying more than three median diameters from the border, so that cells cut by the border do not lower it.</li>
+    <li><span class="ui">Lumen variation (CV)</span>: the coefficient of variation of the diameters: low in a regular reticulum, high in one with uneven meshes.</li>
+  </ul>
+
+  <h3>The texture of the surface</h3>
+  <p>Texture is measured in the same inner zone with the gray-level co-occurrence matrix (Haralick et al. 1973): how often one gray level appears next to another at a given distance. The app reduces the grays to 32 levels between the 1st and 99th percentiles of the zone, counts the pairs at 0.2 and 0.4 µm in four directions (0°, 45°, 90° and 135°), only when both pixels lie on the surface, and averages the eight matrices.</p>
+  <table class="compacta">
+    <caption><b>Table 4.2.</b> The texture measures</caption>
+    <thead><tr><th style="width:2.2in">In the app</th><th>Rises when…</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Texture: contrast</span></td><td>neighboring pixels differ a lot in gray: a rough surface or one with marked meshes</td></tr>
+      <tr><td><span class="ui">Texture: homogeneity</span></td><td>neighbors are alike: a smooth surface or one with a coarse pattern</td></tr>
+      <tr><td><span class="ui">Texture: entropy</span></td><td>the combination of grays is varied and hard to predict</td></tr>
+      <tr><td><span class="ui">Texture: correlation</span></td><td>the gray of a pixel predicts that of its neighbor: broad light and dark zones, such as large cells</td></tr>
+    </tbody>
+  </table>
+  <p>The app also computes <span class="ui">Texture: energy</span>, which rises on uniform surfaces; it does not appear in the tables of this block, but it is among the variables of Block 6 and in the CSV of every picture.</p>
+
+  <!-- 4.2 -->
+  <h2 id="s4-2"><span class="num">4.2</span>Lumina: the two settings</h2>
+  <p>The <span class="ui">Lumina</span> card holds the two parameters of the local threshold. Those of the spines are in Block 3, because they also decide where the body is.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b4-lumenes.png" alt="The title of Block 4, the drop-down How it is measured open and the Lumina card with its two fields, the button and the validation note"></div>
+    <figcaption><b>Figure 4.2.</b> Block 4 with <span class="ui">How it is measured</span> open and the <span class="ui">Lumina</span> card with its default values: 1.5 µm and 0.15 standard deviations. Below the button, the note on how it was validated.</figcaption>
+  </figure>
+  <table class="compacta">
+    <caption><b>Table 4.3.</b> The settings of the <span class="ui">Lumina</span> card</caption>
+    <thead><tr><th style="width:2.3in">Field</th><th class="num" style="width:0.6in">Default</th><th>What it decides</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Radius of the neighborhood (µm)</span></td><td class="num">1.5</td><td>The size of the square each pixel is compared with; never less than 2 pixels. It should be somewhat larger than half a lumen: that way the neighborhood spans murus and lumen at once.</td></tr>
+      <tr><td><span class="ui">Darker than the neighborhood by (st. dev.)</span></td><td class="num">0.15</td><td>How much darker than the mean of the neighborhood a pixel must be to count as lumen. Higher, smaller and fewer lumina; lower, noise creeps in.</td></tr>
+    </tbody>
+  </table>
+  <p>The values are applied with <span class="ui">Measure again with these values</span>, which goes to Block 3 and measures every picture again (with the example, some 20 to 30 s). Like any new measurement, it erases the comparison of Block 6.</p>
+  <p>The note at the foot of the card tells how it was validated: “Validated on simulated reticula: the median lumen diameter came out proportional to the drawn mesh over the whole range from 1.8 to 4 µm, with less than 3% variation among replicates.” “Proportional” is not “equal”: Section 4.3 explains why.</p>
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Worked example · a larger neighborhood</div>
+    <p>With the example, changing the <span class="ui">Radius of the neighborhood (µm)</span> from 1.5 to 2.5 and measuring again barely moves the lumina: the <span class="ui">Lumen (median)</span> tile stays at 1.53 µm and the density goes from 25.5 to 25.2 per 100 µm²; by group, the median diameter goes from 1.272 to 1.275 µm in A, from 1.429 to 1.434 in B and from 1.876 to 1.890 in C. The threshold is robust as long as the neighborhood spans one cell and its murus; if your lumina are much larger than those of the example, raise the radius in proportion.</p>
+  </div>
+
+  <!-- 4.3 -->
+  <h2 id="s4-3"><span class="num">4.3</span>Results by group</h2>
+  <p>The <span class="ui">Results</span> card begins with four tiles, all of them means over the grains with a complete outline, all groups together: <span class="ui">Spines on the outline</span> (<span class="ui">per grain (mean)</span>), <span class="ui">Spine height</span>, <span class="ui">Spine density</span> (<span class="ui">per 100 µm of outline</span>) and <span class="ui">Lumen (median)</span>, with the lumen density below.</p>
+  <figure>
+    <div class="marco"><img src="../img/en/b4-resultados.png" alt="The four Results tiles of Block 4: 26.5 spines, 2.05 µm high, 13.28 spines per 100 µm and lumen of 1.53 µm"></div>
+    <figcaption><b>Figure 4.3.</b> The tiles of the example: 26.5 spines on the outline per grain, 2.05 µm high on average, 13.28 spines per 100 µm of outline, and lumina 1.53 µm in median diameter, 25.5 per 100 µm².</figcaption>
+  </figure>
+  <p>Next comes the <span class="ui">By group</span> table, like that of Block 3: one group per column, with its number of grains below the name, and one measure per row, with the mean ± standard deviation among grains. The twelve measures fall into three sections: <span class="ui">Spines</span> (the five of Table 4.1), <span class="ui">Lumina</span> (the three lumen measures) and <span class="ui">Texture</span> (four of the five texture measures). Its <span class="ui">CSV</span> button downloads <code>palynopro_ornamentation_by_group.csv</code>, with one row per group.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b4-grupos.png" alt="The By group table of Block 4 with the three morphotypes as columns and twelve measures in three sections: Spines, Lumina and Texture"></div>
+    <figcaption><b>Figure 4.4.</b> The <span class="ui">By group</span> table of the example: mean ± SD among the 8 grains of each simulated morphotype. B has more spines, taller and denser; C, fewer and shorter spines, larger and less dense lumina, and a less contrasted surface.</figcaption>
+  </figure>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Worked example · drawn against measured</div>
+    <p><b>Number of spines.</b> 24, 32 and 22 spines are drawn on the outline of A, B and C (Section I.7), and the app counts 25.1, 32.1 and 22.3 on average. <b>Height.</b> 2.0, 2.8 and 1.7 µm are drawn and the app measures 1.848, 2.756 and 1.540 µm: always somewhat less, by 0.04 to 0.16 µm, on the order of one pixel of the analysis (0.1 µm); in proportion, the difference is largest in C, the one with the shortest spines. <b>Lumen.</b> The drawn mesh is 2.2, 2.6 and 3.4 µm and the median lumen measures 1.272, 1.429 and 1.876 µm: the order is the same and the lumen/mesh ratio is about 0.55 in all three. <b>Texture.</b> C, the one with the most open mesh, has less contrast and more correlation: its light and dark zones are broader.</p>
+  </div>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · two biases worth knowing</div>
+    <p><b>Height comes out a little low.</b> The tip of a spine is finer than a pixel and does not get past the threshold: the peak of the profile stays below the true tip, and about one pixel of height is lost. In the validation with 60 simulated grains, with spines of 1.2 to 3.2 µm, the measured height fell short of the drawn one by a median of 3.9% (between 2.9 and 5.7%); the loss weighs more, in proportion, when the spine is only a few pixels high or when the spines touch at the base. Compare heights between groups photographed in the same way, and if you give the height in µm, state in the methods that it is underestimated by about one pixel (the Block 7 report says so). <b>The lumen is proportional to the mesh, not equal to it.</b> The mesh runs from the center of one murus to the center of the next; the lumen is only the dark part of each cell, without the muri or the penumbra at its rim. In the validation, the ratio was 0.558 with a variation among grains of 1.8%: constant, so the lumen ranks and compares reticula well.</p>
+  </div>
+
+  <h3>The four figures</h3>
+  <p>Three box plots, with the grains as points—<span class="ui">Spine density by group</span>, <span class="ui">Lumen diameter by group</span> and <span class="ui">Spine height by group</span>—and a scatter plot, <span class="ui">Texture: contrast against homogeneity</span>, with an ellipse enclosing 95% of each group.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b4-figuras.png" alt="The box plots of spine density and lumen diameter of the three morphotypes"></div>
+    <figcaption><b>Figure 4.5.</b> The first two figures of <span class="ui">Results</span>. B has the densest spines, although its box overlaps that of A; C has the largest lumina, with no overlap with A or B.</figcaption>
+  </figure>
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b4-figuras2.png" alt="The box plot of spine height by group and the plot of contrast against homogeneity with ellipses"></div>
+    <figcaption><b>Figure 4.6.</b> The other two. B has the tallest spines, and those of C, short and even, form an almost flat box. In the texture, C stands apart, with less contrast and more homogeneity, while A and B blend together; the grains fall almost on a line, because contrast and homogeneity measure almost the same thing from two sides.</figcaption>
+  </figure>
+
+  <!-- 4.4 -->
+  <h2 id="s4-4"><span class="num">4.4</span>Check of every picture and radial profile</h2>
+  <p>As in Block 3, the <span class="ui">Check of every picture</span> card draws over the image what was measured, with <span class="ui">← Previous</span>, the selector and <span class="ui">Next →</span> to step through the pictures. It has three layers: <span class="ui">Lumina</span> (in green, each measured lumen), <span class="ui">Spines</span> (the tips, in red) and <span class="ui">Body</span> (in light blue, dashed). On the right are the picture, its twelve ornamentation measures and the <span class="ui">Lumina measured</span>. There is no button to exclude here: pictures are excluded in Block 3.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b4-revision.png" alt="The check of picture 01_C of the example with the lumina in green, the spines in red and the body, and its ornamentation measures"></div>
+    <figcaption><b>Figure 4.7.</b> <span class="ruta">Block 4<span class="sep">›</span>Check of every picture</span> with <code>01_C.png</code>, a grain of morphotype C, with an open mesh: the green covers the cells of the interior and leaves out the rim of the body, where the surface is seen edge-on. On the right, its measures: 23 spines on the outline, 1.524 µm high on average; 343 lumina measured, with a median diameter of 1.833 µm and 15.3 lumina per 100 µm².</figcaption>
+  </figure>
+  <p>What to look for in the <span class="ui">Lumina</span> layer: that the green falls in the cells and not on the muri; that no two cells merge into one large patch; and that no light cells are left unmarked. Missing lumina at the rim of the grain are expected: that zone is not analyzed.</p>
+
+  <h3>The radial profile</h3>
+  <p>Below the viewer, <span class="ui">Radial profile of the chosen picture</span> shows the outline as the app reads it: the <span class="ui">Direction from the center (°)</span>, from 0 to 360, on the horizontal axis, and the <span class="ui">Radius (µm)</span> on the vertical one. The thin line is the <span class="ui">Outline</span>, with the spines as peaks; the thick dashed one, the <span class="ui">Body</span> left after trimming them; the circles, the counted <span class="ui">Spines</span>. It is the most direct way to see why a peak was or was not counted.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b4-perfil.png" alt="The radial profile of picture 01_C: the outline with its peaks, the body and the marked spines"></div>
+    <figcaption><b>Figure 4.8.</b> The radial profile of <code>01_C.png</code>. The body rises and falls twice around the circle, between about 30.6 and 33.7 µm of radius: it is the trace of an elongated grain (its two ends and its two sides). The 23 spines are the narrow peaks, 1 to 2 µm above the body; the line passes through all 720 directions, so each circle falls right on the tip of its peak. The height of each spine is measured from that tip to the chord between its two feet (Section 4.1).</figcaption>
+  </figure>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Decision rule · reading the ornamentation</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:42%"><b>If</b> the groups differ in size…</td><td><b>then</b> compare the <span class="ui">Spine density</span> or the spacing, not the number: a larger grain has more spines on the outline even if its ornamentation is the same.</td></tr>
+      <tr><td><b>If</b> a clear peak in the profile has no circle…</td><td>it is lower than the <span class="ui">Least height of a spine (µm)</span> or wider than the base: adjust those fields in Block 3.</td></tr>
+      <tr><td><b>If</b> small waves of the edge are counted as spines in the profile…</td><td>raise the least height, or check whether the picture has strong noise or is enlarged.</td></tr>
+      <tr><td><b>If</b> the <span class="ui">Lumina</span> layer marks the muri or merges cells…</td><td>change the <span class="ui">Darker than the neighborhood by (st. dev.)</span> or the radius, and measure again.</td></tr>
+      <tr><td><b>If</b> you want to report a spine height in µm…</td><td>remember that the app underestimates it by about one pixel (3 to 6% in spines many pixels high, more in short ones); for comparing groups it is fine as it is.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">On surfaces that are not reticulate (psilate, verrucate), the lumina found are specks of noise: do not use those variables in Block 6.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>When something goes wrong</div>
+    <p><b>The block only says “First measure the grains”.</b> Measure in Block 3; if you already measured and changed something in Block 2, the measures were erased. <b>No lumen, or the density blank.</b> The picture has too little resolution for the reticulum (<span class="ui">enlarged</span> flag), the surface is not reticulate or the grain is so small that no inner zone is left. <b>Far too many spines.</b> The outline is rough because of noise: raise the <span class="ui">Least height of a spine (µm)</span>. <b>Heights change when the pixel of the analysis changes.</b> That is expected: with a coarser pixel the tip is lost more; use the same pixel throughout the study.</p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · Manual de usuario · Capítulo 6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-6" data-pestana="6" data-orden="6" style="--acento: var(--b6)">
+  <div class="cap-apertura">
+    <div class="cap-num">6</div>
+    <div class="cap-etiqueta">Capítulo seis · Bloque 6</div>
+    <h1 data-corto="Estadística multivariada">Estadística multivariada</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">La pregunta de casi todo estudio de polen: ¿se distinguen los grupos por su polen? El bloque la contesta en tres escalas —variable por variable, con todas las variables a la vez y grano por grano, como una clave— y siempre con el grano como unidad, de modo que un grano fotografiado dos veces no cuenta doble ni se ayuda a sí mismo a clasificarse.</p>
+    <div class="cap-franja"><span class="k3"></span><span class="k4"></span><span class="k6"></span><span class="k6"></span></div>
+    <ul class="cap-contenido">
+      <li><b>6.1</b>Qué se calcula: el grano como unidad</li>
+      <li><b>6.2</b>Variables y ajustes</li>
+      <li><b>6.3</b>En resumen</li>
+      <li><b>6.4</b>Por variable</li>
+      <li><b>6.5</b>Componentes principales</li>
+      <li><b>6.6</b>PERMANOVA</li>
+      <li><b>6.7</b>Clave polínica: clasificar un grano</li>
+    </ul>
+  </div>
+
+  <p>El Bloque 6 trabaja con lo que midió el Bloque 3 —el contorno, el tamaño y, en la misma pasada, la ornamentación del Bloque 4—; no vuelve a leer las imágenes. Bajo el título, la app dice lo que hace: «¿Se distinguen los grupos por su polen? Con el grano como unidad.». Tiene un desplegable, <span class="ui">Qué se calcula</span>, la tarjeta <span class="ui">Variables</span> con el botón que lanza el análisis y, una vez calculado, cinco tarjetas de resultados: <span class="ui">En resumen</span>, <span class="ui">Por variable</span>, <span class="ui">Componentes principales</span>, <span class="ui">PERMANOVA</span> y <span class="ui">Clave polínica: clasificar un grano</span>. Todas las cifras de este capítulo salen del ejemplo simulado medido con los valores por omisión y comparado con los ajustes por omisión.</p>
+
+  <!-- 6.1 -->
+  <h2 id="s6-1"><span class="num">6.1</span>Qué se calcula: el grano como unidad</h2>
+  <p class="lead">Antes de cualquier prueba, la app junta las fotos de cada grano en un solo renglón: el promedio de sus medidas. Todo lo demás —las pruebas, los componentes, la PERMANOVA y los clasificadores— se hace con esos granos, no con las fotos.</p>
+  <p>El desplegable <span class="ui">Qué se calcula</span> lo resume en un párrafo. Por pasos, lo que la app hace al pulsar <span class="ui">Comparar los grupos</span> es esto:</p>
+  <ol class="pasos">
+    <li><b>Toma las fotos medidas que sirven.</b> Las fotos de un grano incluidas y calibradas que tienen resultado en el Bloque 3, sin las de contorno cortado (las que superan el <span class="ui">Contorno cortado aceptable (%)</span>, capítulo 3).</li>
+    <li><b>Promedia por grano.</b> Las fotos con el mismo grupo y el mismo número de grano son una sola unidad (en el ejemplo, <code>03_A.png</code> y <code>03a_A.png</code> son el grano A·03). Si a un grano le falta alguna de las variables elegidas, queda fuera, y la app lo dice junto al botón (sección 6.2).</li>
+    <li><b>Quita los grupos con menos de tres granos</b> y se detiene si no quedan al menos dos grupos.</li>
+    <li><b>Prueba cada variable</b>: análisis de varianza de una vía, prueba de Kruskal–Wallis y letras de Tukey, con los valores de p ajustados por Holm sobre todas las variables elegidas.</li>
+    <li><b>Estandariza las variables</b> (media 0, desviación 1) para que una medida en micras no pese más que una proporción, y calcula los componentes principales y la PERMANOVA global y por pares.</li>
+    <li><b>Ajusta y valida dos clasificadores</b>, el discriminante lineal y el bosque aleatorio, dejando fuera un grano completo cada vez.</li>
+  </ol>
+  <p>Mientras calcula, la ventana de espera «Comparando los grupos» dice en qué paso va: <i>Pruebas por variable</i>, <i>Componentes principales</i>, <i>PERMANOVA</i>, <i>Análisis discriminante</i>, <i>Bosque aleatorio (validación por grano)</i> e <i>Importancia de las variables</i>. Con el ejemplo tarda unos segundos.</p>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve: por qué el grano y no la foto</div>
+    <p>Dos fotos del mismo grano no son dos observaciones independientes: se parecen porque son el mismo grano. Si contaran por separado, las pruebas creerían tener más datos de los que hay y darían valores de p demasiado pequeños (lo que en estadística se llama seudorreplicación). Y en la validación de un clasificador, una foto se clasificaría con ayuda de su gemela, que está en el conjunto de entrenamiento, y el acierto saldría inflado. Promediar por grano y dejar fuera el grano completo evita las dos trampas. En el ejemplo, seis granos (los 3 y 6 de cada morfotipo) tienen dos fotos: 30 fotos son 24 granos.</p>
+  </div>
+
+  <!-- 6.2 -->
+  <h2 id="s6-2"><span class="num">6.2</span>Variables y ajustes</h2>
+  <p class="lead">La tarjeta <span class="ui">Variables</span> decide qué medidas entran al análisis multivariado y fija los tres números que gobiernan las partes aleatorias. Debajo está el botón <span class="ui">Comparar los grupos</span>.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b6-variables.png" alt="La tarjeta Variables con 19 casillas, once marcadas, los campos Árboles del bosque 500, Permutaciones 999 y Semilla aleatoria 1, y el botón Comparar los grupos con la nota 24 granos de 3 grupos"></div>
+    <figcaption><b>Figura 6.1.</b> La tarjeta <span class="ui">Variables</span> con el ejemplo medido: las 19 medidas de un grano, 11 marcadas por omisión, y los tres ajustes. A la derecha del botón, «24 granos de 3 grupos».</figcaption>
+  </figure>
+
+  <h3>Entran al análisis</h3>
+  <p>El recuadro <span class="ui">Entran al análisis</span> tiene una casilla por cada medida que saca el Bloque 3 o el 4. Al abrir la app vienen marcadas once, elegidas para que el análisis no repita información:</p>
+  <table class="compacta">
+    <caption><b>Tabla 6.1.</b> Las 19 variables y las que entran por omisión</caption>
+    <thead><tr><th>Marcadas por omisión (11)</th><th>Sin marcar (8)</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Diámetro del cuerpo</span> · <span class="ui">Diámetro mayor del cuerpo (Feret)</span> · <span class="ui">Diámetro menor del cuerpo (Feret)</span> · <span class="ui">Circularidad del cuerpo</span></td><td><span class="ui">Elongación del cuerpo (mayor/menor)</span> · <span class="ui">Diámetro con espinas</span></td></tr>
+      <tr><td><span class="ui">Área de espinas / área del cuerpo</span> · <span class="ui">Altura media de espina</span> · <span class="ui">Densidad de espinas</span></td><td><span class="ui">Espinas en el contorno</span> · <span class="ui">Espaciado entre espinas</span></td></tr>
+      <tr><td><span class="ui">Diámetro de lumen (mediana)</span> · <span class="ui">Densidad de lúmenes</span></td><td><span class="ui">Variación del lumen (CV)</span></td></tr>
+      <tr><td><span class="ui">Textura: contraste</span> · <span class="ui">Textura: homogeneidad</span></td><td><span class="ui">Textura: entropía</span> · <span class="ui">Textura: correlación</span> · <span class="ui">Textura: energía</span></td></tr>
+    </tbody>
+  </table>
+  <p>Las que quedan fuera son, casi todas, combinaciones de otras: la elongación es el cociente de los dos Feret; el diámetro con espinas es, a grandes rasgos, el cuerpo más dos alturas de espina; el número de espinas y su espaciado salen de la densidad y del perímetro; la entropía y la energía de la textura van casi siempre de la mano de la homogeneidad. Puedes marcar o desmarcar las que quieras —la app pide <b>al menos dos</b>— y la elección se guarda en el proyecto. Si vuelves a medir en el Bloque 3, la elección se conserva, pero el resultado se borra y hay que volver a comparar.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Muchas variables y pocos granos</div>
+    <p>El discriminante lineal estima una matriz de covarianza con tantas filas como variables. Con pocos granos por grupo y muchas variables marcadas la matriz se vuelve casi singular, y la app la estabiliza con una pequeña corrección (una cresta de 0.001) para poder seguir; el acierto, entonces, depende más del azar del muestreo. Como guía, procura tener en el grupo más pequeño más granos que variables marcadas. El ejemplo tiene 8 granos por grupo y 11 variables, en el límite: por eso la validación dejando fuera un grano es tan importante.</p>
+  </div>
+
+  <h3>Los tres ajustes</h3>
+  <table class="compacta">
+    <thead><tr><th style="width:1.5in">Campo</th><th style="width:0.8in" class="num">Por omisión</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Árboles del bosque</span></td><td class="num">500</td><td>Árboles del bosque aleatorio completo, del que sale la importancia de las variables y el error fuera de bolsa. Menos de 50 se sube a 50. En la validación dejando fuera un grano, cada modelo usa como mucho 300 árboles, para que el cálculo no se alargue: es un bosque por grano. La app lo dice en los recuadros de la sección 6.7 y en los métodos del informe.</td></tr>
+      <tr><td><span class="ui">Permutaciones</span></td><td class="num">999</td><td>Permutaciones de la PERMANOVA, global y por pares. Menos de 99 se sube a 99. Con 999, el valor de p más pequeño posible es 1 / (999 + 1) = 0.001.</td></tr>
+      <tr><td><span class="ui">Semilla aleatoria</span></td><td class="num">1</td><td>El punto de partida del generador de números aleatorios de las permutaciones y del bosque. La misma semilla da siempre el mismo resultado; un campo vacío o un cero vuelven a 1.</td></tr>
+    </tbody>
+  </table>
+  <p>A la derecha del botón, la app dice con cuántos granos y grupos va a trabajar («24 granos de 3 grupos» en el ejemplo); si aún no hay mediciones, dice «Primero mide los granos en el Bloque 3.» y el botón queda apagado. Si al comparar algún grano quedó fuera por faltarle una variable elegida (por ejemplo, sin lúmenes medidos), el renglón lo añade: «… · 2 sin valor en alguna variable elegida: quedaron fuera». Con el ejemplo no pasa.</p>
+
+  <!-- 6.3 -->
+  <h2 id="s6-3"><span class="num">6.3</span>En resumen</h2>
+  <p class="lead">Seis recuadros y unos veredictos que contestan, de un vistazo, si los grupos difieren y si un grano basta para reconocer su grupo.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b6-resumen.png" alt="La tarjeta En resumen con seis recuadros: Granos 24, PERMANOVA R² 0.711, Variables que difieren 11 de 11, Clasificación LDA 100 %, Clasificación bosque 100 % y Al azar 33.3 %, y tres veredictos"></div>
+    <figcaption><b>Figura 6.2.</b> <span class="ui">En resumen</span> con el ejemplo: los tres morfotipos difieren en conjunto (R² = 0.711, p = 0.001), en las 11 variables, y los dos clasificadores asignan bien los 24 granos.</figcaption>
+  </figure>
+  <table class="compacta">
+    <caption><b>Tabla 6.2.</b> Los recuadros de <span class="ui">En resumen</span>, con los valores del ejemplo</caption>
+    <thead><tr><th style="width:1.55in">Recuadro</th><th style="width:1.3in">Ejemplo</th><th>Qué es</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Granos</span></td><td>24 · 3 grupos</td><td>Los granos (no las fotos) que entraron al análisis y los grupos.</td></tr>
+      <tr><td><span class="ui">PERMANOVA</span></td><td>R² = 0.711 · F = 25.83 · p = 0.001</td><td>La prueba global de la sección 6.6. El recuadro lleva una franja verde si p &lt; 0.05.</td></tr>
+      <tr><td><span class="ui">Variables que difieren</span></td><td>11 / 11</td><td>Cuántas variables tienen un análisis de varianza significativo después del ajuste de Holm (α = 0.05).</td></tr>
+      <tr><td><span class="ui">Clasificación (LDA)</span></td><td>100.0 % · κ = 1.00</td><td>El acierto del discriminante lineal dejando fuera un grano, con la κ de Cohen.</td></tr>
+      <tr><td><span class="ui">Clasificación (bosque)</span></td><td>100.0 % · κ = 1.00</td><td>Lo mismo con el bosque aleatorio.</td></tr>
+      <tr><td><span class="ui">Al azar</span></td><td>33.3 %</td><td>El acierto de quien asignara todos los granos al grupo más numeroso: la vara con que se miden los dos anteriores. Con tres grupos de 8 granos, 8 / 24.</td></tr>
+    </tbody>
+  </table>
+  <h3>Los veredictos</h3>
+  <p>Debajo de los recuadros, la app escribe en palabras lo que significan. Las reglas son fijas:</p>
+  <ul>
+    <li><b>PERMANOVA.</b> Si p &lt; 0.05: «Los grupos difieren en conjunto (PERMANOVA p = 0.001); el grupo explica 71.1 % de la variación entre granos.» (el porcentaje es R² × 100). Si no: «La PERMANOVA no detectó diferencia entre grupos en conjunto.».</li>
+    <li><b>Clasificación</b>, con el mejor de los dos clasificadores. Con 80 % o más, la palomita verde: «Un grano nuevo se asignaría a su grupo correcto 100.0 % de las veces: el polen sirve como clave para estos grupos.». Por debajo de 80 % pero al menos el doble de lo esperado al azar, un aviso: la clasificación supera claramente al azar, «pero no basta para identificar con seguridad un grano aislado: los grupos se traslapan», y sugiere revisar la matriz de confusión. Por debajo de eso, una nota: la clasificación apenas supera al azar.</li>
+    <li><b>Grupos fuera.</b> Si alguno tenía menos de tres granos, «Grupos con menos de tres granos, fuera del análisis:» y sus códigos.</li>
+    <li><b>Fotos promediadas.</b> «6 grano(s) tenían más de una foto: se promediaron.» en el ejemplo.</li>
+  </ul>
+
+  <!-- 6.4 -->
+  <h2 id="s6-4"><span class="num">6.4</span>Por variable</h2>
+  <p class="lead">Una tabla con una fila por variable: la media y la desviación estándar de cada grupo con su letra de Tukey, y las tres pruebas. Debajo, la figura de la variable que mejor separa a los grupos.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b6-porvariable.png" alt="La tabla Por variable con las 11 variables, la media y desviación de A, B y C con sus letras, F, p del ANOVA, p de Kruskal y eta cuadrada, y la figura de cajas del diámetro de lumen por grupo"></div>
+    <figcaption><b>Figura 6.3.</b> <span class="ui">Por variable</span> con el ejemplo. La variable de mayor F es el <span class="ui">Diámetro de lumen (mediana)</span> (F = 58.32), y sus tres grupos tienen letras distintas: c, b y a.</figcaption>
+  </figure>
+  <p>La nota de la tarjeta lo resume: «Media ± desviación estándar por grupo; grupos que no comparten letra difieren (Tukey, α = 0.05). Valores de p ajustados por Holm sobre todas las variables.». Las columnas son:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.35in">Columna</th><th>Qué es</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Variable</span></td><td>El nombre de la medida, con su unidad.</td></tr>
+      <tr><td>Una por grupo (<span class="ui">A</span>, <span class="ui">B</span>, <span class="ui">C</span>)</td><td>Media ± desviación estándar entre los granos del grupo y, en negrita, su letra. La letra <i>a</i> va al grupo de media más alta; dos grupos que comparten alguna letra no difieren según la prueba de Tukey (con la corrección de Tukey–Kramer si los grupos tienen distinto número de granos).</td></tr>
+      <tr><td><span class="ui">F</span></td><td>El estadístico del análisis de varianza de una vía: cuánto más varían las medias entre grupos que los granos dentro de cada grupo.</td></tr>
+      <tr><td><span class="ui">p (ANOVA)</span></td><td>El valor de p del análisis de varianza, <b>ya ajustado por Holm</b> sobre todas las variables; «&lt; 0.001» si es menor.</td></tr>
+      <tr><td><span class="ui">p (Kruskal)</span></td><td>El de la prueba de Kruskal–Wallis, que compara rangos en lugar de medias y no supone normalidad; también ajustado por Holm.</td></tr>
+      <tr><td><span class="ui">η²</span></td><td>La proporción de la variación de la variable que explica el grupo (la suma de cuadrados entre grupos entre la total): un tamaño de efecto que no depende del número de granos.</td></tr>
+    </tbody>
+  </table>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve: Holm y Tukey hacen cosas distintas</div>
+    <p>Con 11 variables y α = 0.05, si los grupos no difirieran en nada se esperaría que alguna saliera significativa sólo por azar. El ajuste de Holm (1979) corrige los valores de p <i>entre variables</i>: ordena las p de menor a mayor y multiplica la primera por 11, la segunda por 10, y así, sin dejar que bajen. Las letras de Tukey (1949) corrigen <i>dentro de una variable</i>, entre los pares de grupos. Una variable puede tener F significativa y, aun así, dos grupos con la misma letra: difieren los grupos en conjunto, pero no ese par.</p>
+  </div>
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Ejemplo resuelto: qué distingue a cada morfotipo</div>
+    <p>Las 11 variables tienen p (ANOVA) &lt; 0.001. Leyendo las letras se ve qué separa a quién. El morfotipo B es el más grande: <span class="ui">Diámetro del cuerpo</span> 67.93 ± 2.56 µm, letra <i>a</i>, contra 60.95 ± 4.03 (A) y 60.85 ± 2.33 µm (C), que comparten la <i>b</i>; también tiene las espinas más altas (2.756 ± 0.451 µm, <i>a</i>, contra 1.848 del A y 1.540 µm del C, que comparten la <i>b</i>) y más densas (15.06 ± 1.25 por 100 µm). El morfotipo C se separa por el retículo: lúmenes más grandes (1.876 ± 0.131 µm, <i>a</i>), menos lúmenes por superficie (15.4 ± 2.0 por 100 µm², <i>c</i>), una textura más homogénea y de menor contraste, y un cuerpo algo menos circular (0.992 ± 0.002, <i>b</i>). A y B sólo difieren en el tamaño, las espinas y el retículo, no en la textura: comparten la letra en contraste y en homogeneidad. Compáralo con lo que se dibujó (sección I.7): el B se dibuja con el cuerpo mayor y las espinas más altas, y el C con la malla más abierta.</p>
+  </div>
+  <p>El botón <span class="ui">CSV</span> descarga la tabla como <code>palynopro_por_variable.csv</code>, con los números sin redondear: una fila por variable, con su clave interna en <code>variable</code> (como <code>corp_d</code>) y su nombre con la unidad en <code>nombre</code> («Diámetro del cuerpo (µm)»), y, por grupo, las columnas <code>A_media</code>, <code>A_de</code> y <code>A_letra</code>; después <code>F</code>, <code>p_anova_holm</code>, <code>H</code>, <code>p_kruskal_holm</code> y <code>eta2</code>.</p>
+  <h3>La variable que más separa a los grupos</h3>
+  <p>La figura de cajas de la tarjeta muestra la variable de mayor F, con cada grano como un punto, la caja del primer al tercer cuartil con la mediana, los bigotes y la letra de Tukey encima de cada grupo. Cambia sola si cambias las variables elegidas: siempre es la de mayor F entre las que entraron.</p>
+
+  <!-- 6.5 -->
+  <h2 id="s6-5"><span class="num">6.5</span>Componentes principales</h2>
+  <p class="lead">Un mapa de los granos en dos dimensiones que resume todas las variables a la vez, con flechas que dicen hacia dónde crece cada una. Sirve para ver la estructura —qué grupos se separan, cuáles se enciman, qué variables van juntas—, no para probar nada.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b6-pca.png" alt="La tarjeta Componentes principales con el biplot de los 24 granos y las 11 variables, la gráfica de varianza explicada por componente y la tabla de correlaciones de cada variable con CP1, CP2 y CP3"></div>
+    <figcaption><b>Figura 6.4.</b> <span class="ui">Componentes principales</span> con el ejemplo. CP1 explica 58.8 % de la variación y CP2 23.4 %. El morfotipo C (triángulos) queda a la izquierda, del lado de los lúmenes grandes y la textura homogénea; el B (cuadros), arriba a la derecha, del lado del tamaño y las espinas; el A (círculos), abajo a la derecha.</figcaption>
+  </figure>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve: el análisis de componentes principales</div>
+    <p>Con las variables estandarizadas, el análisis de componentes principales (Pearson 1901; Hotelling 1933) busca nuevos ejes, combinaciones de las variables originales, que no estén correlacionados entre sí: el primero (CP1) recoge la mayor variación posible, el segundo (CP2) la mayor de lo que queda, y así. La app los calcula con los valores y vectores propios de la matriz de correlación, por rotaciones de Jacobi. Hay tantos componentes como variables (11 en el ejemplo), y sus valores propios suman 11: un componente con valor propio mayor que 1 resume más que una variable sola.</p>
+  </div>
+  <h3>Biplot: granos y variables</h3>
+  <p>Cada punto es un grano, con la forma y el color de su grupo, y cada grupo lleva su elipse del 95 %. Las flechas son las variables: su punta está en la correlación de la variable con CP1 (horizontal) y con CP2 (vertical), así que apuntan hacia donde la variable crece y su largo dice qué tan bien la representa el plano. Dos flechas juntas son variables que van de la mano; opuestas, que una sube cuando la otra baja. Los ejes llevan el porcentaje de varianza de cada componente: «CP1 (58.8 %)» y «CP2 (23.4 %)».</p>
+  <p>Cada flecha lleva el nombre de su variable, en el idioma de la interfaz (sin la unidad). En el ejemplo, las flechas del retículo y de la textura se reparten a lo largo de CP1: <span class="ui">Textura: contraste</span> y <span class="ui">Densidad de lúmenes</span> a la derecha y algo abajo, <span class="ui">Diámetro de lumen (mediana)</span> y <span class="ui">Textura: homogeneidad</span> a la izquierda, justo donde están los granos del morfotipo C. Las del tamaño (<span class="ui">Diámetro mayor del cuerpo (Feret)</span>, <span class="ui">Diámetro del cuerpo</span>, <span class="ui">Diámetro menor del cuerpo (Feret)</span>) y la <span class="ui">Altura media de espina</span> suben hacia la derecha, hacia los granos del B. Los del A quedan abajo a la derecha: son los más chicos y los de lúmenes más densos.</p>
+  <h3>Varianza explicada</h3>
+  <p>Una barra por componente con el porcentaje de la variación total que explica. Es la gráfica de sedimentación: cuando las barras dejan de bajar de golpe, los componentes que siguen son ruido. En el ejemplo, CP1 explica 58.8 %, CP2 23.4 % y CP3 11.8 % (valores propios 6.47, 2.57 y 1.29): los tres primeros, los únicos con valor propio mayor que 1, suman casi el 94 %, y del CP6 en adelante las barras ni se ven.</p>
+  <h3>La tabla de correlaciones</h3>
+  <p>Bajo las figuras, «Correlación de cada variable con los componentes.»: una fila por variable con su correlación (r) con CP1, CP2 y CP3. Una |r| cercana a 1 dice que el componente es, en buena parte, esa variable. En el ejemplo, CP1 es sobre todo la textura y el retículo (contraste 0.925, homogeneidad −0.917, diámetro de lumen −0.858, densidad de lúmenes 0.813); CP2, el tamaño (Feret mayor 0.863, diámetro del cuerpo 0.739); y CP3, las espinas (densidad de espinas 0.668, área de espinas 0.590).</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Los componentes no saben de grupos</div>
+    <p>El análisis de componentes no usa el grupo de cada grano: busca la variación, venga de donde venga. Si los grupos se separan en el biplot es porque la mayor variación entre granos es justamente la que hay entre grupos. Si no se separan, puede que difieran en una dirección que explica poca varianza: la PERMANOVA y el discriminante, que sí usan el grupo, lo dirán.</p>
+  </div>
+
+  <!-- 6.6 -->
+  <h2 id="s6-6"><span class="num">6.6</span>PERMANOVA</h2>
+  <p class="lead">La prueba de si los grupos difieren en el conjunto de sus medidas, sin suponer que las variables sigan una distribución normal: la respuesta global y, con más de dos grupos, par por par.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b6-permanova.png" alt="La tarjeta PERMANOVA: Global pseudo-F 25.832, gl 2 y 21, R² 0.711, p 0.001 con 999 permutaciones, y la tabla por pares A–B, A–C y B–C"></div>
+    <figcaption><b>Figura 6.5.</b> La PERMANOVA del ejemplo. Los tres pares difieren (p de Holm = 0.003); el par más parecido es A–B (F = 12.46, R² = 0.471) y el más distinto, B–C (F = 47.11, R² = 0.771).</figcaption>
+  </figure>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve: la PERMANOVA</div>
+    <p>La PERMANOVA (Anderson 2001; McArdle y Anderson 2001) es un análisis de varianza hecho con distancias. La app calcula la distancia euclidiana entre cada par de granos sobre las variables estandarizadas, reparte la suma de las distancias al cuadrado en la parte entre grupos y la parte dentro de los grupos, y forma un seudo-F como en un análisis de varianza. Para saber si ese seudo-F es grande, baraja los grupos entre los granos tantas veces como diga <span class="ui">Permutaciones</span> y cuenta en cuántas el seudo-F barajado iguala o supera al observado: p = (esas veces + 1) / (permutaciones + 1). La R² es la parte de la variación entre granos que explica el grupo.</p>
+  </div>
+  <p>El renglón <b>Global</b> da el seudo-F, sus grados de libertad (número de grupos − 1 y número de granos − número de grupos), la R², el valor de p, el número de permutaciones y la distancia usada. En el ejemplo: «pseudo-F = 25.832, gl 2, 21; R² = 0.711; p = 0.001 (999 permutaciones, distancia euclidiana sobre variables estandarizadas)». El p de 0.001 es el más pequeño que se puede obtener con 999 permutaciones: ninguna barajada igualó al observado. Para afirmar un p menor hay que aumentar las permutaciones.</p>
+  <p>La tabla <b>por pares</b> repite la prueba con cada par de grupos —<span class="ui">Par</span>, <span class="ui">F</span>, <span class="ui">R²</span>, <span class="ui">p</span>— y añade <span class="ui">p (Holm)</span>, ajustada por el número de pares. Los pares con p de Holm menor que 0.05 llevan una franja verde a la izquierda. Con sólo dos grupos no hay tabla de pares: la global ya es la comparación.</p>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>Diferencia de posición o de dispersión</div>
+    <p>La PERMANOVA puede salir significativa porque los grupos están en sitios distintos del espacio de las variables o porque uno está mucho más disperso que otro. Mira el biplot y las elipses: si un grupo tiene una elipse mucho mayor que los demás y los centros casi coinciden, la diferencia es de dispersión, no de forma media. En el ejemplo los centros están claramente separados.</p>
+  </div>
+
+  <!-- 6.7 -->
+  <h2 id="s6-7"><span class="num">6.7</span>Clave polínica: clasificar un grano</h2>
+  <p class="lead">La última tarjeta contesta la pregunta práctica: si te dan un grano suelto, ¿podrías decir de qué grupo es sólo por sus medidas? Para eso ajusta dos clasificadores y mide su acierto con granos que no vieron.</p>
+  <h3>Los recuadros</h3>
+  <ul>
+    <li><span class="ui">Discriminante lineal</span>: 100.0 % de acierto, «validación dejando fuera un grano».</li>
+    <li><span class="ui">Bosque aleatorio</span>: 100.0 %, con la misma validación: «validación dejando fuera un grano, 300 árboles en cada modelo».</li>
+    <li><span class="ui">Error fuera de bolsa</span>: 4.2 %, del «bosque completo, 500 árboles». Cada árbol se ajusta con una muestra con reemplazo de los granos; los que no entraron a esa muestra («fuera de la bolsa») sirven para medir su error. Es una segunda estimación del acierto del bosque, sin validación aparte. En el ejemplo, 4.2 % es un grano de 24; que no coincida del todo con la validación es normal con tan pocos granos.</li>
+  </ul>
+  <figure class="w60">
+    <div class="marco"><img src="../img/b6-clave.png" alt="La tarjeta Clave polínica con tres recuadros de acierto, el espacio discriminante LD1 por LD2 con los tres grupos separados, la importancia de las variables del bosque aleatorio y las dos matrices de confusión"></div>
+    <figcaption><b>Figura 6.6.</b> La clave polínica del ejemplo. Los dos clasificadores aciertan en los 24 granos en la validación; el error fuera de bolsa del bosque completo es de 4.2 %. En el espacio discriminante, los tres grupos no se enciman.</figcaption>
+  </figure>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve: dos clasificadores y una validación honesta</div>
+    <p>El <b>análisis discriminante lineal</b> (Fisher 1936) busca las combinaciones de variables que mejor separan a los grupos, suponiendo que todos tienen la misma matriz de covarianza, y asigna un grano al grupo de mayor probabilidad posterior, con probabilidades previas iguales a la frecuencia de cada grupo. El <b>bosque aleatorio</b> (Breiman 2001) junta cientos de árboles de decisión, cada uno ajustado con una muestra con reemplazo de los granos y, en cada corte, con √<i>p</i> variables al azar (3 de 11 en el ejemplo); cada árbol vota y gana el grupo más votado. El discriminante funciona mejor cuando los grupos son nubes elípticas parecidas; el bosque no supone forma alguna, pero necesita más granos. La <b>validación dejando fuera un grano</b> saca un grano —con todas sus fotos—, ajusta el modelo con los demás (estandarizando también sin él), lo clasifica y repite con cada grano. Lo que se obtiene es el acierto esperado con un grano nuevo; la κ de Cohen (1960) descuenta el acierto que se tendría por azar: 1 es concordancia perfecta y 0, la del azar.</p>
+  </div>
+  <h3>Espacio discriminante (LD1 × LD2)</h3>
+  <p>Los granos en los dos primeros ejes discriminantes, con la elipse del 95 % de cada grupo. Cada eje lleva el porcentaje de la separación entre grupos que recoge: «LD1 (78.4 %)» y «LD2 (21.6 %)» en el ejemplo. A diferencia del biplot, estos ejes se eligen para separar a los grupos, así que la figura muestra la mejor separación posible con combinaciones lineales; con tres grupos hay dos ejes. Los granos se dibujan con el modelo ajustado a todos los granos; el acierto de los recuadros, en cambio, sale de la validación. Con dos grupos hay un solo eje, y en lugar de la figura la app dice «Con dos grupos hay un solo eje discriminante.».</p>
+  <h3>Importancia de las variables (bosque aleatorio)</h3>
+  <p>Una barra por variable con la disminución media de Gini: cuánto ayuda, en promedio, cada variable a hacer más puros los cortes de los árboles del bosque completo. Las barras van acostadas, con el nombre de cada variable a la izquierda, de la más importante arriba a la menos importante abajo. En el ejemplo la más importante es la <span class="ui">Altura media de espina</span> (0.110), seguida del <span class="ui">Diámetro de lumen (mediana)</span> (0.081), la <span class="ui">Densidad de lúmenes</span> (0.077) y el <span class="ui">Área de espinas / área del cuerpo</span> (0.075); la menos, la <span class="ui">Densidad de espinas</span> (0.020). La importancia dice qué usa el bosque, no qué variable difiere más: dos variables muy correlacionadas se reparten la importancia.</p>
+  <h3>Las matrices de confusión</h3>
+  <p>Una por clasificador, <span class="ui">Discriminante lineal</span> y <span class="ui">Bosque aleatorio</span>, con la leyenda «Filas: grupo verdadero · columnas: grupo asignado». La diagonal son los aciertos, sombreada con el color principal; fuera de ella, los errores, en el de acento. La última columna, <span class="ui">Acierto</span>, es el porcentaje de granos de cada grupo bien asignados. En el ejemplo, las dos matrices tienen 8, 8 y 8 en la diagonal y ceros fuera de ella (Acierto 100 % en cada grupo). Cuando un clasificador se equivoque con tus datos, mira entre qué grupos caen los errores y compáralo con la PERMANOVA por pares: lo esperable es que se confundan los pares más parecidos (en el ejemplo, A–B).</p>
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Ejemplo resuelto: ¿sirve el polen como clave para los tres morfotipos?</div>
+    <p>Con las 11 variables por omisión, la PERMANOVA dice que los morfotipos difieren en conjunto (R² = 0.711, p = 0.001) y por pares; el discriminante y el bosque clasifican bien el 100 % de los granos que no vieron (κ = 1.00 en los dos), contra 33.3 % al azar, y el error fuera de bolsa del bosque es de 4.2 %. La app concluye que «el polen sirve como clave para estos grupos». Para un manuscrito escribirías: «Los tres morfotipos difirieron en su morfología polínica (PERMANOVA: pseudo-F = 25.83, R² = 0.71, p = 0.001); en validación cruzada dejando fuera un grano, todos los granos se asignaron a su morfotipo, tanto por análisis discriminante lineal como por bosque aleatorio (κ = 1.00).». Recuerda que son datos simulados: el ejemplo se dibujó para que los grupos se distinguieran.</p>
+  </div>
+
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>El grano es la unidad, pero no la planta</div>
+    <p>La app trata cada grano como independiente. Si tus granos vienen de pocas plantas, los granos de una misma planta se parecen entre sí más que a los de otra, y las pruebas sobrestiman la evidencia de la misma manera que lo harían las fotos repetidas. Si puedes, fotografía granos de varias plantas por grupo y comprueba, con la tabla de medidas por foto del Bloque 3, que la variación entre plantas no domina. La app no modela ese segundo nivel.</p>
+  </div>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Regla de decisión</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:44%"><b>Si</b> la PERMANOVA da p &lt; 0.05 y la clasificación es de 80 % o más…</td><td>los grupos se distinguen por su polen y un grano basta para reconocerlos: el polen es una buena clave para ellos.</td></tr>
+      <tr><td><b>Si</b> la PERMANOVA da p &lt; 0.05 pero la clasificación queda por debajo de 80 %…</td><td>los grupos difieren en promedio, pero se traslapan: el polen sirve para caracterizarlos, no para identificar un grano suelto. Mira en la matriz de confusión qué pares se confunden.</td></tr>
+      <tr><td><b>Si</b> la PERMANOVA no es significativa…</td><td>con estas variables y estos granos no hay evidencia de diferencia. Antes de concluir que no difieren, revisa cuántos granos tiene cada grupo.</td></tr>
+      <tr><td><b>Si</b> la PERMANOVA da p = 0.001 con 999 permutaciones…</td><td>informa «p ≤ 0.001»; para un valor más fino, aumenta las permutaciones.</td></tr>
+      <tr><td><b>Si</b> una variable tiene F significativa y dos grupos comparten letra…</td><td>esa variable separa a algunos grupos, no a ese par.</td></tr>
+      <tr><td><b>Si</b> el discriminante y el bosque dan aciertos muy distintos…</td><td>con pocos granos, confía más en el que tenga mayor κ y en el error fuera de bolsa; con grupos de forma muy irregular, en el bosque.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">Son guías para interpretar, no leyes: el diseño del muestreo —cuántas plantas, cuántas flores, cuántos granos por planta— pesa más que cualquier valor de p.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>Cuando algo sale mal</div>
+    <p><b>El botón <span class="ui">Comparar los grupos</span> está apagado</b> y dice «Primero mide los granos en el Bloque 3.»: no hay mediciones; ve al Bloque 3 y pulsa <span class="ui">Medir todas las fotos de un grano</span>. <b>«Elige al menos dos variables.»</b> Marca dos o más casillas. <b>«Hacen falta al menos dos grupos con tres granos o más.»</b> Tras promediar por grano y quitar las fotos de contorno cortado quedan menos de dos grupos con tres granos; revisa en el Bloque 2 que el grupo y el grano se leyeron bien (un patrón de nombre equivocado puede juntar todos los granos en un grupo o darles a todos el mismo número de grano). <b>Un grupo no aparece.</b> Tenía menos de tres granos y la app lo dice en un veredicto. <b>«… sin valor en alguna variable elegida: quedaron fuera».</b> A esos granos les falta alguna de las variables marcadas (por ejemplo, un grano sin lúmenes medidos); desmarca esa variable o revisa la foto en el Bloque 4. <b>Los resultados desaparecieron.</b> Volviste a medir o cambiaste la calibración, un grupo o una exclusión: el bloque se vacía para no mostrar resultados viejos; vuelve a comparar. <b>Al abrir un proyecto no hay resultados.</b> El proyecto guarda las mediciones y los ajustes, no la comparación, y la app lo recuerda al abrirlo: pulsa otra vez <span class="ui">Comparar los grupos</span> y saldrá igual, porque la semilla también se guarda.</p>
+  </div>
+</section>
+
+</body>
+</html>

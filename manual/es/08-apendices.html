@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · Manual de usuario · Apéndices</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+<style>
+  table.ficheros code { white-space: nowrap; }
+  pre.archivo { font-family: var(--mono); font-size: 8.4pt; line-height: 1.4; background: #f4f6f8; border: 1px solid var(--linea); border-left: 3px solid var(--acento); border-radius: 0 4px 4px 0; padding: 0.07in 0.12in; margin: 0.05in 0 0.16in; white-space: pre-wrap; break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<section class="capitulo" id="apendices" data-pestana="Ap" data-orden="8" style="--acento: var(--bx)">
+  <div class="cap-apertura">
+    <div class="cap-num">A</div>
+    <div class="cap-etiqueta">Apéndices</div>
+    <h1 data-corto="Apéndices">Apéndices</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">Lo que conviene tener a la mano y no cabía en ningún capítulo: qué archivos lee y escribe la app y cómo los lee, las reglas de los siete bloques reunidas en un solo lugar, el vocabulario de la palinología y de la estadística que usa el manual, qué hacer cuando algo no sale, la licencia de la herramienta con la manera de citarla y las 22 referencias de la app.</p>
+    <div class="cap-franja"><span class="k2"></span><span class="k3"></span><span class="k5"></span><span class="k6"></span><span class="k7"></span></div>
+    <ul class="cap-contenido">
+      <li><b>A</b>Los archivos que la app lee y escribe</li>
+      <li><b>B</b>Las reglas, reunidas</li>
+      <li><b>C</b>Glosario</li>
+      <li><b>D</b>Cuando algo no sale</li>
+      <li><b>E</b>La herramienta: licencia y cómo citarla</li>
+      <li><b>F</b>Referencias</li>
+    </ul>
+  </div>
+
+  <!-- ================================================================= A -->
+  <h2 id="ap-a"><span class="num">A</span>Los archivos que la app lee y escribe</h2>
+  <p class="lead">PalynoPro corre en el navegador y no envía nada a ningún servidor: los archivos entran desde tu computadora y lo que la app escribe sale a tu carpeta de descargas. Las fotos nunca se copian: la app guarda una referencia a cada una mientras la pestaña está abierta.</p>
+
+  <h3>A.1 · Lo que la app lee</h3>
+  <p>Todo entra por el Bloque 2 —<span class="ui">Elegir una carpeta</span>, <span class="ui">Elegir archivos</span> o arrastrando a la zona <span class="ui">Arrastra aquí una carpeta o tus imágenes</span>—, salvo el proyecto. La app reconoce cada archivo por su extensión y su contenido; no hace falta decirle qué es cada uno.</p>
+  <table class="compacta ficheros">
+    <thead><tr><th style="width:1.25in">Qué</th><th style="width:1.45in">Extensión</th><th>Cómo lo lee</th></tr></thead>
+    <tbody>
+      <tr><td><b>Micrografías</b></td><td><code>.tif</code> <code>.tiff</code> <code>.png</code> <code>.jpg</code> <code>.jpeg</code> <code>.bmp</code> <code>.webp</code> <code>.gif</code></td><td>Cada imagen se pasa a un solo canal de grises (0 = negro); las de color se convierten con los pesos 0.299, 0.587 y 0.114. El TIFF lo lee un lector propio (abajo); los demás formatos, el navegador.</td></tr>
+      <tr><td><b>Archivo del microscopio</b></td><td><code>.txt</code> con el mismo nombre que la imagen</td><td>De él se leen la magnificación, el tamaño del píxel si viene, el voltaje, la distancia de trabajo, la fecha y el equipo (abajo). El texto que algunos equipos escriben dentro del propio TIFF se lee igual si no hay <code>.txt</code>.</td></tr>
+      <tr><td><b>Índice</b></td><td><code>.csv</code>, <code>.tsv</code> o <code>.txt</code> con encabezado</td><td>Una fila por imagen; las columnas se buscan por nombre (abajo). Se toma el primero que tenga la columna del archivo y al menos una fila.</td></tr>
+      <tr><td><b>Clave de grupos</b></td><td><code>.txt</code> o <code>.csv</code></td><td>Líneas <code>código = nombre</code> o <code>código: nombre</code> (abajo).</td></tr>
+      <tr><td><b>Proyecto</b></td><td><code>.json</code></td><td><span class="ui">Abrir un proyecto</span> de la portada o <code>Ctrl + O</code>. Sólo un archivo escrito por la app, con <code>"app": "PalynoPro"</code>; cualquier otro se rechaza. Reemplaza lo que hubiera abierto (capítulo 7.5).</td></tr>
+    </tbody>
+  </table>
+
+  <h4>El TIFF</h4>
+  <p>El lector acepta TIFF en tiras o en mosaicos; sin compresión, con LZW (con o sin predictor horizontal), PackBits o Deflate; de 1, 8, 16 o 32 bits; en grises, con paleta o en color. No acepta los TIFF con los canales en planos separados ni otras compresiones (JPEG dentro del TIFF, por ejemplo): esas fotos se reportan como no leídas. Las imágenes de 16 bits se llevan a 8 para analizarse.</p>
+
+  <h4>El archivo del microscopio</h4>
+  <p>La app reconoce estas formas de escribir los datos, en el <code>.txt</code> o dentro del TIFF:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:2.5in">Renglón</th><th>Qué se lee</th></tr></thead>
+    <tbody>
+      <tr><td><code>$CM_MAG 1000</code></td><td>La magnificación. Con esta familia de archivos también <code>$CM_ACCEL_VOLT</code> (voltaje), <code>$$SM_WD</code> (distancia de trabajo), <code>$CM_DATE</code> (fecha), <code>$CM_INSTRUMENT</code> (equipo) y, si vienen juntos, <code>$$SM_MICRON_MARKER 10um</code> y <code>$$SM_MICRON_BAR 128</code>, de los que sale el tamaño del píxel (la barra en µm entre su largo en píxeles).</td></tr>
+      <tr><td><code>PixelWidth=1.0e-007</code></td><td>El tamaño del píxel, en metros.</td></tr>
+      <tr><td><code>Image Pixel Size = 100 nm</code></td><td>El tamaño del píxel, en pm, nm, µm o mm.</td></tr>
+      <tr><td><code>PixelSize=100</code></td><td>El tamaño del píxel, en nm (al principio del renglón).</td></tr>
+      <tr><td><code>Magnification=1000</code> · <code>Mag: x1000</code></td><td>La magnificación, si no se leyó antes.</td></tr>
+      <tr><td><code>AcceleratingVoltage=</code> · <code>HV=</code> · <code>EHT=</code></td><td>El voltaje, en kV (o en V si lo dice).</td></tr>
+    </tbody>
+  </table>
+  <p>Si el archivo no trae nada de esto, la magnificación se escribe a mano en la tabla del Bloque 2 o se da en el índice.</p>
+
+  <h4>El índice</h4>
+  <p>El primer renglón es el encabezado. El separador se adivina con él: punto y coma si tiene más puntos y comas que comas; si no, tabulador si tiene alguno; si no, coma. Los campos entre comillas se respetan, la marca de orden de bytes del principio se ignora y los renglones vacíos se saltan. Los encabezados se comparan sin mayúsculas, acentos ni signos (<code>Magnificación</code> y <code>magnificacion</code> son lo mismo). Cada columna se reconoce por cualquiera de estos nombres:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.3in">Columna</th><th>Encabezados que la nombran</th></tr></thead>
+    <tbody>
+      <tr><td>Archivo (obligatoria)</td><td>archivo, file, filename, imagen, image, base_id, id, foto</td></tr>
+      <tr><td>Grupo</td><td>grupo, group, morfotipo, landrace_code, taxon, especie, species, codigo, code, clase, class</td></tr>
+      <tr><td>Nombre del grupo</td><td>nombre, name, landrace_name, nombre_grupo, group_name</td></tr>
+      <tr><td>Grano</td><td>grano, grain, unidad, unit, specimen, ejemplar</td></tr>
+      <tr><td>Magnificación</td><td>magnificacion, magnification, mag, aumento, aumentos</td></tr>
+      <tr><td>Tamaño del píxel</td><td>um_por_px, um_per_px, micras_por_pixel, pixel_size_um, umpx (en µm)</td></tr>
+      <tr><td>Excluir</td><td>excluir, exclude, excluded, descartar; cuenta como sí: 1, si, yes, true, x, excluir, exclude</td></tr>
+      <tr><td>Nota</td><td>nota, note, notas, notes, comentario</td></tr>
+      <tr><td>Tipo</td><td>nivel, tier, tipo, kind; en español o en inglés: un valor con «pano», «over», «campo» o «field» es panorámica, con «det» detalle, y cualquier otro (<code>un grano</code>, <code>one grain</code>…) un grano</td></tr>
+    </tbody>
+  </table>
+  <p>Cada fila se une a su imagen por el nombre del archivo, con o sin extensión. Lo que trae el índice manda sobre lo que se lee del nombre (grupo y grano), también si después cambias el patrón del nombre (B.1); la magnificación del índice sólo se usa si el archivo del microscopio no la daba, y un tamaño de píxel del índice pasa por delante de la magnificación (B.1). Los decimales pueden llevar punto o coma (<code>0,1</code>), pero con coma decimal separa las columnas con punto y coma o tabulador. El índice que descarga el propio Bloque 2 vuelve a entrar completo:</p>
+  <pre class="archivo">archivo;grupo;nombre;grano;magnificacion;excluir;nota
+01_G1.tif;G1;Grupo uno;01;1000;;
+02_G1.tif;G1;Grupo uno;02;1000;1;grano roto
+90_G1.tif;G1;Grupo uno;90;150;;panorámica</pre>
+
+  <h4>La clave de grupos</h4>
+  <p>Un archivo de texto con un renglón por grupo, <code>A = Morfotipo A</code>, <code>G1 = Grupo uno</code> o <code>G1: Grupo uno</code>. El código es una sola palabra de letras y cifras, de 1 a 8 caracteres, que puede llevar guiones (<code>-</code> o <code>_</code>) por dentro: <code>A</code>, <code>G1</code>, <code>M12</code>, <code>P3b</code>, <code>Lin-2</code>. Un grupo que no esté en la clave se nombra a mano en la tarjeta <span class="ui">Grupos</span> del Bloque 2 o con la columna del nombre en el índice.</p>
+
+  <h4>El grupo y el grano desde el nombre</h4>
+  <p>Sin índice, el grupo y el grano salen del nombre del archivo con el <span class="ui">Patrón del nombre (grupo y grano)</span> del Bloque 2, una expresión regular con dos partes con nombre: <code>(?&lt;grain&gt;…)</code> y <code>(?&lt;group&gt;…)</code>. La de omisión, <code>^(?&lt;grain&gt;\d+)[A-Za-z]*_(?&lt;group&gt;[A-Za-z]+\d*)</code>, lee <code>07a_G1.tif</code> como grano 07 del grupo G1: las letras tras el número del grano marcan una foto repetida del mismo grano. Si el patrón no tiene nombres, se usan el primer y el segundo paréntesis como grano y grupo.</p>
+
+  <h3>A.2 · Lo que la app escribe</h3>
+  <table class="compacta ficheros">
+    <thead><tr><th style="width:0.5in">Bloque</th><th style="width:2.35in">Archivo</th><th>Qué contiene</th></tr></thead>
+    <tbody>
+      <tr><td>todos</td><td><code>&lt;título&gt;.palynopro.json</code> (<code>Ctrl + S</code>)</td><td>El proyecto: datos del informe y su idioma (<code>reportLang</code>), ajustes, lista de imágenes con su calibración (con la barra redondeada, <code>nice</code>, y la marca de un píxel sustituido, <code>replaced</code>), de dónde vinieron su grupo y su grano (<code>groupFrom</code>, <code>grainFrom</code>: del índice o de la tabla) y sus exclusiones, mediciones y conteo de panorámicas (tabla 7.2). No lleva los resultados del Bloque 6. Sin título, <code>proyecto.palynopro.json</code>.</td></tr>
+      <tr><td><span class="chip k2">2</span></td><td><code>palynopro_indice.csv</code></td><td>Una fila por imagen: archivo, grupo, nombre, grano, magnificacion, ancho_px, um_por_px, fuente, barra_px, barra_um, nivel, excluir, nota. La fuente (<code>a mano</code>, <code>índice</code>, <code>del equipo</code>, <code>magnificación</code>, <code>sin calibrar</code>) y el nivel (<code>un grano</code>, <code>panorámica</code>, <code>detalle</code>) van en el idioma de la interfaz. Se puede volver a abrir como índice, en cualquiera de los dos idiomas.</td></tr>
+      <tr><td><span class="chip k3">3</span></td><td><code>palynopro_tamano_por_grupo.csv</code></td><td>Por grupo: grupo, nombre, n_granos y, de cada medida del contorno, su media y su desviación (<code>corp_d_media</code>, <code>corp_d_de</code>…).</td></tr>
+      <tr><td><span class="chip k3">3</span></td><td><code>palynopro_medidas_por_foto.csv</code></td><td>Por foto: foto, grupo, grano, usable (0 si tiene el contorno cortado) y las 19 medidas con su clave interna.</td></tr>
+      <tr><td><span class="chip k4">4</span></td><td><code>palynopro_ornamentacion_por_grupo.csv</code></td><td>Por grupo: las medias y desviaciones de las espinas, los lúmenes y la textura.</td></tr>
+      <tr><td><span class="chip k5">5</span></td><td><code>palynopro_fertilidad.csv</code></td><td>Por grupo: panoramicas, granos, colapsados, proporcion, ic_inf, ic_sup (intervalo de Wilson), diametro_media y diametro_de.</td></tr>
+      <tr><td><span class="chip k6">6</span></td><td><code>palynopro_por_variable.csv</code></td><td>Por variable: variable (la clave interna), nombre (con su unidad), medias, desviaciones y letras de cada grupo, F, p_anova_holm, H, p_kruskal_holm y eta2.</td></tr>
+      <tr><td><span class="chip k7">7</span></td><td><code>&lt;título&gt;.html</code></td><td>El informe (sección 7.3), con las figuras y la galería dentro. Sin título, <code>palynopro_informe.html</code>.</td></tr>
+      <tr><td>cualquiera</td><td><code>&lt;título de la figura&gt;.svg</code> · <code>.png</code></td><td>Cada figura, con los colores del tema claro; el PNG al triple de su tamaño. El estudio exporta además PDF y TIFF al tamaño y la resolución que pidas.</td></tr>
+    </tbody>
+  </table>
+  <p>Los nombres que salen de un título se escriben sin acentos y con guiones bajos (<code>Morfometria_polinica_del_ejemplo_simulado.html</code>). Todos los CSV usan la coma como separador y el punto decimal, con los números sin redondear, y van en UTF-8 con marca de orden de bytes para que una hoja de cálculo lea los acentos y la µ. Las medidas van con su clave interna (<code>corp_d</code>, <code>sp_h</code>, <code>lum_d</code>…), que no cambia con el idioma; el CSV por variable del Bloque 6 trae además el nombre de cada una.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Lo que el navegador recuerda</div>
+    <p>El navegador guarda sólo preferencias, no datos: el idioma de la interfaz, el tema claro u oscuro, las animaciones, los ajustes del estudio de figuras y las ediciones hechas con el editor ✎. Para conservar un estudio, guarda el proyecto.</p>
+  </div>
+
+  <!-- ================================================================= B -->
+  <h2 id="ap-b"><span class="num">B</span>Las reglas, reunidas</h2>
+  <p class="lead">Las reglas que la app aplica para calibrar, medir, clasificar, avisar o decidir, con el bloque donde actúan y sus valores por omisión. Son las mismas que explica cada capítulo; aquí están juntas para consultarlas de un vistazo.</p>
+
+  <h3>B.1 · Calibración (Bloque 2)</h3>
+  <table class="compacta">
+    <tbody>
+      <tr><td style="width:2.0in"><b>Tamaño del píxel</b></td><td>µm/px = ancho del cuadro de referencia (128 mm = 128 000 µm) ÷ (magnificación × ancho de la imagen en píxeles). Con 1000× y 1280 px, 0.1 µm/px; con 150× y 1280 px, 0.6667 µm/px.</td></tr>
+      <tr><td><b>Orden de las fuentes</b></td><td>De la más fuerte a la más débil: la barra medida a mano → el tamaño del píxel del índice → el que escribió el equipo → la magnificación con el ancho de referencia → ninguna (la foto queda sin calibrar y fuera de las comparaciones).</td></tr>
+      <tr><td><b>La barra de escala</b></td><td>Se busca en el 20 % inferior de la foto: un rectángulo de píxeles muy claros (gris ≥ 235 de 255) de entre 2 % y 45 % del ancho de la imagen, repetido con el mismo inicio y largo (± 2 px) en al menos 3 renglones, y casi lleno (95 %). Si hay varios, el más largo.</td></tr>
+      <tr><td><b>Barra comprobada</b></td><td>Su largo por el tamaño del píxel debe quedar a menos de 4 % de una longitud redonda: 1, 2 o 5 × 10<sup>k</sup> µm (10, 20, 50 µm…). Si no, la barra es dudosa.</td></tr>
+      <tr><td><b>Sustitución</b></td><td>Si el tamaño del píxel del índice o del equipo da una barra dudosa y la magnificación sí da una redonda, se usa la magnificación y la app lo avisa. La sustitución se conserva al recalcular la calibración (al cambiar una magnificación o el ancho de referencia) y se guarda en el proyecto.</td></tr>
+      <tr><td><b>Grupo y grano</b></td><td>Del índice o escritos en la tabla, mandan; si no, se leen del nombre con el patrón. Al pulsar <span class="ui">Aplicar</span> con un patrón nuevo, sólo cambian los que salieron del patrón; los demás se cambian en la tabla.</td></tr>
+      <tr><td><b>El rótulo</b></td><td>Lo que hay desde justo encima de la barra hacia abajo no se analiza (nunca más arriba del 60 % de la altura). Sin barra, se corta una franja negra al pie si ocupa al menos 3 % de la altura.</td></tr>
+      <tr><td><b>Tipo de foto</b></td><td>Por la magnificación frente a la mediana del conjunto: hasta 0.6 veces, panorámica; desde 1.8 veces, detalle; entre ambas, un grano. Se puede cambiar a mano en la tabla.</td></tr>
+      <tr><td><b>Píxel del análisis</b></td><td>Vacío, el percentil 90 del tamaño de píxel de las fotos que no son panorámicas, redondeado a dos cifras (0.1 µm en el ejemplo): casi ninguna foto tiene que ampliarse. Las que sí, se marcan.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>B.2 · Contorno, tamaño y ornamentación (Bloques 3 y 4)</h3>
+  <table class="compacta">
+    <tbody>
+      <tr><td style="width:2.0in"><b>El grano</b></td><td>Umbral de Otsu, relleno de huecos, limpieza de partículas y cierre; la región mayor cercana al centro.</td></tr>
+      <tr><td><b>El contorno</b></td><td>La distancia máxima del centro al borde en 720 direcciones (cada medio grado).</td></tr>
+      <tr><td><b>El cuerpo</b></td><td>Se recorta del perfil todo pico más angosto que la <span class="ui">Base máxima de una espina (µm)</span>: 3 µm.</td></tr>
+      <tr><td><b>Una espina</b></td><td>Un pico del perfil sobre el cuerpo de al menos la <span class="ui">Altura mínima de una espina (µm)</span>: 0.3 µm.</td></tr>
+      <tr><td><b>Altura de espina</b></td><td>De la punta a la cuerda que une sus dos pies. Sale menor que la real en cerca de un píxel (de 3 a 6 % en espinas de muchos píxeles con granos simulados, mediana 4 %; más si la espina es corta o las espinas se tocan en la base); se informa en las limitaciones.</td></tr>
+      <tr><td><b>Contorno cortado</b></td><td>Si el borde de la foto o el rótulo cortan más del <span class="ui">Contorno cortado aceptable (%)</span> —2 %— del contorno, la foto se marca y no entra en las comparaciones.</td></tr>
+      <tr><td><b>Foto excluida</b></td><td>Sigue en el visor de la revisión («— excluida») y no entra en el análisis; <span class="ui">Volver a incluir</span> la mide en el acto. Si con ella cambia el píxel común, la app pide volver a medir todas las fotos.</td></tr>
+      <tr><td><b>Foto ampliada</b></td><td>Si se tuvo que ampliar más de 5 % para llegar al píxel del análisis, se marca: sus medidas finas son menos fiables.</td></tr>
+      <tr><td><b>Lúmenes</b></td><td>Píxeles más oscuros que la media de su vecindario (<span class="ui">Radio del vecindario (µm)</span>: 1.5) por más de 0.15 desviaciones estándar; se mide el diámetro equivalente de cada celda cerrada y se informa su mediana.</td></tr>
+      <tr><td><b>Fotos del mismo grano</b></td><td>Se promedian: el grano es la unidad.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>B.3 · Fertilidad (Bloque 5)</h3>
+  <table class="compacta">
+    <tbody>
+      <tr><td style="width:2.0in"><b>Qué cuenta</b></td><td>Los granos completos de 15 a 200 µm de diámetro; los que tocan el borde de la foto no cuentan.</td></tr>
+      <tr><td><b>Grano típico</b></td><td>La mediana del diámetro de los granos que no tocan el borde; con menos de tres, la mediana del cuerpo medido en el Bloque 3.</td></tr>
+      <tr><td><b>Fragmento y agregado</b></td><td>Más chico que 0.6 veces el grano típico, fragmento; más grande que 1.3 veces, agregado. Ninguno de los dos cuenta.</td></tr>
+      <tr><td><b>Turgente o colapsado</b></td><td>Turgente si la solidez del cuerpo sin espinas (área ÷ área de su envolvente convexa) es de 0.95 o más; si no, colapsado o deforme.</td></tr>
+      <tr><td><b>La prueba</b></td><td>Proporción con su intervalo de Wilson del 95 %; los grupos se comparan con una prueba χ² de homogeneidad (diferencia si p &lt; 0.05). Si alguna frecuencia esperada es menor que 5, la app avisa que la prueba es aproximada.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>B.4 · Estadística multivariada (Bloque 6)</h3>
+  <table class="compacta">
+    <tbody>
+      <tr><td style="width:2.0in"><b>Mínimos</b></td><td>Al menos dos variables; grupos con al menos tres granos (los demás quedan fuera); al menos dos grupos. Un grano sin valor en alguna variable elegida sale del análisis, y la app lo dice junto al botón y en los métodos del informe.</td></tr>
+      <tr><td><b>Por variable</b></td><td>Análisis de varianza y Kruskal–Wallis con el ajuste de Holm sobre todas las variables; letras de Tukey (Tukey–Kramer) con α = 0.05; la <i>a</i> al grupo de media más alta.</td></tr>
+      <tr><td><b>Multivariado</b></td><td>Variables estandarizadas; componentes principales de la matriz de correlación; PERMANOVA con distancia euclidiana, 999 permutaciones, p = (veces + 1) / (permutaciones + 1); pares con Holm.</td></tr>
+      <tr><td><b>Clasificadores</b></td><td>Discriminante lineal con covarianza común y probabilidades previas iguales a la frecuencia de cada grupo (con una cresta de 0.001 si la matriz es singular); bosque aleatorio de 500 árboles, cortes de Gini, √<i>p</i> variables por corte. Validación dejando fuera un grano completo, con la estandarización rehecha sin él y bosques de como mucho 300 árboles (los recuadros y los métodos lo dicen).</td></tr>
+      <tr><td><b>Veredicto de la clave</b></td><td>Con el mejor clasificador: 80 % o más, el polen sirve como clave; menos de 80 % pero al menos el doble del azar, los grupos se traslapan; por debajo, apenas supera al azar. El azar es la proporción del grupo más numeroso.</td></tr>
+      <tr><td><b>Semilla</b></td><td>1 por omisión: el mismo proyecto da siempre el mismo resultado.</td></tr>
+    </tbody>
+  </table>
+  <p class="small">Todas son guías para leer los resultados, no leyes: lo que sabes de tu material, de la preparación y de cómo se fotografió siempre manda.</p>
+
+  <!-- ================================================================= C -->
+  <h2 id="ap-c"><span class="num">C</span>Glosario</h2>
+  <p>Los términos de la palinología, del análisis de imágenes y de la estadística que usa el manual, con el sentido en que los usa la app. La terminología polínica sigue a Punt et al. (2007) y a Halbritter et al. (2018).</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.6in">Término</th><th>Significado</th></tr></thead>
+    <tbody>
+      <tr><td><b>Agregado</b></td><td>En una panorámica, una región mucho mayor que el grano típico: granos que se tocan. No se clasifica.</td></tr>
+      <tr><td><b>Altura de espina</b></td><td>En la app, la distancia de la punta de la espina a la cuerda que une sus dos pies en el perfil del contorno.</td></tr>
+      <tr><td><b>Barra de escala</b></td><td>El segmento impreso en la foto con su longitud; la app lo usa para comprobar la calibración, no para leerla.</td></tr>
+      <tr><td><b>Bosque aleatorio</b></td><td>Clasificador que junta cientos de árboles de decisión ajustados con muestras al azar de los granos; cada árbol vota.</td></tr>
+      <tr><td><b>Calibración</b></td><td>El tamaño en micrómetros de un píxel de la foto.</td></tr>
+      <tr><td><b>Circularidad</b></td><td>4π × área ÷ perímetro²: 1 en un círculo perfecto, menos cuanto más irregular o alargado es el contorno.</td></tr>
+      <tr><td><b>Colapsado</b></td><td>Grano hundido o plegado, que perdió turgencia; en la app, el de solidez menor que el umbral («colapsado o deforme» en la revisión de las panorámicas; los «colapsados» del Bloque 5 y del informe).</td></tr>
+      <tr><td><b>Componentes principales</b></td><td>Ejes nuevos, combinaciones de las variables, que resumen la mayor variación posible sin correlacionarse entre sí.</td></tr>
+      <tr><td><b>Coocurrencia de grises</b></td><td>Tabla de con qué frecuencia aparecen juntos dos tonos de gris a cierta distancia; de ella salen el contraste, la homogeneidad, la entropía, la correlación y la energía de la textura.</td></tr>
+      <tr><td><b>Cuerpo (corpus)</b></td><td>El grano sin su ornamentación: la silueta que queda al recortar las espinas.</td></tr>
+      <tr><td><b>Densidad de espinas</b></td><td>Espinas del contorno por cada 100 µm de contorno libre.</td></tr>
+      <tr><td><b>Detalle</b></td><td>Foto a una magnificación mucho mayor que la del resto, de una parte de la superficie; no se mide como grano.</td></tr>
+      <tr><td><b>Discriminante lineal</b></td><td>Clasificador que busca las combinaciones de variables que mejor separan a los grupos.</td></tr>
+      <tr><td><b>Elongación</b></td><td>El diámetro de Feret mayor entre el menor: 1 en un contorno sin dirección dominante.</td></tr>
+      <tr><td><b>Envolvente convexa</b></td><td>El polígono convexo más pequeño que contiene la silueta, como una liga estirada alrededor.</td></tr>
+      <tr><td><b>Equinado</b></td><td>Con espinas (equinas) de más de 1 µm sobre la superficie.</td></tr>
+      <tr><td><b>Espina (equina)</b></td><td>Elemento de ornamentación puntiagudo; en la app, cada pico del contorno sobre el cuerpo con la altura mínima.</td></tr>
+      <tr><td><b>Exina</b></td><td>La pared externa del grano de polen, resistente, que lleva la ornamentación.</td></tr>
+      <tr><td><b>Feret (diámetros de)</b></td><td>La anchura del cuerpo medida entre dos paralelas que lo tocan; el mayor y el menor sobre todas las direcciones.</td></tr>
+      <tr><td><b>Fragmento</b></td><td>En una panorámica, una región mucho menor que el grano típico: restos o polvo. No se clasifica.</td></tr>
+      <tr><td><b>Grano (unidad)</b></td><td>Un grano de polen, con todas sus fotos; la unidad de las pruebas y de la validación.</td></tr>
+      <tr><td><b>Holm (ajuste de)</b></td><td>Corrección de los valores de p cuando se hacen muchas pruebas a la vez.</td></tr>
+      <tr><td><b>κ de Cohen</b></td><td>Concordancia entre el grupo verdadero y el asignado descontando la que habría por azar: 1 es perfecta, 0 la del azar.</td></tr>
+      <tr><td><b>Lumen (pl. lúmenes)</b></td><td>Cada espacio entre los muros de un retículo; en la micrografía, cada celda oscura.</td></tr>
+      <tr><td><b>Magnificación</b></td><td>Cuántas veces el microscopio amplía el campo respecto del cuadro de referencia.</td></tr>
+      <tr><td><b>Muro</b></td><td>Cada una de las crestas que forman la malla de un retículo y limitan los lúmenes.</td></tr>
+      <tr><td><b>Panorámica</b></td><td>Foto a baja magnificación con muchos granos, para contar turgentes y colapsados.</td></tr>
+      <tr><td><b>Perfil radial</b></td><td>La distancia del centro del grano a su borde en cada dirección, de 0 a 360°.</td></tr>
+      <tr><td><b>PERMANOVA</b></td><td>Análisis de varianza multivariado hecho con distancias y probado con permutaciones.</td></tr>
+      <tr><td><b>Píxel común (del análisis)</b></td><td>El tamaño de píxel al que se llevan todas las fotos antes de medirlas, para que sean comparables.</td></tr>
+      <tr><td><b>Reticulado</b></td><td>Con un retículo en la superficie.</td></tr>
+      <tr><td><b>Retículo</b></td><td>Ornamentación en forma de red: muros que dejan entre sí lúmenes.</td></tr>
+      <tr><td><b>Seudorreplicación</b></td><td>Tratar como independientes datos que no lo son, como dos fotos del mismo grano.</td></tr>
+      <tr><td><b>Solidez</b></td><td>El área de una silueta entre el área de su envolvente convexa: 1 en una forma sin entrantes, menos en un grano hundido.</td></tr>
+      <tr><td><b>Téctum</b></td><td>La capa externa de la exina, que cubre total o parcialmente sus elementos; se ve en cortes, no en una micrografía de superficie.</td></tr>
+      <tr><td><b>Turgente</b></td><td>Grano lleno, de contorno redondeado; en la app, el de solidez igual o mayor que el umbral.</td></tr>
+      <tr><td><b>Validación dejando fuera un grano</b></td><td>Se saca un grano completo, se ajusta el modelo con los demás y se clasifica el que se sacó; se repite con todos.</td></tr>
+      <tr><td><b>Vista ecuatorial · polar</b></td><td>El grano visto de lado (con el eje polar en el plano de la foto) o desde un polo. Los Feret equivalen a los ejes polar (P) y ecuatorial (E) sólo en vista ecuatorial.</td></tr>
+      <tr><td><b>η² (eta cuadrada)</b></td><td>La parte de la variación de una variable que explica el grupo.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ================================================================= D -->
+  <h2 id="ap-d"><span class="num">D</span>Cuando algo no sale</h2>
+  <p>Los mensajes de la app, tal como aparecen, con lo que suelen querer decir y qué hacer. Los puntos suspensivos son la parte del mensaje que cambia (un nombre, un número).</p>
+  <table class="compacta">
+    <thead><tr><th style="width:2.55in">Mensaje</th><th>Qué pasa y qué hacer</th></tr></thead>
+    <tbody>
+      <tr><td colspan="2"><b>Abrir imágenes y proyectos</b></td></tr>
+      <tr><td>«… imagen(es) leídas, … archivo(s) del microscopio, índice «…», … nombre(s) de grupo» con «No se pudieron leer: …»</td><td>Las imágenes de la lista no se pudieron abrir; el motivo sigue al nombre: «no es un TIFF» (aunque lo diga su extensión), «TIFF con compresión …: no se admite» (una compresión que la app no lee: guarda la foto sin comprimir o con LZW), «TIFF con los canales en planos separados: no se admite», «TIFF de … bits: no se admite», «TIFF sin tamaño», «TIFF sin datos de imagen» o, en los demás formatos, «el navegador no pudo leer esta imagen (archivo dañado o formato no admitido)». Conviértela a TIFF de 8 o 16 bits o a PNG.</td></tr>
+      <tr><td>«0 imagen(es) leídas, … del proyecto vueltas a abrir.»</td><td>Abriste la carpeta de un proyecto abierto: las fotos se unieron a sus renglones y los resultados se conservan.</td></tr>
+      <tr><td>«Hay … imagen(es) que no estaban en el conjunto. Añadirlas borra los resultados ya calculados (contorno, ornamentación, fertilidad y estadística), que habrá que calcular otra vez. ¿Seguir?»</td><td>La carpeta trae fotos nuevas. Si aceptas, la app dice «El conjunto cambió: los resultados anteriores se borraron.» y hay que volver a medir, contar y comparar; si no, nada cambia.</td></tr>
+      <tr><td>El índice no aparece en el mensaje</td><td>No se reconoció la columna del archivo (A.1) o no tiene filas; la app lo intenta entonces como clave de grupos.</td></tr>
+      <tr><td>«No se pudo abrir el proyecto: El archivo no es un proyecto de PalynoPro.»</td><td>El JSON es de otra app o no es un proyecto. Abre un <code>.palynopro.json</code>.</td></tr>
+      <tr><td>«Esto reemplaza las imágenes abiertas por el ejemplo simulado. ¿Seguir?»</td><td>Pulsaste <span class="ui">Ejemplo simulado</span> con tus imágenes abiertas. Guarda antes el proyecto si quieres conservarlas.</td></tr>
+      <tr><td>«¿Quitar todas las imágenes y resultados?»</td><td>Pulsaste <span class="ui">Vaciar</span>.</td></tr>
+      <tr><td colspan="2"><b>Calibración (Bloque 2)</b></td></tr>
+      <tr><td>«… imagen(es) no tienen magnificación ni tamaño de píxel: escribe su magnificación en la tabla o mide su barra a mano.»</td><td>Faltan el archivo del microscopio y el índice. Escribe la magnificación en la columna <span class="ui">Magnif.</span> o usa <span class="ui">Medir la barra a mano</span>.</td></tr>
+      <tr><td>«… barra(s) no dan una longitud redonda con la calibración: revisa esas fotos (filtro «Barra dudosa»)…»</td><td>Una magnificación mal escrita, otro ancho de referencia u otro ancho de imagen. Filtra <span class="ui">Barra dudosa</span>, compara con el número del rótulo y corrige la magnificación o el <span class="ui">Ancho del cuadro de referencia (mm)</span>.</td></tr>
+      <tr><td>«En … imagen(es), el tamaño del píxel del índice o del archivo no coincidía con la barra de escala y la magnificación sí: se usó la magnificación. Revisa ese índice.»</td><td>El índice tiene un tamaño de píxel equivocado (a menudo copiado de fotos de otro ancho). La app ya lo corrigió; arregla el índice.</td></tr>
+      <tr><td>«… foto(s) sin barra: se calibran por su magnificación, sin poder comprobarse.»</td><td>Sólo una nota: la barra se tapó, se recortó o es oscura.</td></tr>
+      <tr><td>«No se reconoció ningún grupo en los nombres: ajusta el patrón o carga un índice con la columna «grupo».»</td><td>Los nombres no siguen el patrón (A.1). Cambia el <span class="ui">Patrón del nombre (grupo y grano)</span> y pulsa <span class="ui">Aplicar</span>, o carga un índice.</td></tr>
+      <tr><td>«El patrón no es una expresión válida.»</td><td>Al patrón le falta un paréntesis o un corchete.</td></tr>
+      <tr><td>«El patrón nuevo no cambió el grupo ni el grano de … imagen(es): venían del índice o se escribieron en la tabla, y esos mandan. Si quieres cambiarlos, edítalos en la tabla.»</td><td>Sólo un aviso: el patrón cambió los demás (B.1).</td></tr>
+      <tr><td>«¿Cuántos µm mide la barra que marcaste? (… px)»</td><td>Hiciste los dos clics de <span class="ui">Medir la barra a mano</span>: escribe el número del rótulo. La app confirma «Calibrada a mano: … µm/px».</td></tr>
+      <tr><td colspan="2"><b>Medir y contar (Bloques 3 a 5)</b></td></tr>
+      <tr><td>«Abre primero tus imágenes en el Bloque 2.»</td><td>No hay fotos de un grano incluidas y calibradas.</td></tr>
+      <tr><td>«… de … fotos medidas en … s.» con «Sin grano reconocible: …»</td><td>En esas fotos el umbral no separó un grano del fondo: un grano muy pequeño, una foto casi sin contraste o un fondo claro. Revísalas en el visor; exclúyelas o mejora el contraste.</td></tr>
+      <tr><td>«… foto(s) con más de 2 % del contorno cortado por el borde o el rótulo…»</td><td>El grano toca el borde o se mete en el rótulo. No entran en las comparaciones; si son muchas, sube el <span class="ui">Contorno cortado aceptable (%)</span> con cuidado.</td></tr>
+      <tr><td>«… foto(s) tenían menos resolución que el píxel del análisis y se ampliaron…»</td><td>Fotos de menor magnificación o menor ancho que el resto. Sus espinas y lúmenes son menos fiables; fija un <span class="ui">Píxel del análisis (µm)</span> mayor o exclúyelas.</td></tr>
+      <tr><td>«El píxel común del análisis cambió: vuelve a medir todas las fotos.»</td><td>Volviste a incluir una foto en la revisión del Bloque 3 y con ella cambió el píxel común: pulsa otra vez <span class="ui">Medir todas las fotos de un grano</span>.</td></tr>
+      <tr><td>«Primero mide los granos» (Bloque 4)</td><td>La ornamentación sale de la medición del Bloque 3: pulsa <span class="ui">Ir al Bloque 3</span>.</td></tr>
+      <tr><td>«No hay panorámicas: márcalas como «Panorámica» en el Bloque 2.»</td><td>Ninguna foto tiene el tipo panorámica; cámbialo en la columna <span class="ui">Tipo</span>.</td></tr>
+      <tr><td>«… celda(s) con frecuencia esperada menor que 5: la prueba χ² es aproximada; cuenta más panorámicas.»</td><td>Pocos granos colapsados o pocos granos en total; cuenta más.</td></tr>
+      <tr><td>«Abre otra vez la carpeta para ver la foto.» · «La imagen no está abierta en esta sesión: abre otra vez su carpeta.»</td><td>Abriste un proyecto: las fotos no van dentro (capítulo 7.5).</td></tr>
+      <tr><td colspan="2"><b>Comparar e informar (Bloques 6 y 7)</b></td></tr>
+      <tr><td>«Primero mide los granos en el Bloque 3.»</td><td>No hay mediciones; el botón <span class="ui">Comparar los grupos</span> queda apagado.</td></tr>
+      <tr><td>«Elige al menos dos variables.»</td><td>Marca dos o más en <span class="ui">Entran al análisis</span>.</td></tr>
+      <tr><td>«Hacen falta al menos dos grupos con tres granos o más.»</td><td>Revisa los grupos y los granos del Bloque 2 y las fotos de contorno cortado.</td></tr>
+      <tr><td>«Grupos con menos de tres granos, fuera del análisis: …»</td><td>Fotografía más granos de esos grupos o júntalos con otro si tiene sentido.</td></tr>
+      <tr><td>«… sin valor en alguna variable elegida: quedaron fuera»</td><td>A esos granos les falta alguna variable marcada (por ejemplo, sin lúmenes medidos). Desmarca esa variable o revisa sus fotos en el Bloque 4.</td></tr>
+      <tr><td>«Proyecto guardado: …. No guarda los resultados del Bloque 6…» · «Proyecto abierto: …. Los resultados del Bloque 6 no se guardan: repítelos con «Comparar los grupos».»</td><td>Sólo avisos: la comparación no va en el proyecto, pero sale igual al repetirla, con la misma semilla (capítulo 7.5).</td></tr>
+      <tr><td>«Primero abre tus imágenes.»</td><td>Pulsaste <span class="ui">Generar el informe</span> sin imágenes.</td></tr>
+      <tr><td>«Sin calcular.» · «Aún no hay figuras.» · «Las imágenes no están abiertas en esta sesión.» (en el informe)</td><td>Falta un bloque por calcular, ninguna figura se ha dibujado o no están abiertas las fotos (capítulo 7.3).</td></tr>
+      <tr><td>«Todavía no hay figura.» · «No se pudo exportar: …»</td><td>Pulsaste SVG o PNG en una figura vacía, o el navegador no pudo dibujar el PNG (una figura enorme); prueba con SVG.</td></tr>
+    </tbody>
+  </table>
+  <p>Si la app se queda en blanco o una tarjeta no responde, recarga la página: los datos se pierden, pero el proyecto guardado no. Si el problema sigue, abre la app con <code>Open PalynoPro.bat</code> en lugar del doble clic sobre <code>index.html</code>; algunos navegadores limitan lo que una página abierta como archivo puede hacer.</p>
+
+  <!-- ================================================================= E -->
+  <h2 id="ap-e"><span class="num">E</span>La herramienta: licencia y cómo citarla</h2>
+  <h3>E.1 · Qué es y qué no es</h3>
+  <p>PalynoPro está escrito para este programa: la lectura de TIFF con sus compresiones, el análisis de imágenes, la estadística, el análisis multivariado, las figuras, el informe y las ilustraciones están en su propio código, que se puede leer. No usa bibliotecas de terceros, no trae tipografías (usa las letras del equipo), no tiene código minificado ni pasos de compilación y no carga nada de la red: por eso abre con doble clic y sin conexión. Los PNG y JPEG los decodifica el propio navegador. El único enlace hacia fuera, el del portal de la suite, sólo se sigue si haces clic en él.</p>
+  <p>Los módulos comunes de la suite —el navegador de bloques, el estudio de figuras y el editor ✎— son del mismo autor y van en su variante de íconos propios, dibujados para la suite. El ejemplo es simulado: los granos, sus espinas, su retículo, el ruido y la barra de escala se dibujan por código con semillas fijas cada vez que se abre, y no son fotos de ninguna planta. Implementa métodos publicados, cada uno citado a su fuente original en el código, en la portada de la app y en los métodos del informe (apéndice F). El archivo <code>PROCEDENCIA.md</code>, en la carpeta del programa, dice de dónde sale cada parte.</p>
+  <h3>E.2 · Licencia</h3>
+  <p>PalynoPro se distribuye bajo la Licencia Pública General de GNU, versión 3 o posterior (GPL-3.0-or-later). El texto completo está en el archivo <code>LICENSE</code>, en la carpeta del programa.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Licenciar no es ceder la autoría</div>
+    <p>La licencia dice lo que puede hacer quien recibe el programa: usarlo con cualquier fin, estudiarlo, modificarlo y redistribuirlo. A cambio pide que, si distribuyes una versión modificada, lo hagas con las mismas libertades y con su código. La autoría no se transfiere ni se renuncia a ella. El programa se entrega sin garantía, como dice la licencia; este manual tiene sus propios derechos, reservados por su autor.</p>
+  </div>
+  <h3>E.3 · Cómo citarla</h3>
+  <p>La sección <span class="ui">Cómo citar</span> de la portada de la app da la cita lista para copiar, con <span class="ui">Copiar la cita</span>.</p>
+  <div class="caja dato">
+    <div class="dato-cifra">“</div>
+    <div class="dato-txt"><div class="caja-t">Cita sugerida del programa</div>Barrera-Guzmán, L. Á. (2026). <i>PalynoPro: morfometría polínica cuantitativa a partir de micrografías electrónicas</i> (versión 1.0.0) [Programa de cómputo]. LABG Suite.</div>
+  </div>
+  <div class="caja dato">
+    <div class="dato-cifra">“</div>
+    <div class="dato-txt"><div class="caja-t">Cita sugerida de este manual</div>Barrera-Guzmán, L. Á. (2026). <i>PalynoPro. Manual de usuario</i> (1.ª ed.). Distribuido con PalynoPro, versión 1.0.0.</div>
+  </div>
+  <p class="small">El programa todavía no tiene identificador digital (DOI): se añadirá a estas dos citas cuando se publique.</p>
+  <p>Cita además, en tus métodos, los trabajos de los métodos que usaste. Los métodos del informe (sección 7.3) ya los citan por autor y año, y su sección de referencias trae las fichas completas.</p>
+
+  <!-- ================================================================= F -->
+  <h2 id="ap-f"><span class="num">F</span>Referencias</h2>
+  <p>Las 22 obras del catálogo de la app, agrupadas por tema —la palinología, el análisis de imágenes y la estadística— y, dentro de cada tema, en orden alfabético. Son las mismas de la sección <span class="ui">Referencias</span> de la portada y del informe.</p>
+  <!-- REFERENCIAS -->
+  <h3>F.1 · Palinología y terminología polínica</h3>
+  <ul class="refs">
+    <li>Erdtman G. 1952. Pollen morphology and plant taxonomy. Angiosperms. Almqvist and Wiksell, Stockholm.</li>
+    <li>Halbritter H, Ulrich S, Grímsson F, Weber M, Zetter R, Hesse M, Buchner R, Svojtka M, Frosch-Radivo A. 2018. Illustrated pollen terminology. 2nd ed. Springer, Cham.</li>
+    <li>Punt W, Hoen PP, Blackmore S, Nilsson S, Le Thomas A. 2007. Glossary of pollen and spore terminology. Review of Palaeobotany and Palynology 143: 1–81.</li>
+  </ul>
+  <h3>F.2 · Análisis de imágenes</h3>
+  <ul class="refs">
+    <li>Andrew AM. 1979. Another efficient algorithm for convex hulls in two dimensions. Information Processing Letters 9: 216–219.</li>
+    <li>Borgefors G. 1986. Distance transformations in digital images. Computer Vision, Graphics, and Image Processing 34: 344–371.</li>
+    <li>Haralick RM, Shanmugam K, Dinstein I. 1973. Textural features for image classification. IEEE Transactions on Systems, Man, and Cybernetics 3: 610–621.</li>
+    <li>Niblack W. 1986. An introduction to digital image processing. Prentice Hall, Englewood Cliffs.</li>
+    <li>Otsu N. 1979. A threshold selection method from gray-level histograms. IEEE Transactions on Systems, Man, and Cybernetics 9: 62–66.</li>
+    <li>Serra J. 1982. Image analysis and mathematical morphology. Academic Press, London.</li>
+    <li>Shamos MI. 1978. Computational geometry. PhD thesis, Yale University, New Haven.</li>
+    <li>Wolberg G. 1990. Digital image warping. IEEE Computer Society Press, Los Alamitos.</li>
+  </ul>
+  <h3>F.3 · Estadística, análisis multivariado y clasificación</h3>
+  <ul class="refs">
+    <li>Anderson MJ. 2001. A new method for non-parametric multivariate analysis of variance. Austral Ecology 26: 32–46.</li>
+    <li>Breiman L. 2001. Random forests. Machine Learning 45: 5–32.</li>
+    <li>Cohen J. 1960. A coefficient of agreement for nominal scales. Educational and Psychological Measurement 20: 37–46.</li>
+    <li>Fisher RA. 1936. The use of multiple measurements in taxonomic problems. Annals of Eugenics 7: 179–188.</li>
+    <li>Holm S. 1979. A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics 6: 65–70.</li>
+    <li>Hotelling H. 1933. Analysis of a complex of statistical variables into principal components. Journal of Educational Psychology 24: 417–441.</li>
+    <li>Kruskal WH, Wallis WA. 1952. Use of ranks in one-criterion variance analysis. Journal of the American Statistical Association 47: 583–621.</li>
+    <li>McArdle BH, Anderson MJ. 2001. Fitting multivariate models to community data: a comment on distance-based redundancy analysis. Ecology 82: 290–297.</li>
+    <li>Pearson K. 1901. On lines and planes of closest fit to systems of points in space. Philosophical Magazine 2: 559–572.</li>
+    <li>Tukey JW. 1949. Comparing individual means in the analysis of variance. Biometrics 5: 99–114.</li>
+    <li>Wilson EB. 1927. Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association 22: 209–212.</li>
+  </ul>
+  <!-- /REFERENCIAS -->
+</section>
+
+</body>
+</html>

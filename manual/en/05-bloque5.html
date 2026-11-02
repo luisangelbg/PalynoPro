@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · User’s Manual · Chapter 5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+</head>
+<body>
+
+<section class="capitulo" id="cap-5" data-pestana="5" data-orden="5" style="--acento: var(--b5)">
+  <div class="cap-apertura">
+    <div class="cap-num">5</div>
+    <div class="cap-etiqueta">Chapter five · Block 5</div>
+    <h1 data-corto="Fertility">Fertility</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">A well-formed grain is turgid and almost convex; an empty or aborted one folds. In the overview pictures, with many grains at once, this block separates every grain, measures how convex its body is and estimates, by group, the proportion of collapsed grains with its confidence interval, and whether that proportion differs between groups.</p>
+    <div class="cap-franja"><span class="k2"></span><span class="k5"></span><span class="k5"></span><span class="k7"></span></div>
+    <ul class="cap-contenido">
+      <li><b>5.1</b>How it is estimated</li>
+      <li><b>5.2</b>Count</li>
+      <li><b>5.3</b>Results: proportion, interval and χ²</li>
+      <li><b>5.4</b>Check of every overview</li>
+    </ul>
+  </div>
+
+  <!-- 5.1 -->
+  <h2 id="s5-1"><span class="num">5.1</span>How it is estimated</h2>
+  <p class="lead">The block works only with the pictures that Block 2 has as <span class="ui">Overview</span>: shots at low magnification with many grains. Its subtitle sums it up: “Turgid and collapsed grains in the overviews, by group.” The drop-down <span class="ui">How it is estimated</span> explains the method; these are its steps.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b5-contar.png" alt="The title of Block 5, the drop-down How it is estimated open and the Count card with its five fields and the button"></div>
+    <figcaption><b>Figure 5.1.</b> Block 5 with <span class="ui">How it is estimated</span> open and the <span class="ui">Count</span> card with its default values. Next to the button, <span class="ui">3 overview(s)</span>: those of the example, one per morphotype.</figcaption>
+  </figure>
+  <ol class="pasos">
+    <li><b>The whole picture.</b> Each overview is analyzed at its own pixel (in the example, 150× and 1280 px give 0.6667 µm/px), without the caption; if it is more than 1600 px wide, it is reduced to that width.</li>
+    <li><b>Every grain.</b> Otsu’s threshold separates the grains from the background, as in Block 3, and each region whose diameter falls between the <span class="ui">Least diameter of a grain (µm)</span> and the <span class="ui">Largest diameter of a grain (µm)</span> is a candidate.</li>
+    <li><b>Those on the edge, out.</b> A grain that touches the edge of the picture has an incomplete silhouette and its shape cannot be judged: it is flagged and not counted.</li>
+    <li><b>The body of each grain.</b> Each candidate’s own radial profile is read (in 360 directions) and its spines are removed with the same <span class="ui">Largest base of a spine (µm)</span> as in Block 3. Spines lower the convexity of a healthy grain; without them, only a folded grain loses it.</li>
+    <li><b>The typical grain.</b> It is the median body diameter of the grains that do not touch the edge of that overview. If there are fewer than three, the median body measured in Block 3 is used.</li>
+    <li><b>Fragments and aggregates, out.</b> A region smaller than the typical grain by the factor of <span class="ui">Fragment: smaller than the typical grain (×)</span> is a fragment or debris of the mount; one larger by the factor of <span class="ui">Aggregate: larger than the typical grain (×)</span>, several touching grains. Neither is classified.</li>
+    <li><b>Turgid or collapsed.</b> The remaining grains are classified by the <b>solidity</b> of their body: if it reaches the <span class="ui">Least solidity of the body of a turgid grain</span>, the grain is turgid; if not, collapsed or misshapen.</li>
+  </ol>
+  <div class="formula">solidity = area of the body / area of its convex hull</div>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · solidity</div>
+    <p>The convex hull is the shape a rubber band stretched around the body would make (the app computes it with Andrew’s 1979 algorithm). In a convex body, such as a circle or an ellipse, the band touches the whole edge and the solidity is 1. A grain that empties caves in on one side: the band skips over the hollow and the area left between the two lowers the solidity. That is why solidity picks out a folded grain even if it is the same size as a healthy one, and does not penalize a grain merely for being elongated. The turgid grains of the example have a solidity of 0.99 or more.</p>
+  </div>
+  <div class="caja importante">
+    <div class="caja-t"><span class="ico">!</span>Shape is not viability</div>
+    <p>Solidity is a <b>morphological proxy</b>. A turgid grain may not be viable, and preparation for the electron microscope (drying, the vacuum) may collapse grains that were. To claim viability you need a staining or germination test. The block serves to compare groups treated in the same way and, with few overviews, take it as a pilot study. The app reminds you of this in the results.</p>
+  </div>
+
+  <!-- 5.2 -->
+  <h2 id="s5-2"><span class="num">5.2</span>Count</h2>
+  <p>The <span class="ui">Count</span> card has five fields and the button <span class="ui">Count in every overview</span>. Next to it, a line tells how many overviews there are; if there are none, it says “There are no overviews: mark them as “Overview” in Block 2.” and the button is disabled.</p>
+  <table class="compacta">
+    <caption><b>Table 5.1.</b> The settings of the <span class="ui">Count</span> card</caption>
+    <thead><tr><th style="width:2.3in">Field</th><th class="num" style="width:0.6in">Default</th><th>What it decides</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Least solidity of the body of a turgid grain</span></td><td class="num">0.95</td><td>The cut between turgid and collapsed. It is conservative: it recognizes most folded grains without taking a healthy one for collapsed.</td></tr>
+      <tr><td><span class="ui">Least diameter of a grain (µm)</span></td><td class="num">15</td><td>Smaller regions are ignored: dust, noise.</td></tr>
+      <tr><td><span class="ui">Aggregate: larger than the typical grain (×)</span></td><td class="num">1.3</td><td>From how many times the typical diameter a region is taken as an aggregate.</td></tr>
+      <tr><td><span class="ui">Fragment: smaller than the typical grain (×)</span></td><td class="num">0.6</td><td>Below how many times the typical diameter a region is taken as a fragment.</td></tr>
+      <tr><td><span class="ui">Largest diameter of a grain (µm)</span></td><td class="num">200</td><td>Larger regions are ignored: stains on the stub, clumps.</td></tr>
+    </tbody>
+  </table>
+  <p>Fit the minimum and the maximum to the pollen you study: they must keep all the grains in and the debris of the mount out. When you press the button, the waiting window tells which overview is being counted; with the three of the example, it takes a few seconds. If an overview cannot be read, an amber notice names it.</p>
+
+  <!-- 5.3 -->
+  <h2 id="s5-3"><span class="num">5.3</span>Results: proportion, interval and χ²</h2>
+  <p>The <span class="ui">Results</span> card begins with four tiles:</p>
+  <ul>
+    <li><span class="ui">Overviews</span>: how many were counted.</li>
+    <li><span class="ui">Grains counted</span>: the turgid plus the collapsed; below, how many were <span class="ui">left out (edge, aggregates, fragments)</span>.</li>
+    <li><span class="ui">Collapsed</span>: the percentage over all groups together and, below, the count.</li>
+    <li><span class="ui">χ² test</span>: the statistic, its degrees of freedom (<span class="ui">df</span>) and its <i>p</i> value.</li>
+  </ul>
+  <figure>
+    <div class="marco"><img src="../img/en/b5-resultados.png" alt="The four tiles, the three verdicts and the table by group of the fertility of the example"></div>
+    <figcaption><b>Figure 5.2.</b> The fertility of the example: 3 overviews, 39 grains counted and 3 left out; 5 collapsed out of 39 (12.8%), all in morphotype B; χ² = 11.47 with 2 df and <i>p</i> = 0.003. Below, the three verdicts and the table by group.</figcaption>
+  </figure>
+
+  <h3>The verdicts</h3>
+  <p>Below the tiles come up to three notices. The first gives the conclusion of the test: “The proportion of collapsed grains differs between groups (χ²).” if <i>p</i> &lt; 0.05, or “No difference between groups was detected in the proportion of collapsed grains (χ²).” if not. The second appears when any expected frequency is below 5—with the example, “3 cell(s) with expected frequency below 5: the χ² test is approximate; count more overviews.”. The third is always there: “Remember: solidity is a morphological proxy for fertility, not a viability test.”</p>
+
+  <h3>The table by group</h3>
+  <p>One row per group with <span class="ui">Overviews</span>, <span class="ui">Grains</span> (those classified), <span class="ui">Collapsed</span>, the <span class="ui">%</span>, the <span class="ui">95% CI (Wilson)</span> and the <span class="ui">Diameter (µm)</span> of the classified grains, mean ± standard deviation. The <span class="ui">CSV</span> button downloads <code>palynopro_fertility.csv</code>, with the proportion and the limits of the interval as fractions. With the example, the table is the one in Figure 5.2: B has 5 collapsed out of 13 (38.5%, with an interval from 17.7 to 64.5%), and A and C, 0 out of 13 (from 0.0 to 22.8%).</p>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Theory in brief · the Wilson interval and the χ² test</div>
+    <p><b>Wilson (1927).</b> With 13 grains, a proportion of 0 out of 13 does not mean that the group has no collapsed grains: only that none was seen. The Wilson interval gives the range of proportions compatible with what was counted—from 0 to 22.8% for 0 out of 13—and, unlike the “textbook” interval (the proportion ± 1.96 standard errors), it does not go beyond 0 to 100% or shrink to zero when there are no collapsed grains. <b>χ² of homogeneity.</b> The table of groups × (turgid, collapsed) is compared with the one that would be expected if all groups had the same proportion; the degrees of freedom are the number of groups minus one. The χ² approximation calls for expected frequencies of at least 5: with 5 collapsed among 39 grains, each group of 13 would “expect” fewer than 2, hence the notice.</p>
+  </div>
+  <p>The diameter in this table does not replace that of Block 3: it is measured at low magnification (0.67 µm/px in the example) and includes the collapsed grains, which are smaller; that is why the deviation of B is larger. Besides, in the example the grains of the overviews are drawn almost round, without the elongation of each morphotype, and that of C comes out larger than in the one-grain pictures. Use it only to check that pollen of the expected size was counted.</p>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Worked example · how much it depends on the threshold</div>
+    <p>The example draws each grain of the overviews as collapsed with a given probability—15, 35 and 10% in A, B and C (Section I.7)—so the count in each overview is not exactly that percentage: in those of the example 1, 7 and 1 collapsed grains out of 14 were drawn, counting those that touch the edge. With the threshold of 0.95, the app recognizes 5 in B—of the other two, one touches the edge and the other reaches 0.962 (Figure 5.4)—and none in A or C, where the least solid grain reaches 0.958 and 0.968. This is how the results change as you move the <span class="ui">Least solidity of the body of a turgid grain</span>:</p>
+    <table class="compacta">
+      <thead><tr><th>Least solidity</th><th class="num">A</th><th class="num">B</th><th class="num">C</th><th class="num">Collapsed</th><th class="num">χ² (2 df)</th><th class="num"><i>p</i></th></tr></thead>
+      <tbody>
+        <tr><td>0.93</td><td class="num">0</td><td class="num">3</td><td class="num">0</td><td class="num">7.7%</td><td class="num">6.50</td><td class="num">0.039</td></tr>
+        <tr><td>0.95 (default)</td><td class="num">0</td><td class="num">5</td><td class="num">0</td><td class="num">12.8%</td><td class="num">11.47</td><td class="num">0.003</td></tr>
+        <tr><td>0.96</td><td class="num">1</td><td class="num">5</td><td class="num">0</td><td class="num">15.4%</td><td class="num">8.27</td><td class="num">0.016</td></tr>
+        <tr><td>0.97</td><td class="num">1</td><td class="num">6</td><td class="num">1</td><td class="num">20.5%</td><td class="num">7.86</td><td class="num">0.020</td></tr>
+      </tbody>
+    </table>
+    <p>The conclusion—B has more collapsed grains than A and C—holds in all four cases; the percentages do not. That is why you should report the threshold along with the result (the Block 7 report does) and look at the histogram: if there is a clear gap between the healthy and the folded grains, the threshold can go in it.</p>
+  </div>
+
+  <h3>The two figures</h3>
+  <p><span class="ui">Collapsed grains by group</span> gives the percentage of collapsed grains in each group as bars, with the Wilson interval as a whisker. <span class="ui">Solidity of the body of the grains</span> is a histogram of the solidity of all classified grains, between 0.75 and 1, with a vertical line at the <span class="ui">threshold</span>: the grains to its left are the collapsed ones.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/en/b5-figuras.png" alt="The bars of the percentage of collapsed grains by group with their interval and the histogram of solidity with the threshold line"></div>
+    <figcaption><b>Figure 5.3.</b> The figures of the example. On the left, only B has collapsed grains; even so, the intervals of A and C (up to 22.8%) overlap that of B (from 17.7%): with 13 grains per group, precision is low even though the χ² test comes out significant. On the right, five grains lie to the left of the 0.95 threshold, between 0.92 and 0.95, and the rest lie to its right, most of them close to 1: the last interval, from 0.99 to 1, holds 28 of the 39 grains. There is no clear gap around the threshold: just to its right lie grains of 0.958 and 0.962, which is why the count changes when you move it.</figcaption>
+  </figure>
+
+  <!-- 5.4 -->
+  <h2 id="s5-4"><span class="num">5.4</span>Check of every overview</h2>
+  <p>The <span class="ui">Check of every overview</span> card draws a circle around each region found, in the color of its class, with its solidity written to three decimals above the grain or, if the grain is next to the top edge, below it; always inside the picture. The overviews are chosen in the selector. The color key goes below the image:</p>
+  <table class="compacta">
+    <thead><tr><th style="width:2.2in">Color and label</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td>green · <span class="ui">turgid</span></td><td>Body solidity equal to or greater than the threshold</td></tr>
+      <tr><td>red · <span class="ui">collapsed or misshapen</span></td><td>Solidity below the threshold</td></tr>
+      <tr><td>violet · <span class="ui">aggregate (not counted)</span></td><td>Larger than the typical grain by the aggregate factor</td></tr>
+      <tr><td>yellow · <span class="ui">fragment (not counted)</span></td><td>Smaller than the typical grain by the fragment factor</td></tr>
+      <tr><td>gray · <span class="ui">touches the edge (not counted)</span></td><td>Incomplete silhouette</td></tr>
+    </tbody>
+  </table>
+  <figure class="w80">
+    <div class="marco"><img src="../img/en/b5-revision.png" alt="Overview 90_B of the example with each grain circled in green, red or gray with its solidity, and the count on the right"></div>
+    <figcaption><b>Figure 5.4.</b> Overview <code>90_B.png</code> of morphotype B: 13 complete grains, 8 turgid (green) and 5 collapsed (red), with solidity from 0.92 to 0.95; the one at the left edge (gray, 0.94) is folded too, but it touches the edge and is not counted. The typical grain measures 62.4 µm. Note the green grain marked 0.96, at the lower left: it has a notch and is folded, but its solidity passes the 0.95 threshold. It is the one added to B when the threshold is raised to 0.97 (Section 5.3).</figcaption>
+  </figure>
+  <p>On the right are the <span class="ui">Overview</span>, the <span class="ui">Group</span>, the <span class="ui">Complete grains</span> (those classified), how many are <span class="ui">Turgid</span> and how many <span class="ui">Collapsed</span>, how many were <span class="ui">On the edge</span>, how many <span class="ui">Aggregates</span> and <span class="ui">Fragments</span>, and the <span class="ui">Typical grain</span> in µm against which they were judged. In the overview of morphotype A, for instance: 13 complete grains, all 13 turgid, 1 on the edge and a typical grain of 60.8 µm.</p>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Decision rule · reading the fertility</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:42%"><b>If</b> <i>p</i> &lt; 0.05 and there is no notice of small frequencies…</td><td><b>then</b> the proportion of collapsed grains differs between groups; look in the table and the bars to see which one stands apart.</td></tr>
+      <tr><td><b>If</b> <i>p</i> &lt; 0.05 but the notice of expected frequencies below 5 appears…</td><td>the difference is likely but the test is approximate: count more overviews before claiming it.</td></tr>
+      <tr><td><b>If</b> the Wilson intervals are wide (more than 30 points)…</td><td>there are few grains per group; the percentage is imprecise even if the test comes out significant.</td></tr>
+      <tr><td><b>If</b> the check shows folded grains in green…</td><td>raise the least solidity a little; if there are healthy grains in red, lower it. Look for the gap in the histogram.</td></tr>
+      <tr><td><b>If</b> two grains stuck together come out green or red, or a healthy one violet or yellow…</td><td>adjust the aggregate and fragment factors.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">Always report the solidity threshold and the number of grains per group, and call the result “collapsed grains”, not “inviable pollen”.</p>
+  </div>
+
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>When something goes wrong</div>
+    <p><b>The button is disabled.</b> There are no overviews: mark them in the <span class="ui">Kind</span> column of the table of images in Block 2. <b>Many grains left out.</b> The overviews are so crowded that the grains touch (aggregates) or reach the edge: take less crowded fields. <b>The fragments are genuinely small grains.</b> If your sample mixes grains of very different sizes, the typical grain does not represent them all: lower the fragment factor or separate the overviews by group. <b>All grains come out collapsed.</b> Otsu’s threshold also took in part of the background, or the grains are out of focus: check the picture in the Block 2 viewer.</p>
+  </div>
+</section>
+
+</body>
+</html>

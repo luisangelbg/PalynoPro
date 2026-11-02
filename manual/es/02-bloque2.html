@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PalynoPro · Manual de usuario · Capítulo 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../interior.css">
+<script src="../paginar.js"></script>
+<style>
+</style>
+</head>
+<body>
+
+<section class="capitulo" id="cap-2" data-pestana="2" data-orden="2" style="--acento: var(--b2)">
+  <div class="cap-apertura">
+    <div class="cap-num">2</div>
+    <div class="cap-etiqueta">Capítulo dos · Bloque 2</div>
+    <h1 data-corto="Imágenes y calibración">Imágenes y calibración</h1>
+    <div class="cap-regla"></div>
+    <p class="cap-resumen">Todo lo que la app mide después depende de dos cosas que se deciden aquí: cuántos micrómetros mide un píxel en cada foto, y a qué grupo y a qué grano pertenece cada foto. El bloque lee la carpeta con lo que la acompañe, calibra cada imagen, la comprueba contra su propia barra de escala, reconoce qué fotos son de un grano y cuáles son panorámicas, y te deja corregir lo que haga falta antes de medir.</p>
+    <div class="cap-franja"><span class="k2"></span><span class="k2"></span><span class="k3"></span><span class="k5"></span></div>
+    <ul class="cap-contenido">
+      <li><b>2.1</b>Abrir una carpeta o el ejemplo</li>
+      <li><b>2.2</b>El resumen y sus avisos</li>
+      <li><b>2.3</b>Calibración y lectura de nombres</li>
+      <li><b>2.4</b>Grupos</li>
+      <li><b>2.5</b>La tabla de imágenes</li>
+      <li><b>2.6</b>El visor y la barra medida a mano</li>
+    </ul>
+  </div>
+
+  <!-- 2.1 -->
+  <h2 id="s2-1"><span class="num">2.1</span>Abrir una carpeta o el ejemplo</h2>
+  <p class="lead">El bloque se presenta con su subtítulo, <span class="ui">Abre una carpeta, revisa los grupos y comprueba la calibración de cada foto.</span>, un desplegable que lo explica en dos párrafos y una sola tarjeta: la zona donde se sueltan las imágenes.</p>
+
+  <figure class="w80">
+    <div class="marco"><img src="../img/b2-vacio.png" alt="El Bloque 2 sin imágenes: el título, el desplegable Qué hace este bloque y la zona para arrastrar una carpeta con sus cuatro botones">
+      <span class="marca" style="left:0.9%;top:22.1%">1</span>
+      <span class="marca" style="left:24.9%;top:83.3%">2</span>
+      <span class="marca" style="left:39.5%;top:83.3%">3</span>
+      <span class="marca" style="left:51.9%;top:83.3%">4</span>
+      <span class="marca" style="left:66.4%;top:83.3%">5</span>
+    </div>
+    <figcaption><b>Figura 2.1.</b> El Bloque 2 al abrirlo, antes de leer imágenes.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>Qué hace este bloque.</b> Resume los formatos que lee, el índice, la clave de grupos (con ejemplos como <code>A = Morfotipo A</code>) y la comprobación con la barra.</li>
+    <li><span class="n">2</span><b>Elegir una carpeta.</b> Abre el diálogo del sistema para elegir una carpeta entera, con sus subcarpetas.</li>
+    <li><span class="n">3</span><b>Elegir archivos.</b> Para elegir archivos sueltos: imágenes, sus <code>.txt</code>, un índice <code>.csv</code> o una clave.</li>
+    <li><span class="n">4</span><b>Ejemplo simulado.</b> Dibuja el ejemplo de la introducción (I.7). Si hay imágenes tuyas abiertas, pregunta antes de reemplazarlas.</li>
+    <li><span class="n">5</span><b>Vaciar.</b> Quita todas las imágenes y los resultados, después de confirmar «¿Quitar todas las imágenes y resultados?».</li>
+  </ul>
+  <p>También puedes arrastrar la carpeta, o un puñado de archivos, desde el explorador de tu sistema hasta la zona punteada de <span class="ui">Arrastra aquí una carpeta o tus imágenes</span>. Nada se sube a ningún lado: los archivos se leen en tu computadora, y cada imagen se lee completa una sola vez —para saber su tamaño, buscar su barra de escala y hacer una miniatura— y otra vez sólo cuando se mide.</p>
+
+  <h3>Lo que la app reconoce en la carpeta</h3>
+  <p>No hace falta separar nada: la app clasifica cada archivo por su extensión y por su nombre.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.45in">Archivo</th><th>Cómo lo reconoce y qué toma de él</th></tr></thead>
+    <tbody>
+      <tr><td>Imágenes</td><td>TIFF (de 8 o 16 bits; sin compresión o con LZW, PackBits o Deflate; en grises, con paleta o en color), PNG, JPEG, BMP, WebP y GIF. Todo se convierte a grises: un nivel de gris por píxel. El TIFF lo lee un lector propio, porque el navegador no sabe mostrarlo.</td></tr>
+      <tr><td>El <code>.txt</code> del microscopio</td><td>Un <code>.txt</code> con el mismo nombre que una imagen (<code>05_B.txt</code> junto a <code>05_B.tif</code>). De él, o del texto que algunos equipos guardan dentro del propio TIFF, se leen la magnificación, el tamaño del píxel si viene escrito, el voltaje, la distancia de trabajo y la fecha.</td></tr>
+      <tr><td>El índice</td><td>Un <code>.csv</code> (o un <code>.txt</code> que no corresponda a ninguna imagen) con encabezado y una fila por imagen. Lo único obligatorio es la columna del archivo. Sólo se usa el primer índice que aparezca.</td></tr>
+      <tr><td>La clave de grupos</td><td>Un archivo de texto, que no sea índice, con líneas <code>código = nombre</code> o <code>código: nombre</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>El índice</h4>
+  <p>Las columnas se reconocen por su nombre, en español o en inglés, sin importar mayúsculas ni acentos, y el separador puede ser coma, punto y coma o tabulador. Cada fila se une a su imagen por el nombre del archivo, con o sin extensión.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.6in">Columna</th><th style="width:1.9in">También se acepta</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td><code>archivo</code></td><td><code>file</code>, <code>imagen</code>, <code>foto</code>, <code>id</code>…</td><td>El nombre de la imagen (obligatoria)</td></tr>
+      <tr><td><code>grupo</code></td><td><code>group</code>, <code>morfotipo</code>, <code>especie</code>, <code>taxon</code>, <code>codigo</code>…</td><td>El grupo; manda sobre lo que se lea del nombre del archivo</td></tr>
+      <tr><td><code>nombre</code></td><td><code>name</code>, <code>nombre_grupo</code>…</td><td>El nombre largo del grupo de esa fila</td></tr>
+      <tr><td><code>grano</code></td><td><code>grain</code>, <code>unidad</code>, <code>ejemplar</code>…</td><td>El grano; dos fotos con el mismo grupo y grano son el mismo grano</td></tr>
+      <tr><td><code>magnificacion</code></td><td><code>magnification</code>, <code>mag</code>, <code>aumentos</code>…</td><td>La magnificación, si el <code>.txt</code> del microscopio no la dio</td></tr>
+      <tr><td><code>um_por_px</code></td><td><code>um_per_px</code>, <code>micras_por_pixel</code>…</td><td>El tamaño del píxel, si ya lo conoces</td></tr>
+      <tr><td><code>excluir</code></td><td><code>exclude</code>, <code>descartar</code></td><td>Excluye la foto si dice <code>1</code>, <code>si</code>, <code>yes</code>, <code>true</code> o <code>x</code></td></tr>
+      <tr><td><code>nota</code></td><td><code>note</code>, <code>comentario</code>…</td><td>Un comentario, que el visor muestra</td></tr>
+      <tr><td><code>nivel</code></td><td><code>tipo</code>, <code>tier</code>, <code>kind</code></td><td>El tipo de foto: lo que contenga «pano» u «over» es panorámica; «det», detalle; lo demás, un grano</td></tr>
+    </tbody>
+  </table>
+
+  <h4>La clave de grupos</h4>
+  <p>Sirve para dar a cada código de grupo un nombre legible, que luego aparece en tablas, figuras e informe. Por ejemplo, un archivo <code>clave.txt</code> con estas dos líneas:</p>
+  <div class="formula"><code>A = Morfotipo A</code> &nbsp;&nbsp;·&nbsp;&nbsp; <code>G1: Morfotipo uno</code></div>
+  <p>El código es una sola palabra de letras y dígitos, como los que se leen de los nombres de archivo: <code>A</code>, <code>G1</code>, <code>P12</code> o <code>7</code> sirven, y también uno de hasta ocho caracteres con guion o guion bajo en medio (<code>norte-2</code>). Lo que va después del <code>=</code> o de los dos puntos es el nombre. Si prefieres no hacer un archivo aparte, escribe los nombres en la tarjeta <span class="ui">Grupos</span> (2.4) o en la columna <code>nombre</code> del índice.</p>
+
+  <h3>El mensaje de lectura</h3>
+  <p>Al terminar, un mensaje bajo los botones dice lo que se leyó: cuántas imágenes, cuántos archivos del microscopio, el nombre del índice y cuántos nombres de grupo trajo la clave; y, si alguna imagen no se pudo leer, su nombre y la razón. Con el ejemplo, el mensaje avisa que es <b>simulado</b>: «tres morfotipos dibujados por la app con parámetros conocidos (no son fotos de plantas reales). Algunos granos se fotografiaron dos veces, como en un estudio real.» Debajo aparecen las cinco tarjetas que siguen.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Se pueden sumar imágenes</div>
+    <p>Si ya hay imágenes abiertas y eliges otra carpeta, las nuevas se agregan a las que había; las que tengan un nombre que ya está no se repiten. Si abriste antes un proyecto, abrir su carpeta vuelve a unir cada foto con su fila guardada: el mensaje lo dice («…, 33 del proyecto vueltas a abrir», por ejemplo) y los resultados del proyecto se conservan. Si en cambio la carpeta trae imágenes que no estaban y ya había resultados, la app pregunta antes: «Hay <i>N</i> imagen(es) que no estaban en el conjunto. Añadirlas borra los resultados ya calculados (contorno, ornamentación, fertilidad y estadística), que habrá que calcular otra vez. ¿Seguir?». Si sigues, el mensaje de lectura lo confirma con «El conjunto cambió: los resultados anteriores se borraron.». Para empezar de cero, <span class="ui">Vaciar</span>.</p>
+  </div>
+
+  <!-- 2.2 -->
+  <h2 id="s2-2"><span class="num">2.2</span>El resumen y sus avisos</h2>
+  <p><span class="ui">Resumen</span> es la tarjeta que conviene mirar primero: seis mosaicos y, debajo, los avisos que la app haya encontrado. La figura I.5 de la introducción lo muestra con el ejemplo recién abierto.</p>
+  <table class="compacta">
+    <thead><tr><th style="width:1.45in">Mosaico</th><th style="width:1.05in" class="num">Ejemplo</th><th>Qué cuenta</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui">Imágenes</span></td><td class="num">33</td><td>Todas las imágenes abiertas; debajo, cuántas están excluidas (0)</td></tr>
+      <tr><td><span class="ui">Grupos</span></td><td class="num">3</td><td>Los códigos de grupo distintos, con los primeros seis debajo (A · B · C)</td></tr>
+      <tr><td><span class="ui">Granos</span></td><td class="num">24</td><td>Los granos distintos (las combinaciones de grupo y grano) <span class="ui">en las fotos de un grano</span> no excluidas: las fotos repetidas de un grano cuentan una vez, y las panorámicas no cuentan</td></tr>
+      <tr><td><span class="ui">Calibradas</span></td><td class="num">33 / 33</td><td>Las que tienen tamaño de píxel; el borde verde dice que son todas</td></tr>
+      <tr><td><span class="ui">Barra comprobada</span></td><td class="num">33</td><td>Las barras que dan una longitud redonda; debajo, cuántas son dudosas (<span class="ui">ninguna dudosa</span>)</td></tr>
+      <tr><td><span class="ui">Panorámicas</span></td><td class="num">3</td><td>Las fotos de tipo panorámica; debajo, las de detalle (0)</td></tr>
+    </tbody>
+  </table>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>30 fotos, 24 granos</div>
+    <p>El ejemplo tiene 30 fotos de un grano, pero 24 granos: ocho por morfotipo, de los que el 3 y el 6 se fotografiaron dos veces. El mosaico <span class="ui">Granos</span> cuenta los granos, no las fotos, y es el mismo número que medirá el Bloque 3. Si aquí ves más granos de los que fotografiaste, alguna foto repetida no quedó con el mismo grupo y grano que su gemela (2.5).</p>
+  </div>
+
+  <h3>Los avisos</h3>
+  <p>Debajo de los mosaicos la app escribe un aviso por cada cosa que encontró. Con el ejemplo sólo aparece el verde: «Las 33 barras encontradas dan longitudes redondas: la calibración es coherente.»</p>
+  <table class="compacta">
+    <thead><tr><th style="width:2.4in">Aviso (resumido)</th><th>Qué significa y qué hacer</th></tr></thead>
+    <tbody>
+      <tr><td>… imagen(es) no tienen magnificación ni tamaño de píxel</td><td>Ni el <code>.txt</code>, ni el TIFF, ni el índice dieron con qué calibrarlas. Escribe su magnificación en la tabla (2.5) o mide su barra a mano (2.6). Mientras tanto quedan fuera de las mediciones.</td></tr>
+      <tr><td>… barra(s) no dan una longitud redonda con la calibración</td><td>Revisa esas fotos con el filtro <span class="ui">Barra dudosa</span>. La causa más común es una magnificación mal escrita; la otra, un equipo con otro ancho de referencia (2.3).</td></tr>
+      <tr><td>Las … barras encontradas dan longitudes redondas</td><td>Todo está en orden (verde).</td></tr>
+      <tr><td>En … imagen(es), el tamaño del píxel del índice o del archivo no coincidía con la barra de escala y la magnificación sí: se usó la magnificación</td><td>Un tamaño de píxel copiado mal en un índice, o escrito mal por el equipo. La app lo sustituyó por el de la magnificación, y el visor dice cuál era el original. Corrige ese índice.</td></tr>
+      <tr><td>… foto(s) sin barra</td><td>Se calibran por su magnificación, sin poder comprobarse (azul, informativo).</td></tr>
+      <tr><td>No se reconoció ningún grupo en los nombres</td><td>Ajusta el patrón del nombre (2.3) o carga un índice con la columna <code>grupo</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="caja ejemplo">
+    <div class="caja-t"><span class="ico">▸</span>Ejemplo resuelto · una magnificación mal escrita</div>
+    <p>En la tabla de imágenes, cambia la magnificación de <code>02_A.png</code> de 1000 a 1200, como si se hubiera tecleado mal. La app recalcula el píxel de esa foto: 128 000 µm ÷ (1200 × 1280 px) = 0.08333 µm. Su barra mide 100 px, que ahora darían 8.333 µm: no es una longitud redonda —la más cercana, 10 µm, queda a casi 17 %—, así que la foto se marca. El mosaico pasa a <span class="ui">32</span> con <span class="ui">1 con barra dudosa</span>, con borde ámbar, y aparece el aviso (figura 2.2). Con 1200× el grano de esa foto habría medido un sexto menos de lo que mide.</p>
+  </div>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b2-dudosa.png" alt="La tarjeta Resumen con 32 barras comprobadas, una dudosa, y el aviso de barra que no da una longitud redonda"></div>
+    <figcaption><b>Figura 2.2.</b> <span class="ui">Resumen</span> después de escribir 1200 en lugar de 1000 como magnificación de <code>02_A.png</code>.</figcaption>
+  </figure>
+  <p>Una barra dudosa no saca a la foto del análisis: la app la sigue midiendo con la calibración que tiene, porque no puede saber cuál de las dos —la magnificación o la barra— está mal. Eso lo decides tú. Al volver a escribir 1000, el aviso desaparece.</p>
+
+  <!-- 2.3 -->
+  <h2 id="s2-3"><span class="num">2.3</span>Calibración y lectura de nombres</h2>
+  <p>Tres ajustes que valen para todas las imágenes, y que no se aplican hasta que pulsas <span class="ui">Aplicar</span>.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b2-calibracion.png" alt="La tarjeta Calibración y lectura de nombres con el ancho de referencia de 128 mm, el píxel del análisis automático de 0.1 micrómetros y el patrón del nombre"></div>
+    <figcaption><b>Figura 2.3.</b> <span class="ui">Calibración y lectura de nombres</span> con el ejemplo y los valores por omisión. La línea de abajo muestra cómo se leen los tres primeros nombres.</figcaption>
+  </figure>
+
+  <h3>Ancho del cuadro de referencia (mm)</h3>
+  <p>La magnificación que escribe un microscopio electrónico se refiere a un cuadro de referencia de ancho fijo: el campo fotografiado mide ese ancho dividido entre la magnificación. El tamaño del píxel es ese campo dividido entre el ancho en píxeles de la imagen tal como se guardó:</p>
+  <div class="formula">µm por píxel = <i>ancho de referencia</i> (mm) × 1000 ÷ (<i>magnificación</i> × <i>ancho de la imagen</i> en px)</div>
+  <p>El valor por omisión, <b>128 mm</b>, es el de muchos equipos (los que dejan archivos de texto con líneas <code>$CM_MAG</code>). En el ejemplo: 128 × 1000 ÷ (1000 × 1280) = <b>0.1 µm por píxel</b> en las fotos de un grano, y 128 × 1000 ÷ (150 × 1280) = <b>0.66667 µm</b> en las panorámicas. Si tu equipo usa otro cuadro, el aviso de barras dudosas saldrá en casi todas las fotos a la vez y en la misma proporción: es la señal de que hay que cambiar este número. Un valor vacío o no positivo vuelve a 128.</p>
+  <div class="caja teoria">
+    <div class="caja-t"><span class="ico">θ</span>Teoría en breve · de dónde sale el tamaño de cada píxel</div>
+    <p>La app toma el tamaño del píxel de la fuente más fuerte que tenga cada foto, en este orden: el que mediste <b>a mano</b> con la barra (2.6); el del <b>índice</b> (<code>um_por_px</code>); el que el <b>equipo</b> escribió en su <code>.txt</code> o en el TIFF; el que sale de la <b>magnificación</b> y el ancho de referencia; y, si no hay nada, la foto queda <b>sin calibrar</b>. La columna <span class="ui">Fuente</span> de la tabla dice cuál se usó. Una sola excepción: si el tamaño del índice o del equipo contradice a la barra y el de la magnificación la cumple, gana la magnificación, y el resumen lo avisa.</p>
+  </div>
+
+  <h4>La comprobación con la barra de escala</h4>
+  <p>Al leer cada imagen, la app busca su barra en la quinta parte de abajo: una franja de píxeles casi blancos, de al menos 2 % y a lo más 45 % del ancho de la foto, que se repite con el mismo inicio y el mismo largo (±2 px) en al menos tres renglones seguidos, y que está casi toda llena. Si hay varias, toma la más larga. Su largo en píxeles por el tamaño del píxel debe dar una <b>longitud redonda</b>: 1, 2 o 5 por una potencia de diez (1, 2, 5, 10, 20, 50, 100 µm…), con una tolerancia de 4 %.</p>
+  <table class="compacta">
+    <caption><b>La barra de escala en el ejemplo</b></caption>
+    <thead><tr><th>Fotos</th><th class="num">Magnificación</th><th class="num">µm por píxel</th><th class="num">Barra</th><th class="num">Longitud</th><th>Veredicto</th></tr></thead>
+    <tbody>
+      <tr><td>30 de un grano</td><td class="num">1000×</td><td class="num">0.1</td><td class="num">100 px</td><td class="num">10 µm</td><td>redonda: 10 µm</td></tr>
+      <tr><td>3 panorámicas</td><td class="num">150×</td><td class="num">0.66667</td><td class="num">152 px</td><td class="num">101.333 µm</td><td>redonda: 100 µm (1.3 % de diferencia)</td></tr>
+      <tr><td><code>02_A.png</code> con 1200× (ejemplo de 2.2)</td><td class="num">1200×</td><td class="num">0.08333</td><td class="num">100 px</td><td class="num">8.333 µm</td><td>se esperaba 10 µm</td></tr>
+    </tbody>
+  </table>
+  <p>La barra también dice dónde empieza el <b>rótulo</b> del microscopio —la franja de abajo con la barra, el voltaje y los demás datos—: la app corta la foto unos renglones arriba de la barra, para que ni la barra ni las letras se tomen por parte del grano. Si no hay barra, corta en una franja oscura al pie, si la hay. El visor (2.6) dibuja ese corte.</p>
+
+  <h3>Píxel del análisis (µm)</h3>
+  <p>Antes de medir, todas las fotos de un grano se llevan al mismo tamaño de píxel, remuestreando por áreas (Wolberg, 1990). Así la textura, los lúmenes y las espinas se miden con la misma finura en fotos tomadas a distinta resolución. Vacío —lo normal— quiere decir <b>automático</b>: el percentil 90 del tamaño de píxel de las fotos de un grano incluidas, redondeado a dos cifras, de modo que casi ninguna tenga que ampliarse. La ayuda de abajo dice cuál resultó: <span class="ui">vacío = automático: 0.1 µm</span> en el ejemplo, donde todas las fotos de un grano tienen el mismo píxel. Las fotos que tengan menos resolución que el píxel del análisis se amplían, y el Bloque 3 las marca. Las panorámicas no se llevan a este píxel: el Bloque 5 las cuenta con su propio píxel (reducidas, si pasan de 1600 px de ancho).</p>
+  <p>Escribe un valor sólo si quieres fijarlo —por ejemplo, para comparar dos estudios con el mismo píxel—. Un píxel más fino que el de tus fotos no agrega detalle: sólo amplía.</p>
+
+  <h3>Patrón del nombre (grupo y grano)</h3>
+  <p>Si no hay índice, el grupo y el grano de cada foto se leen de su nombre (sin la extensión) con una <b>expresión regular</b> que tiene dos partes con nombre, <code>(?&lt;grain&gt;…)</code> para el grano y <code>(?&lt;group&gt;…)</code> para el grupo. La que trae la app es:</p>
+  <div class="formula"><code>^(?&lt;grain&gt;\d+)[A-Za-z]*_(?&lt;group&gt;[A-Za-z]+\d*)</code></div>
+  <p>Se lee así: al principio, uno o más dígitos (el grano); luego, letras opcionales (la que distingue una segunda foto del mismo grano); un guion bajo; y letras seguidas de dígitos opcionales (el grupo). Con ella, <code>01_A</code> es el grano 01 del grupo A, y <code>03a_A</code> es otra foto del mismo grano 03. La línea <span class="ui">Así se leen los primeros nombres</span> lo comprueba en vivo con las tres primeras imágenes mientras escribes: en el ejemplo, «01_A → grupo A, grano 01 · 02_A → grupo A, grano 02 · 03_A → grupo A, grano 03».</p>
+  <table class="compacta">
+    <caption><b>Patrones para otras maneras de nombrar las fotos</b></caption>
+    <thead><tr><th style="width:1.6in">Tus archivos se llaman</th><th>Patrón</th></tr></thead>
+    <tbody>
+      <tr><td><code>A_01.tif</code>, <code>A_01b.tif</code></td><td><code>^(?&lt;group&gt;[A-Za-z]+\d*)_(?&lt;grain&gt;\d+)</code></td></tr>
+      <tr><td><code>P3-g12-1.tif</code></td><td><code>^(?&lt;group&gt;P\d+)-g(?&lt;grain&gt;\d+)</code></td></tr>
+      <tr><td><code>norte_07.png</code></td><td><code>^(?&lt;group&gt;[a-z]+)_(?&lt;grain&gt;\d+)</code></td></tr>
+    </tbody>
+  </table>
+  <p>Al pulsar <span class="ui">Aplicar</span>, la app comprueba que el patrón sea una expresión válida (si no, lo dice y no cambia nada); si el patrón cambió, vuelve a leer con él el grupo y el grano de las fotos; recalcula la calibración de todas con el ancho de referencia, vuelve a clasificar los tipos de foto y confirma con «Calibración aplicada». Todo lo que se haya medido en los bloques 3 a 6 se borra, porque dependía de lo anterior.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>El índice y la tabla mandan sobre el patrón</div>
+    <p>El patrón sólo adivina. Un grupo o un grano que vino del índice, o que escribiste en la tabla de imágenes, se respeta aunque cambies el patrón, y la app lo dice: «El patrón nuevo no cambió el grupo ni el grano de <i>N</i> imagen(es): venían del índice o se escribieron en la tabla, y esos mandan. Si quieres cambiarlos, edítalos en la tabla.». Lo mismo con el tamaño del píxel: si al recalcular el del índice o del equipo sigue contradiciendo a la barra, la app sigue usando el de la magnificación, como al abrir la carpeta.</p>
+  </div>
+
+  <!-- 2.4 -->
+  <h2 id="s2-4"><span class="num">2.4</span>Grupos</h2>
+  <p>Una fila por grupo, con su código y su color —el mismo que tendrá en todas las figuras—, un campo <span class="ui">Nombre</span> y dos conteos sin las fotos excluidas: <span class="ui">Imágenes</span> (todas) y <span class="ui">Granos</span> (en las fotos de un grano).</p>
+  <figure class="w60">
+    <div class="marco"><img src="../img/b2-grupos.png" alt="La tarjeta Grupos con los tres morfotipos simulados, 11 imágenes y 8 granos cada uno"></div>
+    <figcaption><b>Figura 2.4.</b> <span class="ui">Grupos</span> con el ejemplo: cada morfotipo tiene 11 imágenes (10 fotos de un grano y su panorámica) y 8 granos: las dos fotos repetidas cuentan una vez y la panorámica no cuenta, como en el mosaico <span class="ui">Granos</span> de 2.2.</figcaption>
+  </figure>
+  <p>El nombre se usa en las tablas, las figuras y el informe en lugar del código; si lo dejas vacío, se usa el código. Viene de la clave de grupos, de la columna <code>nombre</code> del índice o, en el ejemplo, de la propia app («Morfotipo A (simulado)»). Cambiarlo no borra ningún resultado: sólo cambia cómo se rotula.</p>
+  <p>El código, en cambio, se cambia en la tabla de imágenes, foto por foto (2.5). Un grupo existe mientras alguna foto lo tenga.</p>
+
+  <!-- 2.5 -->
+  <h2 id="s2-5"><span class="num">2.5</span>La tabla de imágenes</h2>
+  <p>Una fila por imagen, con lo que la app leyó y calculó de ella, y los campos que puedes corregir. Arriba, siete filtros eligen qué filas se ven: <span class="ui">Todas</span>, <span class="ui">Un grano</span>, <span class="ui">Panorámicas</span>, <span class="ui">Detalle</span>, <span class="ui">Barra dudosa</span>, <span class="ui">Sin calibrar</span> y <span class="ui">Excluidas</span>.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b2-tabla.png" alt="La tarjeta Imágenes con los filtros y las primeras siete filas del ejemplo"></div>
+    <figcaption><b>Figura 2.5.</b> <span class="ui">Imágenes</span> con el filtro <span class="ui">Todas</span>: las primeras fotos del morfotipo A, todas a 1000× y 1280 px de ancho, con 0.1 µm por píxel tomado de la magnificación y la barra comprobada en 10 µm. La fila resaltada es la que muestra el visor.</figcaption>
+  </figure>
+  <table class="compacta">
+    <thead><tr><th style="width:1.15in">Columna</th><th>Qué muestra</th></tr></thead>
+    <tbody>
+      <tr><td>(miniatura)</td><td>Un clic la abre en el visor (2.6)</td></tr>
+      <tr><td><span class="ui">Archivo</span></td><td>El nombre del archivo</td></tr>
+      <tr><td><span class="ui">Grupo</span> · <span class="ui">Grano</span></td><td>Editables: corrige aquí lo que el patrón o el índice leyeron mal. Dos fotos con el mismo grupo y grano se promedian como un solo grano</td></tr>
+      <tr><td><span class="ui">Magnif.</span></td><td>Editable: la magnificación. Al cambiarla se recalcula el píxel y se comprueba la barra</td></tr>
+      <tr><td><span class="ui">Ancho (px)</span></td><td>El ancho de la imagen guardada, el que entra en la fórmula</td></tr>
+      <tr><td><span class="ui">µm/px</span></td><td>El tamaño del píxel, con cinco cifras</td></tr>
+      <tr><td><span class="ui">Fuente</span></td><td>De dónde salió el píxel: <span class="ui">a mano</span>, <span class="ui">índice</span>, <span class="ui">del equipo</span>, <span class="ui">magnificación</span> o <span class="ui">sin calibrar</span></td></tr>
+      <tr><td><span class="ui">Barra</span></td><td><span class="ui">✓</span> y la longitud si es redonda (verde); <span class="ui">!</span> y la longitud si es dudosa (ámbar); <span class="ui">sin barra</span>; o <span class="ui">sin calibrar</span>. Al pasar el puntero se ve su largo en píxeles</td></tr>
+      <tr><td><span class="ui">Tipo</span></td><td><span class="ui">Un grano</span>, <span class="ui">Panorámica</span> o <span class="ui">Detalle</span>, con un menú para cambiarlo</td></tr>
+      <tr><td><span class="ui">Excluir</span></td><td>Deja la foto fuera de todo sin borrarla; la fila se ve atenuada</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Los tres tipos de foto</h3>
+  <p>La app propone el tipo de cada foto comparando su magnificación con la mediana de todas: si es de 0.6 veces la mediana o menos, es <b>panorámica</b> (muchos granos, para el Bloque 5); si es de 1.8 veces o más, es de <b>detalle</b> (un acercamiento a la superficie); lo demás es <b>un grano</b> (para los bloques 3 y 4). En el ejemplo la mediana es 1000×, y las tres fotos a 150× son panorámicas. El Bloque 3 mide sólo las fotos de un grano y el Bloque 5 cuenta sólo las panorámicas; las de detalle se conservan y se ven en el visor, pero no se miden. Si la propuesta no es la correcta, cambia el tipo con el menú: tu elección se respeta aunque después pulses <span class="ui">Aplicar</span>.</p>
+
+  <h3>Corregir y excluir</h3>
+  <p>Cualquier cambio en el grupo, el grano, la magnificación, el tipo o la exclusión de una foto borra lo que se haya medido en los bloques 3 a 6, porque ya no corresponde; su palomita en la barra se apaga hasta que vuelvas a medir. Por eso conviene dejar este bloque en orden antes de pasar al siguiente. Excluye una foto cuando no deba contar —desenfocada, con el grano cortado por el borde, con dos granos encimados—; una foto sin calibrar queda fuera por sí sola hasta que tenga tamaño de píxel.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b2-dudosa-tabla.png" alt="La tabla con el filtro Barra dudosa: sólo la foto 02_A con magnificación 1200 y barra de 8.333 micrómetros"></div>
+    <figcaption><b>Figura 2.6.</b> El filtro <span class="ui">Barra dudosa</span> con la magnificación equivocada del ejemplo de 2.2: sólo queda <code>02_A.png</code>, con 1200×, 0.08333 µm por píxel y la barra marcada <span class="ui">! 8.333 µm</span>.</figcaption>
+  </figure>
+
+  <h3>Descargar el índice (CSV)</h3>
+  <p>Guarda la tabla completa como <code>palynopro_indice.csv</code>, con las columnas <code>archivo</code>, <code>grupo</code>, <code>nombre</code>, <code>grano</code>, <code>magnificacion</code>, <code>ancho_px</code>, <code>um_por_px</code>, <code>fuente</code>, <code>barra_px</code>, <code>barra_um</code>, <code>nivel</code>, <code>excluir</code> y <code>nota</code>. Es un buen registro de cómo se calibró cada foto, para el material suplementario de un artículo, y también un índice que la app vuelve a leer: corrígelo en una hoja de cálculo, ponlo en la carpeta de las fotos y ábrela otra vez. Las columnas <code>fuente</code> y <code>nivel</code> se escriben con las palabras de la interfaz (con la interfaz en español, <code>magnificación</code>, <code>un grano</code>, <code>panorámica</code>, <code>detalle</code>), y al releer el índice la app entiende el nivel en cualquiera de los dos idiomas.</p>
+  <div class="caja nota">
+    <div class="caja-t"><span class="ico">i</span>Al releer el índice descargado</div>
+    <p>El índice descargado trae <code>um_por_px</code> lleno, así que al releerlo la fuente de todas las fotos pasa a ser <span class="ui">índice</span>. Si después corriges una magnificación, borra antes ese valor en la hoja de cálculo; de otro modo el índice seguirá mandando.</p>
+  </div>
+
+  <!-- 2.6 -->
+  <h2 id="s2-6"><span class="num">2.6</span>El visor y la barra medida a mano</h2>
+  <p>El visor muestra la foto elegida, en grises y a lo más 1200 px de ancho, con dos marcas encima, y a su derecha los datos que la app sabe de ella. Al abrir el bloque muestra la primera imagen.</p>
+  <figure class="w80">
+    <div class="marco"><img src="../img/b2-visor.png" alt="El visor con la foto 01_A del ejemplo: el grano, la barra detectada en amarillo, el inicio del rótulo en rojo discontinuo, los botones y los datos de la foto">
+      <span class="marca" style="left:2.6%;top:85.6%">1</span>
+      <span class="marca" style="left:14%;top:85.6%">2</span>
+      <span class="marca" style="left:18.9%;top:85.6%">3</span>
+      <span class="marca" style="left:30.5%;top:85.6%">4</span>
+      <span class="marca" style="left:2.4%;top:91.3%">5</span>
+      <span class="marca" style="left:60.8%;top:14.6%">6</span>
+      <span class="marca" style="left:60.8%;top:65.5%">7</span>
+    </div>
+    <figcaption><b>Figura 2.7.</b> <span class="ui">Visor</span> con <code>01_A.png</code>, el primer grano simulado del morfotipo A.</figcaption>
+  </figure>
+  <ul class="leyenda-marcas">
+    <li><span class="n">1</span><b>← Anterior.</b> La foto anterior de las que deja ver el filtro de la tabla; de la primera salta a la última.</li>
+    <li><span class="n">2</span><b>Posición.</b> El lugar de la foto entre las filas visibles (1 / 33).</li>
+    <li><span class="n">3</span><b>Siguiente →.</b> La foto siguiente; de la última vuelve a la primera.</li>
+    <li><span class="n">4</span><b>Medir la barra a mano.</b> Calibra la foto con dos clics sobre su barra (abajo).</li>
+    <li><span class="n">5</span><b>La leyenda.</b> <span class="ui">barra detectada</span>: el rectángulo amarillo; <span class="ui">inicio del rótulo (lo de abajo no se analiza)</span>: la línea roja discontinua.</li>
+    <li><span class="n">6</span><b>Los datos de la foto.</b> <span class="ui">Archivo</span>, <span class="ui">Grupo · grano</span> (con el nombre del grupo), <span class="ui">Tamaño</span>, <span class="ui">Magnificación</span>, <span class="ui">Tamaño del píxel</span> (con su fuente) y <span class="ui">Campo</span>.</li>
+    <li><span class="n">7</span><b>Barra de escala.</b> Su largo en píxeles, lo que mide y el veredicto: <span class="ui">redonda</span> o <span class="ui">se esperaba</span>.</li>
+  </ul>
+  <p>Para <code>01_A.png</code> los datos son: 1280 × 960 px, 1000×, 0.1 µm (magnificación), un campo de 128 × 96 µm y una barra de «100 px = 10 µm (redonda: 10 µm)». Si el archivo del microscopio los trae, se agregan el <span class="ui">Voltaje</span>, la <span class="ui">Distancia de trabajo</span> y la <span class="ui">Fecha</span>, y la <span class="ui">Nota</span> del índice. Cuando la app sustituyó el tamaño del píxel de un índice o del equipo (2.2), aquí dice cuál era y por qué no se usó.</p>
+  <p>Mira las dos marcas en cada foto que te parezca rara. El rectángulo amarillo debe rodear la barra de escala, no otra cosa blanca del rótulo; la línea roja debe quedar por encima de todo el rótulo y por debajo del grano. Lo que queda abajo de la línea no se analiza nunca.</p>
+  <figure class="w70">
+    <div class="marco"><img src="../img/b2-visor-pano.png" alt="El visor con la panorámica del morfotipo B: catorce granos, algunos colapsados, a 150 aumentos"></div>
+    <figcaption><b>Figura 2.8.</b> La panorámica del morfotipo B (<code>90_B.png</code>) a 150×: 0.66667 µm por píxel, un campo de 853.3333 × 640 µm y una barra de «152 px = 101.333 µm (redonda: 100 µm)». Los granos plegados son los colapsados que contará el Bloque 5.</figcaption>
+  </figure>
+
+  <h3>Medir la barra a mano</h3>
+  <p>Para una foto sin magnificación, con una barra que la app no encuentra o con una barra que sabes correcta aunque la calibración diga otra cosa:</p>
+  <ol class="pasos">
+    <li><b>Elige la foto</b> en la tabla y pulsa <span class="ui">Medir la barra a mano</span>. La app pide: «Haz clic en los dos extremos de la barra de escala.»</li>
+    <li><b>Haz clic en un extremo y luego en el otro.</b> Cada clic deja un punto azul.</li>
+    <li><b>Escribe la longitud de la barra</b> en micrómetros cuando la app lo pregunte; la pregunta dice cuántos píxeles marcaste.</li>
+  </ol>
+  <p>El tamaño del píxel queda en longitud ÷ píxeles, con fuente <span class="ui">a mano</span>, que manda sobre todas las demás; la app confirma con «Calibrada a mano:» y el valor, y borra lo que se haya medido después. Haz los clics con cuidado y en la foto más grande que puedas: un error de dos píxeles en una barra de 100 px cambia todos los tamaños de esa foto en 2 %.</p>
+  <p>Una foto que vino de un proyecto pero cuya carpeta no se ha vuelto a abrir no se puede ver: el visor dice «La imagen no está abierta en esta sesión: abre otra vez su carpeta.»</p>
+
+  <div class="caja regla">
+    <div class="caja-t"><span class="ico">✓</span>Regla de decisión · antes de salir del Bloque 2</div>
+    <table class="compacta"><tbody>
+      <tr><td style="width:44%"><b>Si</b> <span class="ui">Calibradas</span> no dice todas…</td><td>escribe la magnificación de las que faltan o mide su barra a mano (filtro <span class="ui">Sin calibrar</span>).</td></tr>
+      <tr><td><b>Si</b> una o pocas barras son dudosas…</td><td>revisa su magnificación: casi siempre es un dígito mal escrito.</td></tr>
+      <tr><td><b>Si</b> casi todas las barras son dudosas, en la misma proporción…</td><td>tu equipo usa otro ancho de referencia: cámbialo y pulsa <span class="ui">Aplicar</span>.</td></tr>
+      <tr><td><b>Si</b> la app avisa que sustituyó el tamaño del píxel de un índice…</td><td>corrige el índice; el valor que tenía está en el visor.</td></tr>
+      <tr><td><b>Si</b> los grupos o los granos no se leyeron bien…</td><td>ajusta el patrón, carga un índice o corrígelos en la tabla.</td></tr>
+      <tr><td><b>Si</b> una foto es una panorámica o un detalle y quedó como «Un grano»…</td><td>cámbiale el tipo: el Bloque 3 la mediría como si fuera un grano.</td></tr>
+      <tr><td><b>Si</b> todo está en verde…</td><td>pasa al Bloque 3.</td></tr>
+    </tbody></table>
+    <p class="regla-pie">Son guías para interpretar, no leyes: lo que sabes de la planta, de la preparación y de cómo se fotografió siempre manda.</p>
+  </div>
+  <div class="caja error">
+    <div class="caja-t"><span class="ico">✕</span>Cuando algo sale mal</div>
+    <p><b>Una imagen no se pudo leer.</b> El mensaje dice cuál y por qué: «TIFF con compresión <i>N</i>: no se admite», «TIFF sin tamaño», «no es un TIFF» o «el navegador no pudo leer esta imagen (archivo dañado o formato no admitido)». Lo más común es un TIFF con una compresión poco común. Ábrela en un programa de imágenes y guárdala como TIFF sin compresión o como PNG. <b>Dos granos distintos quedaron como uno.</b> Tienen el mismo grupo y el mismo número de grano: corrige el grano en la tabla. <b>Un mismo grano quedó como dos.</b> El patrón no reconoció la letra de la foto repetida (<code>03a</code>): corrige el grano. <b>La barra amarilla rodea otra cosa.</b> Algo del rótulo es más largo y más blanco que la barra: mide la barra a mano. <b>La clave de grupos no puso los nombres.</b> Sus códigos no son iguales a los de las fotos (mayúsculas y minúsculas cuentan) o llevan espacios: corrígelos, o escribe los nombres en <span class="ui">Grupos</span>. <b>Se borraron los resultados de los otros bloques.</b> Es lo esperado al cambiar la calibración, un grupo, un grano, un tipo o una exclusión: vuelve a medir.</p>
+  </div>
+</section>
+
+</body>
+</html>

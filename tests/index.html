@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- PalynoPro — Copyright (C) 2026 Luis Ángel Barrera-Guzmán. Free software under the GNU GPL v3 or later; see LICENSE. -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PalynoPro — pruebas</title>
+<link rel="stylesheet" href="../css/labg-base.css">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  body { padding: 20px; }
+  .t { font-family: var(--mono); font-size: .8rem; padding: 2px 0; overflow-wrap: anywhere; }
+  .ok { color: var(--success-text); } .bad { color: var(--danger-text); font-weight: 700; }
+  h2 { margin: 18px 0 4px; font-size: 1rem; }
+  *, *::before, *::after { transition: none !important; }
+</style>
+</head>
+<body>
+<h1>PalynoPro · <span id="sum">…</span></h1>
+<p class="hint">Pruebas automáticas de los motores. Abre esta página con doble clic; cada línea debe salir en verde. Sin navegador: <code>node tests/run_node.js</code>.</p>
+<div id="out"></div>
+<script src="harness.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/core.js"></script>
+<script src="../js/stats.js"></script>
+<script src="../js/imgio.js"></script>
+<script src="../js/calib.js"></script>
+<script src="../js/imgproc.js"></script>
+<script src="../js/multi.js"></script>
+<script src="../js/figures.js"></script>
+<script src="../js/synth.js"></script>
+<script src="fixtures.js"></script>
+<script src="t_io.js"></script>
+<script src="t_calib.js"></script>
+<script src="t_img.js"></script>
+<script src="t_synth.js"></script>
+<script src="t_multi.js"></script>
+<script src="summary.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "PalynoPro: quantitative pollen morphometry from electron micrographs"
+abstract: >-
+  PalynoPro is a self-contained web application for the quantitative morphometry of pollen
+  grains in scanning electron micrographs, entirely in the browser, with no installation, no
+  third-party libraries and no server-side computation. It reads whole folders of instrument
+  TIFF, PNG or JPEG images, takes the group and grain from the file name or from an index,
+  computes the pixel size from the magnification and checks it against the printed scale bar,
+  which it finds by itself. It segments each grain, reads its outline in 720 directions,
+  removes the spines by a grey-scale opening of the radial profile to measure the corpus
+  (equivalent diameter, Feret widths, elongation, circularity), counts and measures the spines,
+  detects the lumina of the reticulum by a local threshold, and measures surface texture by
+  grey-level co-occurrence. On overview images it classifies grains as turgid or collapsed by
+  the solidity of the corpus, excluding aggregates, fragments and grains on the edge, with
+  Wilson intervals and a chi-square test among groups. Groups are compared with the grain as
+  the unit: analysis of variance with Tukey letters, Kruskal-Wallis with Holm adjustment,
+  principal components, PERMANOVA, linear discriminant analysis and random forest validated by
+  leaving out one grain at a time. A report with the methods, every figure, a gallery of
+  measured grains and references is produced for printing. Bilingual interface (Spanish and
+  English). The statistical engines were checked against independent implementations in R
+  (6,705 comparisons in 18 families, none out of tolerance), the image engine against
+  simulated grains of known truth, and 155 unit tests run in the browser.
+type: software
+authors:
+  - given-names: "Luis Ángel"
+    family-names: "Barrera-Guzmán"
+    orcid: "https://orcid.org/0000-0001-8057-2583"
+version: "1.0.0"
+date-released: "2026-11-02"
+doi: 10.5281/zenodo.XXXXXXX
+repository-code: "https://github.com/luisangelbg/PalynoPro"
+url: "https://luisangelbg.github.io/PalynoPro/"
+license: GPL-3.0-or-later
+keywords:
+  - palynology
+  - pollen morphology
+  - pollen morphometry
+  - scanning electron microscopy
+  - image analysis
+  - echinate pollen
+  - exine ornamentation
+  - pollen fertility
+  - PERMANOVA
+  - discriminant analysis
+  - random forest
+preferred-citation:
+  type: software
+  title: "PalynoPro: quantitative pollen morphometry from electron micrographs"
+  authors:
+    - given-names: "Luis Ángel"
+      family-names: "Barrera-Guzmán"
+      orcid: "https://orcid.org/0000-0001-8057-2583"
+  version: "1.0.0"
+  year: 2026
+  doi: 10.5281/zenodo.XXXXXXX
+  publisher:
+    name: "Zenodo"
+  url: "https://doi.org/10.5281/zenodo.XXXXXXX"
